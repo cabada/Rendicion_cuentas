@@ -22,7 +22,7 @@
                 <td class="centered-table-title">Grado de estudios</td>
                 <td class="centered-table-title">Horas de jornada</td>
                 <td class="centered-table-title">Área académica</td>
-                <td class="centered-table-title">Diciplina</td>
+                <td class="centered-table-title">Disciplina</td>
                 <td class="centered-table-title">Vigencia</td>
                 <td class="centered-table-title">Área de experiencia</td>
                 <td class="centered-table-title">Fecha de ingreso</td>
@@ -32,8 +32,8 @@
 
             <?php
 
-            $sql="select nombre_completo,sexo,grado_estudios,hora_jornada,vigencia,
-                fecha_ingreso from profesores";
+            $sql="select nombre_completo,sexo,grado_estudios,hora_jornada,id_area_academica,
+                id_disciplina,vigencia,id_area_experiencia,fecha_ingreso from profesores";
 
             $resultado = mysqli_query($conexion,$sql);
 
