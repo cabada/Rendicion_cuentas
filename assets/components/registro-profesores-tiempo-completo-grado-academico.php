@@ -1,3 +1,11 @@
+<?php
+
+require_once "../PHP_Consultas/Conexion.php";
+$conexion = conexion();
+
+?>
+
+
 <div class="row">
     <div class="col-sm-12">
         <h2>Registro de profesores de tiempo completo por grado académico</h2>
@@ -16,6 +24,9 @@
                 <td class="centered-table-title">Editar</td>
                 <td class="centered-table-title">Eliminar</td>
             </tr>
+
+
+
             <tr>
                 <td></td>
                 <td></td>

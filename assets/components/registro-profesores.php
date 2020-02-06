@@ -17,16 +17,42 @@
                 <td class="centered-table-title">Editar</td>
                 <td class="centered-table-title">Eliminar</td>
             </tr>
+
+            <?php
+
+            $sql="select nombre_completo,sexo,grado_estudios,hora_jornada,vigencia,
+                fecha_ingreso from profesores";
+
+            $resultado = mysqli_query($conexion,$sql);
+
+            while($buscar=mysqli_fetch_row($resultado)) {
+
+            $datos = $buscar[0]."||".
+                $buscar[1]."||".
+                $buscar[2]."||".
+                $buscar[3]."||".
+                $buscar[4]."||".
+                $buscar[5];
+
+            ?>
+
+
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><?php echo $buscar[0]?></td>
+                <td><?php echo $buscar[1]?></td>
+                <td><?php echo $buscar[2]?></td>
+                <td><?php echo $buscar[3]?></td>
+                <td><?php echo $buscar[4]?></td>
+                <td><?php echo $buscar[5]?></td>
                 <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
                 <td class="centered-table-title"><button class="btn btn-danger"><i class="far fa-window-close"></i></button></td>
             </tr>
+
+                <?php
+
+            }
+            ?>
+
         </table>
     </div>
 </div>
