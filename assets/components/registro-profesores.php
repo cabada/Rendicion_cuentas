@@ -21,7 +21,10 @@
                 <td class="centered-table-title">Sexo</td>
                 <td class="centered-table-title">Grado de estudios</td>
                 <td class="centered-table-title">Horas de jornada</td>
+                <td class="centered-table-title">Área académica</td>
+                <td class="centered-table-title">Diciplina</td>
                 <td class="centered-table-title">Vigencia</td>
+                <td class="centered-table-title">Área de experiencia</td>
                 <td class="centered-table-title">Fecha de ingreso</td>
                 <td class="centered-table-title">Editar</td>
                 <td class="centered-table-title">Eliminar</td>
@@ -51,6 +54,9 @@
                 <td><?php echo $buscar[1]?></td>
                 <td><?php echo $buscar[2]?></td>
                 <td><?php echo $buscar[3]?></td>
+                <td><?php echo $buscar[3]?></td>
+                <td><?php echo $buscar[4]?></td>
+                <td><?php echo $buscar[5]?></td>
                 <td><?php echo $buscar[4]?></td>
                 <td><?php echo $buscar[5]?></td>
                 <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
