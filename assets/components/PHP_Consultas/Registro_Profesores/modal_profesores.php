@@ -38,7 +38,7 @@ $conexion = conexion();
                 </select>
 
                 <label>Horas de jornada</label>
-                <input type="number" value="0" id="horas_jornada_agregar" class="form-control-page input-group-sm">
+                <input type="text" value="0" id="horas_jornada_agregar" class="form-control-page input-group-sm">
 
                 <label>Área académica</label>
                 <select type="text" class="form-control-page input-group-sm" id="area_academica_agregar">
