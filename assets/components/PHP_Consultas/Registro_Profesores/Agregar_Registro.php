@@ -13,6 +13,7 @@ $vigencia = $_POST['vigencia'];
 $area_experiencia = $_POST['area_experiencia'];
 $fecha_ingreso = $_POST['fecha_ingreso'];
 
+
 $stmt = $conexion->prepare("insert into profesores (
                                         nombre_completo,
                                         sexo,
@@ -21,7 +22,7 @@ $stmt = $conexion->prepare("insert into profesores (
                                         id_area_academica,
                                         id_disciplina,
                                         vigencia,
-                                        id_area_experiencia,
+                                        area_experiencia,
                                         fecha_ingreso
                                         )
                                         values (?,?,?,?,?,?,?,?,?)");
