@@ -26,7 +26,7 @@ $stmt = $conexion->prepare("insert into profesores (
                                         fecha_ingreso
                                         )
                                         values (?,?,?,?,?,?,?,?,?)");
-$stmt->bind_param("sssiiisis",$nombre_completo,$sexo, $grado_estudios,
+$stmt->bind_param("sssiiisss",$nombre_completo,$sexo, $grado_estudios,
     $horas_jornada,$area_academica,$disciplina,$vigencia,$area_experiencia,$fecha_ingreso);
 
 echo $resultado = $stmt->execute();
