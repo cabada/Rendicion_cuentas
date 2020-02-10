@@ -12,17 +12,9 @@ function conexion()
 
     return $conexion;
 
-    if(!$conexion){
-        echo "no ";
 
-
-    }
-    else{
-        echo "si";
-    }
 
 
 }
-
 
 ?>

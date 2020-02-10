@@ -230,11 +230,11 @@
 
 
             nombre_completo = $('#nombre_agregar').val();
-            sexo = $('#sexo_agregar').val();
-            grado_estudios = $('#grado_agregar').val();
+            sexo = $('select#sexo_agregar option:checked').val();
+            grado_estudios = $('select#grado_agregar option:checked').val();
             horas_jornada = $('#horas_jornada_agregar').val();
-            area_academica = $('#area-academica_agregar').val();
-            disciplina = $('#disciplina_agregar').val();
+            area_academica = $('select#area-academica_agregar option:checked').val();
+            disciplina = $('select#disciplina_agregar option:checked').val();
             vigencia = $('#anio_vigencia_agregar').val();
             area_experiencia = $('#area-academica_agregar').val();
             fecha_ingreso = $('#fecha_ingreso_agregar').val();
