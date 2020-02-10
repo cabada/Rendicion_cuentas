@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="/JS/Registro_Profesores_Funciones.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -157,7 +158,7 @@
                         <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_ingreso_agregar">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-page-theme-2" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-page-theme-2" data-dismiss="modal" id="btn_agregar_profesor">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -255,12 +256,16 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#btn_agregar_curso_actual').click(function () {
-            nombre_curso = $('#nombre_curso_agregar').val();
-            periodo = $('#periodo_agregar').val();
-            horas_capacitacion = $('#horas_capacitacion_agregar').val();
-            numero_participantes_base = $('#numero_participantes_base_agregar').val();
-            numero_participantes_honorarios = $('#numero_participantes_honorarios_agregar').val();
+        $('#btn_agregar_profesor').click(function () {
+            nombre = $('#nombre_agregar').val();
+            sexo = $('#sexo_agregar').val();
+            grado_estudios = $('#grado_estudios_agregar').val();
+            horas_jornada = $('#horas_jornada_agregar').val();
+            area_academica = $('#area-academica_agregar').val();
+            disciplina = $('#nombre_disciplina_agregar').val();
+            vigencia = $('#anio_vigencia_agregar').val();
+            area_experiencia = $('#area-academica_agregar').val();
+            fecha_ingreso = $('#fecha_ingreso_agregar').val();
             agregarDatos(nombre_curso,periodo,horas_capacitacion,numero_participantes_base,
                 numero_participantes_honorarios);
         });
