@@ -257,7 +257,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#btn_agregar_profesor').click(function () {
-            nombre = $('#nombre_agregar').val();
+            nombre_completo = $('#nombre_agregar').val();
             sexo = $('#sexo_agregar').val();
             grado_estudios = $('#grado_estudios_agregar').val();
             horas_jornada = $('#horas_jornada_agregar').val();
@@ -266,8 +266,8 @@
             vigencia = $('#anio_vigencia_agregar').val();
             area_experiencia = $('#area-academica_agregar').val();
             fecha_ingreso = $('#fecha_ingreso_agregar').val();
-            agregarDatos(nombre_curso,periodo,horas_capacitacion,numero_participantes_base,
-                numero_participantes_honorarios);
+            agregarDatos(nombre_completo,sexo,grado_estudios,horas_jornada,area_academica,
+                disciplina,vigencia,area_experiencia,fecha_ingreso)
         });
 
         $('#btn_editar_curso_actual').click(function () {
