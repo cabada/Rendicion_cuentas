@@ -15,7 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
-    <script src="/JS/Registro_Profesores_Funciones.js"></script>
+    <script src="assets/JS/Registro_Profesores_Funciones.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -214,20 +214,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#btn_agregar_profesor').click(function () {
-            sexo_valor = document.getElementById("sexo_agregar");
-            sexo_indice = sexo_valor.options[sexo_valor.selectedIndex];
-
-            grado_est_valor = document.getElementById("grado_estudios_agregar");
-            grado_est_indice = grado_est_valor.options[grado_est_valor.selectedIndex];
-
-            area_acad_valor = document.getElementById("area_academica_agregar");
-            area_acad_indice = area_acad_valor.options[area_acad_valor.selectedIndex];
-
-            disciplina_valor = document.getElementById("disciplina_agregar");
-            disciplina_indice = disciplina_valor.options[disciplina_valor.selectedIndex];
-
-
-
 
             nombre_completo = $('#nombre_agregar').val();
             sexo = $('select#sexo_agregar option:checked').val();

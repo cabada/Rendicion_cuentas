@@ -23,13 +23,20 @@ $stmt = $conexion->prepare("insert into profesores (
                                         id_disciplina,
                                         vigencia,
                                         area_experiencia,
-                                        fecha_ingreso
-                                        )
+                                        fecha_ingreso)
                                         values (?,?,?,?,?,?,?,?,?)");
 $stmt->bind_param("sssiiisss",$nombre_completo,$sexo, $grado_estudios,
     $horas_jornada,$area_academica,$disciplina,$vigencia,$area_experiencia,$fecha_ingreso);
 
 echo $resultado = $stmt->execute();
+
+if(!$resultado){
+    echo "No salio";
+}
+
+else{
+    echo "Si salio";
+}
 
 $stmt->close();
 $conexion->close();
