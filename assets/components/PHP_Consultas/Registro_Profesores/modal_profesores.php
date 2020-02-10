@@ -22,14 +22,14 @@ $conexion = conexion();
 
                 <label>Sexo</label>
                 <select type="text" class="form-control-page input-group-sm" id="sexo_agregar">
-                    <option selected>-</option>
+                    <option selected>Elija Sexo</option>
                     <option>Masculino</option>
                     <option>Femenino</option>
                 </select>
 
                 <label>Grado de estudios</label>
                 <select type="text" class="form-control-page input-group-sm" id="grado_estudios_agregar">
-                    <option selected>-</option>
+                    <option selected>Elija Grado de Estudios</option>
                     <option>Bachillerato/Tecnico</option>
                     <option>Licenciatura</option>
                     <option>Ingeniería</option>
@@ -55,8 +55,20 @@ $conexion = conexion();
                     ?>
                 </select>
 
-                <label>Diciplina</label>
-                <input type="number" value="0" id="diciplina_agregar" class="form-control-page input-group-sm">
+                <label>Disciplina</label>
+                <select type="text" class="form-control-page input-group-sm" id="disciplina_agregar">
+                    <?php
+                    $query = "select id_disciplina,nombre_disciplina from disciplina";
+                    $resultado = mysqli_query($conexion,$query);
+
+                    while($fila = mysqli_fetch_array($resultado)){
+                    $valor = $fila['nombre_disciplina'];
+
+                    echo "<option value=\"".$fila['id_disciplina']."\">".$fila['nombre_disciplina']."</option>\n";
+
+                    }
+                    ?>
+                </select>
 
                 <label>Vigencia</label>
                 <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="anio_vigencia_agregar">
