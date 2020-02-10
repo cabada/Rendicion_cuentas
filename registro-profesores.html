@@ -215,7 +215,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-page-theme-2" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-page-theme-2" id="btn_editar_profesor">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -251,4 +251,24 @@
     $(document).ready(function(){
         $('#registro-profesores').load('assets/components/registro-profesores.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_curso_actual').click(function () {
+            nombre_curso = $('#nombre_curso_agregar').val();
+            periodo = $('#periodo_agregar').val();
+            horas_capacitacion = $('#horas_capacitacion_agregar').val();
+            numero_participantes_base = $('#numero_participantes_base_agregar').val();
+            numero_participantes_honorarios = $('#numero_participantes_honorarios_agregar').val();
+            agregarDatos(nombre_curso,periodo,horas_capacitacion,numero_participantes_base,
+                numero_participantes_honorarios);
+        });
+
+        $('#btn_editar_curso_actual').click(function () {
+            actualizaDatos();
+        });
+
+    });
+
 </script>
