@@ -32,7 +32,7 @@
 
             <?php
 
-            $sql="select nombre_completo,sexo,grado_estudios,hora_jornada,id_area_academica,
+            $sql="select nombre_completo,sexo,grado_estudios,hora_jornada,area_academica,
                 id_disciplina,vigencia,id_area_experiencia,fecha_ingreso from profesores";
 
             $resultado = mysqli_query($conexion,$sql);
