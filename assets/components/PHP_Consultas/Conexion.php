@@ -15,11 +15,5 @@ function conexion()
 
 }
 
-if(!conexion()){
-    echo "No se conecto con la base de datos!";
-}
-else{
-    echo "Se conecto con la base de datos!";
-}
 
 ?>

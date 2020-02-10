@@ -1,4 +1,10 @@
+<?php
 
+require_once "../Conexion.php";
+$conexion = conexion();
+
+
+?>
 
 <!-- MODAL FOR NEW FORM -->
 <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -35,7 +41,19 @@
                 <input type="number" value="0" id="horas_jornada_agregar" class="form-control-page input-group-sm">
 
                 <label>Área académica</label>
-                <input type="number" value="0" id="area_academica_agregar" class="form-control-page input-group-sm">
+                <select type="text" class="form-control-page input-group-sm" id="area_academica_agregar">
+                    <?php
+                    $query = "select id_area_academica,nombre_area_academica from area_academica";
+                    $resultado = mysqli_query($conexion,$query);
+
+                    while($fila = mysqli_fetch_array($resultado)){
+                        $valor = $fila['nombre_area_academica'];
+
+                        echo "<option value=\"".$fila['id_area_academica']."\">".$fila['nombre_area_academica']."</option>\n";
+
+                    }
+                    ?>
+                </select>
 
                 <label>Diciplina</label>
                 <input type="number" value="0" id="diciplina_agregar" class="form-control-page input-group-sm">
