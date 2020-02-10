@@ -23,18 +23,18 @@ $conexion = conexion();
                 <label>Sexo</label>
                 <select type="text" class="form-control-page input-group-sm" id="sexo_agregar">
                     <option selected>Elija Sexo</option>
-                    <option>Masculino</option>
-                    <option>Femenino</option>
+                    <option value="1">Masculino</option>
+                    <option value="2">Femenino</option>
                 </select>
 
                 <label>Grado de estudios</label>
                 <select type="text" class="form-control-page input-group-sm" id="grado_estudios_agregar">
                     <option selected>Elija Grado de Estudios</option>
-                    <option>Bachillerato/Tecnico</option>
-                    <option>Licenciatura</option>
-                    <option>Ingeniería</option>
-                    <option>Maestría</option>
-                    <option>Doctorado</option>
+                    <option value="1">Bachillerato/Tecnico</option>
+                    <option value="2">Licenciatura</option>
+                    <option value="3">Ingeniería</option>
+                    <option value="4">Maestría</option>
+                    <option value="5">Doctorado</option>
                 </select>
 
                 <label>Horas de jornada</label>
@@ -71,13 +71,13 @@ $conexion = conexion();
                 </select>
 
                 <label>Vigencia</label>
-                <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="anio_vigencia_agregar">
+                <input class="form-control-page input-group-sm" type="text" value="aaaa-mm-dd" id="anio_vigencia_agregar">
 
                 <label>Área de experiencia</label>
-                <input type="number" value="0" id="area_experiencia_agregar" class="form-control-page input-group-sm">
+                <input type="text" value="0" id="area_experiencia_agregar" class="form-control-page input-group-sm">
 
                 <label>Fecha de ingreso</label>
-                <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_ingreso_agregar">
+                <input class="form-control-page input-group-sm" type="text" value="aaaa-mm-dd" id="fecha_ingreso_agregar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-page-theme-2" data-dismiss="modal" id="btn_agregar_profesor">Agregar Nuevo Registro</button>
