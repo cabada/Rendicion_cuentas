@@ -41,34 +41,36 @@ $conexion = conexion();
                 <input type="text" id="horas_jornada_agregar" class="form-control-page input-group-sm">
 
                 <label>Área académica</label>
-                <select type="text" class="form-control-page input-group-sm" id="area_academica_agregar">
-                    <?php
-                    $query = "select id_area_academica,nombre_area_academica from area_academica";
-                    $resultado = mysqli_query($conexion,$query);
-
-                    while($fila = mysqli_fetch_array($resultado)){
-                        $valor = $fila['nombre_area_academica'];
-
-                        echo "<option value=\"".$fila['id_area_academica']."\">".$fila['nombre_area_academica']."</option>\n";
-
-                    }
-                    ?>
-                </select>
+                <input type="text" id="area_academica_agregar" class="form-control-page input-group-sm">
+<!--                <select type="text" class="form-control-page input-group-sm" id="area_academica_agregar">-->
+<!--                    --><?php
+//                    $query = "select id_area_academica,nombre_area_academica from area_academica";
+//                    $resultado = mysqli_query($conexion,$query);
+//
+//                    while($fila = mysqli_fetch_array($resultado)){
+//                        $valor = $fila['nombre_area_academica'];
+//
+//                        echo "<option value=\"".$fila['id_area_academica']."\">".$fila['nombre_area_academica']."</option>\n";
+//
+//                    }
+//                    ?>
+<!--                </select>-->
 
                 <label>Disciplina</label>
-                <select type="text" class="form-control-page input-group-sm" id="disciplina_agregar">
-                    <?php
-                    $query = "select id_disciplina,nombre_disciplina from disciplina";
-                    $resultado = mysqli_query($conexion,$query);
-
-                    while($fila = mysqli_fetch_array($resultado)){
-                    $valor = $fila['nombre_disciplina'];
-
-                    echo "<option value=\"".$fila['id_disciplina']."\">".$fila['nombre_disciplina']."</option>\n";
-
-                    }
-                    ?>
-                </select>
+                <input type="text"id="disciplina_agregar" class="form-control-page input-group-sm">
+<!--                <select type="text" class="form-control-page input-group-sm" id="disciplina_agregar">-->
+<!--                    --><?php
+//                    $query = "select id_disciplina,nombre_disciplina from disciplina";
+//                    $resultado = mysqli_query($conexion,$query);
+//
+//                    while($fila = mysqli_fetch_array($resultado)){
+//                    $valor = $fila['nombre_disciplina'];
+//
+//                    echo "<option value=\"".$fila['id_disciplina']."\">".$fila['nombre_disciplina']."</option>\n";
+//
+//                    }
+//                    ?>
+<!--                </select>-->
 
                 <label>Vigencia</label>
                 <input class="form-control-page input-group-sm" type="text" id="anio_vigencia_agregar">
