@@ -21,21 +21,23 @@ $conexion = conexion();
                 <input type="text" id="nombre_agregar" class="form-control-page input-group-sm">
 
                 <label>Sexo</label>
-                <select type="text" class="form-control-page input-group-sm" id="sexo_agregar">
+                <input type="text" id="sexo_agregar" class="form-control-page input-group-sm">
+                <!-- <select type="text" class="form-control-page input-group-sm" id="sexo_agregar">
                     <option selected>Elija Sexo</option>
                     <option value="1">Masculino</option>
                     <option value="2">Femenino</option>
-                </select>
+                </select> -->
 
                 <label>Grado de estudios</label>
-                <select type="text" class="form-control-page input-group-sm" id="grado_estudios_agregar">
+                <input type="text" id="grado_estudios_agregar" class="form-control-page input-group-sm">
+                <!-- <select type="text" class="form-control-page input-group-sm" id="grado_estudios_agregar">
                     <option selected>Elija Grado de Estudios</option>
                     <option value="1">Bachillerato/Tecnico</option>
                     <option value="2">Licenciatura</option>
                     <option value="3">Ingeniería</option>
                     <option value="4">Maestría</option>
                     <option value="5">Doctorado</option>
-                </select>
+                </select> -->
 
                 <label>Horas de jornada</label>
                 <input type="text" id="horas_jornada_agregar" class="form-control-page input-group-sm">
