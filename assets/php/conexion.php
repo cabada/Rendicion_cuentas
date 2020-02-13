@@ -4,7 +4,7 @@
         $servidor="localhost";
         $usuario="root";
         $password="";
-        $bd="rendicion";
+        $bd="rendicion_cuentas";
 
         $conexion=mysqli_connect($servidor,$usuario,$password,$bd);
 

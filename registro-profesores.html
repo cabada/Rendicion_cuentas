@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/libraries/css/all.css">
@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/JS/Registro_Profesores_Funciones.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -107,62 +108,10 @@
             <div id="registro-profesores"></div>
         </div>
 
-        <!-- MODAL FOR NEW FORM -->
-        <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="new-modalLabel">Agregar nuevo registro</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<label>Nombre completo</label>
-						<input type="text" id="nombre_agregar" class="form-control-page input-group-sm">
+        <div id="profesores_modal">
 
-						<label>Sexo</label>
-                        <select type="text" class="form-control-page input-group-sm" id="sexo_agregar">
-                            <option selected>-</option>
-                            <option>Masculino</option>
-                            <option>Femenino</option>
-                        </select>
 
-						<label>Grado de estudios</label>
-                        <select type="text" class="form-control-page input-group-sm" id="grado_estudios_agregar">
-                            <option selected>-</option>
-                            <option>Bachillerato/Tecnico</option>
-                            <option>Licenciatura</option>
-                            <option>Ingeniería</option>
-                            <option>Maestría</option>
-                            <option>Doctorado</option>
-                        </select>
-                        
-						<label>Horas de jornada</label>
-                        <input type="number" value="0" id="horas_jornada_agregar" class="form-control-page input-group-sm">
-
-                        <label>Área académica</label>
-                        <input type="number" value="0" id="area_academica_agregar" class="form-control-page input-group-sm">
-
-                        <label>Diciplina</label>
-                        <input type="number" value="0" id="diciplina_agregar" class="form-control-page input-group-sm">
-
-						<label>Vigencia</label>
-                        <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="anio_vigencia_agregar">
-
-                        <label>Área de experiencia</label>
-                        <input type="number" value="0" id="area_experiencia_agregar" class="form-control-page input-group-sm">
-
-                        <label>Fecha de ingreso</label>
-                        <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_ingreso_agregar">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-page-theme-2" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
+        </div>
 
 		<!-- MODAL FOR EDITION -->
 		<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -215,7 +164,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-page-theme-2" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-page-theme-2" id="btn_editar_profesor">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -251,4 +200,38 @@
     $(document).ready(function(){
         $('#registro-profesores').load('assets/components/registro-profesores.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#profesores_modal').load('assets/components/PHP_Consultas/Registro_Profesores/modal_profesores.php');
+    });
+</script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_profesor').click(function () {
+
+            nombre_completo = $('#nombre_agregar').val();
+            sexo = $('select#sexo_agregar option:checked').val();
+            grado_estudios = $('select#grado_agregar option:checked').val();
+            horas_jornada = $('#horas_jornada_agregar').val();
+            area_academica = $('select#area-academica_agregar option:checked').val();
+            disciplina = $('select#disciplina_agregar option:checked').val();
+            vigencia = $('#anio_vigencia_agregar').val();
+            area_experiencia = $('#area-academica_agregar').val();
+            fecha_ingreso = $('#fecha_ingreso_agregar').val();
+            agregarDatos(nombre_completo,sexo,grado_estudios,horas_jornada,area_academica,
+                disciplina,vigencia,area_experiencia,fecha_ingreso)
+        });
+
+        $('#btn_editar_curso_actual').click(function () {
+            actualizaDatos();
+        });
+
+    });
+
 </script>
