@@ -38,7 +38,7 @@ $conexion = conexion();
                 </select>
 
                 <label>Horas de jornada</label>
-                <input type="text" value="0" id="horas_jornada_agregar" class="form-control-page input-group-sm">
+                <input type="text" id="horas_jornada_agregar" class="form-control-page input-group-sm">
 
                 <label>Área académica</label>
                 <select type="text" class="form-control-page input-group-sm" id="area_academica_agregar">
@@ -71,13 +71,13 @@ $conexion = conexion();
                 </select>
 
                 <label>Vigencia</label>
-                <input class="form-control-page input-group-sm" type="text" value="" id="anio_vigencia_agregar">
+                <input class="form-control-page input-group-sm" type="text" id="anio_vigencia_agregar">
 
                 <label>Área de experiencia</label>
-                <input type="text" value="0" id="area_experiencia_agregar" class="form-control-page input-group-sm">
+                <input type="text" id="area_experiencia_agregar" class="form-control-page input-group-sm">
 
                 <label>Fecha de ingreso</label>
-                <input class="form-control-page input-group-sm" type="text" value="" id="fecha_ingreso_agregar">
+                <input class="form-control-page input-group-sm" type="text" id="fecha_ingreso_agregar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-page-theme-2" data-dismiss="modal" id="btn_agregar_profesor">Agregar Nuevo Registro</button>
