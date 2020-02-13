@@ -14,7 +14,7 @@ $area_experiencia = $_POST['area_experiencia'];
 $fecha_ingreso = $_POST['fecha_ingreso'];
 
 
-$stmt = $conexion->prepare("insert into profesores (
+$stmt = $conexion->prepare("insert into profesores(
                                         nombre_completo,
                                         sexo,
                                         grado_estudios,
@@ -25,7 +25,7 @@ $stmt = $conexion->prepare("insert into profesores (
                                         area_experiencia,
                                         fecha_ingreso)
                                         values (?,?,?,?,?,?,?,?,?)");
-$stmt->bind_param("sssiiisss",$nombre_completo,$sexo, $grado_estudios,
+$stmt->bind_param("ssssiisss",$nombre_completo,$sexo, $grado_estudios,
     $horas_jornada,$area_academica,$disciplina,$vigencia,$area_experiencia,$fecha_ingreso);
 
 echo $resultado = $stmt->execute();

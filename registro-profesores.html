@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/libraries/css/all.css">
@@ -12,7 +12,6 @@
 
     <script defer src="assets/libraries/js/all.js"></script>
     <script src="assets/libraries/js/jquery-3.4.1.min.js"></script>
-    <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
     <script src="assets/JS/Registro_Profesores_Funciones.js"></script>
@@ -145,22 +144,22 @@
                         </select>
                         
 						<label>Horas de jornada</label>
-                        <input type="number" value="0" id="horas_jornada_editar" class="form-control-page input-group-sm">
+                        <input type="text" id="horas_jornada_editar" class="form-control-page input-group-sm">
 
                         <label>Área académica</label>
-                        <input type="number" value="0" id="area_academica_editar" class="form-control-page input-group-sm">
+                        <input type="text" id="area_academica_editar" class="form-control-page input-group-sm">
 
                         <label>Diciplina</label>
-                        <input type="number" value="0" id="diciplina_editar" class="form-control-page input-group-sm">
+                        <input type="text" id="diciplina_editar" class="form-control-page input-group-sm">
 
 						<label>Vigencia</label>
-                        <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="anio_vigencia_editar">
+                        <input class="form-control-page input-group-sm" type="text" id="anio_vigencia_editar">
 
                         <label>Área de experiencia</label>
-                        <input type="number" value="0" id="area_experiencia_editar" class="form-control-page input-group-sm">
+                        <input type="text" id="area_experiencia_editar" class="form-control-page input-group-sm">
 
                         <label>Fecha de ingreso</label>
-                        <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_ingreso_editar">
+                        <input class="form-control-page input-group-sm" type="text" id="fecha_ingreso_editar">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -216,11 +215,11 @@
         $('#btn_agregar_profesor').click(function () {
 
             nombre_completo = $('#nombre_agregar').val();
-            sexo = $('select#sexo_agregar option:checked').val();
-            grado_estudios = $('select#grado_agregar option:checked').val();
+            sexo = $('#sexo_agregar').val();
+            grado_estudios = $('#grado_agregar').val();
             horas_jornada = $('#horas_jornada_agregar').val();
-            area_academica = $('select#area-academica_agregar option:checked').val();
-            disciplina = $('select#disciplina_agregar option:checked').val();
+            area_academica = $('#area-academica_agregar').val();
+            disciplina = $('#disciplina_agregar').val();
             vigencia = $('#anio_vigencia_agregar').val();
             area_experiencia = $('#area-academica_agregar').val();
             fecha_ingreso = $('#fecha_ingreso_agregar').val();
