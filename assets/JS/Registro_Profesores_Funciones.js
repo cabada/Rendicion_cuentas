@@ -33,14 +33,14 @@ function agregaform(datos) {
 
     d=datos.split('||');
 
-    $d[0];
+
     $('#nombre_editar').val(d[1]);
     $('#sexo_editar').val(d[2]);
     $('#grado_estudios_editar').val(d[3]);
-    $('#numero_horas_jornada_editar').val(d[4]);
+    $('#horas_jornada_editar').val(d[4]);
     $('#area_academica_editar').val(d[5]);
     $('#disciplina_editar').val(d[6]);
-    $('#vigencia_editar').val(d[7]);
+    $('#anio_vigencia_editar').val(d[7]);
     $('#area_experiencia_editar').val(d[8]);
     $('#fecha_ingreso_editar').val(d[9]);
 
