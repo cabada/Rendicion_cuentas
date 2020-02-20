@@ -20,7 +20,6 @@ $stmt->bind_param("ssssiisss",$nombre_completo,$sexo, $grado_estudios,
 
 echo $resultado = $stmt->execute();
 
-
 $stmt->close();
 $conexion->close();
 
