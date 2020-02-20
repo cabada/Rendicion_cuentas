@@ -33,7 +33,7 @@ function agregaform(datos) {
 
     d=datos.split('||');
 
-
+    $('#id_profesor').val(d[0]);
     $('#nombre_editar').val(d[1]);
     $('#sexo_editar').val(d[2]);
     $('#grado_estudios_editar').val(d[3]);
@@ -51,27 +51,60 @@ function agregaform(datos) {
 function actualizaDatos() {
 
 
-    id_curso=$('#id_curso').val();
-    nombre_curso=$('#nombre_curso_editar').val();
-    periodo=$('#periodo_editar').val();
-    horas_capacitacion=$('#horas_capacitacion_editar').val();
-    numero_participantes_base=$('#numero_participantes_base_editar').val();
-    numero_participantes_honorarios=$('#numero_participantes_honorarios_editar').val();
+    id_profesor=$('#id_profesor').val();
 
-    cadena = "id_curso="+ id_curso +
-        "&nombre_curso=" + nombre_curso +
-        "&periodo=" + periodo +
-        "&horas_capacitacion=" + horas_capacitacion +
-        "&numero_participantes_base=" + numero_participantes_base +
-        "&numero_participantes_honorarios=" + numero_participantes_honorarios;
+    var sexo_sel = document.getElementById("sexo_agregar");
+    var sexo_valor = sexo_sel.options[sexo_sel.selectedIndex].text;
+
+    var grado_sel = document.getElementById("grado_estudios_agregar");
+    var grado_valor = grado_sel.options[grado_sel.selectedIndex].text;
+
+    var area_sel = document.getElementById("area_academica_agregar");
+    var area_valor = grado_sel.options[area_sel.selectedIndex].value;
+
+    var disc_sel = document.getElementById("disciplina_agregar");
+    var disc_valor = disc_sel.options[disc_sel.selectedIndex].value;
+
+
+
+    nombre_completo = $('#nombre_agregar').val();
+    console.log(nombre_completo);
+    sexo = sexo_valor;
+    console.log(sexo);
+    grado_estudios = grado_valor;
+    console.log(grado_estudios);
+    horas_jornada = $('#horas_jornada_agregar').val();
+    console.log(horas_jornada);
+    area_academica = parseInt( $('#area_academica_agregar').val());
+    console.log(area_academica);
+    disciplina = parseInt(disc_valor);
+    console.log(disciplina);
+    vigencia = $('#anio_vigencia_agregar').val();
+    console.log(vigencia);
+    area_experiencia = $('#area_experiencia_agregar').val();
+    console.log(area_experiencia);
+    fecha_ingreso = $('#fecha_ingreso_agregar').val();
+
+    cadena = "id_profesor="+ id_profesor +
+        "&nombre_completo=" + nombre_completo +
+        "&sexo=" + sexo +
+        "&grado_estudios=" + grado_estudios +
+        "&horas_jornada=" + horas_jornada +
+        "&area_academica=" + area_academica +
+        "&disciplina=" + disciplina +
+        "&vigencia=" + vigencia +
+        "&area_experiencia=" + area_experiencia +
+        "&fecha_ingreso=" + fecha_ingreso;
+
+
 
     $.ajax({
         type:"post",
-        url:"php/actualizaDatos.php",
+        url:"assets/components/PHP_Consultas/Registro_Profesores/Actualizar_Registro.php",
         data:cadena,
         success:function(r) {
             if(r==1){
-                $('#tablaRegistroCurso').load('componentes/TablaRegistroCurso.php');
+                $('#tablaRegistroCurso').load('assets/components/registro-profesores.php');
                 alertify.success("Actualizado con exito: ");
             }
             else{

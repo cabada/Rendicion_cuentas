@@ -17,6 +17,7 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
+
                 <label>Nombre completo</label>
                 <input type="text" id="nombre_agregar" class="form-control-page input-group-sm">
 
@@ -99,6 +100,10 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
+
+                <label>ID_Profesor</label>
+                <input type="id" id="id_profesor" class="form-control-page input-group-sm" readonly="readonly">
+
                 <label>Nombre completo</label>
                 <input type="text" id="nombre_editar" class="form-control-page input-group-sm">
 
