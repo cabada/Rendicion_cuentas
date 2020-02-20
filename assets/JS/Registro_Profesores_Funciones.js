@@ -53,37 +53,37 @@ function actualizaDatos() {
 
     id_profesor=$('#id_profesor').val();
 
-    var sexo_sel = document.getElementById("sexo_agregar");
+    var sexo_sel = document.getElementById("sexo_editar");
     var sexo_valor = sexo_sel.options[sexo_sel.selectedIndex].text;
 
-    var grado_sel = document.getElementById("grado_estudios_agregar");
+    var grado_sel = document.getElementById("grado_estudios_editar");
     var grado_valor = grado_sel.options[grado_sel.selectedIndex].text;
 
-    var area_sel = document.getElementById("area_academica_agregar");
+    var area_sel = document.getElementById("area_academica_editar");
     var area_valor = grado_sel.options[area_sel.selectedIndex].value;
 
-    var disc_sel = document.getElementById("disciplina_agregar");
+    var disc_sel = document.getElementById("disciplina_editar");
     var disc_valor = disc_sel.options[disc_sel.selectedIndex].value;
 
 
 
-    nombre_completo = $('#nombre_agregar').val();
+    nombre_completo = $('#nombre_editar').val();
     console.log(nombre_completo);
     sexo = sexo_valor;
     console.log(sexo);
     grado_estudios = grado_valor;
     console.log(grado_estudios);
-    horas_jornada = $('#horas_jornada_agregar').val();
+    horas_jornada = $('#horas_jornada_editar').val();
     console.log(horas_jornada);
-    area_academica = parseInt( $('#area_academica_agregar').val());
+    area_academica = parseInt( $('#area_academica_editar').val());
     console.log(area_academica);
     disciplina = parseInt(disc_valor);
     console.log(disciplina);
-    vigencia = $('#anio_vigencia_agregar').val();
+    vigencia = $('#anio_vigencia_editar').val();
     console.log(vigencia);
-    area_experiencia = $('#area_experiencia_agregar').val();
+    area_experiencia = $('#area_experiencia_editar').val();
     console.log(area_experiencia);
-    fecha_ingreso = $('#fecha_ingreso_agregar').val();
+    fecha_ingreso = $('#fecha_ingreso_editar').val();
 
     cadena = "id_profesor="+ id_profesor +
         "&nombre_completo=" + nombre_completo +
