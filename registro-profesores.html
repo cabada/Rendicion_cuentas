@@ -112,62 +112,6 @@
 
         </div>
 
-		<!-- MODAL FOR EDITION -->
-		<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Editar registro</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<label>Nombre completo</label>
-						<input type="text" id="nombre_editar" class="form-control-page input-group-sm">
-
-						<label>Sexo</label>
-                        <select type="text" class="form-control-page input-group-sm" id="sexo_editar">
-                            <option selected>-</option>
-                            <option>Masculino</option>
-                            <option>Femenino</option>
-                        </select>
-
-						<label>Grado de estudios</label>
-                        <select type="text" class="form-control-page input-group-sm" id="grado_estudios_editar">
-                            <option selected>-</option>
-                            <option>Bachillerato/Tecnico</option>
-                            <option>Licenciatura</option>
-                            <option>Ingeniería</option>
-                            <option>Maestría</option>
-                            <option>Doctorado</option>
-                        </select>
-                        
-						<label>Horas de jornada</label>
-                        <input type="text" id="horas_jornada_editar" class="form-control-page input-group-sm">
-
-                        <label>Área académica</label>
-                        <input type="text" id="area_academica_editar" class="form-control-page input-group-sm">
-
-                        <label>Diciplina</label>
-                        <input type="text" id="diciplina_editar" class="form-control-page input-group-sm">
-
-						<label>Vigencia</label>
-                        <input class="form-control-page input-group-sm" type="text" id="anio_vigencia_editar">
-
-                        <label>Área de experiencia</label>
-                        <input type="text" id="area_experiencia_editar" class="form-control-page input-group-sm">
-
-                        <label>Fecha de ingreso</label>
-                        <input class="form-control-page input-group-sm" type="text" id="fecha_ingreso_editar">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-page-theme-2" id="btn_editar_profesor">Guardar cambios</button>
-					</div>
-				</div>
-			</div>
-		</div>
 
     </main>
     
@@ -204,6 +148,7 @@
             $('#profesores_modal').load('assets/components/PHP_Consultas/Registro_Profesores/modal_profesores.php');
         });
     </script>
+
 
     
 </body>
