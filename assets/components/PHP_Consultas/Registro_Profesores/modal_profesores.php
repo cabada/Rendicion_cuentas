@@ -105,18 +105,18 @@ $conexion = conexion();
                 <label>Sexo</label>
                 <select type="text" class="form-control-page input-group-sm" id="sexo_editar">
                     <option selected>Elija Sexo</option>
-                    <option>Masculino</option>
-                    <option>Femenino</option>
+                    <option value="1">Masculino</option>
+                    <option value="2">Femenino</option>
                 </select>
 
                 <label>Grado de estudios</label>
                 <select type="text" class="form-control-page input-group-sm" id="grado_estudios_editar">
-                    <option selected>Elija Grado de Estudios</option>
-                    <option>Bachillerato/Tecnico</option>
-                    <option>Licenciatura</option>
-                    <option>Ingeniería</option>
-                    <option>Maestría</option>
-                    <option>Doctorado</option>
+                    <option value="0">Elija Grado de Estudios</option>
+                    <option value="1">Bachillerato/Tecnico</option>
+                    <option value="2">Licenciatura</option>
+                    <option value="3">Ingeniería</option>
+                    <option value="4">Maestría</option>
+                    <option value="5">Doctorado</option>
                 </select>
 
                 <label>Horas de jornada</label>
