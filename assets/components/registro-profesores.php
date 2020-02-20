@@ -17,6 +17,7 @@
         <table class="table table-hover table-condensed table-bordered table-striped white-background">
             <br>
             <tr>
+                <td class="centered-table-title">ID_Profesor</td>
                 <td class="centered-table-title">Nombre completo</td>
                 <td class="centered-table-title">Sexo</td>
                 <td class="centered-table-title">Grado de estudios</td>
@@ -63,7 +64,7 @@
                 <td><?php echo $buscar[7]?></td>
                 <td><?php echo $buscar[8]?></td>
                 <td><?php echo $buscar[9]?></td>
-                <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
+                <td class="centered-table-title"><button class="btn btn-warning" onclick="agregaform('<?php echo $datos?>')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
                 <td class="centered-table-title"><button class="btn btn-danger"><i class="far fa-window-close"></i></button></td>
             </tr>
 
