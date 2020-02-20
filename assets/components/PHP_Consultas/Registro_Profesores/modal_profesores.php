@@ -214,7 +214,7 @@ $conexion = conexion();
                 disciplina,vigencia,area_experiencia,fecha_ingreso)
         });
 
-        $('#btn_editar_curso_actual').click(function () {
+        $('#btn_editar_profesor').click(function () {
             actualizaDatos();
         });
 

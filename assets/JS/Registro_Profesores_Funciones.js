@@ -115,7 +115,7 @@ function actualizaDatos() {
 }
 
 
-function preguntarSiNo(id_curso) {
+function preguntarSiNo(id_profesor) {
 
     alertify.confirm('Eliminar Registro', 'Esta seguro de eliminar este registro??',
         function(){ eliminarDatos(id_curso) }
