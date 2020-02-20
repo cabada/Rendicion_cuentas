@@ -12,11 +12,11 @@ function agregarDatos(nombre_completo,sexo,grado_estudios,horas_jornada,area_aca
 
     $.ajax({
         type:"post",
-        url:"../components/PHP_Consultas/Registro_Profesores/Agregar_Registro.php",
+        url:"assets/components/PHP_Consultas/Registro_Profesores/Agregar_Registro.php",
         data:cadena,
         success:function(r) {
             if(r==1){
-                $('#registro_profesores').load('../components/registro_profesores.php');
+                $('#registro-profesores').load('../components/registro-profesores.php');
                 alertify.success("Agregado con exito: ");
             }
             else{

@@ -29,7 +29,7 @@ $conexion = conexion();
 
                 <label>Grado de estudios</label>
                 <select type="text" class="form-control-page input-group-sm" id="grado_estudios_agregar">
-                    <option selected>Elija Grado de Estudios</option>
+                    <option value="0">Elija Grado de Estudios</option>
                     <option value="1">Bachillerato/Tecnico</option>
                     <option value="2">Licenciatura</option>
                     <option value="3">Ingeniería</option>
@@ -84,4 +84,52 @@ $conexion = conexion();
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btn_agregar_profesor').click(function () {
+
+                var sexo_sel = document.getElementById("sexo_agregar");
+                var sexo_valor = sexo_sel.options[sexo_sel.selectedIndex].text;
+
+                var grado_sel = document.getElementById("grado_estudios_agregar");
+                var grado_valor = grado_sel.options[grado_sel.selectedIndex].text;
+
+                var area_sel = document.getElementById("area_academica_agregar");
+                var area_valor = grado_sel.options[area_sel.selectedIndex].value;
+
+                var disc_sel = document.getElementById("disciplina_agregar");
+                var disc_valor = disc_sel.options[disc_sel.selectedIndex].value;
+
+
+
+                nombre_completo = $('#nombre_agregar').val();
+                console.log(nombre_completo);
+                sexo = sexo_valor;
+                console.log(sexo);
+                grado_estudios = grado_valor;
+                console.log(grado_estudios);
+                horas_jornada = $('#horas_jornada_agregar').val();
+                console.log(horas_jornada);
+                area_academica = area_valor;
+                console.log(area_academica);
+                disciplina = disc_valor;
+                console.log(disciplina);
+                vigencia = $('#anio_vigencia_agregar').val();
+                console.log(vigencia);
+                area_experiencia = $('#area_academica_agregar').val();
+                console.log(area_experiencia);
+                fecha_ingreso = $('#fecha_ingreso_agregar').val();
+                console.log(fecha_ingreso);
+                agregarDatos(nombre_completo,sexo,grado_estudios,horas_jornada,area_academica,
+                    disciplina,vigencia,area_experiencia,fecha_ingreso)
+            });
+
+            $('#btn_editar_curso_actual').click(function () {
+                actualizaDatos();
+            });
+
+        });
+
+    </script>
 </div>

@@ -44,7 +44,10 @@
                 $buscar[2]."||".
                 $buscar[3]."||".
                 $buscar[4]."||".
-                $buscar[5];
+                $buscar[5]."||".
+                $buscar[6]."||".
+                $buscar[7]."||".
+                $buscar[8];
 
             ?>
 
@@ -54,11 +57,12 @@
                 <td><?php echo $buscar[1]?></td>
                 <td><?php echo $buscar[2]?></td>
                 <td><?php echo $buscar[3]?></td>
-                <td><?php echo $buscar[3]?></td>
                 <td><?php echo $buscar[4]?></td>
                 <td><?php echo $buscar[5]?></td>
-                <td><?php echo $buscar[4]?></td>
-                <td><?php echo $buscar[5]?></td>
+                <td><?php echo $buscar[6]?></td>
+                <td><?php echo $buscar[7]?></td>
+                <td><?php echo $buscar[8]?></td>
+                <td><?php echo $buscar[9]?></td>
                 <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
                 <td class="centered-table-title"><button class="btn btn-danger"><i class="far fa-window-close"></i></button></td>
             </tr>

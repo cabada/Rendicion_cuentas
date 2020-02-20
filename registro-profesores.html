@@ -190,47 +190,22 @@
             </div>
         </div>
     </footer>
+
+
+    <!-- JAVASCRIPT CODE -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#registro-profesores').load('assets/components/registro-profesores.php');
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#profesores_modal').load('assets/components/PHP_Consultas/Registro_Profesores/modal_profesores.php');
+        });
+    </script>
+
     
 </body>
 </html>
 
-<!-- JAVASCRIPT CODE -->
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#registro-profesores').load('assets/components/registro-profesores.php');
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#profesores_modal').load('assets/components/PHP_Consultas/Registro_Profesores/modal_profesores.php');
-    });
-</script>
-
-
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#btn_agregar_profesor').click(function () {
-
-            nombre_completo = $('#nombre_agregar').val();
-            sexo = $('#sexo_agregar').val();
-            grado_estudios = $('#grado_agregar').val();
-            horas_jornada = $('#horas_jornada_agregar').val();
-            area_academica = $('#area-academica_agregar').val();
-            disciplina = $('#disciplina_agregar').val();
-            vigencia = $('#anio_vigencia_agregar').val();
-            area_experiencia = $('#area-academica_agregar').val();
-            fecha_ingreso = $('#fecha_ingreso_agregar').val();
-            agregarDatos(nombre_completo,sexo,grado_estudios,horas_jornada,area_academica,
-                disciplina,vigencia,area_experiencia,fecha_ingreso)
-        });
-
-        $('#btn_editar_curso_actual').click(function () {
-            actualizaDatos();
-        });
-
-    });
-
-</script>
