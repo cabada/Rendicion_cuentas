@@ -1,6 +1,6 @@
 <?php
 
-require_once "../PHP_Consultas/Conexion.php";
+require_once "/PHP_Consultas/Conexion.php";
 $conexion = conexion();
 
 ?>
