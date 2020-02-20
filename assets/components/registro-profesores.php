@@ -62,7 +62,6 @@
                 <td><?php echo $buscar[6]?></td>
                 <td><?php echo $buscar[7]?></td>
                 <td><?php echo $buscar[8]?></td>
-                <td><?php echo $buscar[9]?></td>
                 <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
                 <td class="centered-table-title"><button class="btn btn-danger"><i class="far fa-window-close"></i></button></td>
             </tr>
