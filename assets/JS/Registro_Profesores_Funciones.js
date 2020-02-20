@@ -104,7 +104,7 @@ function actualizaDatos() {
         data:cadena,
         success:function(r) {
             if(r==1){
-                $('#tablaRegistroCurso').load('assets/components/registro-profesores.php');
+                $('#registro-profesores').load('assets/components/registro-profesores.php');
                 alertify.success("Actualizado con exito: ");
             }
             else{
@@ -118,22 +118,22 @@ function actualizaDatos() {
 function preguntarSiNo(id_profesor) {
 
     alertify.confirm('Eliminar Registro', 'Esta seguro de eliminar este registro??',
-        function(){ eliminarDatos(id_curso) }
+        function(){ eliminarDatos(id_profesor) }
         , function(){ alertify.error('Se cancelo.')});
 
 
 }
 
-function eliminarDatos(id_curso) {
-    cadena = "id_curso="+id_curso ;
+function eliminarDatos(id_profesor) {
+    cadena = "id_profesor="+id_profesor ;
 
     $.ajax({
         type:"post",
-        url:"php/eliminarDatos.php",
+        url:"assets/components/PHP_Consultas/Registro_Profesores/Eliminar_Registro.php",
         data:cadena,
         success:function (r) {
             if(r==1){
-                $('#tablaRegistroCurso').load('componentes/TablaRegistroCurso.php');
+                $('#tablaRegistroCurso').load('assets/components/registro-profesores.php');
                 alertify.success("Eliminado con exito!")
             }else{
                 alertify.error("Fallo el servidor!")
