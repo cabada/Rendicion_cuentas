@@ -17,7 +17,6 @@
         <table class="table table-hover table-condensed table-bordered table-striped white-background">
             <br>
             <tr>
-                <td class="centered-table-title">ID_Profesor</td>
                 <td class="centered-table-title">Nombre completo</td>
                 <td class="centered-table-title">Sexo</td>
                 <td class="centered-table-title">Grado de estudios</td>
