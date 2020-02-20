@@ -56,7 +56,6 @@ $conexion = conexion();
                 </select>
 
                 <label>Disciplina</label>
-                <input type="number" placeholder="0" id="disciplina_agregar" class="form-control-page input-group-sm">
                 <select type="text" class="form-control-page input-group-sm" id="disciplina_agregar">
                 <?php
                     $query = "select id_disciplina,nombre_disciplina from disciplina";
