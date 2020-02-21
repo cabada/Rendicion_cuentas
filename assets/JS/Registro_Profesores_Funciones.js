@@ -16,7 +16,7 @@ function agregarDatos(nombre_completo,sexo,grado_estudios, horas_jornada,area_ac
         data:cadena,
         success:function(r) {
             if(r==1){
-                $('#registro-profesores').load('assets/components/registro-profesores.php');
+                $('#registro-profesores').load('assets/components/PHP_Consultas/Registro_Profesores/registro-profesores.php');
                 alertify.success("Agregado con exito: ");
             }
             else{
