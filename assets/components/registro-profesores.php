@@ -64,7 +64,7 @@
                 <td><?php echo $buscar[8]?></td>
                 <td><?php echo $buscar[9]?></td>
                 <td class="centered-table-title"><button class="btn btn-warning" onclick="agregaform('<?php echo $datos?>')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
-                <td class="centered-table-title"><button class="btn btn-danger" onclick="preguntarSiNo('<?php echo $buscar[0]?>')><i class="far fa-window-close"></i></button></td>
+                <td class="centered-table-title"><button class="btn btn-danger" onclick="preguntarSiNo('<?php echo $buscar[0]?>')"><i class="far fa-window-close"></i></button></td>
             </tr>
 
                 <?php
