@@ -16,7 +16,7 @@ function agregarDatos(nombre_completo,sexo,grado_estudios, horas_jornada,area_ac
         data:cadena,
         success:function(r) {
             if(r==1){
-                $('#registro-profesores').load('assets/components/PHP_Consultas/Registro_Profesores/registro-profesores.php');
+                $('#registro-profesores').load('assets/components/registro-profesores.php');
                 alertify.success("Agregado con exito: ");
             }
             else{
@@ -133,7 +133,7 @@ function eliminarDatos(id_profesor) {
         data:cadena,
         success:function (r) {
             if(r==1){
-                $('#registro-profesores').load('assets/components/registro-profesores.php');
+                $('#tablaRegistroCurso').load('assets/components/registro-profesores.php');
                 alertify.success("Eliminado con exito!")
             }else{
                 alertify.error("Fallo el servidor!")

@@ -12,7 +12,7 @@ $disciplina = $_POST['disciplina'];
 $vigencia = $_POST['vigencia'];
 $area_experiencia = $_POST['area_experiencia'];
 $fecha_ingreso = $_POST['fecha_ingreso'];
-$stmt = $conexion->prepare("update profesores set 
+$stmt = $conexion->prepare("update profesores set
                                                     nombre_completo=?,
                                                     sexo=?,
                                                     grado_estudios=?,
@@ -21,7 +21,7 @@ $stmt = $conexion->prepare("update profesores set
                                                     id_disciplina=?,
                                                     vigencia=?,
                                                     area_experiencia=?,
-                                                    fecha_ingreso=?
+                                                    fecha_ingreso=? 
                                                where id_profesor = $id_profesor");
 
 $stmt->bind_param("ssssiisss",$nombre_completo,$sexo, $grado_estudios,
