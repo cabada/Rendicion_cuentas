@@ -168,7 +168,7 @@ $conexion = conexion();
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-page-theme-2" id="btn_editar_profesor">Guardar cambios</button>
+                <button type="button" class="btn btn-page-theme-2" id="btn_editar_profesor" data-dismiss="modal">Guardar cambios</button>
             </div>
         </div>
     </div>

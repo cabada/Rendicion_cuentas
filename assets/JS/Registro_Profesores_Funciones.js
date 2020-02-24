@@ -17,10 +17,10 @@ function agregarDatos(nombre_completo,sexo,grado_estudios, horas_jornada,area_ac
         success:function(r) {
             if(r==1){
                 $('#registro-profesores').load('assets/components/registro-profesores.php');
-                alertify.success("Agregado con exito: ");
+                alertify.success("Agregado con exito");
             }
             else{
-                alertify.error("Fallo el servidor");
+                alertify.error("Fallo de conexion con el servidor");
             }
         }
     });
@@ -43,13 +43,9 @@ function agregaform(datos) {
     $('#anio_vigencia_editar').val(d[7]);
     $('#area_experiencia_editar').val(d[8]);
     $('#fecha_ingreso_editar').val(d[9]);
-
-
-
 }
 
 function actualizaDatos() {
-
 
     id_profesor=$('#id_profesor').val();
 
@@ -64,8 +60,6 @@ function actualizaDatos() {
 
     var disc_sel = document.getElementById("disciplina_editar");
     var disc_valor = disc_sel.options[disc_sel.selectedIndex].value;
-
-
 
     nombre_completo = $('#nombre_editar').val();
     console.log(nombre_completo);
@@ -105,10 +99,10 @@ function actualizaDatos() {
         success:function(r) {
             if(r==1){
                 $('#registro-profesores').load('assets/components/registro-profesores.php');
-                alertify.success("Actualizado con exito: ");
+                alertify.success("Actualizado con exito");
             }
             else{
-                alertify.error("Fallo el servidor");
+                alertify.error("Fallo de conexion con el servidor");
             }
         }
     });
@@ -117,9 +111,9 @@ function actualizaDatos() {
 
 function preguntarSiNo(id_profesor) {
 
-    alertify.confirm('Eliminar Registro', 'Esta seguro de eliminar este registro??',
+    alertify.confirm('Eliminar Registro', '¿Esta seguro de eliminar este registro?',
         function(){ eliminarDatos(id_profesor) }
-        , function(){ alertify.error('Se cancelo.')});
+        , function(){ alertify.error('Se cancelo')});
 
 
 }
@@ -136,7 +130,7 @@ function eliminarDatos(id_profesor) {
                 $('#tablaRegistroCurso').load('assets/components/registro-profesores.php');
                 alertify.success("Eliminado con exito!")
             }else{
-                alertify.error("Fallo el servidor!")
+                alertify.error("Fallo de conexion con el servidor")
             }
 
 
