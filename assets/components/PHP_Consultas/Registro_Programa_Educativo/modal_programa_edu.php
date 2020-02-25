@@ -146,13 +146,7 @@ $conexion = conexion();
             status = status_valor;
             console.log(status);
             periodo = parseInt(disc_valor);
-            console.log(disciplina);
-            vigencia = $('#anio_vigencia_agregar').val();
-            console.log(vigencia);
-            area_experiencia = $('#area_experiencia_agregar').val();
-            console.log(area_experiencia);
-            fecha_ingreso = $('#fecha_ingreso_agregar').val();
-            console.log(fecha_ingreso);
+            console.log(periodo);
             agregarDatos(nombre_completo,sexo,grado_estudios,horas_jornada,area_academica,
                 disciplina,vigencia,area_experiencia,fecha_ingreso)
         });
