@@ -119,7 +119,7 @@ $conexion = conexion();
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#btn_agregar_profesor').click(function () {
+        $('#btn_agregar_curso_actual').click(function () {
 
 
 
@@ -147,8 +147,8 @@ $conexion = conexion();
             console.log(status);
             periodo = parseInt(disc_valor);
             console.log(periodo);
-            agregarDatos(nombre_completo,sexo,grado_estudios,horas_jornada,area_academica,
-                disciplina,vigencia,area_experiencia,fecha_ingreso)
+            agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
+                periodo)
         });
 
         $('#btn_editar_profesor').click(function () {
