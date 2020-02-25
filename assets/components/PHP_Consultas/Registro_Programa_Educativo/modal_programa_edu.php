@@ -48,6 +48,7 @@ $conexion = conexion();
                 <label>Nuevo ingreso</label>
                 <input type="number" value="0" id="ingreso_agregar" class="form-control-page input-group-sm">
 
+
                 <label>Reingreso</label>
                 <input type="number" value="0" id="reingreso_agregar" class="form-control-page input-group-sm">
 
@@ -139,13 +140,13 @@ $conexion = conexion();
             console.log(carrera);
             modalidad = modal_valor;
             console.log(modalidad);
-            nuevo_ingreso = $('#ingreso_agregar');
+            nuevo_ingreso = parseInt($('#ingreso_agregar').val());
             console.log(nuevo_ingreso);
-            reingreso = $('#reingreso_agregar').val();
+            reingreso = parseInt($('#reingreso_agregar').val());
             console.log(reingreso);
             status = status_valor;
             console.log(status);
-            periodo = parseInt(disc_valor);
+            periodo = $('#periodo_agregar').val();
             console.log(periodo);
             agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
                 periodo)
