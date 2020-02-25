@@ -8,6 +8,7 @@
         <table class="table table-hover table-condensed table-bordered table-striped white-background">
             <br>
             <tr>
+                <td class="centered-table-title">Carrera</td>
                 <td class="centered-table-title">Modalidad</td>
                 <td class="centered-table-title">Nuevo ingreso</td>
                 <td class="centered-table-title">Reingreso</td>
