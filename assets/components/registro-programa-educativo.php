@@ -23,6 +23,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
                 <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
                 <td class="centered-table-title"><button class="btn btn-danger"><i class="far fa-window-close"></i></button></td>
             </tr>
