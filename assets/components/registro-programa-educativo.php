@@ -14,10 +14,12 @@
                 <td class="centered-table-title">Reingreso</td>
                 <td class="centered-table-title">Estatus</td>
                 <td class="centered-table-title">Periodo</td>
+                <td class="centered-table-title">Total</td>
                 <td class="centered-table-title">Editar</td>
                 <td class="centered-table-title">Eliminar</td>
             </tr>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
