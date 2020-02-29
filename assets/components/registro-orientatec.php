@@ -41,7 +41,7 @@ $conexion = conexion();
                 <td><?php echo $ver[2] ?></td>
                 <td><?php echo $ver[3] ?></td>
                 <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion" onclick="agregaForm('<?php echo $datos ?>')"><i class="far fa-edit"></i></button></td>
-                <td class="centered-table-title"><button class="btn btn-danger"><i class="far fa-window-close"></i></button></td>
+                <td class="centered-table-title"><button class="btn btn-danger" onclick="preguntarSiNo()"><i class="far fa-window-close"></i></button></td>
             </tr>
 
             <?php
