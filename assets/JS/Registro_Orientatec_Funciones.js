@@ -65,9 +65,10 @@ function actualizaDatos() {
 
 }
 
-function preguntarSiNo() {
+function preguntarSiNo(id_orientatec) {
+
     alertify.confirm('Eliminar Registro', '¿Esta seguro de eliminar este registro?',
-        function(){ alertify.success('Ok')}
+        function(){ eliminarDatos(id_orientatec)}
         , function(){ alertify.error('Se cancelo.')});
 
 }

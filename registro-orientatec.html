@@ -123,7 +123,7 @@
 						<input type="text" id="nombre_preparatoria_agregar" class="form-control-page input-group-sm">
 
 						<label>Fecha</label>
-                        <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_agregar">
+                        <input class="form-control-page input-group-sm" type="date" id="fecha_agregar">
 
 						<label>Cantidad de estudiantes atendidos</label>
                         <input type="number" value="0" id="estudiantes_atendidos_agregar" class="form-control-page input-group-sm">
@@ -213,7 +213,7 @@
           estudiantes_atendidos=$('#estudiantes_atendidos_agregar').val();
           console.log(estudiantes_atendidos);
 
-          agregarDatos(nombre_preparatoria,fecha,estudiantes_atendidos);
+          agregarDatos(nombre_preparatoria,fecha,estudiantes_atendidos)
 
       });
 
