@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Orientatec_Funciones.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -146,11 +147,15 @@
 						</button>
 					</div>
 					<div class="modal-body">
+
+                        <label>id_orientatec</label>
+                        <input type="id" id="id_orientatec" class="form-control-page input-group-sm" readonly="readonly">
+
 						<label>Nombre de preparatoria</label>
 						<input type="text" id="nombre_preparatoria_editar" class="form-control-page input-group-sm">
 
 						<label>Fecha</label>
-                        <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_editar">
+                        <input class="form-control-page input-group-sm" type="text" value="aaaa-mm-dd" id="fecha_editar">
 
 						<label>Cantidad de estudiantes atendidos</label>
                         <input type="number" value="0" id="estudiantes_atendidos_editar" class="form-control-page input-group-sm">
@@ -193,4 +198,29 @@
     $(document).ready(function(){
         $('#registro-orientatec').load('assets/components/registro-orientatec.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+      $('#btn_agregar_curso_actual').click(function () {
+
+          nombre_preparatoria=$('#nombre_preparatoria_agregar').val();
+          console.log(nombre_preparatoria);
+
+          fecha=$('#fecha_agregar').val();
+          console.log(fecha);
+
+          estudiantes_atendidos=$('#estudiantes_atendidos_agregar').val();
+          console.log(estudiantes_atendidos);
+
+          agregarDatos(nombre_preparatoria,fecha,estudiantes_atendidos);
+
+      });
+
+      $('#btn_editar_curso_actual').click(function () {
+          actualizaDatos();
+      });
+
+    });
+
 </script>

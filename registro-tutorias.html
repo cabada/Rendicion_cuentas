@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Tutorias_Funciones.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -152,6 +153,10 @@
 						</button>
 					</div>
 					<div class="modal-body">
+
+                        <label>ID_Tutorias</label>
+                        <input type="id" id="id_tutorias" class="form-control-page input-group-sm" readonly="readonly">
+
 						<label>Tutores registrados</label>
                         <input type="number" value="0" id="tutores_registrados_editar" class="form-control-page input-group-sm">
                         
@@ -204,5 +209,36 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#registro-tutorias').load('assets/components/registro-tutorias.php');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+         $('#btn_agregar_curso_actual').click(function () {
+
+             tutores_registrados=$('#tutores_registrados_agregar').val();
+             console.log(tutores_registrados);
+
+             alumnos_tuto_grupal=$('#cantidad_alumnos_grupal_agregar').val();
+             console.log(alumnos_tuto_grupal);
+
+             encuentro_padres=$('#cantidad_encuentro_padres_agregar').val();
+             console.log(encuentro_padres);
+
+             conferencias_alumnos=$('#cantidad_conferencia_alumnos_agregar').val();
+             console.log(conferencias_alumnos);
+
+             alumnos_asistieron_conferencias=$('#cantidad_alumnos_conferencia_agregar').val();
+             console.log(alumnos_asistieron_conferencias);
+
+             agregardatos(tutores_registrados, alumnos_tuto_grupal,encuentro_padres,conferencias_alumnos,
+                 alumnos_asistieron_conferencias);
+         });
+
+
+         $('#btn_editar_curso_actual').click(function () {
+             actualizaDatos();
+         })
+
     });
 </script>
