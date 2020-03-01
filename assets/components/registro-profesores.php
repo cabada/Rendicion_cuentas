@@ -32,8 +32,17 @@
 
             <?php
 
-            $sql="select id_profesor,nombre_completo,sexo,grado_estudios,hora_jornada,id_area_academica,
-                id_disciplina,vigencia,area_experiencia,fecha_ingreso from profesores";
+            $sql="select id_profesor,
+                            profesores.nombre_completo,
+                            profesores.sexo,
+                            profesores.grado_estudios,
+                            profesores.hora_jornada,
+                            area_academica.nombre_area_academica,
+                            disciplina.nombre_disciplina,
+                            profesores.vigencia,
+                            profesores.area_experiencia,
+                            fecha_ingreso from profesores
+                            join area_academica on profesores.id_area_academica=area_academica.id_area_academica join disciplina on profesores.id_disciplina = disciplina.id_disciplina";
 
             $resultado = mysqli_query($conexion,$sql);
 
