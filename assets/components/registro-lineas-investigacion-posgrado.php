@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-12">
-        <h2>Registro de año sabático</h2>
+        <h2>Registro de líneas de investigación (Posgrado)</h2>
         <caption>
             <button class="btn btn-page-theme-2" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
         </caption>
@@ -8,8 +8,8 @@
         <table class="table table-hover table-condensed table-bordered table-striped white-background">
             <br>
             <tr>
-                <td class="centered-table-title">Nombre de profesor(a)</td>
-                <td class="centered-table-title">Proyecto realizado</td>
+                <td class="centered-table-title">Programa</td>
+                <td class="centered-table-title">Línea de investigación</td>
                 <td class="centered-table-title">Editar</td>
                 <td class="centered-table-title">Eliminar</td>
             </tr>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/libraries/css/all.css">
+    <link rel="stylesheet" href="assets/libraries/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/libraries/css/styles-page.css">
+    <link rel="stylesheet" href="assets/libraries/css/alertify.css">
+    <link rel="stylesheet" href="assets/libraries/css/themes/default.css">
+
+    <script defer src="assets/libraries/js/all.js"></script>
+    <script src="assets/libraries/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/libraries/js/popper.min.js"></script>
+    <script src="assets/libraries/js/bootstrap.min.js"></script>
+    <script src="assets/libraries/js/alertify.js"></script>
+
+    <!-- FAVICON AND TITLE IN BROWSER  -->
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png">
+    <title>ITCJ | Registro de Líneas de Investigación (Licenciatura)</title>
+</head>
+<body>
+    <!-- HEADER ADVERTISEMENTS-->
+    <header>
+        <div class="container">
+            <div class="row mt-2">
+                <div class="col-12" id="header-contact">
+                    <p>Las actualizaciones de esta página esta a cargo del departamento administrativo del Instituto Tecnológico de Ciudad Juárez</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PRINCIPAL MAIN -->
+    <main>
+        <!-- PAGE HEADER -->
+        <div class="container mb-3">
+            <div id="navegador">
+                <!-- NAV ADDED -->
+            </div>
+        </div>
+        
+        <!-- PAGE TABLE -->
+        <div class="container">
+            <div id="registro-lineas-investigacion-licenciaturas"></div>
+        </div>
+
+        <!-- MODAL FOR NEW FORM -->
+        <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="new-modalLabel">Agregar nuevo registro</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<label>Programa</label>
+						<input type="text" id="programa_agregar" class="form-control-page input-group-sm">
+
+						<label>Línea de investigación</label>
+                        <input type="text" id="investigacion_agregar" class="form-control-page input-group-sm">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-page-theme-2" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- MODAL FOR EDITION -->
+		<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Editar registro</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<label>Programa</label>
+						<input type="text" id="programa_editar" class="form-control-page input-group-sm">
+
+						<label>Línea de investigación</label>
+                        <input type="text" id="investigacion_editar" class="form-control-page input-group-sm">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="btn btn-page-theme-2" id="btn_editar_curso_actual">Guardar cambios</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    </main>
+    
+    <!-- FOOTER -->
+    <footer class="container-fluid my-5 border-top">
+        <div class="row mt-2 text-center">
+            <div class="col-12">
+                <p class="text-center">
+                    <strong>
+                        <br>INSTITUTO TECNOLÓGICO DE CIUDAD JUÁREZ
+                        <br>Av. Tecnológico No. 1340 Frac. El Crucero C.P. 32500 Ciudad Juárez, Chih. México
+                    </strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="row mt-2 text-center">
+            <div class="col-12">
+                <small class="d-block text-muted mt-3">Servicio social departamento de Sistemas ITCJ - 2020.</small>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>
+
+<!-- JAVASCRIPT CODE -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#navegador').load('navegador.html');
+        $('#registro-lineas-investigacion-licenciaturas').load('assets/components/registro-lineas-investigacion-licenciaturas.php');
+    });
+</script>

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-12">
-        <h2>Registro de proyectos de investigación posgrado</h2>
+        <h2>Registro de proyectos de investigación pertenecientes a posgrado</h2>
         <caption>
             <button class="btn btn-page-theme-2" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
         </caption>

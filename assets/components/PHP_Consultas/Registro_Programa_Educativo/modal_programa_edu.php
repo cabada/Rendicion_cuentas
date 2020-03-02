@@ -122,8 +122,6 @@ $conexion = conexion();
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
 
-
-
             var modal_sel = document.getElementById("modalidad_agregar");
             var modal_valor = modal_sel.options[modal_sel.selectedIndex].text;
 
@@ -133,10 +131,7 @@ $conexion = conexion();
             var period_sel = document.getElementById("periodo_agregar");
             var period_valor = period_sel.options[period_sel.selectedIndex].text;
 
-
-
-
-           carrera =parseInt( $('#carrera_agregar').val());
+            carrera =parseInt( $('#carrera_agregar').val());
             console.log(carrera);
             modalidad = modal_valor;
             console.log(modalidad);

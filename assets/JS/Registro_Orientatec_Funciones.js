@@ -64,3 +64,29 @@ function actualizaDatos() {
     });
 
 }
+
+function preguntarSiNo(id_orientatec) {
+
+    alertify.confirm('Eliminar Registro', '¿Esta seguro de eliminar este registro?',
+        function(){ eliminarDatos(id_orientatec)}
+        , function(){ alertify.error('Se cancelo.')});
+
+}
+
+function eliminarDatos(id_orientatec) {
+      cadena="id_orientatec=" + id_orientatec;
+
+      $.ajax({
+         type:"POST",
+         url:"assets/components/PHP_Consultas/Registro_Orientatec/Eliminar_Registro.php",
+         data:cadena,
+         success:function (r) {
+             if(r==1){
+                 $('#registro-orientatec').load('assets/components/registro-orientatec.php');
+                 alertify.success("Eliminado con exito");
+             }else{
+                 alertify.error("Fallo el servidor");
+             }
+         }
+      });
+}

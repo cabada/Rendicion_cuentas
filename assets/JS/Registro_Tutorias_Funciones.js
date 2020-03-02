@@ -91,7 +91,7 @@ function eliminarDatos(id_tutorias) {
                 $('#registro-tutorias').load('assets/components/registro-tutorias.php');
                 alertify.success("Eliminado con exito");
             }else{
-                alertify.error("Fallor el servidor");
+                alertify.error("Fallo el servidor");
             }
         }
 

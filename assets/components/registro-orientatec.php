@@ -40,14 +40,12 @@ $conexion = conexion();
                 <td><?php echo $ver[1] ?></td>
                 <td><?php echo $ver[2] ?></td>
                 <td><?php echo $ver[3] ?></td>
-                <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion" onclick="agregaForm('<?php echo $datos ?>')"><i class="far fa-edit"></i></button></td>
-                <td class="centered-table-title"><button class="btn btn-danger"><i class="far fa-window-close"></i></button></td>
+                <td class="centered-table-title"><button class="btn btn-warning" onclick="agregaForm('<?php echo $datos ?>')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
+                <td class="centered-table-title"><button class="btn btn-danger" onclick="preguntarSiNo('<?php echo $ver[0]?>')"><i class="far fa-window-close"></i></button></td>
             </tr>
-
             <?php
               }
             ?>
-
         </table>
     </div>
 </div>
