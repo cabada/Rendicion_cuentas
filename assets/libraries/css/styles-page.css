@@ -61,6 +61,7 @@ body {
   background: #0f2850;
 }
 
+/* FORM CONTROL */
 .form-control-page {
   display: block;
   width: 100%;
@@ -91,9 +92,9 @@ body {
 .form-control-page:focus {
   color: #495057;
   background-color: #fff;
-  border-color: #4f0b0b;
+  border-color: #0f2850;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(117, 0, 0, 0.2);
+  box-shadow: 0 0 0 0.2rem rgba(27, 57, 106, 0.2);
 }
 
 .form-control-page::-webkit-input-placeholder {

@@ -2,7 +2,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     /* Background of index */
-    background: url(../../images/icons/background-index.jpg);
+    background: url(../../images/img/01.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -24,7 +24,7 @@ body {
 
 h1{
     text-align: center;
-    color: #4f0b0b;
+    color: #1b396a;
     font-size: 40px;
 }
 
@@ -52,13 +52,13 @@ input[type="password"]{
     width: 100%;
     color: white;
     font-size: 20px;
-    background:  #4f0b0b;
+    background:  #1b396a;
     padding: 15px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
     .button:hover{
-        background: #800000;
+        background: #0f2850;
     }
 
 p{
@@ -67,12 +67,12 @@ p{
 
 .link{
     text-decoration: none;
-    color: #4f0b0b;
+    color: #1b396a;
     font-weight: 600;
 }
 
     .link:hover{
-        color: #800000;
+        color: #0f2850;
     }
 
 @media(min-width:768px)
