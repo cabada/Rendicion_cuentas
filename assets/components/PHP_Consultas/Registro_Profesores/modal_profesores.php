@@ -81,7 +81,7 @@ $conexion = conexion();
                 <input class="form-control-page input-group-sm" type="text" id="fecha_ingreso_agregar">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-page-theme-2" data-dismiss="modal" id="btn_agregar_profesor">Agregar Nuevo Registro</button>
+                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_profesor">Agregar Nuevo Registro</button>
             </div>
         </div>
     </div>
@@ -168,7 +168,7 @@ $conexion = conexion();
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-page-theme-2" id="btn_editar_profesor" data-dismiss="modal">Guardar cambios</button>
+                <button type="button" class="btn btn-main" id="btn_editar_profesor" data-dismiss="modal">Guardar cambios</button>
             </div>
         </div>
     </div>

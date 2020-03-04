@@ -11,8 +11,8 @@ body {
 }
 
 .icon-navbar {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
 }
 
 .nav-link {
@@ -20,6 +20,7 @@ body {
   font-weight: 500;
 }
 
+/* BUTTON */
 .btn-main {
     color: #ffffff;
     background-color: #1b396a;
@@ -54,12 +55,10 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(27, 57, 106, 0.2);
   }
 
-
-
-.centered-table-title {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+/* TABLE STYLE */
+.background-table{
+  color: #ffffff;
+  background: #0f2850;
 }
 
 .form-control-page {

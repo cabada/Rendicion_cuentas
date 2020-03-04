@@ -11,47 +11,48 @@ $conexion = conexion();
         <caption>
             <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
         </caption>
-        <br>
-        <table class="table table-hover table-condensed table-bordered table-striped white-background">
-            <br>
-            <tr>
-                <td class="centered-table-title">Tutores registrados</td>
-                <td class="centered-table-title">Cantidad de alumnos grupal</td>
-                <td class="centered-table-title">Cantidad de encuentro con padres</td>
-                <td class="centered-table-title">Cantidad de confererencias a alumnos</td>
-                <td class="centered-table-title">Cantidad de alumnos en conferencia</td>
-                <td class="centered-table-title">Editar</td>
-                <td class="centered-table-title">Eliminar</td>
-            </tr>
+        <div class="table-responsive-xl">
+            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+                <tr>
+                    <td class="text-center align-middle background-table">Tutores registrados</td>
+                    <td class="text-center align-middle background-table">Cantidad de alumnos grupal</td>
+                    <td class="text-center align-middle background-table">Cantidad de encuentro con padres</td>
+                    <td class="text-center align-middle background-table">Cantidad de confererencias a alumnos</td>
+                    <td class="text-center align-middle background-table">Cantidad de alumnos en conferencia</td>
+                    <td class="text-center align-middle background-table">Acciones</td>
+                </tr>
 
-            <?php
-            $sql="select id_tutorias,tutores_registrados, alumnos_tuto_grupal,encuentro_padres,conferencias_alumnos,
-            alumnos_asistieron_conferencias from tutorias";
+                <?php
+                $sql="select id_tutorias,tutores_registrados, alumnos_tuto_grupal,encuentro_padres,conferencias_alumnos,
+                alumnos_asistieron_conferencias from tutorias";
 
-            $result=mysqli_query($conexion,$sql);
-            while($ver=mysqli_fetch_row($result)){
+                $result=mysqli_query($conexion,$sql);
+                while($ver=mysqli_fetch_row($result)){
 
-                $datos=$ver[0]."||".
-                       $ver[1]."||".
-                       $ver[2]."||".
-                       $ver[3]."||".
-                       $ver[4]."||".
-                       $ver[5];
+                    $datos=$ver[0]."||".
+                        $ver[1]."||".
+                        $ver[2]."||".
+                        $ver[3]."||".
+                        $ver[4]."||".
+                        $ver[5];
 
-            ?>
+                ?>
 
-            <tr>
-                <td><?php echo $ver[1]?></td>
-                <td><?php echo $ver[2]?></td>
-                <td><?php echo $ver[3]?></td>
-                <td><?php echo $ver[4]?></td>
-                <td><?php echo $ver[5]?></td>
-                <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i class="far fa-edit"></i></button></td>
-                <td class="centered-table-title"><button class="btn btn-danger" onclick="preguntarSiNo('<?php echo $ver[0] ?>')"><i class="far fa-window-close"></i></button></td>
-            </tr>
-            <?php
-            }
-            ?>
-        </table>
+                <tr>
+                    <td><?php echo $ver[1]?></td>
+                    <td><?php echo $ver[2]?></td>
+                    <td><?php echo $ver[3]?></td>
+                    <td><?php echo $ver[4]?></td>
+                    <td><?php echo $ver[5]?></td>
+                    <td class="text-center align-middle">
+                        <button class="btn btn-sm btn-warning"  data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i class="far fa-edit"></i>  Editar</button>
+                        <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $ver[0] ?>')"><i class="fas fa-trash"></i> Eliminar</button>
+                    </td>
+                </tr>
+                <?php
+                }
+                ?>
+            </table>
+        </div>
     </div>
 </div>

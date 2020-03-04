@@ -11,41 +11,42 @@ $conexion = conexion();
         <caption>
             <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
         </caption>
-        <br>
-        <table class="table table-hover table-condensed table-bordered table-striped white-background">
-            <br>
-            <tr>
-                <td class="centered-table-title">Nombre de preparatoria</td>
-                <td class="centered-table-title">Fecha</td>
-                <td class="centered-table-title">Cantidad de estudiantes atendidos</td>
-                <td class="centered-table-title">Editar</td>
-                <td class="centered-table-title">Eliminar</td>
-            </tr>
+        <div class="table-responsive-xl">
+            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+                <tr>
+                    <td class="text-center align-middle background-table">Nombre de preparatoria</td>
+                    <td class="text-center align-middle background-table">Fecha</td>
+                    <td class="text-center align-middle background-table">Cantidad de estudiantes atendidos</td>
+                    <td class="text-center align-middle background-table">Acciones</td>
+                </tr>
 
-            <?php
+                <?php
 
-              $sql="select ID_ORIENTATEC,nombre_preparatoria,fecha,estudiantes_atendidos 
-                       from orientatec";
-              $result=mysqli_query($conexion,$sql);
-              while($ver=mysqli_fetch_row($result)){
+                $sql="select ID_ORIENTATEC,nombre_preparatoria,fecha,estudiantes_atendidos 
+                        from orientatec";
+                $result=mysqli_query($conexion,$sql);
+                while($ver=mysqli_fetch_row($result)){
 
-                  $datos=$ver[0]."||".
-                         $ver[1]."||".
-                         $ver[2]."||".
-                         $ver[3];
+                    $datos=$ver[0]."||".
+                            $ver[1]."||".
+                            $ver[2]."||".
+                            $ver[3];
 
-            ?>
+                ?>
 
-            <tr>
-                <td><?php echo $ver[1] ?></td>
-                <td><?php echo $ver[2] ?></td>
-                <td><?php echo $ver[3] ?></td>
-                <td class="centered-table-title"><button class="btn btn-warning" onclick="agregaForm('<?php echo $datos ?>')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
-                <td class="centered-table-title"><button class="btn btn-danger" onclick="preguntarSiNo('<?php echo $ver[0]?>')"><i class="far fa-window-close"></i></button></td>
-            </tr>
-            <?php
-              }
-            ?>
-        </table>
+                <tr>
+                    <td><?php echo $ver[1] ?></td>
+                    <td><?php echo $ver[2] ?></td>
+                    <td><?php echo $ver[3] ?></td>
+                    <td class="text-center align-middle">
+                        <button class="btn btn-sm btn-warning" onclick="agregaForm('<?php echo $datos ?>')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i>  Editar</button>
+                        <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $ver[0]?>')"><i class="fas fa-trash"></i>  Eliminar</button>
+                    </td>
+                </tr>
+                <?php
+                }
+                ?>
+            </table>
+        </div>
     </div>
 </div>
