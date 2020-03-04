@@ -22,11 +22,11 @@
 </head>
 <body>
     <!-- HEADER ADVERTISEMENTS-->
-    <div class="container mb-3">
-        <div id="navegador">
-            <!-- NAV ADDED -->
+    <header>
+        <div id="navbar">
+            <!-- ADD NAVBAR -->
         </div>
-    </div>
+    </header>
 
     <!-- PRINCIPAL MAIN -->
     <main>
@@ -45,7 +45,7 @@
         </div>
         
         <!-- PAGE TABLE -->
-        <div class="container">
+        <div class="container-fluid">
             <div id="registro-area-experiencia"></div>
         </div>
 
@@ -64,7 +64,7 @@
                         <input type="text" id="nombre_area_experiencia_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-page-theme-2" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-page-theme-2" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -121,7 +121,7 @@
 <!-- JAVASCRIPT CODE -->
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#navegador').load('navegador.html');
+        $('#navbar').load('navbar.html');
         $('#registro-area-experiencia').load('assets/components/registro-area-experiencia.php');
     });
 </script>

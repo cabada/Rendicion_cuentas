@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <h2>Registro equipo de maestros ITCJ</h2>
         <caption>
-            <button class="btn btn-page-theme-2" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
+            <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
         </caption>
         <br>
         <table class="table table-hover table-condensed table-bordered table-striped white-background">
