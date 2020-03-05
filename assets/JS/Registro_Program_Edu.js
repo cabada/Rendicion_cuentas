@@ -23,3 +23,18 @@ function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
     });
 
 }
+
+function agregaForm(datos) {
+
+    d = datos.split('||');
+
+    $('#id_programa_educativo').val(d[0]);
+    $('#carrera_editar').val(d[1]);
+    $('#modalidad_editar').val(d[2]);
+    $('#ingreso_editar').val(d[3]);
+    $('#reingreso_editar').val(d[4]);
+    $('#estatus_editar').val(d[5]);
+    $('#periodo_editar').val(d[6]);
+
+}
+

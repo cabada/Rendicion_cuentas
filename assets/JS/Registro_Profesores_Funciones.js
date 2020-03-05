@@ -65,8 +65,6 @@ function actualizaDatos() {
     var disc_sel = document.getElementById("disciplina_editar");
     var disc_valor = disc_sel.options[disc_sel.selectedIndex].value;
 
-
-
     nombre_completo = $('#nombre_editar').val();
     console.log(nombre_completo);
     sexo = sexo_valor;
