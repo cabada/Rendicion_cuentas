@@ -86,11 +86,11 @@ function eliminarDatos(id_registro) {
 
     $.ajax({
         type:"post",
-        url:"assets/components/PHP_Consultas/Registro_Profesores/Eliminar_Registro.php",
+        url:"assets/components/PHP_Consultas/Registro_Profesores_Tiempo_Completo_Grado_Academico/Eliminar_Registro.php",
         data:cadena,
         success:function (r) {
             if(r==1){
-                $('#tablaRegistroCurso').load('assets/components/registro-profesores.php');
+                $('#registro-profesores-tiempo-completo-grado-academico').load('assets/components/registro-profesores.php');
                 alertify.success("Eliminado con exito!")
             }else{
                 alertify.error("Fallo el servidor!")
