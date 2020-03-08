@@ -25,8 +25,7 @@ $conexion = conexion();
 
                 <?php
 
-                $sql="select id_prof_tiemp_comp,grado,mujer,hombre,total,
-                        porcentaje from profesores_tiempo_completo";
+                $sql="select id_prof_tiemp_comp,grado,mujer,hombre,total from profesores_tiempo_completo";
 
                 $resultado = mysqli_query($conexion,$sql);
 
@@ -36,8 +35,7 @@ $conexion = conexion();
                     $buscar[1]."||".
                     $buscar[2]."||".
                     $buscar[3]."||".
-                    $buscar[4]."||".
-                    $buscar[5];
+                    $buscar[4];
 
                 ?>
 
@@ -46,7 +44,7 @@ $conexion = conexion();
                     <td><?php echo $buscar[2]?></td>
                     <td><?php echo $buscar[3]?></td>
                     <td><?php echo $buscar[4]?></td>
-                    <td><?php echo $buscar[5]?></td>
+                    <td></td>
                     <td class="text-center align-middle">
                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i>  Editar</button>
                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>  Eliminar</button>

@@ -60,11 +60,6 @@
 						<label>Hombre</label>
                         <input type="number" value="0" id="hombre_agregar" class="form-control-page input-group-sm">
 
-						<label>Total</label>
-                        <input type="number" value="0" id="total_agregar" class="form-control-page input-group-sm">
-
-                        <label>Porcentaje</label>
-                        <input type="text" id="porcentaje_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_prof_cmp">Agregar Nuevo Registro</button>
@@ -159,6 +154,8 @@
 
             total = hombre + mujer;
             console.log(total);
+
+            agregarDatos(grado,mujer,hombre,total)
 
         });
 

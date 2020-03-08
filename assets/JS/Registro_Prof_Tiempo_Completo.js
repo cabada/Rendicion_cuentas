@@ -1,9 +1,8 @@
-function agregarDatos(grado,mujer,hombre,total,porcentaje) {
+function agregarDatos(grado,mujer,hombre,total) {
     cadena = "grado=" + grado +
         "&mujer=" + mujer +
         "&hombre=" + hombre +
-        "&total=" + total +
-        "&porcentaje=" + porcentaje;
+        "&total=" + total ;
 
     $.ajax({
         type:"post",

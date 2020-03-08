@@ -7,7 +7,6 @@ $grado=$_POST['grado'];
 $mujer=$_POST['mujer'];
 $hombre=$_POST['hombre'];
 $total=$_POST['total'];
-$porcentaje=$_POST['porcentaje'];
 
 $stmt = $conexion->prepare("insert into profesores_tiempo_completo(grado,mujer,hombre,total) values (?,?,?,?)");
 $stmt->bind_param("siii",$grado,$mujer, $hombre,
