@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/JS/Registro_Prof_Tiempo_Completo.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -145,7 +146,7 @@
     $(document).ready(function () {
         $('#btn_agregar_prof_cmp').click(function () {
 
-            grado_agregar = $('#grado_agregar').val();
+            grado = $('#grado_agregar').val();
             console.log(grado_agregar);
             mujer =  parseInt($('#mujer_agregar').val());
             console.log(mujer);
@@ -155,7 +156,7 @@
             total = hombre + mujer;
             console.log(total);
 
-            agregarDatos(grado,mujer,hombre,total)
+            agregarDatos(grado,mujer,hombre,total);
 
         });
 
