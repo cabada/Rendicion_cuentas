@@ -83,6 +83,7 @@
 					<div class="modal-body">
                         <label>ID_Registro</label>
                         <input type="number" id="id_registro" class="form-control-page input-group-sm">
+
 						<label>Grado</label>
                         <select type="text" class="form-control-page input-group-sm" id="grado_editar">
                             <option selected>-</option>
@@ -97,15 +98,10 @@
 						<label>Hombre</label>
                         <input type="number" value="0" id="hombre_editar" class="form-control-page input-group-sm">
 
-						<label>Total</label>
-                        <input type="number" value="0" id="total_editar" class="form-control-page input-group-sm">
-
-                        <label>Porcentaje</label>
-                        <input type="text" id="porcentaje_editar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_prof_cmp">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -162,7 +158,7 @@
 
         });
 
-        $('#btn_editar_profesor').click(function () {
+        $('#btn_editar_prof_cmp').click(function () {
             actualizaDatos();
         });
 
