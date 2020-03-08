@@ -23,26 +23,15 @@
 <body>
     <!-- HEADER ADVERTISEMENTS-->
     <header>
-        <div class="container">
-            <div class="row mt-2">
-                <div class="col-12" id="header-contact">
-                    <p>Las actualizaciones de esta página esta a cargo del departamento administrativo del Instituto Tecnológico de Ciudad Juárez</p>
-                </div>
-            </div>
+        <div id="navbar">
+            <!-- ADD NAVBAR -->
         </div>
     </header>
 
     <!-- PRINCIPAL MAIN -->
     <main>
-        <!-- PAGE HEADER -->
-        <div class="container mb-3">
-            <div id="navegador">
-                <!-- NAV ADDED -->
-            </div>
-        </div>
-        
         <!-- PAGE TABLE -->
-        <div class="container">
+        <div class="container-fluid">
             <div id="registro-profesores-tiempo-completo-grado-academico"></div>
         </div>
 
@@ -78,7 +67,7 @@
                         <input type="text" id="porcentaje_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-page-theme-2" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -118,7 +107,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-page-theme-2" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -152,7 +141,7 @@
 <!-- JAVASCRIPT CODE -->
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#navegador').load('navegador.html');
+        $('#navbar').load('navbar.html');
         $('#registro-profesores-tiempo-completo-grado-academico').load('assets/components/registro-profesores-tiempo-completo-grado-academico.php');
     });
 </script>

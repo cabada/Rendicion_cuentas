@@ -24,26 +24,15 @@
 <body>
     <!-- HEADER ADVERTISEMENTS-->
     <header>
-        <div class="container">
-            <div class="row mt-2">
-                <div class="col-12" id="header-contact">
-                    <p>Las actualizaciones de esta página esta a cargo del departamento administrativo del Instituto Tecnológico de Ciudad Juárez</p>
-                </div>
-            </div>
+        <div id="navbar">
+            <!-- ADD NAVBAR -->
         </div>
     </header>
 
     <!-- PRINCIPAL MAIN -->
     <main>
-        <!-- PAGE HEADER -->
-        <div class="container mb-3">
-            <div id="navegador">
-                <!-- NAV ADDED -->
-            </div>
-        </div>
-        
         <!-- PAGE TABLE -->
-        <div class="container">
+        <div class="container-fluid">
             <div id="registro-programa-educativo"></div>
         </div>
 
@@ -81,7 +70,7 @@
 <!-- JAVASCRIPT CODE -->
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#navegador').load('navegador.html');
+        $('#navbar').load('navbar.html');
         $('#registro-programa-educativo').load('assets/components/registro-programa-educativo.php');
         $('#modal_progra_edu').load('assets/components/PHP_Consultas/Registro_Programa_Educativo/modal_programa_edu.php');
     });

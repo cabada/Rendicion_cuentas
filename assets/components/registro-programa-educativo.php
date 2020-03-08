@@ -38,7 +38,7 @@ $conexion = conexion();
                         programa_educativo.estatus,
                         programa_educativo.periodo 
                         from carreras 
-                        join programa_educativo on carreras.id_carrera = programa_educativo.id_carrera";
+                        right join programa_educativo on carreras.id_carrera = programa_educativo.id_carrera";
 
             $resultado = mysqli_query($conexion,$sql);
 
