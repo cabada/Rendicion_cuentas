@@ -52,9 +52,7 @@ $conexion = conexion();
                 $buscar[5]."||".
                 $buscar[6];
 
-
             ?>
-
 
             <tr>
                 <td><?php echo $buscar[1]?></td>
@@ -64,7 +62,7 @@ $conexion = conexion();
                 <td><?php echo $buscar[5]?></td>
                 <td><?php echo $buscar[6]?></td>
                 <td><?php echo $buscar[3] + $buscar[4]?></td>
-                <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
+                <td class="centered-table-title"><button class="btn btn-warning"  data-toggle="modal" data-target="#modalEdicion" onclick="agregaForm('<?php echo $datos ?>')"><i class="far fa-edit"></i></button></td>
                 <td class="centered-table-title"><button class="btn btn-danger"><i class="far fa-window-close"></i></button></td>
             </tr>
 

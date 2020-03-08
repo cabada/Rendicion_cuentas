@@ -165,8 +165,8 @@ $conexion = conexion();
                 periodo)
         });
 
-        $('#btn_editar_profesor').click(function () {
-            actualizaDatos();
+        $('#btn_editar_curso_actual').click(function () {
+            actualizarDatos();
         });
 
     });
