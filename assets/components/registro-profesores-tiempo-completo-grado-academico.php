@@ -23,18 +23,40 @@ $conexion = conexion();
                     <td class="text-center align-middle background-table">Acciones</td>
                 </tr>
 
+                <?php
+
+                $sql="select id_prof_tiemp_comp,grado,mujer,hombre,total from profesores_tiempo_completo";
+
+                $resultado = mysqli_query($conexion,$sql);
+
+                while($buscar=mysqli_fetch_row($resultado)) {
+
+                $datos = $buscar[0]."||".
+                    $buscar[1]."||".
+                    $buscar[2]."||".
+                    $buscar[3]."||".
+                    $buscar[4];
+
+                ?>
+
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $buscar[1]?></td>
+                    <td><?php echo $buscar[2]?></td>
+                    <td><?php echo $buscar[3]?></td>
+                    <td><?php echo $buscar[4]?></td>
                     <td></td>
                     <td class="text-center align-middle">
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i>  Editar</button>
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>  Eliminar</button>
+                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos?>')"><i class="far fa-edit" ></i>  Editar</button>
+                        <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $buscar[0]?>')"><i class="fas fa-trash" ></i>  Eliminar</button>
                     </td>
                 </tr>
+
+                    <?php
+
+                }
+                ?>
             </table>
         </div>
+
     </div>
 </div>
