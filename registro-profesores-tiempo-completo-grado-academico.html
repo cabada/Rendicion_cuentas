@@ -55,19 +55,19 @@
                         </select>
 
 						<label>Mujer</label>
-                        <input type="number" value="0" id="horas_jornada_agregar" class="form-control-page input-group-sm">
+                        <input type="number" value="0" id="mujer_agregar" class="form-control-page input-group-sm">
                         
 						<label>Hombre</label>
-                        <input type="number" value="0" id="horas_jornada_agregar" class="form-control-page input-group-sm">
+                        <input type="number" value="0" id="hombre_agregar" class="form-control-page input-group-sm">
 
 						<label>Total</label>
-                        <input type="number" value="0" id="horas_jornada_agregar" class="form-control-page input-group-sm">
+                        <input type="number" value="0" id="total_agregar" class="form-control-page input-group-sm">
 
                         <label>Porcentaje</label>
                         <input type="text" id="porcentaje_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_prof_cmp">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -94,13 +94,13 @@
                         </select>
 
 						<label>Mujer</label>
-                        <input type="number" value="0" id="horas_jornada_editar" class="form-control-page input-group-sm">
+                        <input type="number" value="0" id="mujer_editar" class="form-control-page input-group-sm">
                         
 						<label>Hombre</label>
-                        <input type="number" value="0" id="horas_jornada_editar" class="form-control-page input-group-sm">
+                        <input type="number" value="0" id="hombre_editar" class="form-control-page input-group-sm">
 
 						<label>Total</label>
-                        <input type="number" value="0" id="horas_jornada_editar" class="form-control-page input-group-sm">
+                        <input type="number" value="0" id="total_editar" class="form-control-page input-group-sm">
 
                         <label>Porcentaje</label>
                         <input type="text" id="porcentaje_editar" class="form-control-page input-group-sm">
@@ -144,4 +144,28 @@
         $('#navbar').load('navbar.html');
         $('#registro-profesores-tiempo-completo-grado-academico').load('assets/components/registro-profesores-tiempo-completo-grado-academico.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_prof_cmp').click(function () {
+
+            grado_agregar = $('#grado_agregar').val();
+            console.log(grado_agregar);
+            mujer =  parseInt($('#mujer_agregar').val());
+            console.log(mujer);
+            hombre = parseInt($('#hombre_agregar').val());
+            console.log(hombre);
+
+            total = hombre + mujer;
+            console.log(total);
+
+        });
+
+        $('#btn_editar_profesor').click(function () {
+            actualizaDatos();
+        });
+
+    });
+
 </script>
