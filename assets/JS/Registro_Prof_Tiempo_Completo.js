@@ -60,7 +60,7 @@ function actualizaDatos() {
         data:cadena,
         success:function(r) {
             if(r==1){
-                $('#registro-profesores').load('assets/components/registro-profesores-tiempo-completo-grado-academico.php');
+                $('#registro-profesores-tiempo-completo-grado-academico').load('assets/components/registro-profesores-tiempo-completo-grado-academico.php');
                 alertify.success("Actualizado con exito: ");
             }
             else{
