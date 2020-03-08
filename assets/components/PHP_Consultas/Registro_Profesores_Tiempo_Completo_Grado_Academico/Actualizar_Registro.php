@@ -2,7 +2,7 @@
 
 require_once "../Conexion.php";
 $conexion = conexion();
-$id_prof_tiemp_comp=$_POST['id_prof_tiemp_comp'];
+$id_registro=$_POST['id_registro'];
 $grado=$_POST['grado'];
 $mujer=$_POST['mujer'];
 $hombre=$_POST['hombre'];
@@ -12,7 +12,7 @@ $stmt = $conexion->prepare("update profesores_tiempo_completo set
                                                     mujer=?,
                                                     hombre=?,
                                                     total=? 
-                                               where id_prof_tiemp_comp= $id_prof_tiemp_comp");
+                                               where id_prof_tiemp_comp= $id_registro");
 
 $stmt->bind_param("siii",$grado,$mujer, $hombre,$total);
 

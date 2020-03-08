@@ -36,7 +36,7 @@ function agregaform(datos) {
 function actualizaDatos() {
 
 
-    id_registro =$('#id_registro').val();
+    id_registro =parseInt($('#id_registro').val());
 
     grado = $('#grado_editar').val();
     console.log(grado);
