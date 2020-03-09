@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Programa_Delfin.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -35,73 +36,13 @@
             <div id="registro-programa-delfin"></div>
         </div>
 
-        <!-- MODAL FOR NEW FORM -->
-        <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="new-modalLabel">Agregar nuevo registro</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<label>Nombre de proyecto</label>
-                        <input type="text" id="nombre_proyecto_agregar" class="form-control-page input-group-sm">
-                        
-                        <label>Cantidad de alumnos</label>
-                        <input type="number" value="0" id="cantidad_alumnos_agregar" class="form-control-page input-group-sm">
+        <!-- MODALS-->
+        <div class="container">
+            <div id="modal_programa_delfin">
+                <!-- MODALS ADDED -->
+            </div>
+        </div>
 
-                        <label>Año</label>
-                        <input type="text" id="nombre_proyecto_agregar" maxlength="4" class="form-control-page input-group-sm">
-
-                        <label>Fecha de inicio</label>
-                        <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_inicio_agregar">
-
-						<label>Fecha de terminación</label>
-                        <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_inicio_agregar">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<!-- MODAL FOR EDITION -->
-		<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Editar registro</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<label>Nombre de proyecto</label>
-                        <input type="text" id="nombre_proyecto_editar" class="form-control-page input-group-sm">
-                        
-                        <label>Cantidad de alumnos</label>
-                        <input type="number" value="0" id="cantidad_alumnos_editar" class="form-control-page input-group-sm">
-
-                        <label>Año</label>
-                        <input type="text" id="nombre_proyecto_editar" maxlength="4" class="form-control-page input-group-sm">
-
-                        <label>Fecha de inicio</label>
-                        <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_inicio_editar">
-
-						<label>Fecha de terminación</label>
-                        <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_inicio_editar">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
-					</div>
-				</div>
-			</div>
-		</div>
 
     </main>
     
@@ -133,5 +74,7 @@
     $(document).ready(function(){
         $('#navbar').load('navbar.html');
         $('#registro-programa-delfin').load('assets/components/registro-programa-delfin.php');
+        $('#modal_programa_delfin').load('assets/components/PHP_Consultas/Registro_Programa_Delfin/modal_programa_delfin.php');
     });
 </script>
+
