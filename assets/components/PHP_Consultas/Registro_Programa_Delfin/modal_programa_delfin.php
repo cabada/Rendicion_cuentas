@@ -43,10 +43,10 @@ $conexion = conexion();
                 <input type="text" id="anio_agregar" maxlength="4" class="form-control-page input-group-sm">
 
                 <label>Fecha de inicio</label>
-                <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_inicio_agregar">
+                <input class="form-control-page input-group-sm" type="text" value="aaaa-mm-dd" id="fecha_inicio_agregar">
 
                 <label>Fecha de terminación</label>
-                <input class="form-control-page input-group-sm" type="date" value="aaaa-mm-dd" id="fecha_termino_agregar">
+                <input class="form-control-page input-group-sm" type="text" value="aaaa-mm-dd" id="fecha_termino_agregar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
@@ -110,16 +110,21 @@ $conexion = conexion();
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
             nombre_proyecto=$('#nombre_proyecto_agregar').val();
-            cantidad_alumnos=$('#cantidad_alumnos_agregar').val();
-
+            console.log(nombre_proyecto);
+            cantidad_alumnos= parseInt($('#cantidad_alumnos_agregar').val());
+            console.log(cantidad_alumnos);
             id_carrera =parseInt( $('#carrera_agregar').val());
             console.log(id_carrera);
 
+
             anio=$('#anio_agregar').val();
+            console.log(anio);
             fecha_inicio=$('#fecha_inicio_agregar').val();
+            console.log(fecha_inicio);
             fecha_termino=$('#fecha_termino_agregar').val();
+            console.log(fecha_termino);
 
             agregarDatos(nombre_proyecto,cantidad_alumnos,id_carrera,anio,fecha_inicio,fecha_termino);
-        })
-    })
+        });
+    });
 </script>
