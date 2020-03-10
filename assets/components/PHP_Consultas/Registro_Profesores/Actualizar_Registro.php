@@ -12,6 +12,7 @@ $disciplina = $_POST['disciplina'];
 $vigencia = $_POST['vigencia'];
 $area_experiencia = $_POST['area_experiencia'];
 $fecha_ingreso = $_POST['fecha_ingreso'];
+
 $stmt = $conexion->prepare("update profesores set
                                                     nombre_completo=?,
                                                     sexo=?,
