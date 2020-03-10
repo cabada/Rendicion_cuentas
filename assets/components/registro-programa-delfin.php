@@ -56,5 +56,4 @@ $conexion = conexion();
                     ?>
             </table>
         </div>
-    </div>
 </div>

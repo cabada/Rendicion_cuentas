@@ -1,9 +1,9 @@
 function agregarDatos(nombre_proyecto,cantidad_alumnos,id_carrera,anio,fecha_inicio,fecha_termino) {
 
-    cadena="nombre=" + nombre_proyecto +
+    cadena="nombre_proyecto=" + nombre_proyecto +
            "&cantidad_alumnos=" + cantidad_alumnos +
            "&id_carrera=" + id_carrera +
-           "&annio=" + anio +
+           "&anio=" + anio +
            "&fecha_inicio=" + fecha_inicio +
            "&fecha_termino=" + fecha_termino;
 
@@ -20,7 +20,7 @@ function agregarDatos(nombre_proyecto,cantidad_alumnos,id_carrera,anio,fecha_ini
             }
 
         }
-    })
+    });
 
 
 }

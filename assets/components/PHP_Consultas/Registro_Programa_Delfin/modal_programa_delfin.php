@@ -109,6 +109,7 @@ $conexion = conexion();
 <script type="text/javascript">
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
+
             nombre_proyecto=$('#nombre_proyecto_agregar').val();
             cantidad_alumnos=$('#cantidad_alumnos_agregar').val();
 
@@ -120,6 +121,6 @@ $conexion = conexion();
             fecha_termino=$('#fecha_termino_agregar').val();
 
             agregarDatos(nombre_proyecto,cantidad_alumnos,id_carrera,anio,fecha_inicio,fecha_termino);
-        })
-    })
+        });
+    });
 </script>
