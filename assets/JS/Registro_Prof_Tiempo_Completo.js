@@ -90,7 +90,7 @@ function eliminarDatos(id_registro) {
         data:cadena,
         success:function (r) {
             if(r==1){
-                $('#registro-profesores-tiempo-completo-grado-academico').load('assets/components/registro-profesores.php');
+                $('#registro-profesores-tiempo-completo-grado-academico').load('assets/components/registro-profesores-tiempo-completo-grado-academico.php');
                 alertify.success("Eliminado con exito!")
             }else{
                 alertify.error("Fallo el servidor!")
