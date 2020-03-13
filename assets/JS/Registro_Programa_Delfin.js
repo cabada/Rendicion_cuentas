@@ -79,3 +79,28 @@ function actualizarDatos() {
 
 }
 
+function preguntarSiNo(id_programa) {
+    alertify.confirm('Eliminar Datos','Esta seguro de eliminar este registro?',
+        function () { eliminarDatos(id_programa)}
+        , function () { alertify.error('Se cancelo')});
+
+}
+
+function eliminarDatos(id_programa) {
+    cadena="id_programa=" + id_programa;
+
+    $.ajax({
+        type:"POST",
+        url:"assets/components/PHP_Consultas/Registro_Programa_Delfin/Eliminar_Registro.php",
+        data:cadena,
+        success:function (r) {
+            if(r==1){
+                $('#registro-programa-delfin').load('assets/components/registro-programa-delfin.php');
+                alertify.success("Eliminado con exito!");
+            }else{
+                alertify.error("Fallo el servidor");
+            }
+        }
+    });
+
+}

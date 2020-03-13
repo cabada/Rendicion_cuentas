@@ -12,9 +12,6 @@ function conexion()
 
     return $conexion;
 
-
-
-
 }
 
 ?>

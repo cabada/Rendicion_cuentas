@@ -67,7 +67,7 @@ $conexion = conexion();
             </div>
             <div class="modal-body">
 
-                <label>Id_programa</label>
+                <label>Numero de registro</label>
                 <input type="id" id="id_programa" class="form-control-page input-group-sm" readonly="readonly">
 
                 <label>Nombre de proyecto</label>
