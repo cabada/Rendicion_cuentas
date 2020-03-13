@@ -43,10 +43,10 @@ $conexion = conexion();
                 <input type="text" id="anio_agregar" maxlength="4" class="form-control-page input-group-sm">
 
                 <label>Fecha de inicio</label>
-                <input class="form-control-page input-group-sm" type="date" value="dd-mm-aaaa" id="fecha_inicio_agregar">
+                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_agregar">
 
                 <label>Fecha de terminación</label>
-                <input class="form-control-page input-group-sm" type="date" value="dd-mm-aaaa" id="fecha_termino_agregar">
+                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_termino_agregar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
@@ -95,10 +95,10 @@ $conexion = conexion();
                 <input type="text" id="anio_editar" maxlength="4" class="form-control-page input-group-sm">
 
                 <label>Fecha de inicio</label>
-                <input class="form-control-page input-group-sm" type="date" value="dd-mm-aaaa" id="fecha_inicio_editar">
+                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_editar">
 
                 <label>Fecha de terminación</label>
-                <input class="form-control-page input-group-sm" type="date" value="dd-mm-aaaa" id="fecha_inicio_editar">
+                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_editar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
