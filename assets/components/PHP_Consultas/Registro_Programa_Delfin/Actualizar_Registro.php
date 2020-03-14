@@ -10,6 +10,7 @@ $id_carrera = $_POST['id_carrera'];
 $anio = $_POST['anio'];
 $fecha_inicio = $_POST['fecha_inicio'];
 $fecha_termino = $_POST['fecha_termino'];
+
 $id = "";
 $sql = "select ID_CARRERA from carreras where NOMBRE_CARRERA ='$id_carrera'";
 if ($resultado = $conexion->query($sql)) {

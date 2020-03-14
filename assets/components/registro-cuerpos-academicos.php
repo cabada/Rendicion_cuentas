@@ -7,6 +7,7 @@
         <div class="table-responsive-xl">
             <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                 <tr>
+                    <td class="text-center align-middle background-table">Area académica</td>
                     <td class="text-center align-middle background-table">Nombre de cuerpo académico</td>
                     <td class="text-center align-middle background-table">Grado</td>
                     <td class="text-center align-middle background-table">Estado</td>
@@ -15,6 +16,7 @@
                     <td class="text-center align-middle background-table">Acciones</td>
                 </tr>
                 <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

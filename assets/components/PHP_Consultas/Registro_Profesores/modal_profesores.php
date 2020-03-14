@@ -3,7 +3,6 @@
 require_once "../Conexion.php";
 $conexion = conexion();
 
-
 ?>
 
 <!-- MODAL FOR NEW FORM -->
@@ -189,7 +188,6 @@ $conexion = conexion();
 
             var disc_sel = document.getElementById("disciplina_agregar");
             var disc_valor = disc_sel.options[disc_sel.selectedIndex].value;
-
 
 
             nombre_completo = $('#nombre_agregar').val();
