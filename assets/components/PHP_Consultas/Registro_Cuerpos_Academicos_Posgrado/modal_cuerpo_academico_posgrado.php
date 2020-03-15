@@ -57,6 +57,10 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
+                <label>Numero de registro del cuerpo académico de posgrado</label>
+                <input type="id" id="id_cuerpos_academicos_posgrado" class="form-control-page input-group-sm" readonly="readonly">
+
+
                 <label>Área académica</label>
                 <input type="text" id="area-academica-editar" class="form-control-page input-group-sm">
 
@@ -92,5 +96,32 @@ $conexion = conexion();
     $(document).ready(function(){
         $('#navbar').load('navbar.html');
         $('#registro-cuerpos-academicos-posgrado').load('assets/components/registro-cuerpos-academicos-posgrado.php');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+       $('#btn_agregar_curso_actual').click(function () {
+           area_academica=$('#area-academica-agregar').val();
+           console.log(area_academica);
+           nombre_cuerpo=$('#nombre_cuerpo_academico_agregar').val();
+           console.log(nombre_cuerpo);
+           grado=$('#grado_agregar').val();
+           console.log(grado);
+           estado=$('#nombre_estado_agregar').val();
+           console.log(estado);
+           anio_registro=$('#anio_registro_agregar').val();
+           console.log(anio_registro);
+           vigencia=$('#vigencia_agregar').val();
+           console.log(vigencia);
+           area=$('#area_agregar').val();
+           console.log(area);
+
+           agregarDatos(area_academica,nombre_cuerpo,grado,estado,anio_registro,vigencia,area);
+       });
+       $('#btn_editar_curso_actual').click(function () {
+           actualizarDatos();
+       });
+
     });
 </script>
