@@ -1,3 +1,10 @@
+<?php
+
+require_once "PHP_Consultas/Conexion.php";
+$conexion = conexion();
+
+?>
+
 <div class="row">
     <div class="col-sm-12">
         <h2>Registro de cuerpos académicos</h2>
@@ -11,22 +18,49 @@
                     <td class="text-center align-middle background-table">Nombre de cuerpo académico</td>
                     <td class="text-center align-middle background-table">Grado</td>
                     <td class="text-center align-middle background-table">Estado</td>
-                    <td class="text-center align-middle background-table">Fecha de registro</td>
+                    <td class="text-center align-middle background-table">Año de registro</td>
                     <td class="text-center align-middle background-table">Fecha de vigencia</td>
                     <td class="text-center align-middle background-table">Acciones</td>
                 </tr>
+
+                <?php
+                $sql="select 
+                      cuerpos_academicos.id_cuerpo_academico,
+                      area_academica.id_area_academica,
+                      cuerpos_academicos.nombre_cuerpo_academico,
+                      cuerpos_academicos.grado,
+                      cuerpos_academicos.estado,
+                      cuerpos_academicos.anio_registro,
+                      cuerpos_academicos.vigencia
+                      from area_academica
+                      right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA";
+                $result=mysqli_query($conexion,$sql);
+                while($ver=mysqli_fetch_row($result)){
+
+                    $datos=$ver[0]."||".
+                           $ver[1]."||".
+                           $ver[2]."||".
+                           $ver[3]."||".
+                           $ver[4]."||".
+                           $ver[5]."||".
+                           $ver[6];
+                ?>
+
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $ver[1]?></td>
+                    <td><?php echo $ver[2]?></td>
+                    <td><?php echo $ver[3]?></td>
+                    <td><?php echo $ver[4]?></td>
+                    <td><?php echo $ver[5]?></td>
+                    <td><?php echo $ver[6]?></td>
                     <td class="text-center align-middle">
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i>  Editar</button>
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>  Eliminar</button>
+                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i class="far fa-edit"></i>  Editar</button>
+                        <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $ver[0]?>')"><i class="fas fa-trash"></i>  Eliminar</button>
                     </td>
                 </tr>
+                    <?php
+                }
+                ?>
             </table>
         </div>
     </div>

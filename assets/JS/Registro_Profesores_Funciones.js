@@ -119,7 +119,6 @@ function preguntarSiNo(id_profesor) {
         function(){ eliminarDatos(id_profesor) }
         , function(){ alertify.error('Se cancelo.')});
 
-
 }
 
 function eliminarDatos(id_profesor) {
@@ -132,11 +131,10 @@ function eliminarDatos(id_profesor) {
         success:function (r) {
             if(r==1){
                 $('#tablaRegistroCurso').load('assets/components/registro-profesores.php');
-                alertify.success("Eliminado con exito!")
+                alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!")
+                alertify.error("Fallo el servidor!");
             }
-
 
         }
     });
