@@ -11,7 +11,7 @@ $area_especializacion=$_POST['area_especializacion'];
 $experiencia_profesional=$_POST['experiencia_profesional'];
 $experiencia_docente=$_POST['experiencia_docente'];
 
-$stmt = $conexion->prepare("insert into equipo_profesores_itcj (nombre_docente, categoria_hora, grado_estudios, sni, area_especializacion, experiencia_profesional, experiencia_docente) values (?,?,?,?,?,?,?)");
+$stmt = $conexion->prepare("insert into equipo_maestros_itcj (nombre_docente,categoria_hora,grado_estudios,sni,area_especializacion,experiencia_profesional, experiencia_docente) values (?,?,?,?,?,?,?)");
 $stmt->bind_param("sssssii", $nombre_docente,$categoria,$grado_estudios,$sni,$area_especializacion,$experiencia_profesional,$experiencia_docente );
 
 echo $resultado = $stmt->execute();
