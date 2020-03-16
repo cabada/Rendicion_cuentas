@@ -94,6 +94,9 @@
 						</button>
 					</div>
 					<div class="modal-body">
+                        <label>ID Equipo Maestros ITCJ</label>
+                        <input type="text" id="id_editar" class="form-control-page input-group-sm" readonly="readonly">
+
 						<label>Nombre</label>
                         <input type="text" id="nombre_editar" class="form-control-page input-group-sm">
                         
@@ -124,7 +127,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_equipo_maestros">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -193,7 +196,7 @@
 
         });
 
-        $('#btn_editar_prof_cmp').click(function () {
+        $('#btn_editar_equipo_maestros').click(function () {
             actualizaDatos();
         });
 

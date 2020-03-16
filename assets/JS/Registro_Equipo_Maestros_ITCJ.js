@@ -11,7 +11,7 @@ function  agregarDatos(nombre_docente,categoria,grado_estudios,sni,area_especial
 
     $.ajax({
         type: "POST",
-        url: "assets/components/PHP_Consultas/Registro_Equipo_Profesores_ITCJ/Agregar_Registro.php",
+        url: "assets/components/PHP_Consultas/Registro_Equipo_Maetsros_ITCJ/Agregar_Registro.php",
         data: cadena,
         success: function (r) {
             if (r == 1) {
@@ -27,35 +27,35 @@ function  agregarDatos(nombre_docente,categoria,grado_estudios,sni,area_especial
 function agregaform(datos) {
     d=datos.split('||');
 
-    $('#id_cuerpos_academicos_posgrado').val(d[0]);
-    $('#area-academica-editar').val(d[1]);
-    $('#nombre_cuerpo_academico_editar').val(d[2]);
-    $('#grado_editar').val(d[3]);
-    $('#nombre_estado_editar').val(d[4]);
-    $('#anio_registro_editar').val(d[5]);
-    $('#vigencia_editar').val(d[6]);
-    $('#area_editar').val(d[7]);
+    $('#id_editar').val(d[0]);
+    $('#nombre_editar').val(d[1]);
+    $('#categoria_editar').val(d[2]);
+    $('#grado_estudios_editar').val(d[3]);
+    $('#sni_editar').val(d[4]);
+    $('#area_especializacion_editar').val(d[5]);
+    $('#experiencia_profesional_editar').val(d[6]);
+    $('#experiencia_docente_editar').val(d[7]);
 
 }
 
 function actualizarDatos() {
-    id_cuerpos_academicos_posgrado=$('#id_cuerpos_academicos_posgrado').val();
-    area_academica=$('#area-academica-editar').val();
-    nombre_cuerpo=$('#nombre_cuerpo_academico_editar').val();
-    grado=$('#grado_editar').val();
-    estado=$('#nombre_estado_editar').val();
-    anio_registro=$('#anio_registro_editar').val();
-    vigencia=$('#vigencia_editar').val();
-    area=$('#area_editar').val();
+    id_equipo_ms=$('#id_editar').val();
+    nombre_docente=$('#nombre_editar').val();
+    categoria=$('#categoria_editar').val();
+    grado_estudios=$('#grado_estudios_editar').val();
+    sni=$('#sni_editar').val();
+    area_especializacion=$('#area_especializacion_editar').val();
+    experiencia_profesional=$('#experiencia_profesional_editar').val();
+    experiencia_docente=$('#experiencia_docente_editar').val();
 
-    cadena="id_cuerpos_academicos_posgrado=" + id_cuerpos_academicos_posgrado +
-        "&area_academica=" + area_academica +
-        "&nombre_cuerpo=" + nombre_cuerpo +
-        "&grado=" + grado +
-        "&estado=" + estado +
-        "&anio_registro=" + anio_registro +
-        "&vigencia=" + vigencia +
-        "&area=" + area;
+    cadena="id_equipo_ms=" + id_equipo_ms +
+        "&nombre_docente=" + nombre_docente +
+        "&categoria=" + categoria +
+        "&grado_estudios=" + grado_estudios +
+        "&sni=" + sni +
+        "&area_especializacion=" + area_especializacion +
+        "&experiencia_profesional=" + experiencia_profesional +
+        "&experiencia_docente=" + experiencia_docente;
 
     $.ajax({
         type: "POST",
