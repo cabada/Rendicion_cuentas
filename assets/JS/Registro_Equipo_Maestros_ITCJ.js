@@ -63,7 +63,7 @@ function actualizarDatos() {
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                $('#registro-cuerpos-academicos-posgrado').load('assets/components/registro-cuerpos-academicos-posgrado.php');
+                $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-maestros-itcj.php');
                 alertify.success("Actualizado con exito");
             } else {
                 alertify.error("Fallo el servidor");
@@ -79,16 +79,16 @@ function preguntarSiNo(id_cuerpos_academicos_posgrado){
         function(){ eliminarDatos(id_cuerpos_academicos_posgrado)}
         , function(){ alertify.error('Se cancelo')});
 }
-function eliminarDatos(id_cuerpos_academicos_posgrado) {
-    cadena= "id_cuerpos_academicos_posgrado=" + id_cuerpos_academicos_posgrado;
+function eliminarDatos(id_equipo_ms) {
+    cadena= "id_equipo_ms=" + id_equipo_ms;
 
     $.ajax({
         type:"post",
-        url:"assets/components/PHP_Consultas/Registro_Cuerpos_Academicos_Posgrado/Eliminar_Registro.php",
+        url:"assets/components/PHP_Consultas/Registro_Equipo_Maestros_ITCJ/Eliminar_Registro.php",
         data:cadena,
         success:function (r) {
             if(r==1){
-                $('#registro-cuerpos-academicos-posgrado').load('assets/components/registro-cuerpos-academicos-posgrado.php');
+                $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-maestros-itcj.php');
                 alertify.success("Eliminado con exito!");
             }else{
                 alertify.error("Fallo el servidor!");
