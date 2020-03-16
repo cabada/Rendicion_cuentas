@@ -27,3 +27,5 @@ $stmt->bind_param("sssssii", $nombre_docente,$categoria,$grado_estudios,$sni,$ar
 echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
+
+?>
