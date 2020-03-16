@@ -75,7 +75,7 @@
                         <input type="number" value="0" id="experiencia_docente_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_equipo_maestros">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -160,4 +160,42 @@
         $('#navbar').load('navbar.html');
         $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-maestros-itcj.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_equipo_maestros').click(function () {
+
+            nombre_docente = $('#nombre_agregar').val();
+            console.log(nombre_docente);
+            categoria =  $('#categoria_agregar').val();
+            console.log(categoria);
+            grado_estudios = $('#grado_estudios_agregar').val();
+            console.log(grado_estudios);
+
+            sni = $('#sni_agregar').val();
+            console.log(sni);
+
+            area_especializacion = $('#area_especializacion_agregar').val();
+            console.log(area_especializacion);
+
+            experiencia_profesional = $('#experiencia_profesional_agregar').val();
+            console.log(experiencia_profesional);
+
+            experiencia_docente = $('#experiencia_docente_agregar').val();
+            console.log(experiencia_docente);
+
+
+
+            agregarDatos(nombre_docente,categoria,grado_estudios,sni,area_especializacion,
+                        experiencia_profesional,experiencia_docente);
+
+        });
+
+        $('#btn_editar_prof_cmp').click(function () {
+            actualizaDatos();
+        });
+
+    });
+
 </script>
