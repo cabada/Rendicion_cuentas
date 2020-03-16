@@ -11,7 +11,7 @@ function  agregarDatos(nombre_docente,categoria,grado_estudios,sni,area_especial
 
     $.ajax({
         type: "POST",
-        url: "assets/components/PHP_Consultas/Registro_Equipo_Maetsros_ITCJ/Agregar_Registro.php",
+        url: "assets/components/PHP_Consultas/Registro_Equipo_Maestros_ITCJ/Agregar_Registro.php",
         data: cadena,
         success: function (r) {
             if (r == 1) {
