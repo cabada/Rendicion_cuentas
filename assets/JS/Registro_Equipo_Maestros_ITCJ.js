@@ -59,7 +59,7 @@ function actualizarDatos() {
 
     $.ajax({
         type: "POST",
-        url: "assets/components/PHP_Consultas/Registro_Cuerpos_Academicos_Posgrado/Actualizar_Registro.php",
+        url: "assets/components/PHP_Consultas/Registro_Equipo_Maestros_ITCJ/Actualizar_Registro.php",
         data: cadena,
         success: function (r) {
             if (r == 1) {
