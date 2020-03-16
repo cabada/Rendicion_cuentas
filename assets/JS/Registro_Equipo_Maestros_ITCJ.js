@@ -1,20 +1,21 @@
-function agregarDatos(area_academica,nombre_cuerpo,grado,estado,anio_registro,vigencia,area) {
+function  agregarDatos(nombre_docente,categoria,grado_estudios,sni,area_especializacion,
+                       experiencia_profesional,experiencia_docente) {
 
-    cadena="area_academica=" + area_academica +
-        "&nombre_cuerpo=" + nombre_cuerpo +
-        "&grado=" + grado +
-        "&estado=" + estado +
-        "&anio_registro=" + anio_registro +
-        "&vigencia=" + vigencia +
-        "&area=" + area;
+    cadena="nombre_docente=" + nombre_docente +
+        "&categoria=" + categoria +
+        "&grado_estudios=" + grado_estudios +
+        "&sni=" + sni +
+        "&area_especializacion=" + area_especializacion +
+        "&experiencia_profesional=" + experiencia_profesional +
+        "&experiencia_docente=" + experiencia_docente;
 
     $.ajax({
         type: "POST",
-        url: "assets/components/PHP_Consultas/Registro_Cuerpos_Academicos_Posgrado/Agregar_Registro.php",
+        url: "assets/components/PHP_Consultas/Registro_Equipo_Profesores_ITCJ/Agregar_Registro.php",
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                $('#registro-cuerpos-academicos-posgrado').load('assets/components/registro-cuerpos-academicos-posgrado.php');
+                $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-maestros-itcj.php');
                 alertify.success("Agregado con exito");
             } else {
                 alertify.error("Fallo el servidor");
