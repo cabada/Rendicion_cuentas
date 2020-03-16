@@ -1,3 +1,12 @@
+<?php
+
+require_once "PHP_Consultas/Conexion.php";
+$conexion = conexion();
+
+?>
+
+
+
 <div class="row">
     <div class="col-sm-12">
         <h2>Registro equipo de maestros ITCJ</h2>
