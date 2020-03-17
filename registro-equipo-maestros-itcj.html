@@ -15,7 +15,8 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
-
+    <script src="assets/JS/Registro_Equipo_Maestros_ITCJ.js"></script>
+    .
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
     <title>ITCJ | Registro de Equipo de Maestros ITCJ</title>
@@ -75,7 +76,7 @@
                         <input type="number" value="0" id="experiencia_docente_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_equipo_maestros">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -93,6 +94,9 @@
 						</button>
 					</div>
 					<div class="modal-body">
+                        <label>ID Equipo Maestros ITCJ</label>
+                        <input type="text" id="id_editar" class="form-control-page input-group-sm" readonly="readonly">
+
 						<label>Nombre</label>
                         <input type="text" id="nombre_editar" class="form-control-page input-group-sm">
                         
@@ -123,7 +127,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_equipo_maestros">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -160,4 +164,42 @@
         $('#navbar').load('navbar.html');
         $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-maestros-itcj.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_equipo_maestros').click(function () {
+
+            nombre_docente = $('#nombre_agregar').val();
+            console.log(nombre_docente);
+            categoria =  $('#categoria_agregar').val();
+            console.log(categoria);
+            grado_estudios = $('#grado_estudios_agregar').val();
+            console.log(grado_estudios);
+
+            sni = $('#sni_agregar').val();
+            console.log(sni);
+
+            area_especializacion = $('#area_especializacion_agregar').val();
+            console.log(area_especializacion);
+
+            experiencia_profesional = parseInt($('#experiencia_profesional_agregar').val());
+            console.log(experiencia_profesional);
+
+            experiencia_docente =parseInt($('#experiencia_docente_agregar').val());
+            console.log(experiencia_docente);
+
+
+
+            agregarDatos(nombre_docente,categoria,grado_estudios,sni,area_especializacion,
+                        experiencia_profesional,experiencia_docente);
+
+        });
+
+        $('#btn_editar_equipo_maestros').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
 </script>
