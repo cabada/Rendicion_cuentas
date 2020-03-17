@@ -46,6 +46,9 @@ $conexion = conexion();
 
                 <label>Vigencia</label>
                 <input class="form-control-page input-group-sm" type="text" id="vigencia_agregar">
+
+                <label>Área</label>
+                <input type="text" id="area_agregar" class="form-control-page input-group-sm">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
@@ -97,6 +100,9 @@ $conexion = conexion();
 
                 <label>Vigencia</label>
                 <input class="form-control-page input-group-sm" type="text"  id="anio_vigencia_editar">
+
+                <label>Área</label>
+                <input type="text" id="area_editar" class="form-control-page input-group-sm">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -134,8 +140,10 @@ $conexion = conexion();
             console.log(anio_registro);
             vigencia=$('#vigencia_agregar').val();
             console.log(vigencia);
+            area=$('#area_agregar').val();
+            console.log(area);
 
-            agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia)
+            agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area)
         });
 
         $('#btn_editar_curso_actual').click(function () {

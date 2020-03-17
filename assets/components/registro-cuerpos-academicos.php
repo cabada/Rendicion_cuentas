@@ -20,6 +20,7 @@ $conexion = conexion();
                     <td class="text-center align-middle background-table">Estado</td>
                     <td class="text-center align-middle background-table">Año de registro</td>
                     <td class="text-center align-middle background-table">Fecha de vigencia</td>
+                    <td class="text-center align-middle background-table">Área</td>
                     <td class="text-center align-middle background-table">Acciones</td>
                 </tr>
 
@@ -31,7 +32,8 @@ $conexion = conexion();
                       cuerpos_academicos.grado,
                       cuerpos_academicos.estado,
                       cuerpos_academicos.anio_registro,
-                      cuerpos_academicos.vigencia
+                      cuerpos_academicos.vigencia,
+                      cuerpos_academicos.AREA
                       from area_academica
                       right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA";
                 $result=mysqli_query($conexion,$sql);
@@ -43,7 +45,8 @@ $conexion = conexion();
                            $ver[3]."||".
                            $ver[4]."||".
                            $ver[5]."||".
-                           $ver[6];
+                           $ver[6]."||".
+                           $ver[7];
                 ?>
 
                 <tr>
@@ -53,6 +56,7 @@ $conexion = conexion();
                     <td><?php echo $ver[4]?></td>
                     <td><?php echo $ver[5]?></td>
                     <td><?php echo $ver[6]?></td>
+                    <td><?php echo $ver[7]?></td>
                     <td class="text-center align-middle">
                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i class="far fa-edit"></i>  Editar</button>
                         <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $ver[0]?>')"><i class="fas fa-trash"></i>  Eliminar</button>
