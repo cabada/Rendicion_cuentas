@@ -11,7 +11,7 @@ function  agregarDatos(nombre,puesto,grado_estudios,funciones) {
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-apoyo-asesores.php');
+                $('#registro-equipo-apoyo-asesores').load('assets/components/registro-equipo-apoyo-asesores.php');
                 alertify.success("Agregado con exito");
             } else {
                 alertify.error("Fallo el servidor");
