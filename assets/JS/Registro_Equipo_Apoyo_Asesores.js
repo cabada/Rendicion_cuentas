@@ -7,11 +7,11 @@ function  agregarDatos(nombre,puesto,grado_estudios,funciones) {
 
     $.ajax({
         type: "POST",
-        url: "assets/components/PHP_Consultas/Registro_Equipo_Maestros_ITCJ/Agregar_Registro.php",
+        url: "assets/components/PHP_Consultas/Registro_Equipo_Apoyo_Asesores/Agregar_Registro.php",
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-maestros-itcj.php');
+                $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-apoyo-asesores.php');
                 alertify.success("Agregado con exito");
             } else {
                 alertify.error("Fallo el servidor");
