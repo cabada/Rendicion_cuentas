@@ -79,7 +79,10 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<label>Nombre</label>
+                        <label>ID Registro</label>
+                        <input type="text" id="id_editar" class="form-control-page input-group-sm" readonly="readonly">
+
+                        <label>Nombre</label>
                         <input type="text" id="nombre_editar" class="form-control-page input-group-sm">
                         
                         <label>Puesto</label>
@@ -100,7 +103,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_equipo_apoyo">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -157,7 +160,7 @@
 
         });
 
-        $('#btn_editar_equipo_maestros').click(function () {
+        $('#btn_editar_equipo_apoyo').click(function () {
             actualizarDatos();
         });
 
