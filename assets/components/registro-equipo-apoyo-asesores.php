@@ -24,7 +24,7 @@ $conexion = conexion();
 
                 <?php
 
-                $sql="select id_equipo_apoyo,nombre,puesto,grado_estudios,funciones_med_tecnm from equipo_apoypo_asesores_pda";
+                $sql="select id_equipo_apoyo,nombre,puesto,grado_estudios,funciones_med_tecnm from equipo_apoyo_asesores_pda";
 
                 $resultado = mysqli_query($conexion,$sql);
 
