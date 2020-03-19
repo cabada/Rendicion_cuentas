@@ -53,20 +53,14 @@
 						<input type="text" id="puesto_agregar" class="form-control-page input-group-sm">
 
 						<label>Grado de estudios</label>
-                        <select type="text" class="form-control-page input-group-sm" id="grado_agregar">
-                            <option selected>-</option>
-                            <option>Bachillerato/Tecnico</option>
-                            <option>Licenciatura</option>
-                            <option>Ingeniería</option>
-                            <option>Maestría</option>
-                            <option>Doctorado</option>
-                        </select>
+                        <input type="text" id="grado_estudios_agregar" class="form-control-page input-group-sm">
 
-						<label>Funciones TECNM</label>
+
+                        <label>Funciones TECNM</label>
                         <input type="text" id="funciones_tecnm_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_equipo_apoyo">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -142,4 +136,30 @@
         $('#navbar').load('navbar.html');
         $('#registro-equipo-apoyo-asesores').load('assets/components/registro-equipo-apoyo-asesores.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_equipo_apoyo').click(function () {
+
+            nombre = $('#nombre_agregar').val();
+            console.log(nombre);
+            puesto =  $('#puesto_agregar').val();
+            console.log(puesto);
+            grado_estudios = $('#grado_estudios_agregar').val();
+            console.log(grado_estudios);
+
+            funciones= $('#funciones_tecnm_agregar').val();
+            console.log(sni);
+
+            agregarDatos(nombre,puesto,grado_estudios,funciones);
+
+        });
+
+        $('#btn_editar_equipo_maestros').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
 </script>
