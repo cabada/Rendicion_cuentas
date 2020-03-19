@@ -34,7 +34,7 @@ function agregaform(datos) {
 function actualizarDatos() {
     id_equipo_apoyo_as=$('#id_editar').val();
     nombre=$('#nombre_editar').val();
-    categoria=$('#puesto_editar').val();
+    puesto=$('#puesto_editar').val();
     grado_estudios=$('#grado_estudios_editar').val();
     funciones=$('#funciones_tecnm_editar').val();
 

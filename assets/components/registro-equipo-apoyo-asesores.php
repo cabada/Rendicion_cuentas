@@ -43,8 +43,8 @@ $conexion = conexion();
                     <td><?php echo $buscar[3]?></td>
                     <td><?php echo $buscar[4]?></td>
                     <td class="text-center align-middle">
-                    <td class="centered-table-title"><button class="btn btn-warning" onclick="agregaform('<?php echo $datos?>')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
-                    <td class="centered-table-title"><button class="btn btn-danger" onclick="preguntarSiNo('<?php echo $buscar[0]?>')"><i class="far fa-window-close"></i></button></td>
+                   <button class="btn btn-warning" onclick="agregaform('<?php echo $datos?>')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button>
+                    <button class="btn btn-danger" onclick="preguntarSiNo('<?php echo $buscar[0]?>')"><i class="far fa-window-close"></i></button>
                     </td>
                 </tr>
 

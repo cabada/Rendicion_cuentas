@@ -3,7 +3,7 @@
 require_once "../Conexion.php";
 $conexion = conexion();
 
-$id_equipo_apoyo_as=$_POST['id_equipo_apoyo'];
+$id_equipo_apoyo_as=$_POST['id_equipo_apoyo_as'];
 
 $stmt = $conexion->prepare("delete from equipo_apoyo_asesores_pda where id_equipo_apoyo=?");
 $stmt->bind_param("i",$id_equipo_apoyo_as);
