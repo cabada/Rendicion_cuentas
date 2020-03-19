@@ -34,11 +34,7 @@ $conexion = conexion();
                     $buscar[1]."||".
                     $buscar[2]."||".
                     $buscar[3]."||".
-                    $buscar[4]."||".
-                    $buscar[5]."||".
-                    $buscar[6]."||".
-                    $buscar[7];
-
+                    $buscar[4];
                 ?>
 
                 <tr>
