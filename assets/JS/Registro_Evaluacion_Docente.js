@@ -10,7 +10,7 @@ function  agregarDatos(periodo,docentes_evaluados,porcentaje) {
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                $('#registro-equipo-apoyo-asesores').load('assets/components/registro-evaluacion-docente.php');
+                $('#registro-evaluacion-docente').load('assets/components/registro-evaluacion-docente.php');
                 alertify.success("Agregado con exito");
             } else {
                 alertify.error("Fallo el servidor");
@@ -52,7 +52,7 @@ function actualizarDatos() {
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                $('#registro-equipo-apoyo-asesores').load('assets/components/registro-evaluacion-docente.php');
+                $('#registro-evaluacion-docente').load('assets/components/registro-evaluacion-docente.php');
                 alertify.success("Actualizado con exito");
             } else {
                 alertify.error("Fallo el servidor");
@@ -77,7 +77,7 @@ function eliminarDatos(id_evaluacion_doc) {
         data:cadena,
         success:function (r) {
             if(r==1){
-                $('#registro-equipo-maestros-itcj').load('assets/components/registro-evaluacion-docente.php');
+                $('#registro-evaluacion-docente').load('assets/components/registro-evaluacion-docente.php');
                 alertify.success("Eliminado con exito!");
             }else{
                 alertify.error("Fallo el servidor!");
