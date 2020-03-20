@@ -31,7 +31,7 @@ function agregaform(datos) {
 
 }
 
-function actualizaDatos() {
+function actualizarDatos() {
     id_equipo_apoyo_as=$('#id_editar').val();
     console.log(id_equipo_apoyo_as);
     nombre=$('#nombre_editar').val();
