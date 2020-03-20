@@ -33,10 +33,15 @@ function agregaform(datos) {
 
 function actualizarDatos() {
     id_equipo_apoyo_as=$('#id_editar').val();
+    console.log(id_equipo_apoyo_as);
     nombre=$('#nombre_editar').val();
+    console.log(nombre);
     puesto=$('#puesto_editar').val();
+    console.log(puesto);
     grado_estudios=$('#grado_estudios_editar').val();
+    console.log(grado_estudios);
     funciones=$('#funciones_tecnm_editar').val();
+    console.log(funciones);
 
 
     cadena="id_equipo_apoyo_as=" + id_equipo_apoyo_as+
