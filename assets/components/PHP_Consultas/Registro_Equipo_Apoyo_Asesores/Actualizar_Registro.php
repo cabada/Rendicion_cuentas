@@ -4,7 +4,7 @@ require_once "../Conexion.php";
 $conexion = conexion();
 
 $id_equipo_apoyo_as=$_POST['id_equipo_apoyo_as'];
-$nombre=$_POST['nombre_docente'];
+$nombre=$_POST['nombre'];
 $puesto=$_POST['puesto'];
 $grado_estudios=$_POST['grado_estudios'];
 $funciones=$_POST['funciones'];
