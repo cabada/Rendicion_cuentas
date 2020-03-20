@@ -16,7 +16,7 @@ $stmt = $conexion->prepare("update equipo_apoyo_asesores_pda set
                                    funciones_med_tecnm=?
                                    where id_equipo_apoyo=$id_equipo_apoyo_as");
 
-$stmt->bind_param("ssss", $nombre,$nombre,$grado_estudios,$funciones);
+$stmt->bind_param("ssss", $nombre,$puesto,$grado_estudios,$funciones);
 
 echo $resultado = $stmt->execute();
 $stmt->close();
