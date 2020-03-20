@@ -8,7 +8,7 @@ $conexion = conexion();
      $porcentaje=$_POST['porcentaje'];
 
 $stmt = $conexion->prepare("insert into evaluacion_docente(periodo, docentes_activos_evaluados, porcentaje) values (?,?,?)");
-$stmt->bind_param("siisss",$periodo,$docentes_evaluados,$porcentaje);
+$stmt->bind_param("sis",$periodo,$docentes_evaluados,$porcentaje);
 
 echo $resultado = $stmt->execute();
 

@@ -14,7 +14,7 @@ $stmt = $conexion->prepare("update evaluacion_docente set
                                   porcentaje=?
                                 where id_eva_docente = $id_evaluacion_doc");
 
-$stmt->bind_param("siisss", $periodo, $docentes_evaluados,$porcentaje);
+$stmt->bind_param("sis", $periodo, $docentes_evaluados,$porcentaje);
 
 echo $resultado = $stmt->execute();
 $stmt->close();
