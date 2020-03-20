@@ -15,6 +15,8 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/JS/Registro_Evaluacion_Docente.js"></script>
+
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -60,7 +62,7 @@
 						<input type="text" id="porcentaje_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_eva_doc">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -93,7 +95,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_eva_doc">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -130,4 +132,28 @@
         $('#navbar').load('navbar.html');
         $('#registro-evaluacion-docente').load('assets/components/registro-evaluacion-docente.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_eva_doc').click(function () {
+
+            periodo = $('#periodo_agregar').val();
+            console.log(periodo);
+            docentes_evaluados =  $('#docentes_activos_evaluados_agregar').val();
+            console.log(docentes_evaluados);
+            porcentaje = $('#porcentaje_agregar').val();
+            console.log(porcentaje);
+
+
+            agregarDatos(periodo,docentes_evaluados,porcentaje);
+
+        });
+
+        $('#btn_editar_eva_doc').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
 </script>
