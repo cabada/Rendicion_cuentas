@@ -1,12 +1,13 @@
 
-function agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia) {
+function agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area) {
 
     cadena= "id_area_academica=" + id_area_academica +
             "&nombre_cuerpo_academico=" + nombre_cuerpo_academico +
             "&grado=" + grado +
             "&estado=" + estado +
             "&anio_registro=" + anio_registro +
-            "&vigencia=" + vigencia;
+            "&vigencia=" + vigencia +
+            "&area=" + area;
 
     $.ajax({
         type: "POST",
@@ -35,7 +36,7 @@ function agregaform(datos) {
     $('#nombre_estado_editar').val(d[4]);
     $('#anio_registro_editar').val(d[5]);
     $('#anio_vigencia_editar').val(d[6]);
-
+    $('#area_editar').val(d[7]);
 }
 
 function actualizarDatos() {
@@ -48,6 +49,7 @@ function actualizarDatos() {
     estado=$('#nombre_estado_editar').val();
     anio_registro=$('#anio_registro_editar').val();
     vigencia=$('#anio_vigencia_editar').val();
+    area=$('#area_editar').val();
 
     cadena="id_cuerpo_academico=" + id_cuerpo_academico +
         "&id_area_academica=" + id_area_academica +
@@ -55,7 +57,8 @@ function actualizarDatos() {
         "&grado=" + grado +
         "&estado=" + estado +
         "&anio_registro=" + anio_registro +
-        "&vigencia=" + vigencia;
+        "&vigencia=" + vigencia +
+        "&area=" + area;
 
     $.ajax({
         type: "POST",

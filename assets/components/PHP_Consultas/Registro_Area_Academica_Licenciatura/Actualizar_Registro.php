@@ -10,6 +10,7 @@ $grado=$_POST['grado'];
 $estado=$_POST['estado'];
 $anio_registro=$_POST['anio_registro'];
 $vigencia=$_POST['vigencia'];
+$area=$_POST['area'];
 
 $stmt = $conexion->prepare("update cuerpos_academicos set
                                    ID_AREA_ACADEMICA=?,
@@ -17,11 +18,12 @@ $stmt = $conexion->prepare("update cuerpos_academicos set
                                    GRADO=?,
                                    ESTADO=?,
                                    ANIO_REGISTRO=?,
-                                   VIGENCIA=?
+                                   VIGENCIA=?,
+                                   AREA=?
                                    where ID_CUERPO_ACADEMICO=$id_cuerpo_academico");
 
-$stmt->bind_param("isssis",$id_area_academica,$nombre_cuerpo_academico,
-                                         $grado,$estado,$anio_registro,$vigencia);
+$stmt->bind_param("isssiss",$id_area_academica,$nombre_cuerpo_academico,
+                                         $grado,$estado,$anio_registro,$vigencia,$area);
 echo $resultado = $stmt->execute();
 
 $stmt->close();

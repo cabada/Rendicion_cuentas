@@ -33,7 +33,7 @@ $conexion = conexion();
 
 						<label>Vigencia</label>
                         <input class="form-control-page input-group-sm" type="text" id="vigencia_agregar">
-
+ 
                         <label>Área</label>
                         <input type="text" id="area_agregar" class="form-control-page input-group-sm">
 
