@@ -12,15 +12,38 @@
                     <td class="text-center align-middle background-table">Porcentaje</td>
                     <td class="text-center align-middle background-table">Acciones</td>
                 </tr>
+
+                <?php
+
+                $sql="select id_eva_docente,periodo,docentes_activos_evaluados,porcentaje from evaluacion_docente";
+
+                $resultado = mysqli_query($conexion,$sql);
+
+                while($buscar=mysqli_fetch_row($resultado)) {
+
+                $datos = $buscar[0]."||".
+                    $buscar[1]."||".
+                    $buscar[2]."||".
+                    $buscar[3];
+
+                ?>
+
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $buscar[1]?></td>
+                    <td><?php echo $buscar[2]?></td>
+                    <td><?php echo $buscar[3]?></td>
                     <td class="text-center align-middle">
                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i>  Editar</button>
                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>  Eliminar</button>
                     </td>
                 </tr>
+
+
+                    <?php
+
+                }
+                ?>
+
             </table>
         </div>
     </div>
