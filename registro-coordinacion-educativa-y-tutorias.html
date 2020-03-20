@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Coordinacion_Educativa.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -123,5 +124,23 @@
     $(document).ready(function(){
         $('#navbar').load('navbar.html');
         $('#registro-coordinacion-educativa-y-tutorias').load('assets/components/registro-coordinacion-educativa-y-tutorias.php');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+          $('#btn_agregar_curso_actual').click(function () {
+
+              var period_sel = document.getElementById("periodo_agregar");
+              var period_valor = period_sel.options[period_sel.selectedIndex].text;
+
+              nombre_actividad=$('#nombre_actividad_agregar').val();
+              console.log(nombre_actividad);
+              periodo=$('#periodo_agregar').val();
+              console.log(periodo);
+
+              agregarDatos(nombre_actividad,periodo)
+
+          });
     });
 </script>
