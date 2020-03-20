@@ -34,7 +34,7 @@ function actualizarDatos() {
     console.log(id_evaluacion_doc);
     periodo=$('#periodo_editar').val();
     console.log(periodo);
-    docentes_evaluados=$('#docentes_activos_evaluados_editar').val();
+    docentes_evaluados= parseInt($('#docentes_activos_evaluados_editar').val());
     console.log(docentes_evaluados);
     porcentaje=$('#porcentaje_editar').val();
     console.log(porcentaje);
