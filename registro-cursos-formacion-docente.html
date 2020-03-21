@@ -83,7 +83,7 @@
 					</div>
 					<div class="modal-body">
                         <label>ID Registro</label>
-                        <input type="text" id="id_curso_editar" class="form-control-page input-group-sm">
+                        <input type="text" readonly="readonly" id="id_curso_editar" class="form-control-page input-group-sm">
 
 
                         <label>Nombre del curso</label>
@@ -153,7 +153,7 @@
             console.log(periodo);
             no_participantes= parseInt($('#no_participantes_agregar').val());
             console.log(no_participantes);
-            horas_capacitacion= parseInt($('#horas_capacitacion_agregar').val());
+            horas_capacitacion= parseInt($('#no_capacitacion_agregar').val());
             console.log(horas_capacitacion);
 
             agregarDatos(nombre_curso,periodo,no_participantes,horas_capacitacion);

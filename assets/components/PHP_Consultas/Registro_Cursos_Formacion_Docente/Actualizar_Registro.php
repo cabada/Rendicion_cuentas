@@ -9,7 +9,7 @@ $periodo=$_POST['periodo'];
 $num_participantes=$_POST['num_participantes'];
 $horas_capacitacion=$_POST['horas_capacitacion'];
 
-$stmt = $conexion->prepare("update curso_formacion_docente_actualizacion_profesional set
+$stmt = $conexion->prepare("update cursos_formacion_docente_actualizacion_profesional set
                                    nombre_curso=?,
                                    periodo=?,
                                    num_participantes=?,
