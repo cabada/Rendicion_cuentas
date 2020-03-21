@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/JS/Registro_Profesores_Tiempo_Parcial.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -46,22 +47,14 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<label>Tiempo</label>
-						<select type="text" class="form-control-page input-group-sm" id="tiempo_agregar">
-                            <option selected>-</option>
-                            <option value="1/3 de Tiempo">1/3 de Tiempo</option>
-                            <option value="1/2 de Tiempo">1/2 de Tiempo</option>
-                            <option value="Por asignatura">Por asignatura</option>
-                        </select>
+                        <label>Cantidad de Profesores en Tiempo Parcial</label>
+                        <input type="number" id="cantidad_agregar" class="form-control-page input-group-sm">
 
-						<label>Grado</label>
+                        <label>Grado</label>
                         <input type="text" id="grado_agregar" class="form-control-page input-group-sm">
-
-                        <label>Total</label>
-                        <input type="number" placeholder="" id="total_agregar" class="form-control-page input-group-sm">
-					</div>
+                    </div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_prof_tmp">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -79,23 +72,22 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<label>Tiempo</label>
-						<select type="text" class="form-control-page input-group-sm" id="tiempo_editar">
-                            <option selected>-</option>
-                            <option value="1/3 de Tiempo">1/3 de Tiempo</option>
-                            <option value="1/2 de Tiempo">1/2 de Tiempo</option>
-                            <option value="Por asignatura">Por asignatura</option>
-                        </select>
 
-						<label>Grado</label>
+                        <label>ID Registro</label>
+                        <input type="text" id="id_registro_editar" class="form-control-page input-group-sm">
+
+
+                        <label>Cantidad de Profesores en Tiempo Parcial</label>
+                        <input type="text" id="cantidad_editar" class="form-control-page input-group-sm">
+
+
+                        <label>Grado</label>
                         <input type="text" id="grado_editar" class="form-control-page input-group-sm">
 
-                        <label>Total</label>
-                        <input type="number" placeholder="" id="total_editar" class="form-control-page input-group-sm">
-					</div>
+                     </div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_prof_tmp">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -131,4 +123,26 @@
         $('#navbar').load('navbar.html');
         $('#registro-tiempo-parcial-profesores').load('assets/components/registro-tiempo-parcial-profesores.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_prof_tmp').click(function () {
+
+            cantidad = parseInt($('#cantidad_agregar').val());
+            console.log(cantidad);
+            grado =  $('#grado_agregar').val();
+            console.log(grado);
+
+
+            agregarDatos(cantidad,grado);
+
+        });
+
+        $('#btn_editar_prof_tmp').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
 </script>
