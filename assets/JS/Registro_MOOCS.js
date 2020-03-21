@@ -33,7 +33,7 @@ function actualizarDatos() {
     periodo= $('#periodo_editar').val();
     console.log(periodo);
     numero_docentes=parseInt($('#cantidad_docentes_editar').val());
-    console.log(cantidad);
+    console.log(numero_docentes);
 
 
     cadena="id_moocs="+id_moocs+
