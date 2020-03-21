@@ -68,7 +68,7 @@ function actualizarDatos() {
     periodo=periodo_valor;
     console.log(periodo);
 
-    cadena ="id_programa_educativo" + id_programa_educativo +
+    cadena ="id_programa_educativo=" + id_programa_educativo +
         "&carrera=" + carrera +
         "&modalidad=" + modalidad +
         "&nuevo_ingreso=" + nuevo_ingreso +

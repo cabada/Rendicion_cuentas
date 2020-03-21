@@ -41,6 +41,7 @@ function actualizarDatos() {
     nombre_proyecto = $('#nombre_proyecto_editar').val();
     cantidad_alumnos = $('#cantidad_alumnos_editar').val();
     console.log(cantidad_alumnos);
+
     var carrera_sel = document.getElementById("carrera_editar");
     var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].text;
     id_carrera = carrera_valor;
