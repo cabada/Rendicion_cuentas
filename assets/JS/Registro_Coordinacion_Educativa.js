@@ -53,3 +53,35 @@
          }
      });
  }
+ 
+ function preguntarSiNo(id_actividad) {
+    alertify.confirm('Eliminar Registro','Esta seguro de eliminar este registro?',
+                     function (){ eliminarDatos(id_actividad)}
+                  , function () { alertify.error('Se cancelo')});
+ }
+ 
+ function eliminarDatos(id_actividad) {
+     cadena="id_coordinacion_educativa=" + id_actividad;
+
+     $.ajax({
+         type:"POST",
+         url:"assets/components/PHP_Consultas/Registro_Coordinacion_Educativa/Eliminar_Registro.php",
+         data:cadena,
+         success:function (r) {
+             if(r==1){
+                 $('#registro-coordinacion-educativa-y-tutorias').load('assets/components/registro-coordinacion-educativa-y-tutorias.php');
+                 alertify.success("Eliminado con exito");
+             }else{
+                 alertify.error("Fallo el servidor");
+             }
+         }
+     });
+
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 

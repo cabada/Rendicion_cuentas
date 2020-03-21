@@ -16,17 +16,12 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
-                <label>Nombre de proyecto</label>
-                <input type="text" id="nombre_proyecto_agregar" class="form-control-page input-group-sm">
+                <label>Nombre de especialidad</label>
+                <input type="text" id="nombre_especialidad_agregar" class="form-control-page input-group-sm">
 
-                <label>Cantidad de alumnos</label>
-                <input type="number" value="0" id="cantidad_alumnos_agregar" class="form-control-page input-group-sm">
-
-
-                <label>Carrera</label>
-                <select type="text" class="form-control-page input-group-sm" id="carrera_agregar">
+                <label>Programa educativo</label>
+                <select type="text" id="programa_educativo_agregar" class="form-control-page input-group-sm">
                     <?php
-
                     $query = "select id_carrera,nombre_carrera from carreras where id_programa_universi=1";
                     $resultado = mysqli_query($conexion,$query);
 
@@ -34,19 +29,11 @@ $conexion = conexion();
                         $valor = $fila['nombre_carrera'];
 
                         echo "<option value=\"".$fila['id_carrera']."\">".$fila['nombre_carrera']."</option>\n";
+
                     }
                     ?>
                 </select>
 
-
-                <label>Año</label>
-                <input type="text" id="anio_agregar" maxlength="4" class="form-control-page input-group-sm">
-
-                <label>Fecha de inicio</label>
-                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_agregar">
-
-                <label>Fecha de terminación</label>
-                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_termino_agregar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
@@ -66,19 +53,13 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
+                <label>Nombre de especialidad</label>
+                <input type="text" id="nombre_especialidad_editar" class="form-control-page input-group-sm">
 
-                <label>Numero de registro</label>
-                <input type="id" id="id_programa" class="form-control-page input-group-sm" readonly="readonly">
-
-                <label>Nombre de proyecto</label>
-                <input type="text" id="nombre_proyecto_editar" class="form-control-page input-group-sm">
-
-                <label>Cantidad de alumnos</label>
-                <input type="number" value="0" id="cantidad_alumnos_editar" class="form-control-page input-group-sm">
-
-                <label>Carrera</label>
-                <select type="text" class="form-control-page input-group-sm" id="carrera_editar">
+                <label>Programa educativo</label>
+                <select type="text" id="programa_educativo_editar" class="form-control-page input-group-sm">
                     <?php
+
                     $query = "select id_carrera,nombre_carrera from carreras where id_programa_universi=1";
                     $resultado = mysqli_query($conexion,$query);
 
@@ -86,19 +67,10 @@ $conexion = conexion();
                         $valor = $fila['nombre_carrera'];
 
                         echo "<option value=\"".$fila['id_carrera']."\">".$fila['nombre_carrera']."</option>\n";
-
                     }
                     ?>
                 </select>
 
-                <label>Año</label>
-                <input type="text" id="anio_editar" maxlength="4" class="form-control-page input-group-sm">
-
-                <label>Fecha de inicio</label>
-                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_editar">
-
-                <label>Fecha de terminación</label>
-                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_editar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -109,31 +81,18 @@ $conexion = conexion();
 </div>
 
 <!-- JAVASCRIPT CODE -->
-
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#btn_editar_curso_actual').click(function () {
+        //colocar id del boton perteneciente al modal for new form
+        $('#btn_agregar_curso_actual').click(function () {
 
-            nombre_proyecto=$('#nombre_proyecto_agregar').val();
-            console.log(nombre_proyecto);
-            cantidad_alumnos= parseInt($('#cantidad_alumnos_agregar').val());
-            console.log(cantidad_alumnos);
-            id_carrera =parseInt( $('#carrera_agregar').val());
+            nombre_especialidad=$('#nombre_especialidad_agregar').val();
+            console.log(nombre_especialidad);
+
+            id_carrera =$('#programa_educativo_agregar').val();
             console.log(id_carrera);
 
-
-            anio=$('#anio_agregar').val();
-            console.log(anio);
-            fecha_inicio=$('#fecha_inicio_agregar').val();
-            console.log(fecha_inicio);
-            fecha_termino=$('#fecha_termino_agregar').val();
-            console.log(fecha_termino);
-
-            agregarDatos(nombre_proyecto,cantidad_alumnos,id_carrera,anio,fecha_inicio,fecha_termino);
-        });
-
-        $('#btn_editar_curso_actual').click(function () {
-            actualizarDatos();
+            agregardatos(nombre_especialidad,id_carrera);
         });
     });
 </script>

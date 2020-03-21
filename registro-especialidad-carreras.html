@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Especialidad_Carreras.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -35,55 +36,13 @@
             <div id="registro-especialidad-carreras"></div>
         </div>
 
-        <!-- MODAL FOR NEW FORM -->
-        <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="new-modalLabel">Agregar nuevo registro</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-                        <label>Programa educativo</label>
-						<input type="text" id="programa_educativo_agregar" class="form-control-page input-group-sm">
+        <!-- MODALS-->
+        <div class="container">
+            <div id="modal_especialidad_carreras">
+                <!-- MODALS ADDED -->
+            </div>
+        </div>
 
-						<label>Nombre de especialidad</label>
-						<input type="text" id="nombre_especialidad_agregar" class="form-control-page input-group-sm">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<!-- MODAL FOR EDITION -->
-		<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Editar registro</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-                        <label>Programa educativo</label>
-						<input type="text" id="programa_educativo_editar" class="form-control-page input-group-sm">
-
-						<label>Nombre de especialidad</label>
-						<input type="text" id="nombre_especialidad_editar" class="form-control-page input-group-sm">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
-					</div>
-				</div>
-			</div>
-		</div>
 
     </main>
     
@@ -115,5 +74,6 @@
     $(document).ready(function(){
         $('#navbar').load('navbar.html');
         $('#registro-especialidad-carreras').load('assets/components/registro-especialidad-carreras.php');
+        $('#modal_especialidad_carreras').load('assets/components/PHP_Consultas/Registro_Especialidad_Carreras/modal_especialidad_carreras.php');
     });
 </script>
