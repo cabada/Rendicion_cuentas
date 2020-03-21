@@ -53,6 +53,9 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
+                <label>Numero de registro</label>
+                <input type="id" id="id_especialidad_carrera" class="form-control-page input-group-sm" readonly="readonly">
+
                 <label>Nombre de especialidad</label>
                 <input type="text" id="nombre_especialidad_editar" class="form-control-page input-group-sm">
 
@@ -93,6 +96,9 @@ $conexion = conexion();
             console.log(id_carrera);
 
             agregardatos(nombre_especialidad,id_carrera);
+        });
+        $('#btn_editar_curso_actual').click(function () {
+            actualizaDatos();
         });
     });
 </script>
