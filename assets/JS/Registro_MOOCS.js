@@ -21,24 +21,24 @@ function  agregarDatos(periodo,numero_docentes) {
 function agregaform(datos) {
     d=datos.split('||');
 
-    $('#id_total_editar').val(d[0]);
-    $('#grado_editar').val(d[1]);
-    $('#cantidad_editar').val(d[2]);
+    $('#id_moocs_editar').val(d[0]);
+    $('#periodo_editar').val(d[1]);
+    $('#cantidad_docentes_editar').val(d[2]);
 
 }
 
 function actualizarDatos() {
-    id_prof_grad_acad_=parseInt($('#id_total_editar').val());
-    console.log(id_prof_grad_acad_);
-    grado= $('#grado_editar').val();
-    console.log(grado);
-    cantidad=parseInt($('#cantidad_editar').val());
+    id_moocs=parseInt($('#id_moocs_editar').val());
+    console.log(id_moocs);
+    periodo= $('#periodo_editar').val();
+    console.log(periodo);
+    numero_docentes=parseInt($('#cantidad_docentes_editar').val());
     console.log(cantidad);
 
 
-    cadena="id_prof_grado_acad="+id_prof_grad_acad_+
-        "&grado=" + grado+
-        "&cantidad=" + cantidad;
+    cadena="id_moocs="+id_moocs+
+        "&periodo=" + periodo+
+        "&numero_docentes=" + numero_docentes;
 
     $.ajax({
         type: "POST",
@@ -56,14 +56,14 @@ function actualizarDatos() {
 
 }
 
-function preguntarSiNo(id_prof_grad_acad){
+function preguntarSiNo(id_moocs){
 
     alertify.confirm('Eliminar este registro', 'Esta seguro de eliminar este registro?',
-        function(){ eliminarDatos(id_prof_grad_acad)}
+        function(){ eliminarDatos(id_moocs)}
         , function(){ alertify.error('Se cancelo')});
 }
-function eliminarDatos(id_prof_grad_acad) {
-    cadena= "id_prof_grado_acad=" + id_prof_grad_acad;
+function eliminarDatos(id_moocs) {
+    cadena= "id_moocs=" + id_moocs;
 
     $.ajax({
         type:"post",
