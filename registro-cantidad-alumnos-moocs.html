@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_MOOCS_Alumnos.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -53,7 +54,7 @@
                         <input type="number" value="0" id="cantidad_alumnos_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_moocs_alm">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -71,7 +72,11 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<label>Nombre de curso</label>
+                        <label>ID Registro</label>
+                        <input type="text" readonly="readonly" id="id_moocs_alm_editar" class="form-control-page input-group-sm">
+
+
+                        <label>Nombre de curso</label>
 						<input type="text" id="nombre_curso_editar" class="form-control-page input-group-sm">
 
 						<label>Cantidad de alumnos inscritos</label>
@@ -79,7 +84,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_moocs_alm">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -116,4 +121,28 @@
         $('#navbar').load('navbar.html');
         $('#registro-cantidad-alumnos-moocs').load('assets/components/registro-cantidad-alumnos-moocs.php');
     });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_moocs_alm').click(function () {
+
+
+            nombre_curso =  $('#nombre_curso_agregar').val();
+            console.log(nombre_curso);
+            cantidad_alumnos = parseInt($('#cantidad_alumnos_agregar').val());
+            console.log(cantidad_alumnos);
+
+
+            agregarDatos(nombre_curso,cantidad_alumnos);
+
+        });
+
+        $('#btn_editar_moocs_alm').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
 </script>
