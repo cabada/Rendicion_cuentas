@@ -15,7 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
-
+    <script src="assets/js/Registro_MOOCS.js"></script>
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
     <title>ITCJ | Registro de Cantidad de Docentes Moocs</title>
@@ -57,7 +57,7 @@
                         <input type="number" value="0" id="cantidad_docentes_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_moocs">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_moocs">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -124,4 +124,27 @@
         $('#navbar').load('navbar.html');
         $('#registro-cantidad-docentes-moocs').load('assets/components/registro-cantidad-docentes-moocs.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_moocs').click(function () {
+
+
+            periodo =  $('#periodo_agregar').val();
+            console.log(periodo);
+            cantidad_docentes = parseInt($('#cantidad_docentes_agregar').val());
+            console.log(cantidad_docentes);
+
+
+            agregarDatos(periodo,cantidad_docentes);
+
+        });
+
+        $('#btn_editar_moocs').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
 </script>
