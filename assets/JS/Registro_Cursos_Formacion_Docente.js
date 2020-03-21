@@ -1,15 +1,17 @@
-function  agregarDatos(grado,cantidad) {
+function  agregarDatos(nombre_curso,periodo,no_participantes,horas_capacitacion) {
 
-    cadena="grado=" + grado +
-        "&cantidad=" + cantidad;
+    cadena="nombre_curso=" + nombre_curso +
+        "&periodo=" + periodo+
+        "&no_participantes=" + no_participantes+
+        "&horas_capacitacion=" + horas_capacitacion;
 
     $.ajax({
         type: "POST",
-        url: "assets/components/PHP_Consultas/Registro_Total_Profesores_GA/Agregar_Registro.php",
+        url: "assets/components/PHP_Consultas/Registro_Cursos_Formacion_Docente/Agregar_Registro.php",
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                $('#registro-total-profesores').load('assets/components/registro-total-profesores.php');
+                $('#registro-cursos-formacion-docente').load('assets/components/registro-cursos-formacion-docente.php');
                 alertify.success("Agregado con exito");
             } else {
                 alertify.error("Fallo el servidor");
@@ -21,7 +23,7 @@ function  agregarDatos(grado,cantidad) {
 function agregaform(datos) {
     d=datos.split('||');
 
-    $('#id_total_editar').val(d[0]);
+    $('#id_curso_editar').val(d[0]);
     $('#grado_editar').val(d[1]);
     $('#cantidad_editar').val(d[2]);
 
@@ -42,11 +44,11 @@ function actualizarDatos() {
 
     $.ajax({
         type: "POST",
-        url: "assets/components/PHP_Consultas/Registro_Total_Profesores_GA/Actualizar_Registro.php",
+        url: "assets/components/PHP_Consultas/Registro_Cursos_Formacion_Docente/Actualizar_Registro.php",
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                $('#registro-total-profesores').load('assets/components/registro-total-profesores.php');
+                $('#registro-cursos-formacion-docente').load('assets/components/registro-cursos-formacion-docente.php');
                 alertify.success("Actualizado con exito");
             } else {
                 alertify.error("Fallo el servidor");
@@ -67,11 +69,11 @@ function eliminarDatos(id_prof_grad_acad) {
 
     $.ajax({
         type:"post",
-        url:"assets/components/PHP_Consultas/Registro_Total_Profesores_GA/Eliminar_Registro.php",
+        url:"assets/components/PHP_Consultas/Registro_Cursos_Formacion_Docente/Eliminar_Registro.php",
         data:cadena,
         success:function (r) {
             if(r==1){
-                $('#registro-total-profesores').load('assets/components/registro-total-profesores.php');
+                $('#registro-cursos-formacion-docente').load('assets/components/registro-cursos-formacion-docente.php');
                 alertify.success("Eliminado con exito!");
             }else{
                 alertify.error("Fallo el servidor!");

@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Cursos_Formacion_Docente.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -52,9 +53,8 @@
 						<label>Periodo</label>
 						<select type="text" class="form-control-page input-group-sm" id="periodo_agregar">
                             <option selected>-</option>
-                            <option value="Opcion 1">Opcion 1</option>
-                            <option value="Opcion 2">Opcion 2</option>
-                            <option value="Opcion 3">Opcion 3</option>
+                            <option value="Opcion 1">Ene-Jun</option>
+                            <option value="Opcion 2">Ago_Dic</option>
                         </select>
 
                         <label>No. de participantes</label>
@@ -82,15 +82,18 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<label>Nombre del curso</label>
+                        <label>ID Registro</label>
+                        <input type="text" id="id_curso_editar" class="form-control-page input-group-sm">
+
+
+                        <label>Nombre del curso</label>
 						<input type="text" id="nombre_curso_editar" class="form-control-page input-group-sm">
 
 						<label>Periodo</label>
 						<select type="text" class="form-control-page input-group-sm" id="periodo_editar">
                             <option selected>-</option>
-                            <option value="Opcion 1">Opcion 1</option>
-                            <option value="Opcion 2">Opcion 2</option>
-                            <option value="Opcion 3">Opcion 3</option>
+                            <option value="Opcion 1">Ene-Jun</option>
+                            <option value="Opcion 2">Ago_Dic</option>s
                         </select>
 
                         <label>No. de participantes</label>
@@ -137,4 +140,30 @@
         $('#navbar').load('navbar.html');
         $('#registro-cursos-formacion-docente').load('assets/components/registro-cursos-formacion-docente.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_curso_actual').click(function () {
+
+
+            nombre_curso =  $('#nombre_curso_agregar').val();
+            console.log(nombre_curso);
+            periodo= $('#periodo_agregar').val();
+            console.log(periodo);
+            no_participantes= parseInt($('#no_participantes_agregar').val());
+            console.log(no_participantes);
+            horas_capacitacion= parseInt($('#horas_capacitacion_agregar').val());
+            console.log(horas_capacitacion);
+
+            agregarDatos(nombre_curso,periodo,no_participantes,horas_capacitacion);
+
+        });
+
+        $('#btn_editar_curso_actual').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
 </script>
