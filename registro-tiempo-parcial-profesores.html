@@ -48,7 +48,7 @@
 					</div>
 					<div class="modal-body">
                         <label>Cantidad de Profesores en Tiempo Parcial</label>
-                        <input type="text" id="cantidad_agregar" class="form-control-page input-group-sm">
+                        <input type="number" id="cantidad_agregar" class="form-control-page input-group-sm">
 
                         <label>Grado</label>
                         <input type="text" id="grado_agregar" class="form-control-page input-group-sm">
@@ -129,7 +129,7 @@
     $(document).ready(function () {
         $('#btn_agregar_prof_tmp').click(function () {
 
-            cantidad = $('#cantidad_agregar').val();
+            cantidad = parseInt($('#cantidad_agregar').val());
             console.log(cantidad);
             grado =  parseInt($('#grado_agregar').val());
             console.log(grado);
