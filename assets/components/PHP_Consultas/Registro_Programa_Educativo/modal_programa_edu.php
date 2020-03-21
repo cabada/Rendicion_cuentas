@@ -84,7 +84,7 @@ $conexion = conexion();
             </div>
             <div class="modal-body">
                 <label>Id_programa_educativo</label>
-                <input type="id" id="id_programa_educativo" class="form-control-page input-group-sm" readonly="readonly">
+                <input type="number" id="id_programa_educativo" class="form-control-page input-group-sm" readonly="readonly">
 
                 <label>Carrera</label>
                 <select type="text" class="form-control-page input-group-sm" id="carrera_editar">

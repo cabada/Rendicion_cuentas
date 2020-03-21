@@ -18,7 +18,7 @@ $stmt = $conexion->prepare("update programa_educativo set
                                     PERIODO=?
                                     where ID_PROGRAMA_EDUCATIVO=$id_programa_educativo");
 
-$stmt->bind_param("iisiiss", $id_carrera,$modalidad,$nuevo_ingreso,$reingreso,$estatus,$periodo);
+$stmt->bind_param("isiiss", $id_carrera,$modalidad,$nuevo_ingreso,$reingreso,$estatus,$periodo);
 
 echo $resultado = $stmt->execute();
 

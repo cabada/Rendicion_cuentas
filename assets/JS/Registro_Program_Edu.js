@@ -41,9 +41,6 @@ function agregaForm(datos) {
 function actualizarDatos() {
     id_programa_educativo=$('#id_programa_educativo').val();
 
-    var carrera_sel = document.getElementById("carrera_editar");
-    var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].text;
-
     var modalidad_sel = document.getElementById("modalidad_editar");
     var modalidad_valor = modalidad_sel.options[modalidad_sel.selectedIndex].text;
 
@@ -53,14 +50,14 @@ function actualizarDatos() {
     var periodo_sel = document.getElementById("periodo_editar");
     var periodo_valor = periodo_sel.options[periodo_sel.selectedIndex].text;
 
-    carrera = carrera_valor;
+    carrera = parseInt($('#carrera_editar').val());
     console.log(carrera);
 
     modalidad= modalidad_valor;
     console.log(modalidad);
-    nuevo_ingreso=$('#ingreso_editar').val();
+    nuevo_ingreso=parseInt($('#ingreso_editar').val());
     console.log(nuevo_ingreso);
-    reingreso=$('#reingreso_editar').val();
+    reingreso=parseInt($('#reingreso_editar').val());
     console.log(reingreso);
     status=estatus_valor;
     console.log(status);
