@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/JS/Registro_Producto_Anio_Sabatico.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -53,7 +54,7 @@
                         <input type="text" id="proyecto_realizado_agregar" class="form-control-page input-group-sm">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_prod_as">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -71,7 +72,11 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<label>Nombre de profesor(a)</label>
+                        <label>ID Registro</label>
+                        <input type="text" id="id_prof_editar" class="form-control-page input-group-sm" readonly="readonly">
+
+
+                        <label>Nombre de profesor(a)</label>
 						<input type="text" id="profesor_editar" class="form-control-page input-group-sm">
 
 						<label>Proyecto realizado</label>
@@ -79,7 +84,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_prod_as">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -116,4 +121,28 @@
         $('#navbar').load('navbar.html');
         $('#registro-anio-sabatico').load('assets/components/registro-anio-sabatico.php');
     });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_prod_as').click(function () {
+
+
+            profesor =  $('#profesor_agregar').val();
+            console.log(profesor);
+            proyecto_realizado = $('#proyecto_realizado_agregar').val();
+            console.log(proyecto_realizado);
+
+
+            agregarDatos(profesor,proyecto_realizado);
+
+        });
+
+        $('#btn_editar_prod_as').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
 </script>
