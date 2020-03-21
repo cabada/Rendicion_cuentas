@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/JS/Registro_Total_Profesores_GA.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -52,11 +53,9 @@
 						<label>Cantidad</label>
                         <input type="text" id="cantidad_agregar" class="form-control-page input-group-sm">
 
-                        <label>Porcentaje</label>
-                        <input type="number" placeholder="" id="porcentaje_agregar" class="form-control-page input-group-sm">
-					</div>
+                     </div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_total_prof">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -74,18 +73,21 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<label>Grado</label>
+
+                        <label>ID Registro</label>
+                        <input type="number" placeholder="" id="id_total_editar" class="form-control-page input-group-sm">
+
+
+                        <label>Grado</label>
 						<input type="text" id="grado_editar" class="form-control-page input-group-sm">
 
 						<label>Cantidad</label>
                         <input type="text" id="cantidad_editar" class="form-control-page input-group-sm">
 
-                        <label>Porcentaje</label>
-                        <input type="number" placeholder="" id="porcentaje_editar" class="form-control-page input-group-sm">
-					</div>
+                    </div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" id="btn_editar_total_prof">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -121,4 +123,28 @@
         $('#navbar').load('navbar.html');
         $('#registro-total-profesores').load('assets/components/registro-total-profesores.php');
     });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_total_prof').click(function () {
+
+
+            grado =  $('#grado_agregar').val();
+            console.log(grado);
+            cantidad = parseInt($('#cantidad_agregar').val());
+            console.log(cantidad);
+
+
+            agregarDatos(grado,cantidad);
+
+        });
+
+        $('#btn_agregar_total_prof').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
 </script>
