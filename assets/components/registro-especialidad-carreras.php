@@ -14,8 +14,8 @@ $conexion = conexion();
         <div class="table-responsive-xl">
             <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                 <tr>
-                    <td class="text-center align-middle background-table">Programa educativo</td>
                     <td class="text-center align-middle background-table">Nombre de especialidad</td>
+                    <td class="text-center align-middle background-table">Programa educativo</td>
                     <td class="text-center align-middle background-table">Acciones</td>
                 </tr>
 
@@ -32,8 +32,8 @@ $conexion = conexion();
                 ?>
 
                 <tr>
-                    <td><?php echo $ver[2]?></td>
                     <td><?php echo $ver[1]?></td>
+                    <td><?php echo $ver[2]?></td>
                     <td class="text-center align-middle">
                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i>  Editar</button>
                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>  Eliminar</button>
