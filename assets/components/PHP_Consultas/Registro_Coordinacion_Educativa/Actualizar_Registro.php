@@ -3,7 +3,7 @@
 require_once "../Conexion.php";
 $conexion = conexion();
 
-$id_coordinacion_educativa=$_POST['id_actividad'];
+$id_coordinacion_educativa=$_POST['id_coordinacion_educativa'];
 $nombre_actividad=$_POST['nombre_actividad'];
 $periodo=$_POST['periodo'];
 
