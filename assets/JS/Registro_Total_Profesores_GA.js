@@ -1,7 +1,7 @@
-function  agregarDatos(grado,cantidad_tiempo_parcial) {
+function  agregarDatos(grado,cantidad) {
 
     cadena="grado=" + grado +
-        "&cantidad_tiempo_parcial=" + cantidad_tiempo_parcial;
+        "&cantidad=" + cantidad;
 
     $.ajax({
         type: "POST",
@@ -28,7 +28,7 @@ function agregaform(datos) {
 }
 
 function actualizarDatos() {
-    id_prof_grad_acad_=$('#id_total_editar').val();
+    id_prof_grad_acad_=parseInt($('#id_total_editar').val());
     console.log(id_prof_grad_acad_);
     grado= $('#grado_editar').val();
     console.log(grado);
@@ -36,7 +36,7 @@ function actualizarDatos() {
     console.log(cantidad);
 
 
-    cadena="id_prof_grad_acad="+id_prof_grad_acad_+
+    cadena="id_prof_grado_acad="+id_prof_grad_acad_+
         "&grado=" + grado+
         "&cantidad=" + cantidad;
 
@@ -63,7 +63,7 @@ function preguntarSiNo(id_prof_grad_acad){
         , function(){ alertify.error('Se cancelo')});
 }
 function eliminarDatos(id_prof_grad_acad) {
-    cadena= "id_prof_grad_acad=" + id_prof_grad_acad;
+    cadena= "id_prof_grado_acad=" + id_prof_grad_acad;
 
     $.ajax({
         type:"post",

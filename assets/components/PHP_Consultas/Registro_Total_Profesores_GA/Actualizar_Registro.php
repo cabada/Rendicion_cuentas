@@ -9,7 +9,7 @@ $cantidad=$_POST['cantidad'];
 
 $stmt = $conexion->prepare("update total_profesores_grado_academico set
                                    grado=?,
-                                    cantidad=?,
+                                    cantidad=?
                                    where id_prof_grado_acad=$id_prof_grado_acad");
 
 $stmt->bind_param("si", $grado,$cantidad);
