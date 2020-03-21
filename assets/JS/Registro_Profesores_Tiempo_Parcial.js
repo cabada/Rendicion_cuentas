@@ -21,37 +21,32 @@ function  agregarDatos(cantidad_tiempo_parcial,grado) {
 function agregaform(datos) {
     d=datos.split('||');
 
-    $('#id_evaluacion_doc').val(d[0]);
-    $('#periodo_editar').val(d[1]);
-    $('#docentes_activos_evaluados_editar').val(d[2]);
-    $('#porcentaje_editar').val(d[3]);
+    $('#id_registro_editar').val(d[0]);
+    $('#cantidad_editar').val(d[1]);
+    $('#grado_editar').val(d[2]);
 
 }
 
 function actualizarDatos() {
-    id_evaluacion_doc=$('#id_evaluacion_doc').val();
-    console.log(id_evaluacion_doc);
-    periodo=$('#periodo_editar').val();
-    console.log(periodo);
-    docentes_evaluados= parseInt($('#docentes_activos_evaluados_editar').val());
-    console.log(docentes_evaluados);
-    porcentaje=$('#porcentaje_editar').val();
-    console.log(porcentaje);
+    id_prof_tmp_parc=$('#id_registro_editar').val();
+    console.log(id_prof_tmp_parcc);
+    cantidad=parseInt($('#cantidad_editar').val());
+    console.log(cantidad);
+    grado= $('#grado_editar').val();
+    console.log(grado);
 
 
-
-    cadena="id_evaluacion_doc="+id_evaluacion_doc+
-        "&periodo=" + periodo +
-        "&docentes_evaluados=" + docentes_evaluados +
-        "&porcentaje=" + porcentaje;
+    cadena="id_prof_tmp_parc="+id_prof_tmp_parc+
+        "&cantidad_tiempo_parcial=" + cantidad +
+        "&grado=" + grado;
 
     $.ajax({
         type: "POST",
-        url: "assets/components/PHP_Consultas/Registro_Evaluacion_Docente/Actualizar_Registro.php",
+        url: "assets/components/PHP_Consultas/Registro_Profesores_Tiempo_Parcial/Actualizar_Registro.php",
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                $('#registro-evaluacion-docente').load('assets/components/registro-evaluacion-docente.php');
+                $('#registro-tiempo-parcial-profesores').load('assets/components/registro-tiempo-parcial-profesores.php');
                 alertify.success("Actualizado con exito");
             } else {
                 alertify.error("Fallo el servidor");
@@ -64,19 +59,19 @@ function actualizarDatos() {
 function preguntarSiNo(id_evaluacion_doc){
 
     alertify.confirm('Eliminar este registro', 'Esta seguro de eliminar este registro?',
-        function(){ eliminarDatos(id_evaluacion_doc)}
+        function(){ eliminarDatos(id_prof_tmp_parc)}
         , function(){ alertify.error('Se cancelo')});
 }
-function eliminarDatos(id_evaluacion_doc) {
-    cadena= "id_evaluacion_doc=" + id_evaluacion_doc;
+function eliminarDatos(id_prof_tmp_parc) {
+    cadena= "id_evaluacion_doc=" + id_prof_tmp_parc;
 
     $.ajax({
         type:"post",
-        url:"assets/components/PHP_Consultas/Registro_Evaluacion_Docente/Eliminar_Registro.php",
+        url:"assets/components/PHP_Consultas/Registro_Profesores_Tiempo_Parcial/Eliminar_Registro.php",
         data:cadena,
         success:function (r) {
             if(r==1){
-                $('#registro-evaluacion-docente').load('assets/components/registro-evaluacion-docente.php');
+                $('#registro-tiempo-parcial-profesores').load('assets/components/registro-tiempo-parcial-profesores.php');
                 alertify.success("Eliminado con exito!");
             }else{
                 alertify.error("Fallo el servidor!");
