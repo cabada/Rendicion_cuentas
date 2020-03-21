@@ -38,9 +38,10 @@ $conexion = conexion();
                     <tr>
                         <td><?php echo $buscar[1]?></td>
                         <td><?php echo $buscar[2]?></td>
+                        <td></td>
                         <td class="text-center align-middle">
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i class="far fa-edit"></i>  Editar</button>
-                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>  Eliminar</button>
+                            <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $buscar[0]?>')"><i class="fas fa-trash" ></i>  Eliminar</button>
                         </td>
                     </tr>
                     <?php

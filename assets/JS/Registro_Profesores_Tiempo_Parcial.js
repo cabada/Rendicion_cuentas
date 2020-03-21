@@ -56,14 +56,14 @@ function actualizarDatos() {
 
 }
 
-function preguntarSiNo(id_evaluacion_doc){
+function preguntarSiNo(id_prof_tmp_parc){
 
     alertify.confirm('Eliminar este registro', 'Esta seguro de eliminar este registro?',
         function(){ eliminarDatos(id_prof_tmp_parc)}
         , function(){ alertify.error('Se cancelo')});
 }
 function eliminarDatos(id_prof_tmp_parc) {
-    cadena= "id_evaluacion_doc=" + id_prof_tmp_parc;
+    cadena= "id_prof_tmp_parc=" + id_prof_tmp_parc;
 
     $.ajax({
         type:"post",
