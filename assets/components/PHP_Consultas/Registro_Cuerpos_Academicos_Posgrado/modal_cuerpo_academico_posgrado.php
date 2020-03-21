@@ -60,7 +60,6 @@ $conexion = conexion();
                 <label>Numero de registro del cuerpo académico de posgrado</label>
                 <input type="id" id="id_cuerpos_academicos_posgrado" class="form-control-page input-group-sm" readonly="readonly">
 
-
                 <label>Área académica</label>
                 <input type="text" id="area-academica-editar" class="form-control-page input-group-sm">
 
@@ -85,7 +84,8 @@ $conexion = conexion();
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+                <!-- AGREGANDO data-dismiss="modal" PARA CERRAR MODAL -->
+                <button type="button" class="btn btn-main" id="btn_editar_curso_actual" data-dismiss="modal">Guardar cambios</button>
             </div>
         </div>
     </div>
@@ -101,27 +101,118 @@ $conexion = conexion();
 
 <script type="text/javascript">
     $(document).ready(function () {
-       $('#btn_agregar_curso_actual').click(function () {
-           area_academica=$('#area-academica-agregar').val();
-           console.log(area_academica);
-           nombre_cuerpo=$('#nombre_cuerpo_academico_agregar').val();
-           console.log(nombre_cuerpo);
-           grado=$('#grado_agregar').val();
-           console.log(grado);
-           estado=$('#nombre_estado_agregar').val();
-           console.log(estado);
-           anio_registro=$('#anio_registro_agregar').val();
-           console.log(anio_registro);
-           vigencia=$('#vigencia_agregar').val();
-           console.log(vigencia);
-           area=$('#area_agregar').val();
-           console.log(area);
+        $('#btn_agregar_curso_actual').click(function () {
+            area_academica=$('#area-academica-agregar').val();
+            nombre_cuerpo=$('#nombre_cuerpo_academico_agregar').val();
+            grado=$('#grado_agregar').val();
+            estado=$('#nombre_estado_agregar').val();
+            anio_registro=$('#anio_registro_agregar').val();
+            vigencia=$('#vigencia_agregar').val();
+            area=$('#area_agregar').val();
 
-           agregarDatos(area_academica,nombre_cuerpo,grado,estado,anio_registro,vigencia,area);
-       });
-       $('#btn_editar_curso_actual').click(function () {
-           actualizarDatos();
-       });
+            // FUNCION PARA VALIDAR LONGITUD DE AÑO
+            function validarLongitud(parametro) {
+                if (parametro.length < 4){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
 
+            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+           if(area_academica === ""){
+                alertify.alert("Error","¡El campo de área académica esta vacío!");
+                return false;
+            } else if (nombre_cuerpo === ""){
+                alertify.alert("Error","¡El nombre de cuerpo académico esta vacío!");
+                return false;
+            } else if (grado === ""){
+                alertify.alert("Error","¡El campo de grado esta vacío!");
+                return false;
+            } else if (estado === ""){
+                alertify.alert("Error","¡El campo de estado esta vacío!");
+                return false;
+            } else if (isNaN(anio_registro)){
+                alertify.alert("Error","¡El valor introducido en año de registro no es valido! Introduzca un valor numérico");
+                return false;
+            } else if (anio_registro === ""){
+                alertify.alert("Error","¡El campo de vigencia esta vacío!");
+                return false;
+            // SE MANDA LLAMAR LA FUNCION Y SE DA EL PARAMETRO QUE QUEREMOS VALIDAR
+            } else if (validarLongitud(anio_registro) == false){
+                alertify.alert("Error","Introduzca un año valido de 4 caracteres");
+                return false;
+            } else if (vigencia === ""){
+                alertify.alert("Error","¡El campo de vigencia esta vacío!");
+                return false;
+            } else if (area === ""){
+                alertify.alert("Error","¡El campo de área esta vacío!");
+                return false;
+            } else {
+                agregarDatos(area_academica,nombre_cuerpo,grado,estado,anio_registro,vigencia,area);
+                $('#new-modal').modal('hide');
+                $('#area-academica-agregar').val('');
+                $('#nombre_cuerpo_academico_agregar').val('');
+                $('#nombre_estado_agregar').val('');
+                $('#anio_registro_agregar').val('');
+                $('#vigencia_agregar').val('');
+                $('#area_agregar').val('');
+            }
+        });
+
+        //FUNCION CLICK PARA BOTON EDITAR
+        $('#btn_editar_curso_actual').click(function () {
+            //AGREGANDO CAMPOS DE EDITAR PARA PODER ASIGNAR VALIDACIONES
+            id_cuerpos_academicos_posgrado=$('#id_cuerpos_academicos_posgrado').val();
+            area_academica=$('#area-academica-editar').val();
+            nombre_cuerpo=$('#nombre_cuerpo_academico_editar').val();
+            grado=$('#grado_editar').val();
+            estado=$('#nombre_estado_editar').val();
+            anio_registro=$('#anio_registro_editar').val();
+            vigencia=$('#vigencia_editar').val();
+            area=$('#area_editar').val();
+
+            // FUNCION PARA VALIDAR LONGITUD DE AÑO
+            function validarLongitud(parametro) {
+                if (parametro.length < 4){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+            if(area_academica === ""){
+                alertify.alert("Error","¡El campo de área académica esta vacío!");
+                return false;
+            } else if (nombre_cuerpo === ""){
+                alertify.alert("Error","¡El nombre de cuerpo académico esta vacío!");
+                return false;
+            } else if (grado === ""){
+                alertify.alert("Error","¡El campo de grado esta vacío!");
+                return false;
+            } else if (estado === ""){
+                alertify.alert("Error","¡El campo de estado esta vacío!");
+                return false;
+            } else if (isNaN(anio_registro)){
+                alertify.alert("Error","¡El valor introducido en año de registro no es valido! Introduzca un valor numérico");
+                return false;
+            } else if (anio_registro === ""){
+                alertify.alert("Error","¡El campo de vigencia esta vacío!");
+                return false;
+            // SE MANDA LLAMAR LA FUNCION Y SE DA EL PARAMETRO QUE QUEREMOS VALIDAR
+            } else if (validarLongitud(anio_registro) == false){
+                alertify.alert("Error","Introduzca un año valido de 4 caracteres");
+                return false;
+            } else if (vigencia === ""){
+                alertify.alert("Error","¡El campo de vigencia esta vacío!");
+                return false;
+            } else if (area === ""){
+                alertify.alert("Error","¡El campo de área esta vacío!");
+                return false;
+            } else {
+                actualizarDatos();
+            }
+        });
     });
 </script>
