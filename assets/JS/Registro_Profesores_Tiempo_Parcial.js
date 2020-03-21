@@ -29,7 +29,7 @@ function agregaform(datos) {
 
 function actualizarDatos() {
     id_prof_tmp_parc=$('#id_registro_editar').val();
-    console.log(id_prof_tmp_parcc);
+    console.log(id_prof_tmp_parc);
     cantidad=parseInt($('#cantidad_editar').val());
     console.log(cantidad);
     grado= $('#grado_editar').val();
