@@ -55,6 +55,32 @@ function actualizaDatos() {
     });
 }
 
+function preguntarSiNo(id_especialidad_carrera) {
+    alertify.confirm('Eliminar Registro','Esta seguro de eliminar este registro?',
+        function (){ eliminarDatos(id_especialidad_carrera)}
+        , function () { alertify.error('Se cancelo')});
+
+}
+
+function eliminarDatos(id_especialidad_carrera) {
+    cadena="id_especialidad_carrera=" + id_especialidad_carrera;
+
+    $.ajax({
+        type: "POST",
+        url: "assets/components/PHP_Consultas/Registro_Especialidad_Carreras/Eliminar_Registro.php",
+        data: cadena,
+        success: function (r) {
+            if (r == 1) {
+                //cuando se agrega un registro se recarga la tabla
+                $('#registro-especialidad-carreras').load('assets/components/registro-especialidad-carreras.php');
+                alertify.success("Eliminado con exito");
+            } else {
+                alertify.error("Fallo el servidor");
+            }
+        }
+    });
+}
+
 
 
 
