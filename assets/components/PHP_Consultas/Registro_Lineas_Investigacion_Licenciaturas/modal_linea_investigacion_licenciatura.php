@@ -16,10 +16,7 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
-                <label>Nombre de especialidad</label>
-                <input type="text" id="nombre_especialidad_agregar" class="form-control-page input-group-sm">
-
-                <label>Programa educativo</label>
+                <label>Programa</label>
                 <select type="text" id="programa_educativo_agregar" class="form-control-page input-group-sm">
                     <?php
                     $query = "select id_carrera,nombre_carrera from carreras where id_programa_universi=1";
@@ -34,6 +31,8 @@ $conexion = conexion();
                     ?>
                 </select>
 
+                <label>Línea de investigación</label>
+                <input type="text" id="investigacion_agregar" class="form-control-page input-group-sm">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
@@ -54,12 +53,9 @@ $conexion = conexion();
             </div>
             <div class="modal-body">
                 <label>Numero de registro</label>
-                <input type="id" id="id_especialidad_carrera" class="form-control-page input-group-sm" readonly="readonly">
+                <input type="id" id="id_linea" class="form-control-page input-group-sm" readonly="readonly">
 
-                <label>Nombre de especialidad</label>
-                <input type="text" id="nombre_especialidad_editar" class="form-control-page input-group-sm">
-
-                <label>Programa educativo</label>
+                <label>Programa</label>
                 <select type="text" id="programa_educativo_editar" class="form-control-page input-group-sm">
                     <?php
 
@@ -74,6 +70,8 @@ $conexion = conexion();
                     ?>
                 </select>
 
+                <label>Línea de investigación</label>
+                <input type="text" id="investigacion_editar" class="form-control-page input-group-sm">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -89,13 +87,13 @@ $conexion = conexion();
         //colocar id del boton perteneciente al modal for new form
         $('#btn_agregar_curso_actual').click(function () {
 
-            nombre_especialidad=$('#nombre_especialidad_agregar').val();
-            console.log(nombre_especialidad);
-
-            id_carrera =$('#programa_educativo_agregar').val();
+            id_carrera=$('#programa_educativo_agregar').val();
             console.log(id_carrera);
 
-            agregardatos(nombre_especialidad,id_carrera);
+            nombre_especialidad =$('#investigacion_agregar').val();
+            console.log(nombre_especialidad);
+
+            agregardatos(id_carrera,nombre_especialidad);
         });
         $('#btn_editar_curso_actual').click(function () {
             actualizaDatos();
