@@ -18,3 +18,13 @@ function agregarDatos(programa,porcentaje) {
         }
     });
 }
+
+function agregaform(datos) {
+
+    d=datos.split('||');
+
+    $('#id_permanencia').val(d[0]);
+    $('#nombre_programa_editar').val(d[1]);
+    $('#porcentaje_editar').val(d[2]);
+
+}
