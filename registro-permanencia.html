@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Permanencia.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -58,7 +59,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<!-- MODAL FOR EDITION -->
 		<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -115,5 +115,20 @@
     $(document).ready(function(){
         $('#navbar').load('navbar.html');
         $('#registro-permanencia').load('assets/components/registro-permanencia.php');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+           $('#btn_agregar_curso_actual').click(function () {
+
+               programa=$('#nombre_programa_agregar').val();
+               console.log(programa);
+               porcentaje=$('#porcentaje_agregar').val();
+               console.log(porcentaje);
+
+               agregarDatos(programa,porcentaje);
+
+           });
     });
 </script>
