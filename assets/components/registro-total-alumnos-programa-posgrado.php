@@ -10,7 +10,7 @@
                     <td class="text-center align-middle background-table">Nombre de programa</td>
                     <td class="text-center align-middle background-table">Cantidad</td>
                     <td class="text-center align-middle background-table">Porcentaje</td>
-                    <td class="text-center align-middle background-table">Fecha de registro</td>
+                    <td class="text-center align-middle background-table">Registrado en</td>
                     <td class="text-center align-middle background-table">Acciones</td>
                 </tr>
                 <tr>
