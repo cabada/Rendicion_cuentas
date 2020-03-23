@@ -90,4 +90,26 @@ function actualizarDatos() {
 
 }
 
+function preguntarSiNo(id_programa_educativo) {
+    alertify.confirm('Eliminar este registro', 'Esta seguro de eliminar este registro?',
+        function(){ eliminardatos(id_programa_educativo)}
+        , function(){ alertify.error('Se cancelo')});
+}
+function eliminardatos(id_programa_educativo) {
 
+    cadena ="id_programa_educativo=" + id_programa_educativo;
+
+    $.ajax({
+        type:"post",
+        url:"assets/components/PHP_Consultas/Registro_Programa_Educativo/Eliminar_Registro.php",
+        data:cadena,
+        success:function (r) {
+            if(r==1){
+                $('#registro-programa-educativo').load('assets/components/registro-programa-educativo.php');
+                alertify.success("Eliminado con exito!");
+            }else{
+                alertify.error("Fallo el servidor!");
+            }
+        }
+    });
+}
