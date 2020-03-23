@@ -21,3 +21,14 @@ function agregardatos(periodo,anio,cantidad_alumnos) {
     });
 
 }
+
+function agregaform(datos) {
+
+    d=datos.split('||');
+
+    $('#id_estudiantes_capacidades_diferentes').val(d[0]);
+    $('#periodo_editar').val(d[1]);
+    $('#anio_editar').val(d[2]);
+    $('#cantidad_estudiantes_editar').val(d[3]);
+
+}
