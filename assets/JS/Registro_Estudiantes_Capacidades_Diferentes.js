@@ -60,3 +60,28 @@ function actualizaDatos() {
     });
 
 }
+
+function preguntarSiNo(id_estudiantes_capacidades_diferentes) {
+    alertify.confirm('Eliminar Registro','Esta seguro de eliminar este registro?',
+        function (){ eliminarDatos(id_estudiantes_capacidades_diferentes)}
+        , function () { alertify.error('Se cancelo')});
+}
+
+function eliminarDatos(id_estudiantes_capacidades_diferentes) {
+
+    cadena="id_estudiantes_capacidades_diferentes=" + id_estudiantes_capacidades_diferentes;
+
+    $.ajax({
+        type:"POST",
+        url:"assets/components/PHP_Consultas/Registro_Estudiantes_Capacidades_Diferentes/Eliminar_Registro.php",
+        data:cadena,
+        success:function(r) {
+            if(r==1){
+                $('#registro-estudiantes-capacidades-diferentes').load('assets/components/registro-estudiantes-capacidades-diferentes.php');
+                alertify.success("Eliminado con exito");
+            }else{
+                alertify.error("fallo el servidor");
+            }
+        }
+    });
+}
