@@ -62,7 +62,6 @@ $conexion = conexion();
 
 
                     <?php
-
                 }
                 ?>
             </table>
