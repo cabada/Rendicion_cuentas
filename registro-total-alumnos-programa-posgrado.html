@@ -78,6 +78,9 @@
 						</button>
 					</div>
 					<div class="modal-body">
+                        <label>Numero de registro</label>
+                        <input type="id" id="id_total_prog_posgrado" class="form-control-page input-group-sm" readonly="readonly">
+
 						<label>Nombre de programa</label>
                         <input type="text" id="nombre_curso_editar" class="form-control-page input-group-sm">
 
@@ -145,6 +148,9 @@
           console.log(registrado_en);
 
           agregardatos(programa,cantidad,porcentaje,registrado_en)
+      });
+      $('#btn_editar_curso_actual').click(function () {
+          actualizaDatos();
       });
     });
 </script>
