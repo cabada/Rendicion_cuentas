@@ -50,12 +50,12 @@
 						<label>Nombre de actividad</label>
 						<input type="text" id="nombre_actividad_agregar" class="form-control-page input-group-sm">
 
-						<label>Periodo</label>
-                        <select type="text" class="form-control-page input-group-sm" id="periodo_agregar">
-                            <option selected>-</option>
-                            <option>Agosto - Diciembre</option>
-                            <option>Enero - Junio</option>
-                        </select>
+						<label>Periodo ENE-JUN</label>
+                        <input type="number" class="form-control-page input-group-sm" id="periodoej_agregar">
+
+                        <label>Periodo AGO-DIC</label>
+                        <input type="number" class="form-control-page input-group-sm" id="periodoad_agregar">
+
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
@@ -63,7 +63,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<!-- MODAL FOR EDITION -->
 		<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,12 +82,12 @@
 						<label>Nombre de actividad</label>
 						<input type="text" id="nombre_actividad_editar" class="form-control-page input-group-sm">
 
-						<label>Periodo</label>
-                        <select type="text" class="form-control-page input-group-sm" id="periodo_editar">
-                            <option selected>-</option>
-                            <option>Agosto - Diciembre</option>
-                            <option>Enero - Junio</option>
-                        </select>
+						<label>Periodo ENE-JUN</label>
+                        <input type="number" class="form-control-page input-group-sm" id="periodoej_editar">
+
+                        <label>Periodo AGO-DIC</label>
+                        <input type="number" class="form-control-page input-group-sm" id="periodoad_editar">
+
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -135,16 +134,14 @@
     $(document).ready(function () {
           $('#btn_agregar_curso_actual').click(function () {
 
-              var period_sel = document.getElementById("periodo_agregar");
-              var period_valor = period_sel.options[period_sel.selectedIndex].text;
-
               nombre_actividad=$('#nombre_actividad_agregar').val();
               console.log(nombre_actividad);
-              periodo=$('#periodo_agregar').val();
-              console.log(periodo);
+              periodo_ene_jun=$('#periodoej_agregar').val();
+              console.log(periodo_ene_jun);
+              periodo_ago_dic=$('#periodoad_agregar').val();
+              console.log(periodo_ago_dic);
 
-              agregarDatos(nombre_actividad,periodo);
-
+              agregarDatos(nombre_actividad,periodo_ene_jun,periodo_ago_dic);
           });
 
           $('#btn_editar_curso_actual').click(function (){

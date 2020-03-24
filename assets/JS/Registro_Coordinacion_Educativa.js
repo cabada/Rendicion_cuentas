@@ -1,8 +1,9 @@
 
- function agregarDatos(nombre_actividad,periodo) {
+ function agregarDatos(nombre_actividad,periodo_ene_jun,periodo_ago_dic) {
 
     cadena="nombre_actividad=" + nombre_actividad +
-           "&periodo=" + periodo;
+           "&periodo_ene_jun=" + periodo_ene_jun +
+           "&periodo_ago_dic=" + periodo_ago_dic;
 
      $.ajax({
          type:"POST",
@@ -25,19 +26,21 @@
 
      $('#id_coordinacion_educativa').val(d[0]);
      $('#nombre_actividad_editar').val(d[1]);
-     $('#periodo_editar').val(d[2]);
-
+     $('#periodoej_editar').val(d[2]);
+     $('#periodoad_editar').val(d[3]);
  }
 
  function actualizaDatos() {
 
      id_actividad=$('#id_coordinacion_educativa').val();
      nombre_actividad=$('#nombre_actividad_editar').val();
-     periodo=$('#periodo_editar').val();
+     periodo_ene_jun=$('#periodoej_editar').val();
+     periodo_ago_dic=$('#periodoad_editar').val();
 
      cadena="id_coordinacion_educativa=" + id_actividad +
          "&nombre_actividad=" + nombre_actividad +
-         "&periodo=" + periodo;
+         "&periodo_ene_jun=" + periodo_ene_jun +
+         "&periodo_ago_dic=" + periodo_ago_dic;
 
      $.ajax({
          type:"POST",
@@ -76,7 +79,6 @@
              }
          }
      });
-
  }
  
  
