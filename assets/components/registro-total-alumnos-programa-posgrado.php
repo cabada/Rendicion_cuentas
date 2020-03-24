@@ -1,3 +1,9 @@
+<?php
+
+require_once "PHP_Consultas/Conexion.php";
+$conexion = conexion();
+
+?>
 <div class="row">
     <div class="col-sm-12">
         <h2>Registro total de alumnos de programa posgrado</h2>
@@ -13,16 +19,30 @@
                     <td class="text-center align-middle background-table">Registrado en</td>
                     <td class="text-center align-middle background-table">Acciones</td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-center align-middle">
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i>  Editar</button>
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>  Eliminar</button>
-                    </td>
-                </tr>
+
+                <?php
+                $sql="select ID_TOTAL_PROG_POSGRADO,PROGRAMA,CANTIDAD,PORCENTAJE,REGISTRADO_EN
+                    from total_alumnos_programa_posgrado";
+                $result=mysqli_query($conexion,$sql);
+                while($ver=mysqli_fetch_row($result)) {
+
+                    ?>
+
+                    <tr>
+                        <td><?php echo $ver[1] ?></td>
+                        <td><?php echo $ver[2] ?></td>
+                        <td><?php echo $ver[3] ?></td>
+                        <td><?php echo $ver[4] ?></td>
+                        <td class="text-center align-middle">
+                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"><i
+                                        class="far fa-edit"></i> Editar
+                            </button>
+                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
             </table>
         </div>
     </div>
