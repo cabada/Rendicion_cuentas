@@ -62,3 +62,28 @@ function actualizaDatos(){
         }
     });
 }
+
+function preguntarSiNo(id_total_prog_posgrado) {
+    alertify.confirm('Eliminar Registro', '¿Esta seguro de eliminar este registro?',
+        function(){eliminarDatos(id_total_prog_posgrado) }
+        , function(){ alertify.error('Se cancelo.')});
+}
+
+function eliminarDatos(id_total_prog_posgrado) {
+
+    cadena="id_total_prog_posgrado=" + id_total_prog_posgrado;
+
+    $.ajax({
+        type:"POST",
+        url:"assets/components/PHP_Consultas/Registro_Total_Alumnos_Programa_Posgrado/Eliminar_Registro.php",
+        data:cadena,
+        success:function(r) {
+            if(r==1){
+                $('#registro-total-alumnos-programa-posgrado').load('assets/components/registro-total-alumnos-programa-posgrado.php');
+                alertify.success("Eliminado con exito");
+            }else{
+                alertify.error("Fallo el servidor");
+            }
+        }
+    });
+}
