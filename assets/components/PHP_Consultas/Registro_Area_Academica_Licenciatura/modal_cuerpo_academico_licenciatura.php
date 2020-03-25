@@ -124,30 +124,116 @@ $conexion = conexion();
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
 
-            var area_sel = document.getElementById("area_academica_agregar");
-            var area_valor = area_sel.options[area_sel.selectedIndex].value;
-
             id_area_academica = $('#area_academica_agregar').val();
-            console.log(id_area_academica);
-
             nombre_cuerpo_academico=$('#nombre_cuerpo_academico_agregar').val();
-            console.log(nombre_cuerpo_academico);
             grado=$('#grado_agregar').val();
-            console.log(grado);
             estado=$('#nombre_estado_agregar').val();
-            console.log(estado);
             anio_registro=$('#anio_registro_agregar').val();
-            console.log(anio_registro);
             vigencia=$('#vigencia_agregar').val();
-            console.log(vigencia);
             area=$('#area_agregar').val();
-            console.log(area);
 
-            agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area);
+            // FUNCION PARA VALIDAR LONGITUD DE AÑO
+            function validarLongitud(parametro) {
+                if (parametro.length < 4){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+            if(id_area_academica === ""){
+                alertify.alert("Error","¡El campo de área académica esta vacío!");
+                return false;
+            } else if (nombre_cuerpo_academico === ""){
+                alertify.alert("Error","¡El nombre de cuerpo académico esta vacío!");
+                return false;
+            } else if (grado === ""){
+                alertify.alert("Error","¡El campo de grado esta vacío!");
+                return false;
+            } else if (estado === ""){
+                alertify.alert("Error","¡El campo de estado esta vacío!");
+                return false;
+            } else if (isNaN(anio_registro)){
+                alertify.alert("Error","¡El valor introducido en año de registro no es valido! Introduzca un valor numérico");
+                return false;
+            } else if (anio_registro === ""){
+                alertify.alert("Error","¡El campo de año registro esta vacío!");
+                return false;
+                // SE MANDA LLAMAR LA FUNCION Y SE DA EL PARAMETRO QUE QUEREMOS VALIDAR
+            } else if (validarLongitud(anio_registro) == false){
+                alertify.alert("Error","Introduzca un año valido de 4 caracteres");
+                return false;
+            } else if (vigencia === ""){
+                alertify.alert("Error","¡El campo de vigencia esta vacío!");
+                return false;
+            } else if (area === ""){
+                alertify.alert("Error","¡El campo de área esta vacío!");
+                return false;
+            } else {
+                agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area);
+                $('#new-modal').modal('hide');
+                $('#area-academica-agregar').val('');
+                $('#nombre_cuerpo_academico_agregar').val('');
+                $('#nombre_estado_agregar').val('');
+                $('#anio_registro_agregar').val('');
+                $('#anio_vigencia_agregar').val('');
+                $('#area_agregar').val('');
+            }
         });
 
+
         $('#btn_editar_curso_actual').click(function () {
-            actualizarDatos();
+            id_cuerpo_academico =$('#id_cuerpo_academico').val();
+            id_area_academica = $('#area_academica_editar').val();
+            nombre_cuerpo_academico=$('#nombre_cuerpo_academico_editar').val();
+            grado=$('#grado_editar').val();
+            estado=$('#nombre_estado_editar').val();
+            anio_registro=$('#anio_registro_editar').val();
+            vigencia=$('#anio_vigencia_editar').val();
+            area=$('#area_editar').val();
+
+
+            // FUNCION PARA VALIDAR LONGITUD DE AÑO
+            function validarLongitud(parametro) {
+                if (parametro.length < 4){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+            if(id_area_academica === ""){
+                alertify.alert("Error","¡El campo de área académica esta vacío!");
+                return false;
+            } else if (nombre_cuerpo_academico === ""){
+                alertify.alert("Error","¡El nombre de cuerpo académico esta vacío!");
+                return false;
+            } else if (grado === ""){
+                alertify.alert("Error","¡El campo de grado esta vacío!");
+                return false;
+            } else if (estado === ""){
+                alertify.alert("Error","¡El campo de estado esta vacío!");
+                return false;
+            } else if (isNaN(anio_registro)){
+                alertify.alert("Error","¡El valor introducido en año de registro no es valido! Introduzca un valor numérico");
+                return false;
+            } else if (anio_registro === ""){
+                alertify.alert("Error","¡El campo de año registro esta vacío!");
+                return false;
+                // SE MANDA LLAMAR LA FUNCION Y SE DA EL PARAMETRO QUE QUEREMOS VALIDAR
+            } else if (validarLongitud(anio_registro) == false){
+                alertify.alert("Error","Introduzca un año valido de 4 caracteres");
+                return false;
+            } else if (vigencia ===""){
+                alertify.alert("Error","¡El campo de vigencia esta vacío!");
+                return false;
+            } else if (area === ""){
+                alertify.alert("Error","¡El campo de área esta vacío!");
+                return false;
+            } else {
+                actualizarDatos();
+            }
         });
     });
 

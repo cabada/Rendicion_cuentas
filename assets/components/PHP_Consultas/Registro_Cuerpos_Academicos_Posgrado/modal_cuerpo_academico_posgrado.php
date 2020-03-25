@@ -136,7 +136,7 @@ $conexion = conexion();
                 alertify.alert("Error","¡El valor introducido en año de registro no es valido! Introduzca un valor numérico");
                 return false;
             } else if (anio_registro === ""){
-                alertify.alert("Error","¡El campo de vigencia esta vacío!");
+                alertify.alert("Error","¡El campo de año registro esta vacío!");
                 return false;
             // SE MANDA LLAMAR LA FUNCION Y SE DA EL PARAMETRO QUE QUEREMOS VALIDAR
             } else if (validarLongitud(anio_registro) == false){
@@ -198,7 +198,7 @@ $conexion = conexion();
                 alertify.alert("Error","¡El valor introducido en año de registro no es valido! Introduzca un valor numérico");
                 return false;
             } else if (anio_registro === ""){
-                alertify.alert("Error","¡El campo de vigencia esta vacío!");
+                alertify.alert("Error","¡El campo de año registro esta vacío!");
                 return false;
             // SE MANDA LLAMAR LA FUNCION Y SE DA EL PARAMETRO QUE QUEREMOS VALIDAR
             } else if (validarLongitud(anio_registro) == false){
