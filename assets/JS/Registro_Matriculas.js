@@ -18,3 +18,13 @@ function agregardatos(programa_educativo,cantidad_alumnos) {
         }
     });
 }
+
+function agregaform(datos) {
+
+    d=datos.split('||');
+
+    $('#id_matricula').val(d[0]);
+    $('#programa_educativo_editar').val(d[1]);
+    $('#cantidad_alumnos_editar').val(d[2]);
+
+}

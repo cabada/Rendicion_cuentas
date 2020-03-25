@@ -26,8 +26,8 @@ $conexion = conexion();
                 while($ver=mysqli_fetch_row($result)) {
 
                     $datos=$ver[0]."||".
-                        $ver[1]."||".
-                        $ver[2];
+                           $ver[1]."||".
+                           $ver[2];
 
                     ?>
 
@@ -35,7 +35,7 @@ $conexion = conexion();
                         <td><?php echo $ver[1]?></td>
                         <td><?php echo $ver[2]?></td>
                         <td class="text-center align-middle">
-                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i
+                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')" ><i
                                     class="far fa-edit"></i> Editar
                             </button>
                             <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $ver[0] ?>')"><i class="fas fa-trash"></i> Eliminar</button>
