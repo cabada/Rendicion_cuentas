@@ -54,13 +54,13 @@ function actualizaDatos(){
     });
 }
 
-function preguntarSiNo(id_matriculas) {
+function preguntarSiNo(id_matricula) {
     alertify.confirm('Eliminar este registro', 'Esta seguro de eliminar este registro?',
-        function(){ eliminarDatos(id_matriculas)}
+        function(){ eliminardatos(id_matricula)}
         , function(){ alertify.error('Se cancelo')});
 }
 
-function eliminardatos(){
+function eliminardatos(id_matricula){
 
     cadena="id_matricula=" + id_matricula;
 
