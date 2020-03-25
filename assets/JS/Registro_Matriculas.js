@@ -53,3 +53,28 @@ function actualizaDatos(){
         }
     });
 }
+
+function preguntarSiNo(id_matriculas) {
+    alertify.confirm('Eliminar este registro', 'Esta seguro de eliminar este registro?',
+        function(){ eliminarDatos(id_matriculas)}
+        , function(){ alertify.error('Se cancelo')});
+}
+
+function eliminardatos(){
+
+    cadena="id_matricula=" + id_matricula;
+
+    $.ajax({
+        type:"POST",
+        url:"assets/components/PHP_Consultas/Registro_Matriculas/Eliminar_Registro.php",
+        data:cadena,
+        success:function(r) {
+            if(r==1){
+                $('#registro-cantidad-matriculas').load('assets/components/registro-cantidad-matriculas.php');
+                alertify.success("Eliminado con exito");
+            }else{
+                alertify.error("fallo el servidor");
+            }
+        }
+    });
+}

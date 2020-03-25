@@ -38,7 +38,7 @@ $conexion = conexion();
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')" ><i
                                     class="far fa-edit"></i> Editar
                             </button>
-                            <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $ver[0] ?>')"><i class="fas fa-trash"></i> Eliminar</button>
+                            <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php ?>')"><i class="fas fa-trash"></i> Eliminar</button>
                         </td>
                     </tr>
                     <?php
