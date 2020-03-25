@@ -29,7 +29,7 @@ function agregaform(datos) {
 
 }
 
-function actualizaDatos() {
+function actualizaDatos(){
 
     id_matricula=$('#id_matricula').val();
     programa_educativo=$('#programa_educativo_editar').val();
@@ -52,5 +52,4 @@ function actualizaDatos() {
             }
         }
     });
-
 }
