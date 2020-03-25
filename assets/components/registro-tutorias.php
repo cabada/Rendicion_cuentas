@@ -35,7 +35,6 @@ $conexion = conexion();
                         $ver[3]."||".
                         $ver[4]."||".
                         $ver[5];
-
                 ?>
 
                 <tr>

@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Matriculas.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -49,22 +50,22 @@
                         <label>Programa educativo</label>
                         <select type="text" id="programa_educativo_agregar" class="form-control-page input-group-sm">
                             <option selected>Seleccione un programa educativo...</option>
-                            <option value="1">Ingeniería en Gestión Empresarial</option>
-                            <option value="2">Ingeniería en Logística </option>
-                            <option value="3">Contador Público </option>
-                            <option value="4">Ingeniería Eléctrica </option>
-                            <option value="5">Ingeniería Electromecánica</option>
-                            <option value="6">Ingeniería Electrónica </option>
-                            <option value="7">Ingeniería en Sistemas Computacionales </option>
-                            <option value="8">Ingeniería en Tecnología de la Informática y Comunicaciones </option>
-                            <option value="9">Ingeniería Industrial </option>
-                            <option value="10">Ingeniería Mecánica</option>
-                            <option value="11">Ingeniería Mecatrónica </option>
-                            <option value="12">Licenciatura en Administración </option>
-                            <option value="13">Maestría en Ingeniería Administrativa </option>
-                            <option value="14">Maestría en Ingeniería Industrial</option>
-                            <option value="15">Maestría en Administración de Negocios Internacionales </option>
-                            <option value="16">Doctorado en Ciencias de la Ingeniería</option>
+                            <option>Ingeniería en Gestión Empresarial</option>
+                            <option>Ingeniería en Logística </option>
+                            <option>Contador Público </option>
+                            <option >Ingeniería Eléctrica </option>
+                            <option>Ingeniería Electromecánica</option>
+                            <option>Ingeniería Electrónica </option>
+                            <option>Ingeniería en Sistemas Computacionales </option>
+                            <option>Ingeniería en Tecnología de la Informática y Comunicaciones </option>
+                            <option>Ingeniería Industrial </option>
+                            <option>Ingeniería Mecánica</option>
+                            <option>Ingeniería Mecatrónica </option>
+                            <option>Licenciatura en Administración </option>
+                            <option>Maestría en Ingeniería Administrativa </option>
+                            <option>Maestría en Ingeniería Industrial</option>
+                            <option>Maestría en Administración de Negocios Internacionales </option>
+                            <option>Doctorado en Ciencias de la Ingeniería</option>
                         </select>
 
 						<label>Cantidad de alumnos</label>
@@ -76,7 +77,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<!-- MODAL FOR EDITION -->
 		<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -92,22 +92,22 @@
                         <label>Programa educativo</label>
                         <select type="text" id="programa_educativo_editar" class="form-control-page input-group-sm">
                             <option selected>Seleccione un programa educativo...</option>
-                            <option value="1">Ingeniería en Gestión Empresarial</option>
-                            <option value="2">Ingeniería en Logística </option>
-                            <option value="3">Contador Público </option>
-                            <option value="4">Ingeniería Eléctrica </option>
-                            <option value="5">Ingeniería Electromecánica</option>
-                            <option value="6">Ingeniería Electrónica </option>
-                            <option value="7">Ingeniería en Sistemas Computacionales </option>
-                            <option value="8">Ingeniería en Tecnología de la Informática y Comunicaciones </option>
-                            <option value="9">Ingeniería Industrial </option>
-                            <option value="10">Ingeniería Mecánica</option>
-                            <option value="11">Ingeniería Mecatrónica </option>
-                            <option value="12">Licenciatura en Administración </option>
-                            <option value="13">Maestría en Ingeniería Administrativa </option>
-                            <option value="14">Maestría en Ingeniería Industrial</option>
-                            <option value="15">Maestría en Administración de Negocios Internacionales </option>
-                            <option value="16">Doctorado en Ciencias de la Ingeniería</option>
+                            <option>Ingeniería en Gestión Empresarial</option>
+                            <option>Ingeniería en Logística </option>
+                            <option>Contador Público </option>
+                            <option>Ingeniería Eléctrica </option>
+                            <option>Ingeniería Electromecánica</option>
+                            <option>Ingeniería Electrónica </option>
+                            <option>Ingeniería en Sistemas Computacionales </option>
+                            <option>Ingeniería en Tecnología de la Informática y Comunicaciones </option>
+                            <option>Ingeniería Industrial </option>
+                            <option>Ingeniería Mecánica</option>
+                            <option>Ingeniería Mecatrónica </option>
+                            <option>Licenciatura en Administración </option>
+                            <option>Maestría en Ingeniería Administrativa </option>
+                            <option>Maestría en Ingeniería Industrial</option>
+                            <option>Maestría en Administración de Negocios Internacionales </option>
+                            <option>Doctorado en Ciencias de la Ingeniería</option>
                         </select>
 
 						<label>Cantidad de alumnos</label>
@@ -151,5 +151,20 @@
     $(document).ready(function(){
         $('#navbar').load('navbar.html');
         $('#registro-cantidad-matriculas').load('assets/components/registro-cantidad-matriculas.php');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_curso_actual').click(function () {
+
+            programa_educativo=$('#programa_educativo_agregar').val();
+            console.log(programa_educativo);
+            cantidad_alumnos=$('#cantidad_alumnos_agregar').val();
+            console.log(cantidad_alumnos);
+
+            agregardatos(programa_educativo,cantidad_alumnos);
+
+        });
     });
 </script>
