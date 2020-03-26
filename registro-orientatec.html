@@ -142,12 +142,51 @@
           estudiantes_atendidos=$('#estudiantes_atendidos_agregar').val();
           console.log(estudiantes_atendidos);
 
-          agregarDatos(nombre_preparatoria,fecha,estudiantes_atendidos)
+          //VALIDACIONES PARA AGREGAR UN REGISTRO
+          if (nombre_preparatoria=== ""){
+              alertify.alert("Error","¡El campo de Preparatoria esta vacío!")
+              return false;
+          } else if (fecha=== ""){
+              alertify.alert("Error","¡El campo de Fecha esta vacío!");
+              return false;
+          } else if (isNaN(estudiantes_atendidos)){
+              alertify.alert("Error","¡El tipo de dato no es valido!");
+              return false;
+          }else if (estudiantes_atendidos=== "") {
+              alertify.alert("Error", "¡El campo de Estudiantes atendidos esta vacío!")
+              return false;
+          }else {
 
+              agregarDatos(nombre_preparatoria, fecha, estudiantes_atendidos)
+          }
       });
 
       $('#btn_editar_curso_actual').click(function () {
-          actualizaDatos();
+          nombre_preparatoria=$('#nombre_preparatoria_editar').val();
+          console.log(nombre_preparatoria);
+
+          fecha=$('#fecha_editar').val();
+          console.log(fecha);
+
+          estudiantes_atendidos=$('#estudiantes_atendidos_editar').val();
+          console.log(estudiantes_atendidos);
+
+          //VALIDACIONES PARA EDITAR UN REGISTRO
+          if (nombre_preparatoria=== ""){
+              alertify.alert("Error","¡El campo de Preparatoria esta vacío!")
+              return false;
+          } else if (fecha=== ""){
+              alertify.alert("Error","¡El campo de Fecha esta vacío!");
+              return false;
+          } else if (isNaN(estudiantes_atendidos)){
+              alertify.alert("Error","¡El tipo de dato no es valido!");
+              return false;
+          }else if (estudiantes_atendidos=== "") {
+              alertify.alert("Error", "¡El campo de Estudiantes atendidos esta vacío!")
+              return false;
+          }else {
+              actualizaDatos();
+          }
       });
 
     });
