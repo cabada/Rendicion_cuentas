@@ -166,10 +166,40 @@
             cantidad_alumnos=$('#cantidad_alumnos_agregar').val();
             console.log(cantidad_alumnos);
 
-            agregardatos(programa_educativo,cantidad_alumnos);
-        });
+            //VALIDACIONES PARA AGREGAR UN REGISTRO
+            if (programa_educativo=== ""){
+                alertify.alert("Error", "¡El campo de Programa educativo esta vacío!")
+                return false;
+            }else if(isNaN(cantidad_alumnos)){
+                alertify.alert("Error", "¡El campo de Cantidad de alumnos esta vacío!")
+                return false;
+            }else if(cantidad_alumnos=== ""){
+                alertify.alert("Error", "¡El campo de Cantidad de alumnos esta vacío!")
+                return false;
+            }else {
+
+                agregardatos(programa_educativo, cantidad_alumnos);
+              }
+            });
         $('#btn_editar_curso_actual').click(function () {
-            actualizaDatos();
+            programa_educativo = $('#programa_educativo_editar').val();
+            console.log(programa_educativo);
+            cantidad_alumnos = $('#cantidad_alumnos_editar').val();
+            console.log(cantidad_alumnos);
+
+            //VALIDACIONES PARA EDITAR UN REGISTRO
+            if (programa_educativo === "") {
+                alertify.alert("Error", "¡El campo de Programa educativo esta vacío!")
+                return false;
+            } else if (isNaN(cantidad_alumnos)) {
+                alertify.alert("Error", "¡El campo de Cantidad de alumnos esta vacío!")
+                return false;
+            } else if (cantidad_alumnos === "") {
+                alertify.alert("Error", "¡El campo de Cantidad de alumnos esta vacío!")
+                return false;
+            } else{
+                actualizaDatos();
+        }
         });
     });
 </script>
