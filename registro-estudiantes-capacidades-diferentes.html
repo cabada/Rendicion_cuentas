@@ -149,11 +149,78 @@
             cantidad_alumnos=$('#cantidad_estudiantes_agregar').val();
             console.log(cantidad_alumnos);
 
-            agregardatos(periodo,anio,cantidad_alumnos);
+            //FUNCION PARA VALIDAR LONGITUD
+            function validarLongitud(parametro) {
+                if (parametro.length < 4){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
 
+            //VALIDACIONES PARA AGREGAR UN REGISTRO
+            if (periodo=== ""){
+                alertify.alert("Error","¡El campo de Periodo esta vacío!")
+                return false;
+            } else if (isNaN(anio)){
+                alertify.alert("Error","¡El tipo de dato no es valido!");
+                return false;
+            }else if (anio=== "") {
+                alertify.alert("Error", "¡El campo de Año esta vacío!")
+                return false;
+            } else if (validarLongitud(anio) == false){
+                alertify.alert("Error","Introduzca un año valido de 4 caracteres");
+                return false;
+            }else if (isNaN(cantidad_alumnos)){
+                    alertify.alert("Error","¡El tipo de dato no es valido!");
+                    return false;
+            }else if (cantidad_alumnos=== ""){
+                alertify.alert("Error","¡El campo de Cantidad de estudiantes esta vacío!")
+                return false;
+            }else {
+
+                agregardatos(periodo, anio, cantidad_alumnos);
+            }
         });
         $('#btn_editar_curso_actual').click(function () {
-            actualizaDatos();
+            periodo=$('#periodo_editar').val();
+            console.log(periodo);
+            anio=$('#anio_editar').val();
+            console.log(anio);
+            cantidad_alumnos=$('#cantidad_estudiantes_editar').val();
+            console.log(cantidad_alumnos);
+
+            //FUNCION PARA VALIDAR LONGITUD
+            function validarLongitud(parametro) {
+                if (parametro.length < 4){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            //VALIDACIONES PARA EDITAR UN REGISTRO
+            if (periodo=== ""){
+                alertify.alert("Error","¡El campo de Periodo esta vacío!")
+                return false;
+            } else if (isNaN(anio)){
+                alertify.alert("Error","¡El tipo de dato no es valido!");
+                return false;
+            }else if (anio=== "") {
+                alertify.alert("Error", "¡El campo de Año esta vacío!")
+                return false;
+            } else if (validarLongitud(anio) == false){
+                alertify.alert("Error","Introduzca un año valido de 4 caracteres");
+                return false;
+            }else if (isNaN(cantidad_alumnos)){
+                alertify.alert("Error","¡El tipo de dato no es valido!");
+                return false;
+            }else if (cantidad_alumnos=== ""){
+                alertify.alert("Error","¡El campo de Cantidad de estudiantes esta vacío!")
+                return false;
+            }else {
+                actualizaDatos();
+            }
         });
     });
 </script>
