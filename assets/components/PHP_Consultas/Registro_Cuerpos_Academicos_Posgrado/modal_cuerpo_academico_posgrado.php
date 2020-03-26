@@ -181,7 +181,7 @@ $conexion = conexion();
                 }
             }
 
-            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+            // VALIDACIONES PARA ACTUALIZAR NUEVO REGISTRO
             if(area_academica === ""){
                 alertify.alert("Error","¡El campo de área académica esta vacío!");
                 return false;
