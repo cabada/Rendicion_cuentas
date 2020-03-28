@@ -19,23 +19,23 @@ $conexion = conexion();
             </div>
             <div class="modal-body">
                 <label>Nombre</label>
-                <input type="text" id="nombre_usuario_agregar" class="form-control-page input-group-sm">
+                <input type="text" required id="nombre_usuario_agregar" class="form-control-page input-group-sm usuario" >
 
                 <label>Apellido</label>
-                <input type="text" id="apellido_usuario_agregar" class="form-control-page input-group-sm">
+                <input type="text" required id="apellido_usuario_agregar" class="form-control-page input-group-sm usuario" >
 
 
                 <label>Email</label>
-                <input type="email" placeholder="Ejemplo@Ejemplo.com" id="email_agregar" class="form-control-page input-group-sm">
+                <input type="email" required placeholder="Ejemplo@Ejemplo.com" id="email_agregar" class="form-control-page input-group-sm usuario" >
 
                 <label>Contrasena</label>
-                <input type="text" placeholder="" id="" class="form-control-page input-group-sm">
+                <input type="password" required placeholder="" id="contrasena_agregar" class="form-control-page input-group-sm usuario" >
 
                 <label>Verificar Contrasena</label>
-                <input type="text" placeholder="" id="contrasena_agregar" class="form-control-page input-group-sm">
+                <input type="password" required placeholder="" id="v_contrasena_agregar" class="form-control-page input-group-sm usuario" >
 
                 <label>Rol</label>
-                <select type="text" class="form-control-page input-group-sm" id="rol_agregar">
+                <select type="text"  required class="form-control-page input-group-sm usuario" id="rol_agregar">
                     <?php
                     $query = "select id_Rol,nombre_Rol from roles";
                     $resultado = mysqli_query($conexion,$query);
@@ -44,14 +44,13 @@ $conexion = conexion();
                         $valor = $fila['nombre_rol'];
 
                         echo "<option value=\"".$fila['id_Rol']."\">".$fila['nombre_Rol']."</option>\n";
-
                     }
                     ?>
                 </select>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_usuario">Agregar Nuevo Registro</button>
+                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_usuario" disabled>Agregar Nuevo Registro</button>
             </div>
         </div>
     </div>
@@ -68,31 +67,145 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
-                <label>ID Registro</label>
-                <input type="text" readonly="readonly" id="id_curso_editar" class="form-control-page input-group-sm">
+                <label>Nombre</label>
+                <input type="text" id="nombre_usuario_editar" class="form-control-page input-group-sm usuario">
+
+                <label>Apellido</label>
+                <input type="text" id="apellido_usuario_editar" class="form-control-page input-group-sm usuario">
 
 
-                <label>Nombre del curso</label>
-                <input type="text" id="nombre_curso_editar" class="form-control-page input-group-sm">
+                <label>Email</label>
+                <input type="email" placeholder="Ejemplo@Ejemplo.com" id="email_editar" class="form-control-page input-group-sm usuario">
 
-                <label>Periodo</label>
-                <select type="text" class="form-control-page input-group-sm" id="periodo_editar">
-                    <option selected>-</option>
-                    <option value="Ene-Jun">Ene-Jun</option>
-                    <option value="Ago-Dic">Ago-Dic</option>s
-                </select>
+                <label>Contrasena</label>
+                <input type="password" placeholder="********" id="contrasena_editar" class="form-control-page input-group-sm usuario">
 
-                <label>No. de participantes</label>
-                <input type="number" placeholder="" id="no_participantes_editar" class="form-control-page input-group-sm">
+                <label>Verificar Contrasena</label>
+                <input type="password" placeholder="********" id="v_contrasena_editar" class="form-control-page input-group-sm usuario">
 
-                <label>No. de capacitación</label>
-                <input type="number" placeholder="" id="no_capacitacion_editar" class="form-control-page input-group-sm">
-            </div>
+                <label>Rol</label>
+                <select type="text" class="form-control-page input-group-sm usuario" id="rol_editar">
+                    <?php
+                    $query = "select id_Rol,nombre_Rol from roles";
+                    $resultado = mysqli_query($conexion,$query);
+
+                    while($fila = mysqli_fetch_array($resultado)){
+                        $valor = $fila['nombre_rol'];
+
+                        echo "<option value=\"".$fila['id_Rol']."\">".$fila['nombre_Rol']."</option>\n";
+                    }
+                    ?>
+                </select></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+                <button type="button" class="btn btn-main" id="btn_editar_usuario">Guardar cambios</button>
             </div>
         </div>
     </div>
 </div>
 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //Se agregan a una funcion cuando detecte que se ha introducido algun caracter por el teclado.
+        $("#nombre_usuario_agregar,#apellido_usuario_agregar,#email_agregar,#contrasena_agregar,#v_contrasena_agregar").keyup(function () {
+            nombre_usuario =  $('#nombre_usuario_agregar').val();
+            console.log(nombre_usuario);
+            apellido= $('#apellido_usuario_agregar').val();
+            console.log(apellido);
+            email= $('#email_agregar').val();
+            console.log(email);
+            contrasena= $('#contrasena_agregar').val();
+            console.log(contrasena);
+            v_contra= $('#v_contrasena_agregar').val();
+            console.log(v_contra);
+
+            //Verifica si hay algun input vacio.
+
+            if(nombre_usuario=="" || apellido==""|| email=="" || contrasena=="" || v_contra=="" ){
+
+                //En caso de que haya inputs vacios, va a deshabilitar el boton de agregar.
+
+                document.getElementById("btn_agregar_usuario").disabled = true;
+            }
+            else{
+
+                //Si todos los campos estan llenos, sigue a la siguiente funcion de verificar si las dos contrasenas son iguales
+                //cuando se salga del foco del input verificar contrasena.
+
+                $("#v_contrasena_agregar").focusout(function () {
+
+
+                    v_contra= $('#v_contrasena_agregar').val();
+                    console.log(v_contra);
+                    contra = $('#contrasena_agregar').val();
+                    console.log(contra);
+
+                    //Verifica que las contrasenas sean iguales
+
+                    if(v_contra==contra){
+                        document.getElementById('v_contrasena_agregar').style.borderColor = 'green';
+                        document.getElementById('contrasena_agregar').style.borderColor = 'green';
+
+                        //Si son iguales se cambiara el contorno a verde de los inputs, y ademas dejara hacerle click a la funcion
+                        //que lleva los datos al archivo JS para luego llevarlos al archivo PHP y guardarlos en la BD.
+
+
+                        $('#btn_agregar_usuario').click(function () {
+
+
+
+                            var rol_sel = document.getElementById("rol_agregar");
+                            var rol_valor = rol_sel.options[rol_sel.selectedIndex].value;
+
+
+                            nombre_usuario =  $('#nombre_usuario_agregar').val();
+                            console.log(nombre_usuario);
+                            apellido= $('#apellido_usuario_agregar').val();
+                            console.log(apellido);
+                            email= $('#email_agregar').val();
+                            console.log(email);
+                            contra = $('#contrasena_agregar').val();
+                            v_contrasena= $('#v_contrasena_agregar').val();
+                            console.log(contrasena);
+                            rol = rol_valor;
+
+                            //Por si alguna manera quieren pasarse de listos.
+
+                            if(v_contrasena==contra){
+                                alert("Las contrasenas no coinciden")
+                            }
+                            else{
+                                agregarDatos(nombre_usuario,apellido,email,contrasena,rol);
+
+                            }
+
+
+                        });
+
+                    }
+
+                    else{
+                        document.getElementById('v_contrasena_agregar').style.borderColor = 'red';
+                        document.getElementById('contrasena_agregar').style.borderColor = 'red';
+                        document.getElementById("btn_agregar_usuario").disabled = true;
+
+
+                    }
+
+                });
+
+                document.getElementById("btn_agregar_usuario").disabled = false;
+            }
+        });
+
+
+
+        $('#btn_editar_usuario').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
+</script>

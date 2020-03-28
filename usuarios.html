@@ -35,7 +35,6 @@
     <div class="container-fluid">
         <div id="usuarios"></div>
     </div>
-
     <div class="container-fluid">
         <div id="usuarios-modal"></div>
     </div>
@@ -71,31 +70,7 @@
         $('#navbar-administrador').load('navbar-administrador.html');
         $('#usuarios').load('assets/components/registro-usuarios.php');
         $('#usuarios-modal').load('assets/components/PHP_Consultas/Registro_Usuarios/modal_usuarios.php');
-    });
-</script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#').click(function () {
-
-
-            nombre_curso =  $('#').val();
-            console.log(nombre_curso);
-            periodo= $('#').val();
-            console.log(periodo);
-            no_participantes= parseInt($('#').val());
-            console.log(no_participantes);
-            horas_capacitacion= parseInt($('#').val());
-            console.log(horas_capacitacion);
-
-            agregarDatos(nombre_curso,periodo,no_participantes,horas_capacitacion);
-
-        });
-
-        $('#').click(function () {
-            actualizarDatos();
-        });
 
     });
-
 </script>
