@@ -67,6 +67,10 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
+                <label>ID Usuario</label>
+                <input type="text" id="id_usuario_editar" class="form-control-page input-group-sm usuario">
+
+
                 <label>Nombre</label>
                 <input type="text" id="nombre_usuario_editar" class="form-control-page input-group-sm usuario">
 
@@ -161,7 +165,7 @@ $conexion = conexion();
             //Por si alguna manera quieren pasarse de listos.
 
 
-            agregarDatos(nombre_usuario,apellido,email,contrasena,rol);
+            agregarDatos(nombre_usuario,apellido,email,v_contrasena,rol);
 
 
         });
