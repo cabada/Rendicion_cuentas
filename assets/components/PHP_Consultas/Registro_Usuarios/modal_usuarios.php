@@ -108,31 +108,6 @@ $conexion = conexion();
 <script type="text/javascript">
     $(document).ready(function () {
 
-        //Se agregan a una funcion cuando detecte que se ha introducido algun caracter por el teclado.
-        $("#nombre_usuario_agregar,#apellido_usuario_agregar,#email_agregar,#contrasena_agregar,#v_contrasena_agregar").keyup(function () {
-            nombre_usuario =  $('#nombre_usuario_agregar').val();
-            console.log(nombre_usuario);
-            apellido= $('#apellido_usuario_agregar').val();
-            console.log(apellido);
-            email= $('#email_agregar').val();
-            console.log(email);
-            contrasena= $('#contrasena_agregar').val();
-            console.log(contrasena);
-            v_contra= $('#v_contrasena_agregar').val();
-            console.log(v_contra);
-
-            //Verifica si hay algun input vacio.
-
-            if(nombre_usuario=="" || apellido==""|| email=="" || contrasena=="" || v_contra=="" ){
-
-                //En caso de que haya inputs vacios, va a deshabilitar el boton de agregar.
-
-                document.getElementById("btn_agregar_usuario").disabled = true;
-            }
-            else{
-
-                //Si todos los campos estan llenos, sigue a la siguiente funcion de verificar si las dos contrasenas son iguales
-                //cuando se salga del foco del input verificar contrasena.
 
                 $("#v_contrasena_agregar").focusout(function () {
 
@@ -152,38 +127,6 @@ $conexion = conexion();
                         //que lleva los datos al archivo JS para luego llevarlos al archivo PHP y guardarlos en la BD.
 
 
-                        $('#btn_agregar_usuario').click(function () {
-
-
-
-                            var rol_sel = document.getElementById("rol_agregar");
-                            var rol_valor = rol_sel.options[rol_sel.selectedIndex].value;
-
-
-                            nombre_usuario =  $('#nombre_usuario_agregar').val();
-                            console.log(nombre_usuario);
-                            apellido= $('#apellido_usuario_agregar').val();
-                            console.log(apellido);
-                            email= $('#email_agregar').val();
-                            console.log(email);
-                            contra = $('#contrasena_agregar').val();
-                            v_contrasena= $('#v_contrasena_agregar').val();
-                            console.log(contrasena);
-                            rol = rol_valor;
-
-                            //Por si alguna manera quieren pasarse de listos.
-
-                            if(v_contrasena==contra){
-                                alert("Las contrasenas no coinciden")
-                            }
-                            else{
-                                agregarDatos(nombre_usuario,apellido,email,contrasena,rol);
-
-                            }
-
-
-                        });
-
                     }
 
                     else{
@@ -196,9 +139,33 @@ $conexion = conexion();
 
                 });
 
-                document.getElementById("btn_agregar_usuario").disabled = false;
-            }
+        $('#btn_agregar_usuario').click(function () {
+
+
+
+            var rol_sel = document.getElementById("rol_agregar");
+            var rol_valor = rol_sel.options[rol_sel.selectedIndex].value;
+
+
+            nombre_usuario =  $('#nombre_usuario_agregar').val();
+            console.log(nombre_usuario);
+            apellido= $('#apellido_usuario_agregar').val();
+            console.log(apellido);
+            email= $('#email_agregar').val();
+            console.log(email);
+            contra = $('#contrasena_agregar').val();
+            v_contrasena= $('#v_contrasena_agregar').val();
+            console.log(contrasena);
+            rol = rol_valor;
+
+            //Por si alguna manera quieren pasarse de listos.
+
+
+            agregarDatos(nombre_usuario,apellido,email,contrasena,rol);
+
+
         });
+
 
 
 
@@ -206,6 +173,11 @@ $conexion = conexion();
             actualizarDatos();
         });
 
-    });
+
+
+        });
+
+
+
 
 </script>
