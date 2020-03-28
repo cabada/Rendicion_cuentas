@@ -154,7 +154,7 @@ $conexion = conexion();
             email= $('#email_agregar').val();
             console.log(email);
             contra = $('#contrasena_agregar').val();
-            v_contrasena= $('#v_contrasena_agregar').val();
+            v_contrasena= parseInt($('#v_contrasena_agregar').val());
             console.log(contrasena);
             rol = rol_valor;
 
