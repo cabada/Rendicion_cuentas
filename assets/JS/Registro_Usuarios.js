@@ -1,8 +1,8 @@
 
 
-function agregardatos(nombre_usuario,apellido,email,v_contrasena,rol){
+function agregarDatos(nombre_usuario,apellido,email,v_contrasena,rol){
 
-    cadena="nombre=" + nombre +
+    cadena="nombre=" + nombre_usuario +
         "&apellido=" + apellido +
         "&email=" + email+
         "&contrasena=" + v_contrasena +
@@ -45,20 +45,20 @@ function actualizaDatos(){
     var rol_valor = rol_sel.options[rol_sel.selectedIndex].value;
 
 
-    nombre_usuario =  $('#nombre_usuario_agregar').val();
+    nombre_usuario =  $('#nombre_usuario_editar').val();
     console.log(nombre_usuario);
-    apellido= $('#apellido_usuario_agregar').val();
+    apellido= $('#apellido_usuario_editar').val();
     console.log(apellido);
-    email= $('#email_agregar').val();
+    email= $('#email_editar').val();
     console.log(email);
-    contra = $('#contrasena_agregar').val();
-    v_contrasena= parseInt($('#v_contrasena_agregar').val());
-    console.log(contrasena);
+    contra = $('#contrasena_editar').val();
+    v_contrasena= parseInt($('#v_contrasena_editar').val());
+    console.log(v_contrasena);
     rol = rol_valor;
 
 
     cadena="id_usuario=" + id_usuario +
-        "&nombre=" + nombre +
+        "&nombre=" + nombre_usuario +
         "&apellido=" + apellido +
         "&email=" + email+
         "&contrasena=" + v_contrasena +

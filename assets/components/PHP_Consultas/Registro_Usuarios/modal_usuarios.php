@@ -50,7 +50,7 @@ $conexion = conexion();
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_usuario" disabled>Agregar Nuevo Registro</button>
+                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_usuario" >Agregar Nuevo Registro</button>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@ $conexion = conexion();
             </div>
             <div class="modal-body">
                 <label>ID Usuario</label>
-                <input type="text" id="id_usuario_editar" class="form-control-page input-group-sm usuario">
+                <input type="text" readonly="readonly" id="id_usuario_editar" class="form-control-page input-group-sm usuario">
 
 
                 <label>Nombre</label>
@@ -159,11 +159,8 @@ $conexion = conexion();
             console.log(email);
             contra = $('#contrasena_agregar').val();
             v_contrasena= parseInt($('#v_contrasena_agregar').val());
-            console.log(contrasena);
+            console.log(v_contrasena);
             rol = rol_valor;
-
-            //Por si alguna manera quieren pasarse de listos.
-
 
             agregarDatos(nombre_usuario,apellido,email,v_contrasena,rol);
 
@@ -174,7 +171,7 @@ $conexion = conexion();
 
 
         $('#btn_editar_usuario').click(function () {
-            actualizarDatos();
+            actualizaDatos();
         });
 
 
