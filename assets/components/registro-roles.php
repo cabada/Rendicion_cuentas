@@ -7,7 +7,7 @@ $conexion = conexion();
 
 <div class="row">
     <div class="col-sm-12">
-        <h2>Registro de Usuarios</h2>
+        <h2>Registro de Roles</h2>
         <caption>
             <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
         </caption>
