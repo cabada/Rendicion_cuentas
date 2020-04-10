@@ -20,22 +20,7 @@ $conexion = conexion();
                     <td class="text-center align-middle background-table">Acciones</td>
                 </tr>
                 <?php
-              /*  $sql="select usuarios.id_usuario,
-                            usuarios.nombre_usuario,
-                            usuarios.apellido_usuario,
-                            usuarios.email_usuario,
-                            roles.nombre_Rol
-                            from usuarios
-                            join roles on usuarios.id_Rol_Usuario=roles.id_Rol";
-                $result=mysqli_query($conexion,$sql);
 
-                while($buscar=mysqli_fetch_row($result)){
-
-                    $datos=$buscar[0]."||".
-                        $buscar[1]."||".
-                        $buscar[2]."||".
-                        $buscar[3]."||".
-                        $buscar[4];*/
                     ?>
 
                     <tr>

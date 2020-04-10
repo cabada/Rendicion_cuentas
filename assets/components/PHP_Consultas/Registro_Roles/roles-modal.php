@@ -36,7 +36,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_modulo'];
 
-                                    echo "<li><input name=\"modulos[]\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
+                                    echo "<li><input name=\"modulos\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
 
 
                                 }
@@ -62,7 +62,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_modulo'];
 
-                                    echo "<li><input name=\"modulos[]\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
+                                    echo "<li><input name=\"modulos\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
 
 
                                 }
@@ -87,7 +87,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_modulo'];
 
-                                    echo "<li><input name=\"modulos[]\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
+                                    echo "<li><input name=\"modulos\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
 
 
                                 }
@@ -101,19 +101,19 @@ $conexion = conexion();
                 <label>Permisos sobre las Tablas:</label>
 
                 <div class="form-check">
-                    <input name="permisos[]" class="form-check-input" type="checkbox"  value="Select">
+                    <input name="permisos" class="form-check-input" type="checkbox"  value="Select">
                     <label class="form-check-label" for="inlineCheckbox1">Ver Registros</label>
                 </div>
                 <div class="form-check ">
-                    <input name="permisos[]" class="form-check-input" type="checkbox"  value="Insert">
+                    <input name="permisos" class="form-check-input" type="checkbox"  value="Insert">
                     <label class="form-check-label" for="inlineCheckbox2">Agregar Registros</label>
                 </div>
                 <div class="form-check ">
-                    <input  name="permisos[]" class="form-check-input" type="checkbox"  value="Update">
+                    <input  name="permisos" class="form-check-input" type="checkbox"  value="Update">
                     <label class="form-check-label" for="inlineCheckbox1">Actualizar Registros</label>
                 </div>
                 <div class="form-check">
-                    <input name="permisos[]" class="form-check-input" type="checkbox"  value="Delete">
+                    <input name="permisos" class="form-check-input" type="checkbox"  value="Delete">
                     <label class="form-check-label" for="inlineCheckbox2">Eliminar Registros</label>
                 </div>
 
@@ -143,7 +143,7 @@ $conexion = conexion();
             <div class="modal-body">
 
                 <label>Nombre de Rol</label>
-                <input type="text" id="nombre_rol_agregar" class="form-control-page input-group-sm">
+                <input type="text" id="nombre_rol_editar" class="form-control-page input-group-sm">
                 <br>
 
                 <label>Categoria de Tablas REDECU:</label>
@@ -161,7 +161,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_modulo'];
 
-                                    echo "<li><input name=\"modulos[]\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
+                                    echo "<li><input name=\"modulos\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
 
 
                                 }
@@ -187,7 +187,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_modulo'];
 
-                                    echo "<li><input name=\"modulos[]\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
+                                    echo "<li><input name=\"modulos\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
 
 
                                 }
@@ -212,7 +212,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_modulo'];
 
-                                    echo "<li><input name=\"modulos[]\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
+                                    echo "<li><input name=\"modulos\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
 
 
                                 }
@@ -234,11 +234,11 @@ $conexion = conexion();
                     <label class="form-check-label" for="inlineCheckbox2">Agregar Registros</label>
                 </div>
                 <div class="form-check ">
-                    <input  name="permisos[]" class="form-check-input" type="checkbox"  value="Update">
+                    <input  name="permisos" class="form-check-input" type="checkbox"  value="Update">
                     <label class="form-check-label" for="inlineCheckbox1">Actualizar Registros</label>
                 </div>
                 <div class="form-check">
-                    <input name="permisos[]" class="form-check-input" type="checkbox"  value="Delete">
+                    <input name="permisos" class="form-check-input" type="checkbox"  value="Delete">
                     <label class="form-check-label" for="inlineCheckbox2">Eliminar Registros</label>
                 </div>
 
@@ -263,9 +263,11 @@ $conexion = conexion();
             modulo = [];
             $('input[name=modulos]:checked').each(function () {
 
-                modulo.push(this.value);
+                modulo.push(parseInt(this.value));
 
             });
+
+            console.log(modulo);
 
             permiso = [];
             $('input[name=permisos]:checked').each(function () {
@@ -274,6 +276,7 @@ $conexion = conexion();
 
             });
 
+            console.log(permiso);
 
             agregarDatos(nombre_rol,modulo,permiso);
         });

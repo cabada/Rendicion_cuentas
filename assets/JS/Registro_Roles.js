@@ -1,6 +1,6 @@
 
 
-function agregardatos(nombre_rol,modulo,permiso){
+function agregarDatos(nombre_rol,modulo,permiso){
 
     cadena="nombre_rol=" + nombre_rol +
         "&modulo=" + modulo +
@@ -10,7 +10,7 @@ function agregardatos(nombre_rol,modulo,permiso){
     $.ajax({
         type:"POST",
         url:"assets/components/PHP_Consultas/Registro_Roles/Agregar_Registro.php",
-        data:cadena,
+        data:{nombre_rol:nombre_rol,modulo:modulo,permiso:permiso},
         success:function(r) {
             if(r==1){
                 $('#roles').load('assets/components/registro-roles.php');
