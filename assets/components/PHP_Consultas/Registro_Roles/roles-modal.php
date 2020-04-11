@@ -141,6 +141,9 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
+                <label>ID de Rol</label>
+                <input type="text" id="id_rol_editar" class="form-control-page input-group-sm" readonly="readonly">
+
 
                 <label>Nombre de Rol</label>
                 <input type="text" id="nombre_rol_editar" class="form-control-page input-group-sm">
@@ -161,7 +164,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_modulo'];
 
-                                    echo "<li><input name=\"modulos\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
+                                    echo "<li><input name=\"modulosEdit\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
 
 
                                 }
@@ -187,7 +190,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_modulo'];
 
-                                    echo "<li><input name=\"modulos\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
+                                    echo "<li><input name=\"modulosEdit\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
 
 
                                 }
@@ -212,7 +215,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_modulo'];
 
-                                    echo "<li><input name=\"modulos\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
+                                    echo "<li><input name=\"modulosEdit\" type=\"checkbox\" value=\"".$fila['id_modulo']."\">".$fila['nombre_modulo']."</li>\n";
 
 
                                 }
@@ -226,19 +229,19 @@ $conexion = conexion();
                 <label>Permisos sobre las Tablas:</label>
 
                 <div class="form-check">
-                    <input name="permisos[]" class="form-check-input" type="checkbox"  value="Select">
+                    <input name="permisosEdit" class="form-check-input" type="checkbox"  value="Select">
                     <label class="form-check-label" for="inlineCheckbox1">Ver Registros</label>
                 </div>
                 <div class="form-check ">
-                    <input name="permisos[]" class="form-check-input" type="checkbox"  value="Insert">
+                    <input name="permisosEdit" class="form-check-input" type="checkbox"  value="Insert">
                     <label class="form-check-label" for="inlineCheckbox2">Agregar Registros</label>
                 </div>
                 <div class="form-check ">
-                    <input  name="permisos" class="form-check-input" type="checkbox"  value="Update">
+                    <input  name="permisosEdit" class="form-check-input" type="checkbox"  value="Update">
                     <label class="form-check-label" for="inlineCheckbox1">Actualizar Registros</label>
                 </div>
                 <div class="form-check">
-                    <input name="permisos" class="form-check-input" type="checkbox"  value="Delete">
+                    <input name="permisosEdit" class="form-check-input" type="checkbox"  value="Delete">
                     <label class="form-check-label" for="inlineCheckbox2">Eliminar Registros</label>
                 </div>
 

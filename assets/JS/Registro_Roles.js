@@ -23,42 +23,94 @@ function agregarDatos(nombre_rol,modulo,permiso){
     });
 }
 
-function agregaform(datos) {
+function agregaform(datos,filaOP,filaMod) {
 
     d=datos.split('||');
+    p=filaOP.split(',');
+    m=filaMod.split(',');
 
-    $('#id_tutorias').val(d[0]);
-    $('#tutores_registrados_editar').val(d[1]);
-    $('#cantidad_alumnos_grupal_editar').val(d[2]);
-    $('#cantidad_encuentro_padres_editar').val(d[3]);
-    $('#cantidad_conferencia_alumnos_editar').val(d[4]);
-    $('#cantidad_alumnos_conferencia_editar').val(d[5]);
+    console.log(Math.max.apply(null,m));
 
+
+    $('#id_rol_editar').val(d[0]);
+    $('#nombre_rol_editar').val(d[1]);
+    console.log(p);
+
+
+    $('input[name=permisosEdit]:not(:checked)').each(function () {
+
+        console.log($(this).val());
+        len = p.length;
+        console.log(len);
+
+        for (i=0;i<len;i++){
+
+            if($(this).val() == p[i]){
+
+
+                $(this).click();
+
+            }
+
+        }
+
+
+
+    });
+
+    $('input[name=modulosEdit]:not(:checked)').each(function () {
+
+        len =Math.max.apply(null,m) ;
+        console.log($(this).val());
+
+        for (i=0;i<=len;i++){
+
+            if($(this).val() == m[i]){
+
+
+                $(this).click();
+
+            }
+
+        }
+
+
+
+    });
 }
 
 function actualizaDatos(){
 
-    id_tutorias=$('#id_tutorias').val();
-    tutores_registrados=$('#tutores_registrados_editar').val();
-    alumnos_tuto_grupal=$('#cantidad_alumnos_grupal_editar').val();
-    encuentro_padres=$('#cantidad_encuentro_padres_editar').val();
-    conferencias_alumnos=$('#cantidad_conferencia_alumnos_editar').val();
-    alumnos_asistieron_conferencias=$('#cantidad_alumnos_conferencia_editar').val();
+    id_rol=$('#id_rol_editar').val();
+    nombre_rol=$('#nombe_rol_editar').val();
 
-    cadena="id_tutorias=" + id_tutorias +
-        "&tutores_registrados=" + tutores_registrados +
-        "&alumnos_tuto_grupal=" + alumnos_tuto_grupal +
-        "&encuentro_padres=" + encuentro_padres +
-        "&conferencias_alumnos=" + conferencias_alumnos +
-        "&alumnos_asistieron_conferencias=" + alumnos_asistieron_conferencias;
+
+    moduloEdit = [];
+    $('input[name=modulosEdit]:checked').each(function () {
+
+        moduloEdit.push(parseInt(this.value));
+
+    });
+
+    console.log(moduloEdit);
+
+    permisoEdit = [];
+    $('input[name=permisosEdit]:checked').each(function () {
+
+        permisoEdit.push(this.value);
+
+    });
+
+    console.log(permiso);
+
 
     $.ajax({
         type:"POST",
-        url:"assets/components/PHP_Consultas/Registro_Tutorias/Actualizar_Registro.php",
-        data:cadena,
+        url:"assets/components/PHP_Consultas/Registro_Roles/Actualizar_Registro.php",
+        data:{id_rol:id_rol,nombre_rol:nombre_rol,modulo:modulo,permiso:permiso},
         success:function(r) {
             if(r==1){
-                $('#registro-tutorias').load('assets/components/registro-tutorias.php');
+                $('#registro-tutorias').load('assets/components/registro-roles.php');
                 alertify.success("Actualizado con exito");
 
             }else{

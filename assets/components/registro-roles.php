@@ -41,7 +41,8 @@ $conexion = conexion();
 
                 //Cuando encuentre registros, va a hacer ciclos hasta que no encuentre registros
                while($fila = mysqli_fetch_array($resultado)){
-
+                   $datos= $fila[0]."||".
+                            $fila[1];
                     //Se le asigna el valor de la columna de la fila que esta actualmente ciclando
                     $nombre_rol = $fila['nombre_rol'];
                     $query = "select distinct operaciones.nombre_operacion
@@ -56,15 +57,34 @@ $conexion = conexion();
                 ?>
 
                     <tr>
-
+<!--                         Se le asigna el nombre de rol al label-->
                         <td><?php echo "<label>".$nombre_rol."</label>"?></td>
 
-                        <td><?php while($filaOperaciones = mysqli_fetch_array($operaciones)){
-                            echo "<label>".$filaOperaciones['nombre_operacion']."</label><br>"; } ?></td>
+
+<!--                        Se hace un ciclo para capturar las operaciones que tiene dicho rol que se hace con la ultima query-->
+                        <td>
+
+                            <?php
+                            $filaOp = array();
+                            while($filaOperaciones = mysqli_fetch_array($operaciones)){
+
+                            echo "<label>".$filaOperaciones['nombre_operacion']."</label><br>";
+
+
+
+                               array_push($filaOp,$filaOperaciones['nombre_operacion']);
+
+
+                        }
+
+                         $filaOp = implode(",",$filaOp);
+
+                        ?></td>
 
                         <?php
 
-                        $query = "select distinct modulo.nombre_modulo
+                        $query = "select distinct modulo.id_modulo,
+                                                modulo.nombre_modulo
                                               from modulo
                                               join operaciones
                                               on modulo.id_modulo=operaciones.id_modulo
@@ -77,12 +97,20 @@ $conexion = conexion();
 
                         ?>
 
+<!--                     Se hace un ciclo para capturar las operaciones que tiene dicho rol que se hace con la ultima query-->
+                        <td><?php  $filaMod = array();
+                            while($filaModulos = mysqli_fetch_array($modulos)){
+                                echo "<label>".$filaModulos['nombre_modulo']."</label><br>";
 
-                        <td><?php  while($filaModulos = mysqli_fetch_array($modulos)){
-                                echo "<label>".$filaModulos['nombre_modulo']."</label><br>"; } ?></td>
+                                array_push($filaMod,$filaModulos['id_modulo']);
+
+                            }
+                            $filaMod = implode(",",$filaMod);
+
+                                ?></td>
 
                         <td class="text-center align-middle">
-                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" <!--onclick="agregaform('<?php /*echo $datos */?>')"--><i class="far fa-edit"></i>  Editar</button>
+                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos?>','<?php echo $filaOp?>','<?php echo $filaMod?>')"><i class="far fa-edit"></i>  Editar</button>
                             <button class="btn btn-sm btn-danger" <!--onclick="preguntarSiNo('<?php /*echo $buscar[0]*/?>')"--><i class="fas fa-trash" ></i>  Eliminar</button>
                         </td>
                     </tr>
