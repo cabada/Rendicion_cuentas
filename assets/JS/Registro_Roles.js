@@ -36,6 +36,14 @@ function agregaform(datos,filaOP,filaMod) {
     $('#nombre_rol_editar').val(d[1]);
     console.log(p);
 
+    $('input[name=permisosEdit]:checked').each(function () {
+
+
+                $(this).prop("checked",false);
+
+        }
+
+
 
     $('input[name=permisosEdit]:not(:checked)').each(function () {
 
@@ -55,7 +63,6 @@ function agregaform(datos,filaOP,filaMod) {
         }
 
 
-
     });
 
     $('input[name=modulosEdit]:not(:checked)').each(function () {
@@ -67,9 +74,7 @@ function agregaform(datos,filaOP,filaMod) {
 
             if($(this).val() == m[i]){
 
-
                 $(this).click();
-
             }
 
         }
@@ -82,8 +87,9 @@ function agregaform(datos,filaOP,filaMod) {
 function actualizaDatos(){
 
     id_rol=$('#id_rol_editar').val();
-    nombre_rol=$('#nombe_rol_editar').val();
+    nombre_rol=$('#nombre_rol_editar').val();
 
+    console.log(nombre_rol);
 
     moduloEdit = [];
     $('input[name=modulosEdit]:checked').each(function () {
@@ -101,16 +107,16 @@ function actualizaDatos(){
 
     });
 
-    console.log(permiso);
+
 
 
     $.ajax({
         type:"POST",
         url:"assets/components/PHP_Consultas/Registro_Roles/Actualizar_Registro.php",
-        data:{id_rol:id_rol,nombre_rol:nombre_rol,modulo:modulo,permiso:permiso},
+        data:{id_rol:id_rol,nombre_rol:nombre_rol,modulo:moduloEdit,permiso:permisoEdit},
         success:function(r) {
             if(r==1){
-                $('#registro-tutorias').load('assets/components/registro-roles.php');
+                $('#roles').load('assets/components/registro-roles.php');
                 alertify.success("Actualizado con exito");
 
             }else{
