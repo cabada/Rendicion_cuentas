@@ -92,7 +92,7 @@ $conexion = conexion();
                                               on operaciones.id_operaciones=rol_operacion.id_operacion
                                               join roles
                                               on roles.id_rol=rol_operacion.id_rol
-                                              where nombre_rol='$nombre_rol'";
+                                              where roles.nombre_rol='$nombre_rol'";
                         $modulos = mysqli_query($conexion,$query);
 
                         ?>

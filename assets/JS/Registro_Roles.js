@@ -41,7 +41,16 @@ function agregaform(datos,filaOP,filaMod) {
 
                 $(this).prop("checked",false);
 
-        }
+        });
+
+    $('input[name=modulosEdit]:checked').each(function () {
+
+
+        $(this).prop("checked",false);
+
+    });
+
+
 
 
 
@@ -107,13 +116,27 @@ function actualizaDatos(){
 
     });
 
+    moduloEditUCHK = [];
+    $('input[name=modulosEdit]:not(:checked)').each(function () {
+
+        moduloEditUCHK.push(parseInt(this.value));
+
+    });
+
+    permisoEditUCHK = [];
+    $('input[name=permisosEdit]:not(:checked)').each(function () {
+
+        permisoEditUCHK.push(this.value);
+
+    });
+
 
 
 
     $.ajax({
         type:"POST",
         url:"assets/components/PHP_Consultas/Registro_Roles/Actualizar_Registro.php",
-        data:{id_rol:id_rol,nombre_rol:nombre_rol,modulo:moduloEdit,permiso:permisoEdit},
+        data:{id_rol:id_rol,nombre_rol:nombre_rol,modulo:moduloEdit,permiso:permisoEdit,moduloUCHK:moduloEditUCHK,permisoUCHK:permisoEditUCHK},
         success:function(r) {
             if(r==1){
                 $('#roles').load('assets/components/registro-roles.php');
