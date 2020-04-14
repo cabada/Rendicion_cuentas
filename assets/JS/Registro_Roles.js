@@ -150,23 +150,23 @@ function actualizaDatos(){
 
 }
 
-function preguntarSiNo(id_tutorias) {
+function preguntarSiNo(id_rol) {
     alertify.confirm('Eliminar Registro', '¿Esta seguro de eliminar este registro?',
-        function(){ eliminarDatos(id_tutorias) }
+        function(){ eliminarDatos(id_rol) }
         , function(){ alertify.error('Se cancelo.')});
 
 }
 
-function eliminarDatos(id_tutorias) {
-    cadena="id_tutorias=" + id_tutorias;
+function eliminarDatos(id_rol) {
+    cadena="id_rol=" + id_rol;
 
     $.ajax({
         type:"POST",
-        url:"assets/components/PHP_Consultas/Registro_Tutorias/Eliminar_Registro.php",
+        url:"assets/components/PHP_Consultas/Registro_Roles/Eliminar_Registro.php",
         data:cadena,
         success:function (r) {
             if(r==1){
-                $('#registro-tutorias').load('assets/components/registro-tutorias.php');
+                $('#roles').load('assets/components/registro-roles.php');
                 alertify.success("Eliminado con exito");
             }else{
                 alertify.error("Fallo el servidor");
