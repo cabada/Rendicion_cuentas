@@ -13,6 +13,7 @@
     <script src="assets/libraries/js/jquery-3.4.1.min.js"></script>
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
+    <script src="assets/JS/Inicio_Sesion.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -24,16 +25,38 @@
             <div class="contenedor">
                 <div class="input-contenedor">
                     <i class="fas fa-user icon"></i>
-                    <input type="text" placeholder="Nombre de usuario">
+                    <input type="text" placeholder="Correo Electronico" id="usuario_correo_electronico">
                 </div>
                 
                 <div class="input-contenedor">
                     <i class="fas fa-key icon"></i>
-                    <input type="password" placeholder="Contraseña">
+                    <input type="password" placeholder="Contraseña" id="usuario_contrasena">
                 </div>
-                
-                <input type="submit" value="Entrar" class="button">
+
+                <button class="button" id="btn_entrar">  Entrar</button>
+
             </div>
         </form>
     </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_entrar').click(function () {
+
+            usuario = $('#usuario_correo_electronico').val();
+            contrasena = $('#usuario_contrasena').val();
+
+            verificarUsuario(usuario,contrasena);
+
+
+        });
+
+    });
+
+
+
+
+</script>
+
+
