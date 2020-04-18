@@ -9,9 +9,12 @@ function verificarUsuario(usuario,contrasena) {
         data:cadena,
         success:function (r) {
             if(r==1){
-                alert("Existe Usuario...");
+
+                window.location.href="inicio.html";
+
             }else{
-                alert("Fallo al intentar iniciar sesion...");
+
+                alert("Usuario/Contrasena invalido, intente nuevamente...");
             }
         }
     });

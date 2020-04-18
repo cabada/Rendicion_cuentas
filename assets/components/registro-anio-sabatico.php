@@ -2,6 +2,9 @@
 
     require_once "PHP_Consultas/Conexion.php";
     $conexion = conexion();
+    session_start();
+    $id_usuario = $_SESSION["id_usuario"];
+
 
 ?>
 
