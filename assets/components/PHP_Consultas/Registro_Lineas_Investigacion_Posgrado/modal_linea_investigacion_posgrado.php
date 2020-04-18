@@ -89,14 +89,37 @@ $conexion = conexion();
 
             id_carrera=$('#programa_educativo_agregar').val();
             console.log(id_carrera);
-
             nombre_especialidad =$('#investigacion_agregar').val();
             console.log(nombre_especialidad);
 
-            agregardatos(id_carrera,nombre_especialidad);
+            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+            if(id_carrera === ""){
+                alertify.alert("Error","¡El campo de programa esta vacío!");
+                return false;
+            }else if (nombre_especialidad === ""){
+                alertify.alert("Error","¡El campo linea de investigacion esta vacío!");
+                return false;
+            } else {
+                agregardatos(id_carrera, nombre_especialidad);
+                $('#new-modal').modal('hide');
+                $('#programa_educativo_agregar').val();
+                $('#investigacion_agregar').val();
+            }
         });
         $('#btn_editar_curso_actual').click(function () {
+        //AGREGANDO CAMPOS DE EDITAR PARA PODER ASIGNAR VALIDACIONES
+        id_carrera=$('#programa_educativo_editar').val();
+        nombre_especialidad=$('#investigacion_editar').val();
+
+        if(id_carrera === ""){
+            alertify.alert("Error","¡El campo de programa esta vacío!");
+            return false;
+        } else if (nombre_especialidad === ""){
+            alertify.alert("Error","¡El campo de linea de investigacion esta vacío!");
+            return false;
+        } else {
             actualizaDatos();
+            }
         });
     });
 </script>

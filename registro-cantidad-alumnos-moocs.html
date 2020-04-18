@@ -128,21 +128,48 @@
     $(document).ready(function () {
         $('#btn_agregar_moocs_alm').click(function () {
 
-
             nombre_curso =  $('#nombre_curso_agregar').val();
             console.log(nombre_curso);
             cantidad_alumnos = parseInt($('#cantidad_alumnos_agregar').val());
             console.log(cantidad_alumnos);
 
-
-            agregarDatos(nombre_curso,cantidad_alumnos);
-
+            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+            if(nombre_curso === ""){
+                alertify.alert("Error","¡El campo de nombre de curso esta vacío!");
+                return false;
+            } else if (cantidad_alumnos === ""){
+                alertify.alert("Error","¡El campo cantidad de alumnos inscritos esta vacío!");
+                return false;
+            } else if (cantidad_alumnos === "0"){
+                alertify.alert("Error","¡El valor ingresado no es valido!");
+                return false;
+            } else {
+                agregarDatos(nombre_curso, cantidad_alumnos);
+                $('#new-modal').modal('hide');
+                $('#nombre_curso_agregar').val('');
+                $('#cantidad_alumnos_agregar').val('');
+            }
         });
 
         $('#btn_editar_moocs_alm').click(function () {
-            actualizarDatos();
+            //AGREGANDO CAMPOS DE EDITAR PARA PODER ASIGNAR VALIDACIONES
+            nombre_curso=$('#nombre_curso_editar').val();
+            cantidad_alumnos=$('#cantidad_alumnos_editar').val();
+
+            // VALIDACIONES PARA ACTUALIZAR NUEVO REGISTRO
+            if(nombre_curso === ""){
+                alertify.alert("Error","¡El campo de nombre de curso esta vacío!");
+                return false;
+            } else if (cantidad_alumnos === ""){
+                alertify.alert("Error","¡El campo cantidad de alumnos inscritos esta vacío!");
+                return false;
+            } else if (cantidad_alumnos === "0"){
+                alertify.alert("Error","¡El valor ingresado no es valido!");
+                return false;
+            }
+            else {
+                actualizarDatos();
+            }
         });
-
     });
-
 </script>

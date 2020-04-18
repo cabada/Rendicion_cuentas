@@ -7,9 +7,9 @@
         <div class="table-responsive-xl">
             <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                 <tr>
-                    <td class="text-center align-middle background-table">Nombramiento</td>
-                    <td class="text-center align-middle background-table">Cantidad de docentes</td>
-                    <td class="text-center align-middle background-table">Cantidad de docentes no capacitados</td>
+                    <td class="text-center align-middle background-table">Tipo de Nombramiento</td>
+                    <td class="text-center align-middle background-table">Total de docentes</td>
+                    <td class="text-center align-middle background-table">No. de docentes capacitados</td>
                     <td class="text-center align-middle background-table">Porcentaje de docentes capacitados</td>
                     <td class="text-center align-middle background-table">Periodo</td>
                     <td class="text-center align-middle background-table">Acciones</td>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/libraries/css/all.css">
+    <link rel="stylesheet" href="assets/libraries/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/libraries/css/styles-page.css">
+    <link rel="stylesheet" href="assets/libraries/css/alertify.css">
+    <link rel="stylesheet" href="assets/libraries/css/themes/default.css">
+
+    <script defer src="assets/libraries/js/all.js"></script>
+    <script src="assets/libraries/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/libraries/js/popper.min.js"></script>
+    <script src="assets/libraries/js/bootstrap.min.js"></script>
+    <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Roles.js"></script>
+
+    <!-- FAVICON AND TITLE IN BROWSER  -->
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png">
+    <title>ITCJ | Roles</title>
+</head>
+<body>
+<!-- HEADER ADVERTISEMENTS-->
+<header>
+    <div id="navbar-administrador">
+        <!-- ADD NAVBAR -->
+    </div>
+</header>
+
+<!-- PRINCIPAL MAIN -->
+<main>
+    <!-- PAGE TABLE -->
+    <div class="container-fluid">
+        <div id="roles"></div>
+    </div>
+
+
+    <!-- PAGE TABLE -->
+    <div class="container-fluid">
+        <div id="roles-modal"></div>
+    </div>
+
+
+</main>
+
+<!-- FOOTER -->
+<footer class="container-fluid my-5 border-top">
+    <div class="row mt-2 text-center">
+        <div class="col-12">
+            <p class="text-center">
+                <strong>
+                    <br>INSTITUTO TECNOLÓGICO DE CIUDAD JUÁREZ
+                    <br>Av. Tecnológico No. 1340 Frac. El Crucero C.P. 32500 Ciudad Juárez, Chih. México
+                </strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mt-2 text-center">
+        <div class="col-12">
+            <small class="d-block text-muted mt-3">Servicio social departamento de Sistemas ITCJ - 2020.</small>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+
+<!-- JAVASCRIPT CODE -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#navbar-administrador').load('navbar-administrador.html');
+        $('#roles').load('assets/components/registro-roles.php');
+        $('#roles-modal').load('assets/components/PHP_Consultas/Registro_Roles/roles-modal.php');
+    });
+</script>
+

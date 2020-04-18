@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Proyectos_Investigacion_Posgrado_Periodo.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -74,6 +75,9 @@
 						</button>
 					</div>
 					<div class="modal-body">
+                        <label>Numero de registro</label>
+                        <input type="id" readonly="readonly" id="id_proyecto_inv_posgrado_periodo" class="form-control-page input-group-sm">
+
 						<label>Clave</label>
                         <input type="text" id="clave_editar" class="form-control-page input-group-sm">
                         
@@ -122,4 +126,24 @@
         $('#navbar').load('navbar.html');
         $('#registro-proyectos-investigacion-posgrado-periodo').load('assets/components/registro-proyectos-investigacion-posgrado-periodo.php');
     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+       $('#btn_agregar_curso_actual').click(function () {
+
+           clave=$('#clave_agregar').val();
+           console.log(clave);
+           nombre_proyecto=$('#nombre_proyecto_agregar').val();
+           console.log(nombre_proyecto);
+           responsable=$('#responsable_agregar').val();
+           console.log(responsable);
+
+           agregardatos(clave,nombre_proyecto,responsable)
+       });
+       $('#btn_editar_curso_actual').click(function () {
+           actualizaDatos();
+       });
+    });
+
 </script>
