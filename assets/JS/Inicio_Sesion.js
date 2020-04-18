@@ -1,19 +1,17 @@
 function verificarUsuario(usuario,contrasena) {
 
-    cadena="nombre_actividad=" + nombre_actividad +
-        "&periodo_ene_jun=" + periodo_ene_jun +
-        "&periodo_ago_dic=" + periodo_ago_dic;
+    cadena="correo_electronico=" + usuario +
+        "&contrasena=" + contrasena ;
 
     $.ajax({
         type:"POST",
-        url:"assets/components/PHP_Consultas/Registro_Coordinacion_Educativa/Agregar_Registro.php",
+        url:"assets/components/PHP_Consultas/Usuarios/Verificar_Usuario.php",
         data:cadena,
         success:function (r) {
             if(r==1){
-                $('#registro-coordinacion-educativa-y-tutorias').load('assets/components/registro-coordinacion-educativa-y-tutorias.php');
-                alertify.success("Agregado con exito");
+                alert("Existe Usuario...");
             }else{
-                alertify.error("Fallo el servidor");
+                alert("Fallo al intentar iniciar sesion...");
             }
         }
     });
