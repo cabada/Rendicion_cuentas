@@ -2,10 +2,25 @@
 <?php
 
 require_once "PHP_Consultas/Conexion.php";
+require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$stmt = consultaTablas($conn,$id_usuario);
+
+
+$stmt->execute();
+
+$stmt->bind_result($resultado);
+
+while($stmt->fetch()){
+
+$tablaRequerida = 'evaluacion_docente';
+
+if($resultado == $tablaRequerida){
 
 ?>
-
 <div class="row">
     <div class="col-sm-12">
         <h2>Registro de evaluación docente</h2>
@@ -56,3 +71,17 @@ $conexion = conexion();
         </div>
     </div>
 </div>
+
+
+    <?php
+}
+
+
+}
+
+$stmt->close();
+$conexion->close();
+
+
+
+?>
