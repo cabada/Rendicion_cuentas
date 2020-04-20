@@ -1,5 +1,5 @@
 <?php
-function consultaTablas($conexion,$id_usuario,$tabla,$permiso){
+function consultaPermisos($conexion,$id_usuario,$tabla,$permiso){
 
     $stmt = $conexion->prepare("select distinct tablas.tablas
                                         from usuarios

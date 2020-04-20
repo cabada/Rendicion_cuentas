@@ -12,7 +12,7 @@ function  agregarDatos(profesor,proyecto_realizado) {
                 $('#registro-anio-sabatico').load('assets/components/registro-anio-sabatico.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los permisos suficientes...");
             }
         }
     });
@@ -49,7 +49,7 @@ function actualizarDatos() {
                 $('#registro-anio-sabatico').load('assets/components/registro-anio-sabatico.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los permisos suficientes...");
             }
         }
     });
@@ -74,7 +74,7 @@ function eliminarDatos(id_sabatico) {
                 $('#registro-anio-sabatico').load('assets/components/registro-anio-sabatico.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los permisos suficientes...");
             }
         }
     });
