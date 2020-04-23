@@ -11,13 +11,13 @@
 
 $stmt->execute();
 
-$stmt->bind_result($resultado);
+$stmt->bind_result($rol,$resultado);
 
 while($stmt->fetch()){
 
     $tablaRequerida = 'producto_anio_sabatico';
 
-    if($resultado == $tablaRequerida){
+    if($resultado == $tablaRequerida || $rol=='Admin'){
 
         ?>
 
