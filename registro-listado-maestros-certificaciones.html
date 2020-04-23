@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Maestros_Certificaciones.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -35,71 +36,10 @@
             <div id="registro-listado-maestros-certificaciones"></div>
         </div>
 
-        <!-- MODAL FOR NEW FORM -->
-        <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="new-modalLabel">Agregar nuevo registro</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<label>Nombre</label>
-						<input type="text" id="nombre_agregar" class="form-control-page input-group-sm">
+        <div id="profesores_modal">
+            <!-- MODAL ADDED -->
+        </div>
 
-						<label>Área académica</label>
-						<select type="text" class="form-control-page input-group-sm" id="area_academica_agregar">
-                            <option selected>-</option>
-                            <option value="Opcion 1">Opcion 1</option>
-                            <option value="Opcion 2">Opcion 2</option>
-                            <option value="Opcion 3">Opcion 3</option>
-                        </select>
-
-                        <label>Diciplina</label>
-                        <input type="text" placeholder="" id="diciciplina_agregar" class="form-control-page input-group-sm">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<!-- MODAL FOR EDITION -->
-		<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Editar registro</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<label>Nombre</label>
-						<input type="text" id="nombre_editar" class="form-control-page input-group-sm">
-
-						<label>Área académica</label>
-						<select type="text" class="form-control-page input-group-sm" id="area_academica_editar">
-                            <option selected>-</option>
-                            <option value="Opcion 1">Opcion 1</option>
-                            <option value="Opcion 2">Opcion 2</option>
-                            <option value="Opcion 3">Opcion 3</option>
-                        </select>
-
-                        <label>Diciplina</label>
-                        <input type="text" placeholder="" id="diciciplina_editar" class="form-control-page input-group-sm">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
-					</div>
-				</div>
-			</div>
-		</div>
     </main>
     
     <!-- FOOTER -->
@@ -130,5 +70,7 @@
     $(document).ready(function(){
         $('#navbar').load('navbar.html');
         $('#registro-listado-maestros-certificaciones').load('assets/components/registro-listado-maestros-certificaciones.php');
+        $('#profesores_modal').load('assets/components/PHP_Consultas/Registro_Maestros_Certificaciones/modal_profesores.php');
+
     });
 </script>
