@@ -10,6 +10,8 @@ $permiso=$_POST['permiso'];
 $moduloUCHK = $_POST['moduloUCHK'];
 $permisoUCHK = $_POST['permisoUCHK'];
 
+var_dump($_POST);
+
 
 $stmt = $conexion->prepare("update roles set nombre_rol=? where id_rol='$id_rol'");
 $stmt->bind_param("s", $nombre_rol);
