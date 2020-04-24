@@ -91,14 +91,6 @@ $conexion = conexion();
     </div>
 </div>
 
-<!-- JAVASCRIPT CODE -->
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#navbar').load('navbar.html');
-        $('#registro-cuerpos-academicos-posgrado').load('assets/components/registro-cuerpos-academicos-posgrado.php');
-    });
-</script>
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
