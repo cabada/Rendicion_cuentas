@@ -14,7 +14,7 @@
                  $('#registro-coordinacion-educativa-y-tutorias').load('assets/components/registro-coordinacion-educativa-y-tutorias.php');
                  alertify.success("Agregado con exito");
              }else{
-                 alertify.error("Fallo el servidor");
+                 alertify.error("No tiene los privilegios suficientes...");
              }
          }
      });
@@ -51,7 +51,7 @@
                  $('#registro-coordinacion-educativa-y-tutorias').load('assets/components/registro-coordinacion-educativa-y-tutorias.php');
                  alertify.success("Actualizado con exito");
              }else{
-                 alertify.error("Fallo el servidor");
+                 alertify.error("No tiene los privilegios suficientes...");
              }
          }
      });
@@ -75,7 +75,7 @@
                  $('#registro-coordinacion-educativa-y-tutorias').load('assets/components/registro-coordinacion-educativa-y-tutorias.php');
                  alertify.success("Eliminado con exito");
              }else{
-                 alertify.error("Fallo el servidor");
+                 alertify.error("No tiene los privilegios suficientes...");
              }
          }
      });

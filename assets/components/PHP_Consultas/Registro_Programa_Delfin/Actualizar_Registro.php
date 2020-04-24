@@ -1,8 +1,17 @@
 <?php
 
-require_once "../Conexion.php";
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'programa_delfin';
+$stmt = consultaPermisos($conn,$id_usuario,$tabla,'Update');
 
+$stmt->execute();
+
+if($stmt->fetch()){
 $id_programa = $_POST['id_programa'];
 $nombre_proyecto = $_POST['nombre_proyecto'];
 $cantidad_alumnos = $_POST['cantidad_alumnos'];
@@ -32,5 +41,12 @@ $stmt->bind_param("siisss", $nombre_proyecto, $cantidad_alumnos,$id , $anio, $fe
 echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
+
+
+}
+else{
+    echo 2;
+}
+
 
 ?>

@@ -16,7 +16,7 @@ function agregardatos(programa,cantidad,porcentaje,registrado_en) {
                 alertify.success("agregado con exito");
 
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -57,7 +57,7 @@ function actualizaDatos(){
                 alertify.success("Actualizado con exito");
 
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -82,7 +82,7 @@ function eliminarDatos(id_total_prog_posgrado) {
                 $('#registro-total-alumnos-programa-posgrado').load('assets/components/registro-total-alumnos-programa-posgrado.php');
                 alertify.success("Eliminado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

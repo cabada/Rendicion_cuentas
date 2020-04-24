@@ -20,7 +20,7 @@ function agregarDatos(nombre_completo,sexo,grado_estudios, horas_jornada,area_ac
                 alertify.success("Agregado con exito: ");
             }
             else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -106,7 +106,7 @@ function actualizaDatos() {
                 alertify.success("Actualizado con exito: ");
             }
             else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -133,7 +133,7 @@ function eliminarDatos(id_profesor) {
                 $('#tablaRegistroCurso').load('assets/components/registro-profesores.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
 
         }

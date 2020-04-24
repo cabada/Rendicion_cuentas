@@ -25,13 +25,16 @@ if($stmt->fetch()){
     $stmt->bind_param("ss", $profesor,$proyecto_realizado);
 
     echo $resultado = $stmt->execute();
+    $stmt->close();
+    $conexion->close();
 
 
 
 }
+else{
+    echo 2;
+}
 
 
-$stmt->close();
-$conexion->close();
 
 ?>

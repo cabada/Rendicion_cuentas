@@ -26,8 +26,11 @@ if($query->fetch()) {
     $conexion->close();
 
 }
+else{
+    echo "2";
+}
 
-echo "2";
+
 
 
 ?>

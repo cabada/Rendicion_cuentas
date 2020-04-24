@@ -1,7 +1,17 @@
 <?php
 
-require_once "../Conexion.php";
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'total_alumnos_programa_posgrado';
+$stmt = consultaPermisos($conn,$id_usuario,$tabla,'Delete');
+
+$stmt->execute();
+
+if($stmt->fetch()){
 
 $id_total_prog_posgrado=$_POST['id_total_prog_posgrado'];
 
@@ -11,4 +21,9 @@ $stmt->bind_param("i",$id_total_prog_posgrado);
 echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
+
+}
+else{
+    echo 2;
+}
 ?>

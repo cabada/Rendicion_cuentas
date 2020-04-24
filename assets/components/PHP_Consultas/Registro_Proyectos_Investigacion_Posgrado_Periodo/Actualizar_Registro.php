@@ -1,8 +1,17 @@
 <?php
 
-require_once "../Conexion.php";
-$conexion=conexion();
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
+$conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'pproyectos_investigacion_posgrado_periodo';
+$stmt = consultaPermisos($conn,$id_usuario,$tabla,'Update');
 
+$stmt->execute();
+
+if($stmt->fetch()){
 $id_proyecto_inv_posgrado_periodo=$_POST['id_proyecto_inv_posgrado_periodo'];
 $clave=$_POST['clave'];
 $nombre_proyecto=$_POST['nombre_proyecto'];
@@ -19,4 +28,11 @@ $stmt->bind_param("sss",$clave,$nombre_proyecto,$responsable);
 echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
+
+}
+else{
+    echo 2;
+}
+
+
 ?>

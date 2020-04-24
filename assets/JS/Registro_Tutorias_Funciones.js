@@ -20,7 +20,7 @@ function agregardatos(tutores_registrados, alumnos_tuto_grupal,encuentro_padres,
                       alertify.success("agregado con exito");
 
                   }else{
-                      alertify.error("fallo el servidor");
+                      alertify.error("No tiene los privilegios suficientes...");
                   }
               }
           });
@@ -65,7 +65,7 @@ function actualizaDatos(){
                 alertify.success("Actualizado con exito");
 
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -91,7 +91,7 @@ function eliminarDatos(id_tutorias) {
                 $('#registro-tutorias').load('assets/components/registro-tutorias.php');
                 alertify.success("Eliminado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
 

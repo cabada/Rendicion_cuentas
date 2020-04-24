@@ -14,7 +14,7 @@ function agregardatos(id_carrera,nombre_especialidad){
                 $('#registro-lineas-investigacion-licenciaturas').load('assets/components/registro-lineas-investigacion-licenciaturas.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -49,7 +49,7 @@ function actualizaDatos() {
                 $('#registro-lineas-investigacion-licenciaturas').load('assets/components/registro-lineas-investigacion-licenciaturas.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -75,7 +75,7 @@ function eliminarDatos(id_linea) {
                 $('#registro-lineas-investigacion-licenciaturas').load('assets/components/registro-lineas-investigacion-licenciaturas.php');
                 alertify.success("Eliminado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

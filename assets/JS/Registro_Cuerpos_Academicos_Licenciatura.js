@@ -18,7 +18,7 @@ function agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,ani
                 $('#registro-cuerpos-academicos').load('assets/components/registro-cuerpos-academicos.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -69,7 +69,7 @@ function actualizarDatos() {
                 $('#registro-cuerpos-academicos').load('assets/components/registro-cuerpos-academicos.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -95,7 +95,7 @@ function eliminarDatos(id_cuerpo_academico) {
                 $('#registro-cuerpos-academicos').load('assets/components/registro-cuerpos-academicos.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

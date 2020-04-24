@@ -13,7 +13,7 @@ function agregardatos(programa_educativo,cantidad_alumnos) {
                 $('#registro-cantidad-matriculas').load('assets/components/registro-cantidad-matriculas.php');
                 alertify.success("Agregado con exito");
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -48,7 +48,7 @@ function actualizaDatos(){
                 $('#registro-cantidad-matriculas').load('assets/components/registro-cantidad-matriculas.php');
                 alertify.success("Actualizado con exito");
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -73,7 +73,7 @@ function eliminardatos(id_matricula){
                 $('#registro-cantidad-matriculas').load('assets/components/registro-cantidad-matriculas.php');
                 alertify.success("Eliminado con exito");
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

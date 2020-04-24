@@ -18,7 +18,7 @@ function  agregarDatos(nombre_docente,categoria,grado_estudios,sni,area_especial
                 $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-maestros-itcj.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -66,7 +66,7 @@ function actualizarDatos() {
                 $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-maestros-itcj.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -91,7 +91,7 @@ function eliminarDatos(id_equipo_ms) {
                 $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-maestros-itcj.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

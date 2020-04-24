@@ -12,7 +12,7 @@ function  agregarDatos(grado,cantidad) {
                 $('#registro-total-profesores').load('assets/components/registro-total-profesores.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -49,7 +49,7 @@ function actualizarDatos() {
                 $('#registro-total-profesores').load('assets/components/registro-total-profesores.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -74,7 +74,7 @@ function eliminarDatos(id_prof_grad_acad) {
                 $('#registro-total-profesores').load('assets/components/registro-total-profesores.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

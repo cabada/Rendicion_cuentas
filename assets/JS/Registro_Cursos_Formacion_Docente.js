@@ -14,7 +14,7 @@ function  agregarDatos(nombre_curso,periodo,no_participantes,horas_capacitacion)
                 $('#registro-cursos-formacion-docente').load('assets/components/registro-cursos-formacion-docente.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -59,7 +59,7 @@ function actualizarDatos() {
                 $('#registro-cursos-formacion-docente').load('assets/components/registro-cursos-formacion-docente.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -84,7 +84,7 @@ function eliminarDatos(id_curso) {
                 $('#registro-cursos-formacion-docente').load('assets/components/registro-cursos-formacion-docente.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

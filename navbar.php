@@ -82,11 +82,12 @@ while($stmt->fetch()){
                        <a href="roles.html" class="nav-link">Roles y Permisos<span class="sr-only">(current)</span></a>
                    </li>
 
-                   <li class="nav-item">
-                       <a href="index.html" class="nav-link"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
-                   </li>
                </ul>
            </div>
+           <div">
+               <button type="button" class="btn align-content-end btn-outline-secondary" id="btn_cerrar_sesion"><a href="index.html" class="" style="color:white;text-decoration: none"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></button>
+           </div>
+
        </nav>
 
 
@@ -155,16 +156,12 @@ while($stmt->fetch()){
                            <a class="dropdown-item" href="registro-lineas-investigacion-posgrado.html">Lineas de investigación nivel Posgrado</a>
                        </div>
                    </li>
-                   <li class="nav-item">
-                       <a href="index.html" class="nav-link"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
-                   </li>
                </ul>
+               <div class="navbar-dark">
+                   <button type="button" class="btn align-content-end btn-outline-secondary" id="btn_cerrar_sesion"><a href="index.html" href="assets/components/PHP_Consultas/Usuarios/Destroy_Session.php" class="" style="color:white;text-decoration: none"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></button>
+               </div>
            </div>
        </nav>
-
-
-
-
 
 
 
@@ -179,6 +176,30 @@ while($stmt->fetch()){
 
 
 ?>
+
+<script>
+    $(document).ready(function () {
+        $('#btn_cerrar_sesion').click(function () {
+
+            $.ajax({
+                url: "assets/components/PHP_Consultas/Usuarios/Destroy_Session.php",
+                success: function(){
+
+                }
+
+            });
+
+
+        });
+
+
+    });
+
+
+
+</script>
+
+
 
 
 

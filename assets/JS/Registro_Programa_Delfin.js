@@ -15,7 +15,7 @@ function agregarDatos(nombre_proyecto, cantidad_alumnos, id_carrera, anio, fecha
                 $('#registro-programa-delfin').load('assets/components/registro-programa-delfin.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
 
         }
@@ -70,7 +70,7 @@ function actualizarDatos() {
                 $('#registro-programa-delfin').load('assets/components/registro-programa-delfin.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         },
         error: function (error) {
@@ -99,7 +99,7 @@ function eliminarDatos(id_programa) {
                 $('#registro-programa-delfin').load('assets/components/registro-programa-delfin.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

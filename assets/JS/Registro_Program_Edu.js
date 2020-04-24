@@ -17,7 +17,7 @@ function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
                 alertify.success("Agregado con exito: ");
             }
             else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -83,7 +83,7 @@ function actualizarDatos() {
                 alertify.success("Actualizado con exito ");
             }
             else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -108,7 +108,7 @@ function eliminardatos(id_programa_educativo) {
                 $('#registro-programa-educativo').load('assets/components/registro-programa-educativo.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

@@ -1,7 +1,18 @@
 <?php
 
-require_once "../Conexion.php";
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'lineas_investigacion_licenciatura';
+$stmt = consultaPermisos($conn,$id_usuario,$tabla,'Delete');
+
+$stmt->execute();
+
+if($stmt->fetch()){
+
 
 $id_linea=$_POST['id_linea'];
 
@@ -11,4 +22,11 @@ $stmt->bind_param("i",$id_linea);
 echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
+
+
+}
+else{
+    echo 2;
+}
+
 ?>

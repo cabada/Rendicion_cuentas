@@ -1,8 +1,19 @@
 <?php
 
-require_once "../Conexion.php";
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'cursos_formacion_docente_actualizacion_profesional';
 
+$query = consultaPermisos($conn,$id_usuario,$tabla,'Insert');
+
+
+$query->execute();
+
+if($query->fetch()) {
 $nombre_curso=$_POST['nombre_curso'];
 $periodo=$_POST['periodo'];
 $num_participantes=$_POST['num_participantes'];
@@ -15,6 +26,11 @@ $stmt->bind_param("ssii", $nombre_curso,$periodo,$num_participantes,$horas_capac
 echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
+
+}
+else{
+    echo "2";
+}
 
 ?>
 

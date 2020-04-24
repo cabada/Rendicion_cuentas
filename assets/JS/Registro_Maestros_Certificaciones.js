@@ -14,7 +14,7 @@ function agregarDatos(nombre_completo,area_academica,
                 alertify.success("Agregado con exito: ");
             }
             else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -70,7 +70,7 @@ function actualizaDatos() {
                 alertify.success("Actualizado con exito: ");
             }
             else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -97,7 +97,7 @@ function eliminarDatos(id_profesor) {
                 $('#registro-listado-maestros-certificaciones').load('assets/components/registro-listado-maestros-certificaciones.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
 
         }

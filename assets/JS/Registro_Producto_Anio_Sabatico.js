@@ -12,7 +12,7 @@ function  agregarDatos(profesor,proyecto_realizado) {
                 $('#registro-anio-sabatico').load('assets/components/registro-anio-sabatico.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("No tiene los permisos suficientes...");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

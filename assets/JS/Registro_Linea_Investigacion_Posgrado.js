@@ -14,7 +14,7 @@ function agregardatos(id_carrera,nombre_especialidad){
                 $('#registro-lineas-investigacion-posgrado').load('assets/components/registro-lineas-investigacion-posgrado.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -47,7 +47,7 @@ function actualizaDatos() {
                 $('#registro-lineas-investigacion-posgrado').load('assets/components/registro-lineas-investigacion-posgrado.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -73,7 +73,7 @@ function eliminarDatos(id_linea) {
                 $('#registro-lineas-investigacion-posgrado').load('assets/components/registro-lineas-investigacion-posgrado.php');
                 alertify.success("Eliminado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

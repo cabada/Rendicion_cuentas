@@ -1,8 +1,17 @@
 <?php
 
-require_once "../Conexion.php";
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'cuerpos_academicos';
+$stmt = consultaPermisos($conn,$id_usuario,$tabla,'Update');
 
+$stmt->execute();
+
+if($stmt->fetch()){
 $id_cuerpo_academico=$_POST['id_cuerpo_academico'];
 $id_area_academica=$_POST['id_area_academica'];
 $nombre_cuerpo_academico=$_POST['nombre_cuerpo_academico'];
@@ -28,5 +37,11 @@ echo $resultado = $stmt->execute();
 
 $stmt->close();
 $conexion->close();
+
+}
+else{
+    echo 2;
+}
+
 
 ?>

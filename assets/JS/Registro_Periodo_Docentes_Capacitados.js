@@ -19,7 +19,7 @@ function agregardatos(tipo_nombramiento,total_docentes,no_docentes_capacitados,p
                 alertify.success("agregado con exito");
 
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -78,7 +78,7 @@ function actualizaDatos(){
                 alertify.success("Actualizado con exito");
 
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -104,7 +104,7 @@ function eliminarDatos(id_periodo) {
                 $('#registro-periodo-docentes-capacitados').load('assets/components/registro-periodo-docentes-capacitados.php');
                 alertify.success("Eliminado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
 

@@ -12,7 +12,7 @@ function  agregarDatos(nombre_curso,numero_alumnos) {
                 $('#registro-cantidad-alumnos-moocs').load('assets/components/registro-cantidad-alumnos-moocs.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -49,7 +49,7 @@ function actualizarDatos() {
                 $('#registro-cantidad-alumnos-moocs').load('assets/components/registro-cantidad-alumnos-moocs.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -74,7 +74,7 @@ function eliminarDatos(id_moocs_alm) {
                 $('#registro-cantidad-alumnos-moocs').load('assets/components/registro-cantidad-alumnos-moocs.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

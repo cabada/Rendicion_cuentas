@@ -12,7 +12,7 @@ function  agregarDatos(periodo,numero_docentes) {
                 $('#registro-cantidad-docentes-moocs').load('assets/components/registro-cantidad-docentes-moocs.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -49,7 +49,7 @@ function actualizarDatos() {
                 $('#registro-cantidad-docentes-moocs').load('assets/components/registro-cantidad-docentes-moocs.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -74,7 +74,7 @@ function eliminarDatos(id_moocs) {
                 $('#registro-cantidad-docentes-moocs').load('assets/components/registro-cantidad-docentes-moocs.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

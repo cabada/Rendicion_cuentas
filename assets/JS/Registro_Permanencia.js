@@ -13,7 +13,7 @@ function agregarDatos(programa,porcentaje) {
                 $('#registro-permanencia').load('assets/components/registro-permanencia.php');
                 alertify.success("Agregado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -47,7 +47,7 @@ function actualizaDatos() {
                 $('#registro-permanencia').load('assets/components/registro-permanencia.php');
                 alertify.success("Actualizado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -72,7 +72,7 @@ function eliminarDatos(id_permanencia) {
                 $('#registro-permanencia').load('assets/components/registro-permanencia.php');
                 alertify.success("Eliminado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

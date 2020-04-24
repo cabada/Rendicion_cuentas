@@ -1,7 +1,19 @@
 <?php
 
-require_once "../Conexion.php";
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'profesores_tiempo_completo';
+
+$query = consultaPermisos($conn,$id_usuario,$tabla,'Insert');
+
+
+$query->execute();
+
+if($query->fetch()) {
 
 $grado=$_POST['grado'];
 $mujer=$_POST['mujer'];
@@ -16,5 +28,12 @@ echo $resultado = $stmt->execute();
 
 $stmt->close();
 $conexion->close();
+
+
+}
+else{
+    echo "2";
+}
+
 
 ?>

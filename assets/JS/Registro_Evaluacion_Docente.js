@@ -13,7 +13,7 @@ function  agregarDatos(periodo,docentes_evaluados,porcentaje) {
                 $('#registro-evaluacion-docente').load('assets/components/registro-evaluacion-docente.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -55,7 +55,7 @@ function actualizarDatos() {
                 $('#registro-evaluacion-docente').load('assets/components/registro-evaluacion-docente.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -80,7 +80,7 @@ function eliminarDatos(id_evaluacion_doc) {
                 $('#registro-evaluacion-docente').load('assets/components/registro-evaluacion-docente.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

@@ -33,8 +33,7 @@ function agregaform(datos) {
     $('#nombre_usuario_editar').val(d[1]);
     $('#apellido_usuario_editar').val(d[2]);
     $('#email_editar').val(d[3]);
-    $('#v_contrasena_editar').val(d[4]);
-    $('#rol_editar').val(d[5]);
+    $('#rol_editar').val(d[4]);
 
 }
 
