@@ -19,3 +19,9 @@ function verificarUsuario(usuario,contrasena) {
         }
     });
 }
+
+function SessionDestroy(){
+
+
+    $.get('assets/components/PHP_Consultas/Usuarios/Destroy_Session.php');
+}
