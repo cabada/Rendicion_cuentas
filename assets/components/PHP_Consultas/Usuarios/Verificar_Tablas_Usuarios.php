@@ -1,7 +1,7 @@
 <?php
 function consultaTablas($conexion,$id_usuario){
 
-$stmt = $conexion->prepare("select distinct roles.nombre_rol,
+$stmt = $conexion->prepare("select distinct
                                             tablas.tablas
                                         from usuarios
                                         join roles

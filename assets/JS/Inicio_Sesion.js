@@ -9,7 +9,6 @@ function verificarUsuario(usuario,contrasena) {
         data:cadena,
         success:function (r) {
             if(r==1){
-                alert("Hola");
 
                 window.location.href="inicio.html";
 
