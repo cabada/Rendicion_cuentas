@@ -89,7 +89,7 @@ $conexion = conexion();
                  </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-main" id="btn_editar_profesor" data-dismiss="modal">Guardar cambios</button>
+                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_editar_profesor" >Guardar cambios</button>
             </div>
         </div>
     </div>

@@ -5,7 +5,6 @@ $conexion = conexion();
 
 ?>
 
-
 <!-- MODAL FOR NEW FORM -->
 
 <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -102,7 +101,7 @@ $conexion = conexion();
                 </select></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-main" id="btn_editar_usuario">Guardar cambios</button>
+                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_editar_usuario">Guardar cambios</button>
             </div>
         </div>
     </div>
