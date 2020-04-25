@@ -84,7 +84,7 @@ while($stmt->fetch()){
 
                </ul>
            </div>
-           <div">
+           <div>
                <button type="button" class="btn align-content-end btn-outline-secondary" id="btn_cerrar_sesion"><a href="index.html" class="" style="color:white;text-decoration: none"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></button>
            </div>
 
@@ -157,9 +157,9 @@ while($stmt->fetch()){
                        </div>
                    </li>
                </ul>
-               <div class="navbar-dark">
-                   <button type="button" class="btn align-content-end btn-outline-secondary" id="btn_cerrar_sesion"><a href="index.html" href="assets/components/PHP_Consultas/Usuarios/Destroy_Session.php" class="" style="color:white;text-decoration: none"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></button>
-               </div>
+           </div>
+           <div>
+               <button type="button" class="btn align-content-end btn-outline-secondary" id="btn_cerrar_sesion"><a href="index.html" href="assets/components/PHP_Consultas/Usuarios/Destroy_Session.php" class="" style="color:white;text-decoration: none"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></button>
            </div>
        </nav>
 

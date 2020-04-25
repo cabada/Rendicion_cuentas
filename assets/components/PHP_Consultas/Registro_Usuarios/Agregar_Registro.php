@@ -7,6 +7,7 @@
     $apellido=$_POST['apellido'];
     $email=$_POST['email'];
     $contrasena=$_POST['contrasena'];
+    $contrasena = md5($contrasena);
     $rol=$_POST['rol'];
 
     $stmt = $conexion->prepare("insert into usuarios(nombre_usuario,apellido_usuario,email_usuario,contrasena_usuario,id_rol_usuario) values (?,?,?,?,?)");

@@ -29,10 +29,10 @@ $conexion = conexion();
                 <input type="email" required placeholder="Ejemplo@Ejemplo.com" id="email_agregar" class="form-control-page input-group-sm usuario" >
 
                 <label>Contrasena</label>
-                <input type="password" required placeholder="" id="contrasena_agregar" class="form-control-page input-group-sm usuario" >
+                <input type="password" required placeholder="***********" id="contrasena_agregar" class="form-control-page input-group-sm usuario" >
 
                 <label>Verificar Contrasena</label>
-                <input type="password" required placeholder="" id="v_contrasena_agregar" class="form-control-page input-group-sm usuario" >
+                <input type="password" required placeholder="***********" id="v_contrasena_agregar" class="form-control-page input-group-sm usuario" >
 
                 <label>Rol</label>
                 <select type="text"  required class="form-control-page input-group-sm usuario" id="rol_agregar">
@@ -117,9 +117,9 @@ $conexion = conexion();
 
 
                     v_contra= $('#v_contrasena_agregar').val();
-                    console.log(v_contra);
+
                     contra = $('#contrasena_agregar').val();
-                    console.log(contra);
+
 
                     //Verifica que las contrasenas sean iguales
 
@@ -143,6 +143,36 @@ $conexion = conexion();
 
                 });
 
+        $("#v_contrasena_editar").focusout(function () {
+
+
+            v_contrae= $('#v_contrasena_editar').val();
+
+            contrae = $('#contrasena_editar').val();
+
+
+            //Verifica que las contrasenas sean iguales
+
+            if(v_contrae==contrae){
+                document.getElementById('v_contrasena_editar').style.borderColor = 'green';
+                document.getElementById('contrasena_editar').style.borderColor = 'green';
+
+                //Si son iguales se cambiara el contorno a verde de los inputs, y ademas dejara hacerle click a la funcion
+                //que lleva los datos al archivo JS para luego llevarlos al archivo PHP y guardarlos en la BD.
+
+
+            }
+
+            else{
+                document.getElementById('v_contrasena_editar').style.borderColor = 'red';
+                document.getElementById('contrasena_editar').style.borderColor = 'red';
+                document.getElementById("btn_editar_usuario").disabled = true;
+
+
+            }
+
+        });
+
         $('#btn_agregar_usuario').click(function () {
 
 
@@ -152,14 +182,14 @@ $conexion = conexion();
 
 
             nombre_usuario =  $('#nombre_usuario_agregar').val();
-            console.log(nombre_usuario);
+
             apellido= $('#apellido_usuario_agregar').val();
-            console.log(apellido);
+
             email= $('#email_agregar').val();
-            console.log(email);
+
             contra = $('#contrasena_agregar').val();
-            v_contrasena= parseInt($('#v_contrasena_agregar').val());
-            console.log(v_contrasena);
+            v_contrasena= $('#v_contrasena_agregar').val();
+
             rol = rol_valor;
 
             agregarDatos(nombre_usuario,apellido,email,v_contrasena,rol);

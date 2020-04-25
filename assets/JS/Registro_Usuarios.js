@@ -45,14 +45,14 @@ function actualizaDatos(){
 
 
     nombre_usuario =  $('#nombre_usuario_editar').val();
-    console.log(nombre_usuario);
+
     apellido= $('#apellido_usuario_editar').val();
-    console.log(apellido);
+
     email= $('#email_editar').val();
-    console.log(email);
+
     contra = $('#contrasena_editar').val();
-    v_contrasena= parseInt($('#v_contrasena_editar').val());
-    console.log(v_contrasena);
+    v_contrasena= $('#v_contrasena_editar').val();
+
     rol = rol_valor;
 
 
