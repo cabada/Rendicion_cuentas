@@ -1,25 +1,25 @@
 <?php
-    require_once "PHP_Consultas/Conexion.php";
-    require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
-    $conexion = conexion();
-    $conn = conexion();
-    session_start();
-    $id_usuario = $_SESSION["id_usuario"];
-    $stmt = consultaTablas($conn,$id_usuario);
-    $stmt->execute();
-    $stmt->bind_result($resultado);
+require_once "PHP_Consultas/Conexion.php";
+require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
+$conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$stmt = consultaTablas($conn,$id_usuario);
+$stmt->execute();
+$stmt->bind_result($resultado);
 
-    while($stmt->fetch()){
-        $tablaRequerida = 'programa_educativo';
-        if($resultado == $tablaRequerida){
-?>
+while($stmt->fetch()){
+    $tablaRequerida = 'programa_educativo';
+    if($resultado == $tablaRequerida){
+        ?>
 
-<div class="row">
-    <div class="col-sm-12">
-        <div class="table-responsive-xl">
-            <?php
-                $salida = "";
-                $sql="SELECT 
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive-xl">
+                    <?php
+                    $salida = "";
+                    $sql="SELECT 
                     programa_educativo.id_programa_educativo,
                     carreras.nombre_carrera,
                     programa_educativo.modalidad,
@@ -30,9 +30,9 @@
                     FROM carreras 
                     RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera";
 
-                if (isset($_POST['consulta'])) {
-                    $q = $conexion->real_escape_string($_POST['consulta']);
-                    $sql="SELECT 
+                    if (isset($_POST['consulta'])) {
+                        $q = $conexion->real_escape_string($_POST['consulta']);
+                        $sql="SELECT 
                         programa_educativo.id_programa_educativo,
                         carreras.nombre_carrera,
                         programa_educativo.modalidad,
@@ -42,11 +42,11 @@
                         programa_educativo.periodo 
                         FROM carreras 
                         RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera WHERE carreras.nombre_carrera LIKE '%$q%'";
-                }
+                    }
 
-                $resultado = $conexion->query($sql);
-                if ($resultado->num_rows>0) {
-                    $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+                    $resultado = $conexion->query($sql);
+                    if ($resultado->num_rows>0) {
+                        $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                         <tr>
                             <td class="text-center align-middle background-table">Carrera</td>
                             <td class="text-center align-middle background-table">Modalidad</td>
@@ -61,13 +61,13 @@
                         $resultado = mysqli_query($conexion,$sql);
                         while($buscar=mysqli_fetch_row($resultado)) {
 
-                        $datos = $buscar[0]."||".
-                            $buscar[1]."||".
-                            $buscar[2]."||".
-                            $buscar[3]."||".
-                            $buscar[4]."||".
-                            $buscar[5]."||".
-                            $buscar[6];
+                            $datos = $buscar[0]."||".
+                                $buscar[1]."||".
+                                $buscar[2]."||".
+                                $buscar[3]."||".
+                                $buscar[4]."||".
+                                $buscar[5]."||".
+                                $buscar[6];
 
 
                             $suma = $buscar[3]+$buscar[4];
@@ -86,8 +86,8 @@
                                 </tr>';
                         }
                         $salida.="</table>";
-                } else {
-                    $salida.='<div class="row mt-3">
+                    } else {
+                        $salida.='<div class="row mt-3">
                             <div class="col-12 text-center">
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <strong>¡No se encontró ningún elemento!</strong><br>
@@ -97,17 +97,17 @@
                                 </div>
                             </div>
                         </div>';
-                }
-                echo $salida;
-            ?>
+                    }
+                    echo $salida;
+                    ?>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<?php
-        }
-
+        <?php
     }
-    $stmt->close();
-    $conexion->close();
+
+}
+$stmt->close();
+$conexion->close();
 ?>

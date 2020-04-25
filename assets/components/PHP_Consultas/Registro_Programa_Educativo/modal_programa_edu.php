@@ -19,7 +19,7 @@ $conexion = conexion();
             <div class="modal-body">
 
                 <label>Carrera</label>
-                <select type="text" class="form-control-page input-group-sm" id="carrera_agregar">
+                <select type="text" class="form-control-page input-group-sm"  id="carrera_agregar">
                     <?php
                     $query = "select id_carrera,nombre_carrera from carreras where id_programa_universi=1";
                     $resultado = mysqli_query($conexion,$query);
@@ -86,7 +86,7 @@ $conexion = conexion();
                 <input type="number" id="id_programa_educativo" class="form-control-page input-group-sm" readonly="readonly">
 
                 <label>Carrera</label>
-                <select type="text" class="form-control-page input-group-sm" id="carrera_editar">
+                <select type="text" class="form-control-page input-group-sm" name="carreras" id="carrera_editar">
                     <?php
                     $query = "select id_carrera,nombre_carrera from carreras where id_programa_universi=1";
                     $resultado = mysqli_query($conexion,$query);

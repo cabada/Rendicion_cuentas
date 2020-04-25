@@ -26,15 +26,22 @@ function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
 
 function agregaForm(datos) {
 
+
     d = datos.split('||');
 
     $('#id_programa_educativo').val(d[0]);
-    $('#carrera_editar').val(d[1]);
-    $('#modalidad_editar').val(d[2]);
+
+    $('option:selected', 'select[carrera_editar="options"]').removeAttr('selected');
+    $('option:selected', 'select[modalidad_editar="options"]').removeAttr('selected');
+    $('option:selected', 'select[estatus_editar="options"]').removeAttr('selected');
+    $('option:selected', 'select[periodo_editar="options"]').removeAttr('selected');
+
+    $("#carrera_editar option:contains('"+d[1]+"')").attr('selected', true);
+    $("#modalidad_editar option:contains('"+d[2]+"')").attr('selected', true);
     $('#ingreso_editar').val(d[3]);
     $('#reingreso_editar').val(d[4]);
-    $('#estatus_editar').val(d[5]);
-    $('#periodo_editar').val(d[6]);
+    $("#estatus_editar option:contains('"+d[5]+"')").attr('selected', true);
+    $("#periodo_editar option:contains('"+d[6]+"')").attr('selected', true);
 
 }
 

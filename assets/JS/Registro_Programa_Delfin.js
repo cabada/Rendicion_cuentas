@@ -43,7 +43,7 @@ function actualizarDatos() {
     console.log(cantidad_alumnos);
 
     var carrera_sel = document.getElementById("carrera_editar");
-    var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].text;
+    var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].value;
     id_carrera = carrera_valor;
     console.log(id_carrera);
     anio = $('#anio_editar').val();
