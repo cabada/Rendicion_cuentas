@@ -27,9 +27,13 @@ function agregaform(datos) {
 
     d=datos.split('||');
 
+    console.log(d);
+
+    $('option:selected', 'select[area_academica_editar="options"]').removeAttr('selected');
+
     $('#id_profesor').val(d[0]);
     $('#nombre_editar').val(d[1]);
-    $('#area_academica_editar').val(d[2]);
+    $("#area_academica_editar option:contains('"+d[2]+"')").attr('selected', true);
     $('#disciplina_editar').val(d[3]);
 
 

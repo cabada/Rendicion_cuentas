@@ -37,7 +37,7 @@ if($resultado == $tablaRequerida){
 
                 <?php
                 $sql="select lineas_investigacion_licenciatura.ID_LINEA,
-                                 carreras.ID_CARRERA, 
+                                 carreras.NOMBRE_CARRERA, 
                                  lineas_investigacion_licenciatura.NOMBRE_ESPECIALIDAD
                                  from carreras
                                  right join lineas_investigacion_licenciatura on carreras.ID_CARRERA = lineas_investigacion_licenciatura.ID_CARRERA";

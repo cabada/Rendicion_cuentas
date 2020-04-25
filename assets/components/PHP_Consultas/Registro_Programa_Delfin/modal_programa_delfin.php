@@ -98,7 +98,7 @@ $conexion = conexion();
                 <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_editar">
 
                 <label>Fecha de terminación</label>
-                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_editar">
+                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_termino_editar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

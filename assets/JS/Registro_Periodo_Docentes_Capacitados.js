@@ -54,7 +54,8 @@ function actualizaDatos(){
 
 
     porcentaje= (no_docentes_capacitados*100)/total_docentes;
-    porcentaje = porcentaje.toString() + "%"
+    porcentaje = Math.round(porcentaje);
+    porcentaje = porcentaje.toString() + "%";
 
 
     console.log(porcentaje);

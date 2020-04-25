@@ -29,11 +29,14 @@ function agregaform(datos) {
 
     d=datos.split('||');
 
+    $('option:selected', 'select[rol_editar="options"]').removeAttr('selected');
+
     $('#id_usuario_editar').val(d[0]);
     $('#nombre_usuario_editar').val(d[1]);
     $('#apellido_usuario_editar').val(d[2]);
     $('#email_editar').val(d[3]);
-    $('#rol_editar').val(d[4]);
+    $("#rol_editar option:contains('"+d[4]+"')").attr('selected', true);
+
 
 }
 
