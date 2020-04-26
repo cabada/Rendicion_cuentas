@@ -52,6 +52,7 @@ if($resultado == $tablaRequerida){
                             $ver[2]."||".
                             $ver[3]."||".
                             $ver[4];
+
         ?>
 
                 <tr>
@@ -69,9 +70,20 @@ if($resultado == $tablaRequerida){
                  ?>
                 <tr style="font-weight: bold">
                     <td>Total</td>
+                    <?php
+                    $sql = "select sum(sala) as sala from stock_salas_comp";
+                    $result = mysqli_query($conexion,$sql);
+                    $ver = mysqli_fetch_row($result);
+                    ?>
+                    <td><?php echo $ver[0]?></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <?php
+                    $sql = "select sum(total_comp) as total from stock_salas_comp";
+                    $result = mysqli_query($conexion,$sql);
+                    $ver = mysqli_fetch_row($result);
+                    ?>
+                    <td><?php echo $ver[0]?></td>
+
 
                 </tr>
             </table>

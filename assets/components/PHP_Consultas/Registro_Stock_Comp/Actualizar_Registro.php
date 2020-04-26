@@ -6,30 +6,28 @@ $conexion = conexion();
 $conn = conexion();
 session_start();
 $id_usuario = $_SESSION["id_usuario"];
-$tabla = 'tutorias';
+$tabla = 'stock_salas_comp';
 $stmt = consultaPermisos($conn,$id_usuario,$tabla,'Update');
 
 $stmt->execute();
 
 if($stmt->fetch()){
 
-$id_tutorias=$_POST['id_tutorias'];
-$tutores_registrados=$_POST['tutores_registrados'];
-$alumnos_tuto_grupal=$_POST['alumnos_tuto_grupal'];
-$encuentro_padres=$_POST['encuentro_padres'];
-$conferencias_alumnos=$_POST['conferencias_alumnos'];
-$alumnos_asistieron_conferencias=$_POST['alumnos_asistieron_conferencias'];
+$id_registro=$_POST['id_registro'];
+$area_academica=$_POST['area_academica'];
+$numeroSala=$_POST['numeroSala'];
+$numeroComp=$_POST['numeroComp'];
+$total=$_POST['total'];
 
-$stmt = $conexion->prepare("update tutorias set
-                                            TUTORES_REGISTRADOS=?,
-                                            ALUMNOS_TUTO_GRUPAL=?,
-                                            ENCUENTRO_PADRES=?,
-                                            CONFERENCIAS_ALUMNOS=?,
-                                            ALUMNOS_ASISTIERON_CONFERENCIAS=?
-                                            where ID_TUTORIAS = $id_tutorias");
+$stmt = $conexion->prepare("update stock_salas_comp set
+                                            id_area_academica=?,
+                                            sala=?,
+                                            numero_comp=?,
+                                            total_comp=?
+                                            where id_stock_comp = $id_registro");
 
-$stmt->bind_param("iiiii", $tutores_registrados, $alumnos_tuto_grupal,
-                      $encuentro_padres,$conferencias_alumnos,$alumnos_asistieron_conferencias);
+$stmt->bind_param("issi", $area_academica, $numeroSala,
+                      $numeroComp,$total);
 
 echo $resultado = $stmt->execute();
 
