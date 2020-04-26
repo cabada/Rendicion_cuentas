@@ -36,70 +36,9 @@
             <div id="registro-total-alumnos-programa-posgrado"></div>
         </div>
 
-        <!-- MODAL FOR NEW FORM -->
-        <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="new-modalLabel">Agregar nuevo registro</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<label>Nombre de programa</label>
-                        <input type="text" id="nombre_curso_agregar" class="form-control-page input-group-sm">
+        <div id="modal">
 
-                        <label>Cantidad</label>
-                        <input type="number" value="0" id="cantidad_agregar" class="form-control-page input-group-sm">
-
-						<label>Porcentaje</label>
-                        <input type="text" id="porcentaje_agregar" class="form-control-page input-group-sm">
-
-                        <label>Registrado en</label>
-                        <input class="form-control-page input-group-sm" type="text" id="registro_agregar">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<!-- MODAL FOR EDITION -->
-		<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Editar registro</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-                        <label>Numero de registro</label>
-                        <input type="id" id="id_total_prog_posgrado" class="form-control-page input-group-sm" readonly="readonly">
-
-						<label>Nombre de programa</label>
-                        <input type="text" id="nombre_curso_editar" class="form-control-page input-group-sm">
-
-                        <label>Cantidad</label>
-                        <input type="number" value="0" id="cantidad_editar" class="form-control-page input-group-sm">
-
-						<label>Porcentaje</label>
-                        <input type="text" id="porcentaje_editar" class="form-control-page input-group-sm">
-
-                        <label>Registrado en</label>
-                        <input class="form-control-page input-group-sm" type="text" id="registro_editar">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_editar_curso_actual">Guardar cambios</button>
-					</div>
-				</div>
-			</div>
-		</div>
+        </div>
 
     </main>
     
@@ -131,26 +70,8 @@
     $(document).ready(function(){
         $('#navbar').load('navbar.php');
         $('#registro-total-alumnos-programa-posgrado').load('assets/components/registro-total-alumnos-programa-posgrado.php');
+        $('#modal').load('assets/components/PHP_Consultas/Registro_Total_Alumnos_Programa_Posgrado/modal_total_alumnos_programap.php');
+
     });
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-      $('#btn_agregar_curso_actual').click(function () {
-
-          programa=$('#nombre_curso_agregar').val();
-          console.log(programa);
-          cantidad=$('#cantidad_agregar').val();
-          console.log(cantidad);
-          porcentaje=$('#porcentaje_agregar').val();
-          console.log(porcentaje);
-          registrado_en=$('#registro_agregar').val();
-          console.log(registrado_en);
-
-          agregardatos(programa,cantidad,porcentaje,registrado_en)
-      });
-      $('#btn_editar_curso_actual').click(function () {
-          actualizaDatos();
-      });
-    });
-</script>
