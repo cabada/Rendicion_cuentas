@@ -38,7 +38,7 @@ if($resultado == $tablaRequerida){
 
                 <?php
                 $sql="select
-                matriculas.ID_CARRERA,
+                matriculas.ID_MATRICULA,
                 carreras.ID_CARRERA,
                 matriculas.CANTIDAD_ALUMNOS
                       from carreras
