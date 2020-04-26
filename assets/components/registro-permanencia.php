@@ -38,7 +38,7 @@ if($resultado == $tablaRequerida){
                 <?php
                 $sql="select 
                             permanencia.ID_PERMANENCIA,
-                            carreras.id_carrera,
+                            carreras.ID_CARRERA,
                             permanencia.PORCENTAJE 
                             from carreras
                             right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA";

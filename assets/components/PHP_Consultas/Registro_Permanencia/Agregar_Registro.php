@@ -15,11 +15,11 @@ $query->execute();
 
 if($query->fetch()) {
 
-$programa=$_POST['programa'];
+$id_carrera=$_POST['id_carrera'];
 $porcentaje=$_POST['porcentaje'];
 
-$stmt = $conexion->prepare("insert into permanencia (PROGRAMA, PORCENTAJE) values (?,?)");
-$stmt->bind_param("ss",$programa,$porcentaje);
+$stmt = $conexion->prepare("insert into permanencia (ID_CARRERA, PORCENTAJE) values (?,?)");
+$stmt->bind_param("is",$id_carrera,$porcentaje);
 
 echo $resultado = $stmt->execute();
 $stmt->close();
