@@ -71,20 +71,42 @@ while($stmt->fetch()){
 
 
                             $suma = $buscar[3]+$buscar[4];
-                            $salida.='<tr>
+                            $salida.='<tr class="tablasuma">
                                     <td>'.$buscar[1].'</td>
                                     <td>'.$buscar[2].'</td>
                                     <td>'.$buscar[3].'</td>
                                     <td>'.$buscar[4].'</td>
                                     <td>'.$buscar[5].'</td>
                                     <td>'.$buscar[6].'</td>
-                                    <td>'.$suma.'</td>
+                                    <td class="tdsuma">'.$suma.'</td>
                                     <td class="text-center align-middle">
                                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"  onclick="agregaForm(\''.$datos.'\')" ><i class="far fa-edit"></i>  Editar</button>
                                         <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\''.$buscar[0].'\')"><i class="fas fa-trash"></i>  Eliminar</button>
                                     </td>
                                 </tr>';
                         }
+
+                        $salida.="<tr style='font-weight: bold'>
+
+                                    <td>Total</td>";
+                        $sql = "select sum(nuevo_ingreso) as nuevo_ingreso from programa_educativo";
+                        $resultado = $conexion->query($sql);
+                        $buscar = mysqli_fetch_row($resultado);
+                           $salida.="<td></td>
+                                    <td>$buscar[0]</td>";
+                        $sql = "select sum(reingreso) as reingreso from programa_educativo";
+                        $resultado = $conexion->query($sql);
+                        $buscar = mysqli_fetch_row($resultado);
+                                    $salida.="<td>$buscar[0]</td>
+                                    <td></td>
+                                    <td></td>";
+                        $sql = "select sum(total) as total from programa_educativo";
+                        $resultado = $conexion->query($sql);
+                        $buscar = mysqli_fetch_row($resultado);
+
+                                    $salida.="<td>$buscar[0]</td>";
+
+                                  $salida.="</tr>";
                         $salida.="</table>";
                     } else {
                         $salida.='<div class="row mt-3">

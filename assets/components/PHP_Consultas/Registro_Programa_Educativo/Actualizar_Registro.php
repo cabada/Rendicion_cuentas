@@ -19,6 +19,7 @@ $nuevo_ingreso = $_POST['nuevo_ingreso'];
 $reingreso = $_POST['reingreso'];
 $estatus = $_POST['status'];
 $periodo = $_POST['periodo'];
+$total = $_POST['total'];
 
 $stmt = $conexion->prepare("update programa_educativo set
                                     ID_CARRERA=?,
@@ -26,10 +27,11 @@ $stmt = $conexion->prepare("update programa_educativo set
                                     NUEVO_INGRESO=?,
                                     REINGRESO=?,
                                     ESTATUS=?,
-                                    PERIODO=?
+                                    PERIODO=?,
+                                    TOTAL=?
                                     where ID_PROGRAMA_EDUCATIVO=$id_programa_educativo");
 
-$stmt->bind_param("isiiss", $id_carrera,$modalidad,$nuevo_ingreso,$reingreso,$estatus,$periodo);
+$stmt->bind_param("isiissi", $id_carrera,$modalidad,$nuevo_ingreso,$reingreso,$estatus,$periodo,$total);
 
 echo $resultado = $stmt->execute();
 

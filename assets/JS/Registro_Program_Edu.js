@@ -1,11 +1,12 @@
 function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
-                      periodo) {
+                      periodo,total) {
     cadena = "carrera=" + carrera +
         "&modalidad=" + modalidad +
         "&nuevo_ingreso=" + nuevo_ingreso +
         "&reingreso=" + reingreso +
         "&status=" + status +
-        "&periodo=" + periodo;
+        "&periodo=" + periodo+
+        "&total="+total;
 
     $.ajax({
         type:"post",
@@ -14,12 +15,15 @@ function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
         success:function(r) {
             if(r==1){
                 $('#registro-programa-educativo').load('assets/components/registro-programa-educativo.php');
+
                 alertify.success("Agregado con exito: ");
             }
             else{
                 alertify.error("No tiene los privilegios suficientes...");
             }
+
         }
+
     });
 
 }
@@ -71,6 +75,7 @@ function actualizarDatos() {
 
     periodo=periodo_valor;
     console.log(periodo);
+    total = nuevo_ingreso + reingreso;
 
     cadena ="id_programa_educativo=" + id_programa_educativo +
         "&carrera=" + carrera +
@@ -78,7 +83,8 @@ function actualizarDatos() {
         "&nuevo_ingreso=" + nuevo_ingreso +
         "&reingreso=" + reingreso +
         "&status=" + status +
-        "&periodo=" + periodo;
+        "&periodo=" + periodo+
+        "&total="+total;
 
     $.ajax({
         type:"post",

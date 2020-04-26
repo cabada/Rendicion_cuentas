@@ -17,6 +17,7 @@ if($query->fetch()) {
 
 $programa=$_POST['programa'];
 $porcentaje=$_POST['porcentaje'];
+$porcentaje = strval($porcentaje);
 
 $stmt = $conexion->prepare("insert into permanencia (PROGRAMA, PORCENTAJE) values (?,?)");
 $stmt->bind_param("ss",$programa,$porcentaje);

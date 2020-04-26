@@ -16,6 +16,7 @@ if($stmt->fetch()){
 $id_permanencia=$_POST['id_permanencia'];
 $programa=$_POST['programa'];
 $porcentaje=$_POST['porcentaje'];
+$porcentaje = strval($porcentaje);
 
 $stmt = $conexion->prepare("update permanencia set
                                    PROGRAMA=?,

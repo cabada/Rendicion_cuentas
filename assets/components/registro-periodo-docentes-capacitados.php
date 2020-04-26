@@ -72,6 +72,72 @@ if($resultado == $tablaRequerida){
                     <?php
                 }
                 ?>
+                <tr style="font-weight: bold">
+                    <td>Total Enero</td>
+                    <?php
+                    $sql="select sum(total_docentes) as tota_docentes from periodo_docentes_capacitados where periodo='Enero'";
+
+                    $resultado = mysqli_query($conexion,$sql);
+
+                    $buscar=mysqli_fetch_row($resultado);
+                    ?>
+                    <td><?php echo $buscar[0]?></td>
+                    <?php
+                    $sql1="select sum(no_docentes_capacitados) as docentes_capacitados from periodo_docentes_capacitados where periodo='Enero'";
+
+                    $resultado1 = mysqli_query($conexion,$sql1);
+
+                    $buscar1=mysqli_fetch_row($resultado1);
+                    ?>
+                    <td><?php echo $buscar1[0]?></td>
+                    <?php
+
+                    if(isset($buscar[0])){
+                        $porcentaje= ($buscar1[0]*100)/$buscar[0];
+                        $porcentaje = round($porcentaje);
+
+                    }
+                    else{
+                        $porcentaje=0;
+                    }
+
+                    ?>
+                    <td><?php echo $porcentaje?>%</td>
+                </tr>
+                <tr style="font-weight: bold">
+                    <td>Total Junio</td>
+                    <?php
+                    $sql="select sum(total_docentes) as tota_docentes from periodo_docentes_capacitados where periodo='Junio'";
+
+                    $resultado = mysqli_query($conexion,$sql);
+
+                    $buscar=mysqli_fetch_row($resultado);
+                    ?>
+                    <td><?php echo $buscar[0]?></td>
+                    <?php
+                    $sql1="select sum(no_docentes_capacitados) as docentes_capacitados from periodo_docentes_capacitados where periodo='Junio'";
+
+                    $resultado1 = mysqli_query($conexion,$sql1);
+
+                    $buscar1=mysqli_fetch_row($resultado1);
+                    ?>
+                    <td><?php echo $buscar1[0]?></td>
+                    <?php
+
+                    if(isset($buscar[0])){
+                        $porcentaje= ($buscar1[0]*100)/$buscar[0];
+                        $porcentaje = round($porcentaje);
+
+                    }
+                    else{
+                        $porcentaje=0;
+                    }
+
+
+
+                    ?>
+                    <td><?php echo $porcentaje?>%</td>
+                </tr>
             </table>
         </div>
     </div>

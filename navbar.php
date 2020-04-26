@@ -76,6 +76,12 @@ while($stmt->fetch()){
                        </div>
                    </li>
                    <li class="nav-item dropdown">
+                       <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="desplegable">Otros</a>
+                       <div class="dropdown-menu">
+                           <a class="dropdown-item" href="registro-stock-salas-comp.html">Aulas Equipadas con Equipo Informático</a>
+                          </div>
+                   </li>
+                   <li class="nav-item dropdown">
                        <a href="usuarios.html" class="nav-link" >Usuarios<span class="sr-only">(current)</span></a>
                    </li>
                    <li class="nav-item dropdown">
@@ -154,6 +160,12 @@ while($stmt->fetch()){
                            <a class="dropdown-item" href="#">Lineas de investigación</a>
                            <a class="dropdown-item" href="registro-lineas-investigacion-licenciaturas.html">Lineas de investigación nivel Licenciatura</a>
                            <a class="dropdown-item" href="registro-lineas-investigacion-posgrado.html">Lineas de investigación nivel Posgrado</a>
+                       </div>
+                   </li>
+                   <li class="nav-item dropdown">
+                       <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="desplegable">Otros</a>
+                       <div class="dropdown-menu">
+                           <a class="dropdown-item" href="registro-stock-salas-comp.html">Aulas Equipadas con Equipo Informático</a>
                        </div>
                    </li>
                </ul>

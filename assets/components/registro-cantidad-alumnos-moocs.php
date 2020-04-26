@@ -58,6 +58,19 @@ if($resultado == $tablaRequerida){
                     <?php
                 }
                 ?>
+                <tr style="font-weight: bold">
+                    <td>Total</td>
+                    <?php
+                     $sql="select sum(numero_alumnos_inscritos) as alumnos_inscritos
+                            from moocs_alumnos";
+
+                     $result=mysqli_query($conexion,$sql);
+
+                     $buscar=mysqli_fetch_row($result);
+                    ?>
+                    <td><?php echo $buscar[0]?></td>
+
+                </tr>
             </table>
         </div>
     </div>

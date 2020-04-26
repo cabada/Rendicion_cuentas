@@ -61,6 +61,19 @@ if($resultado == $tablaRequerida){
                     <?php
                 }
                 ?>
+                <tr style="font-weight: bold">
+                    <td>Total</td>
+
+                    <?php
+
+                    $sql="select sum(CANTIDAD_ALUMNOS) 
+                      from matriculas";
+                    $result=mysqli_query($conexion,$sql);
+                    $ver=mysqli_fetch_row($result);
+                    ?>
+
+                    <td><?php echo $ver[0]?></td>
+                </tr>
             </table>
         </div>
     </div>

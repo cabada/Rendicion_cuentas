@@ -7,11 +7,16 @@
         <div class="table-responsive-xl">
             <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                 <tr>
-                    <td class="text-center align-middle background-table">Número de sala</td>
-                    <td class="text-center align-middle background-table">Cantidad de computadoras</td>
+                    <td class="text-center align-middle background-table">Área Académica</td>
+                    <td class="text-center align-middle background-table">No. de Salas con Computadoras</td>
+                    <td class="text-center align-middle background-table">No. de Computadoras por Sala</td>
+                    <td class="text-center align-middle background-table">Total de Computadoras</td>
                     <td class="text-center align-middle background-table">Acciones</td>
                 </tr>
                 <tr>
+
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td class="text-center align-middle">

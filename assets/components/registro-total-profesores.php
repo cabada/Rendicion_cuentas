@@ -50,7 +50,20 @@ if($resultado == $tablaRequerida){
                     <tr>
                         <td><?php echo $buscar[1]?></td>
                         <td><?php echo $buscar[2]?></td>
-                        <td></td>
+                        <?php
+                        $sql1="select sum(cantidad) as cantidad from total_profesores_grado_academico";
+
+                        $resultado1 = mysqli_query($conexion,$sql1);
+
+                        $buscar1=mysqli_fetch_row($resultado1);
+
+                        $total = $buscar1[0];
+
+                        $porcentaje = ($buscar[2] * 100)/$total;
+                        $porcentaje = round($porcentaje);
+
+                        ?>
+                        <td><?php echo $porcentaje?>%</td>
                         <td class="text-center align-middle">
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i class="far fa-edit"></i>  Editar</button>
                             <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $buscar[0]?>')"><i class="fas fa-trash" ></i>  Eliminar</button>
@@ -59,6 +72,18 @@ if($resultado == $tablaRequerida){
                     <?php
                 }
                 ?>
+                <tr style="font-weight: bold">
+                    <td>Total Profesores</td>
+                    <?php
+                    $sql="select sum(cantidad) as cantidad from total_profesores_grado_academico";
+
+                    $resultado = mysqli_query($conexion,$sql);
+
+                    $buscar=mysqli_fetch_row($resultado);
+                    ?>
+                    <td><?php echo $buscar[0]?></td>
+                    <td>100%</td>
+                </tr>
             </table>
         </div>
     </div>

@@ -160,8 +160,9 @@ $conexion = conexion();
             console.log(status);
             periodo = $('#periodo_agregar').val();
             console.log(periodo);
+            total = nuevo_ingreso + reingreso;
             agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
-                periodo)
+                periodo,total);
         });
 
         $('#btn_editar_curso_actual').click(function () {
