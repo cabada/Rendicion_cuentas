@@ -1,7 +1,7 @@
 
-function agregarDatos(programa,porcentaje) {
+function agregarDatos(id_carrera,porcentaje) {
 
-    cadena="programa=" + programa +
+    cadena="id_carrera=" + id_carrera +
            "&porcentaje=" + porcentaje;
 
     $.ajax({
@@ -31,11 +31,11 @@ function agregaform(datos) {
 
 function actualizaDatos() {
     id_permanencia=$('#id_permanencia').val();
-    programa=$('#nombre_programa_editar').val();
+    id_carrera=$('#nombre_programa_editar').val();
     porcentaje=$('#porcentaje_editar').val();
 
     cadena="id_permanencia=" + id_permanencia +
-        "&programa=" + programa +
+        "&id_carrera=" + id_carrera +
         "&porcentaje=" + porcentaje;
 
     $.ajax({
