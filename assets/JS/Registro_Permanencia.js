@@ -22,9 +22,10 @@ function agregarDatos(programa,porcentaje) {
 function agregaform(datos) {
 
     d=datos.split('||');
+    $('option:selected', 'select[nombre_programa_editar="options"]').removeAttr('selected');
 
     $('#id_permanencia').val(d[0]);
-    $('#nombre_programa_editar').val(d[1]);
+    $("#nombre_programa_editar option:contains('"+d[1]+"')").attr('selected', true);
     $('#porcentaje_editar').val(d[2]);
 
 }
