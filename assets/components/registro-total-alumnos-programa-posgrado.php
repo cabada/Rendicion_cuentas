@@ -64,7 +64,6 @@ if($resultado == $tablaRequerida){
                         <td><?php echo $ver[2] ?></td>
                         <td><?php echo $ver[3] ?></td>
                         <td><?php echo $ver[4] ?></td>
-                        <td><?php echo $ver[5] ?></td>
                         <td class="text-center align-middle">
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i
                                         class="far fa-edit"></i> Editar
