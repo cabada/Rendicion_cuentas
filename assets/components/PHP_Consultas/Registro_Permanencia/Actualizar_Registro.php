@@ -14,7 +14,7 @@ $stmt->execute();
 if($stmt->fetch()){
 
 $id_permanencia=$_POST['id_permanencia'];
-$id_carrera=$_POST['id_carrera'];
+$id_carrera=$_POST['programa'];
 $porcentaje=$_POST['porcentaje'];
 $porcentaje = strval($porcentaje);
 

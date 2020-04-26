@@ -15,7 +15,7 @@ $query->execute();
 
 if($query->fetch()) {
 
-$id_carrera=$_POST['id_carrera'];
+$id_carrera=$_POST['permanencia'];
 $porcentaje=$_POST['porcentaje'];
 $porcentaje = strval($porcentaje);
 
