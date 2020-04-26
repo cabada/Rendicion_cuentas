@@ -24,7 +24,6 @@ echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
 
-
 }
 else{
     echo "2";
