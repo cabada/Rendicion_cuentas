@@ -34,10 +34,7 @@ $conexion = conexion();
                 <label>Cantidad</label>
                 <input type="number" value="0" id="cantidad_agregar" class="form-control-page input-group-sm">
 
-                <label>Porcentaje</label>
-                <input type="text" id="porcentaje_agregar" class="form-control-page input-group-sm">
-
-                <label>Registrado en</label>
+              <label>Registrado en</label>
                 <input class="form-control-page input-group-sm" type="text" id="registro_agregar">
             </div>
             <div class="modal-footer">
@@ -79,9 +76,6 @@ $conexion = conexion();
                 <label>Cantidad</label>
                 <input type="number" value="0" id="cantidad_editar" class="form-control-page input-group-sm">
 
-                <label>Porcentaje</label>
-                <input type="text" id="porcentaje_editar" class="form-control-page input-group-sm">
-
                 <label>Registrado en</label>
                 <input class="form-control-page input-group-sm" type="text" id="registro_editar">
             </div>
@@ -102,12 +96,10 @@ $conexion = conexion();
             console.log(id_carrera);
             cantidad=$('#cantidad_agregar').val();
             console.log(cantidad);
-            porcentaje=$('#porcentaje_agregar').val();
-            console.log(porcentaje);
             registrado_en=$('#registro_agregar').val();
             console.log(registrado_en);
 
-            agregardatos(id_carrera,cantidad,porcentaje,registrado_en)
+            agregardatos(id_carrera,cantidad,registrado_en)
         });
         $('#btn_editar_curso_actual').click(function () {
             actualizaDatos();

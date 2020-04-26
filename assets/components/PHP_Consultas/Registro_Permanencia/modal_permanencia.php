@@ -32,7 +32,7 @@ $conexion = conexion();
                 </select>
 
                 <label>Porcentaje</label>
-                <input type="text" id="porcentaje_agregar" class="form-control-page input-group-sm">
+                <input type="number" step="any" class="form-control-page input-group-sm">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
@@ -71,7 +71,7 @@ $conexion = conexion();
                 </select>
 
                 <label>Porcentaje</label>
-                <input type="text" id="porcentaje_editar" class="form-control-page input-group-sm">
+                <input type="number" step="any" id="porcentaje_editar" class="form-control-page input-group-sm">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -87,7 +87,7 @@ $conexion = conexion();
 
             id_carrera=parseInt($('#nombre_programa_agregar').val());
             console.log(id_carrera);
-            porcentaje=$('#porcentaje_agregar').val();
+            porcentaje=parseFloat($('#porcentaje_agregar').val());
             console.log(porcentaje);
 
             agregarDatos(id_carrera,porcentaje)
