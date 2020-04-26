@@ -98,8 +98,8 @@ $conexion = conexion();
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
 
-            programa=$('#nombre_curso_agregar').val();
-            console.log(programa);
+            id_carrera=$('#nombre_curso_agregar').val();
+            console.log(id_carrera);
             cantidad=$('#cantidad_agregar').val();
             console.log(cantidad);
             porcentaje=$('#porcentaje_agregar').val();
@@ -107,7 +107,7 @@ $conexion = conexion();
             registrado_en=$('#registro_agregar').val();
             console.log(registrado_en);
 
-            agregardatos(programa,cantidad,porcentaje,registrado_en)
+            agregardatos(id_carrera,cantidad,porcentaje,registrado_en)
         });
         $('#btn_editar_curso_actual').click(function () {
             actualizaDatos();

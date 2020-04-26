@@ -1,7 +1,7 @@
 
-function agregardatos(programa,cantidad,porcentaje,registrado_en) {
+function agregardatos(id_carrera,cantidad,porcentaje,registrado_en) {
 
-    cadena="programa=" + programa +
+    cadena="id_carrera=" + id_carrera +
         "&cantidad=" + cantidad +
         "&porcentaje=" + porcentaje +
         "&registrado_en=" + registrado_en;
@@ -36,13 +36,13 @@ function agregaform(datos) {
 function actualizaDatos(){
 
     id_total_prog_posgrado=$('#id_total_prog_posgrado').val();
-    programa=$('#nombre_curso_editar').val();
+    id_carrera=$('#nombre_curso_editar').val();
     cantidad=$('#cantidad_editar').val();
     porcentaje=$('#porcentaje_editar').val();
     registrado_en=$('#registro_editar').val();
 
     cadena="id_total_prog_posgrado=" + id_total_prog_posgrado +
-        "&programa=" + programa +
+        "&id_carrera=" + id_carrera +
         "&cantidad=" + cantidad +
         "&porcentaje=" + porcentaje +
         "&registrado_en=" + registrado_en;
