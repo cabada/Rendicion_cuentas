@@ -85,12 +85,12 @@ $conexion = conexion();
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
 
-            id_carrera=$('#nombre_programa_agregar').val();
+            id_carrera=parseInt($('#nombre_programa_agregar').val());
             console.log(id_carrera);
             porcentaje=$('#porcentaje_agregar').val();
             console.log(porcentaje);
 
-            agregarDatos(id_carrera,porcentaje);
+            agregarDatos(id_carrera,porcentaje)
 
         });
         $('#btn_editar_curso_actual').click(function () {
