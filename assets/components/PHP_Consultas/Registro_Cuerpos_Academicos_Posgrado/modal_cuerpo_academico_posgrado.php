@@ -154,7 +154,7 @@ $conexion = conexion();
             nombre_cuerpo=$('#nombre_cuerpo_academico_editar').val();
             grado=$('#grado_editar').val();
             estado=$('#nombre_estado_editar').val();
-            anio_registro=$('#anio_registro_editar').val();
+            anio_registro=parseInt($('#anio_registro_editar').val());
             vigencia=$('#vigencia_editar').val();
             area=$('#area_editar').val();
 
