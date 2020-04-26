@@ -87,12 +87,12 @@ $conexion = conexion();
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
 
-            programa_educativo=$('#programa_educativo_agregar').val();
-            console.log(programa_educativo);
+            id_carrera=$('#programa_educativo_agregar').val();
+            console.log(id_carrera);
             cantidad_alumnos=$('#cantidad_alumnos_agregar').val();
             console.log(cantidad_alumnos);
 
-            agregardatos(programa_educativo,cantidad_alumnos);
+            agregardatos(id_carrera,cantidad_alumnos);
         });
         $('#btn_editar_curso_actual').click(function () {
             actualizaDatos();
