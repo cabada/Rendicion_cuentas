@@ -22,9 +22,12 @@ function agregardatos(id_carrera,cantidad_alumnos) {
 function agregaform(datos) {
 
     d=datos.split('||');
+    console.log(d[1]);
+    $('option:selected', 'select[programa_educativo_editar="options"]').removeAttr('selected');
+
 
     $('#id_matricula').val(d[0]);
-    $('#programa_educativo_editar').val(d[1]);
+    $("#programa_educativo_editar option:contains('"+d[1]+"')").attr('selected', true);
     $('#cantidad_alumnos_editar').val(d[2]);
 
 }

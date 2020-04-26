@@ -43,7 +43,7 @@ if($resultado == $tablaRequerida){
                 <?php
                 $sql="select 
                       cuerpos_academicos.id_cuerpo_academico,
-                      area_academica.id_area_academica,
+                      area_academica.nombre_area_academica,
                       cuerpos_academicos.nombre_cuerpo_academico,
                       cuerpos_academicos.grado,
                       cuerpos_academicos.estado,

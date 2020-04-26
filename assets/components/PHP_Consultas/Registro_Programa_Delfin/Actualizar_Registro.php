@@ -36,7 +36,7 @@ $stmt = $conexion->prepare("update programa_delfin set
                                   FECHA_TERMINO=?
                                 where ID_PROGRAMA = $id_programa");
 
-$stmt->bind_param("siisss", $nombre_proyecto, $cantidad_alumnos,$id , $anio, $fecha_inicio, $fecha_termino);
+$stmt->bind_param("siisss", $nombre_proyecto, $cantidad_alumnos,$id_carrera , $anio, $fecha_inicio, $fecha_termino);
 
 echo $resultado = $stmt->execute();
 $stmt->close();

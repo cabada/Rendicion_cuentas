@@ -25,14 +25,15 @@ function agregarDatos(nombre_proyecto, cantidad_alumnos, id_carrera, anio, fecha
 function agregaform(datos) {
 
     d = datos.split('||');
+    $('option:selected', 'select[carrera_editar="options"]').removeAttr('selected');
 
     $('#id_programa').val(d[0]);
     $('#nombre_proyecto_editar').val(d[1]);
     $('#cantidad_alumnos_editar').val(d[2]);
-    $('#carrera_editar').val(d[3]);
+    $("#carrera_editar option:contains('"+d[3]+"')").attr('selected', true);
     $('#anio_editar').val(d[4]);
     $('#fecha_inicio_editar').val(d[5]);
-    $('#fecha_inicio_editar').val(d[6]);
+    $('#fecha_termino_editar').val(d[6]);
 
 }
 
@@ -43,7 +44,7 @@ function actualizarDatos() {
     console.log(cantidad_alumnos);
 
     var carrera_sel = document.getElementById("carrera_editar");
-    var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].text;
+    var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].value;
     id_carrera = carrera_valor;
     console.log(id_carrera);
     anio = $('#anio_editar').val();

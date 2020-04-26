@@ -28,9 +28,11 @@ function agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,ani
 function agregaform(datos) {
 
     d=datos.split('||');
+    $('option:selected', 'select[area_academica_editar="options"]').removeAttr('selected');
+
 
     $('#id_cuerpo_academico').val(d[0]);
-    $('#area_academica_editar').val(d[1]);
+    $("#area_academica_editar option:contains('"+d[1]+"')").attr('selected', true);
     $('#nombre_cuerpo_academico_editar').val(d[2]);
     $('#grado_editar').val(d[3]);
     $('#nombre_estado_editar').val(d[4]);
