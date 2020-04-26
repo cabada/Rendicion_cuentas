@@ -18,11 +18,11 @@ $cantidad=$_POST['cantidad'];
 $registrado_en=$_POST['registrado_en'];
 
 $stmt = $conexion->prepare("update total_alumnos_programa_posgrado set
-                                  PROGRAMA=?,
+                                  id_carrera=?,
                                   CANTIDAD=?,
                                   REGISTRADO_EN=?
                                   where ID_TOTAL_PROG_POSGRADO=$id_total_prog_posgrado");
-$stmt->bind_param("sis",$programa,$cantidad,$registrado_en);
+$stmt->bind_param("iis",$programa,$cantidad,$registrado_en);
 
 echo $resultado = $stmt->execute();
 $stmt->close();
