@@ -38,8 +38,15 @@ if($resultado == $tablaRequerida){
                 </tr>
 
                 <?php
-                $sql="select ID_TOTAL_PROG_POSGRADO,PROGRAMA,CANTIDAD,PORCENTAJE,REGISTRADO_EN
-                    from total_alumnos_programa_posgrado";
+                $sql="select 
+                       total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+                       carreras.ID_CARRERA,
+                       total_alumnos_programa_posgrado.CANTIDAD,
+                       total_alumnos_programa_posgrado.PORCENTAJE,
+                       total_alumnos_programa_posgrado.PORCENTAJE,
+                       total_alumnos_programa_posgrado.REGISTRADO_EN
+                    from carreras
+                    right join total_alumnos_programa_posgrado on carreras.ID_CARRERA = total_alumnos_programa_posgrado.ID_CARRERA";
                 $result=mysqli_query($conexion,$sql);
                 while($ver=mysqli_fetch_row($result)) {
 
@@ -47,7 +54,8 @@ if($resultado == $tablaRequerida){
                            $ver[1]."||".
                            $ver[2]."||".
                            $ver[3]."||".
-                           $ver[4];
+                           $ver[4]."||".
+                           $ver[5];
 
                     ?>
 
@@ -56,6 +64,7 @@ if($resultado == $tablaRequerida){
                         <td><?php echo $ver[2] ?></td>
                         <td><?php echo $ver[3] ?></td>
                         <td><?php echo $ver[4] ?></td>
+                        <td><?php echo $ver[5] ?></td>
                         <td class="text-center align-middle">
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i
                                         class="far fa-edit"></i> Editar
