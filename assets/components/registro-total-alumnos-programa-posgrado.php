@@ -38,7 +38,7 @@ if($resultado == $tablaRequerida){
                 </tr>
 
                 <?php
-                $sql="select ID_TOTAL_PROG_POSGRADO,PROGRAMA,CANTIDAD,REGISTRADO_EN
+                $sql="select ID_TOTAL_PROG_POSGRADO,PROGRAMA,CANTIDAD,PORCENTAJE,REGISTRADO_EN
                     from total_alumnos_programa_posgrado";
                 $result=mysqli_query($conexion,$sql);
                 while($ver=mysqli_fetch_row($result)) {
@@ -46,23 +46,16 @@ if($resultado == $tablaRequerida){
                     $datos=$ver[0]."||".
                            $ver[1]."||".
                            $ver[2]."||".
-                           $ver[3];
-
-                    $sql1="select sum(CANTIDAD) as cantidad
-                    from total_alumnos_programa_posgrado";
-                    $result1=mysqli_query($conexion,$sql1);
-                    $ver1=mysqli_fetch_row($result1);
-
-                    $porcentaje = ($ver[2]*100)/$ver1[0];
-                    $porcentaje=round($porcentaje);
+                           $ver[3]."||".
+                           $ver[4];
 
                     ?>
 
                     <tr>
                         <td><?php echo $ver[1] ?></td>
                         <td><?php echo $ver[2] ?></td>
-                        <td><?php echo $porcentaje ?>%</td>
                         <td><?php echo $ver[3] ?></td>
+                        <td><?php echo $ver[4] ?></td>
                         <td class="text-center align-middle">
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i
                                         class="far fa-edit"></i> Editar
@@ -73,18 +66,6 @@ if($resultado == $tablaRequerida){
                     <?php
                 }
                 ?>
-                <tr style="font-weight: bold;">
-                    <td>Total</td>
-                    <?php
-                    $sql="select sum(CANTIDAD) as cantidad
-                    from total_alumnos_programa_posgrado";
-                    $result=mysqli_query($conexion,$sql);
-                    $ver=mysqli_fetch_row($result);
-                    ?>
-                    <td><?php echo $ver[0]?></td>
-                    <td>100%</td>
-                    <td></td>
-                </tr>
             </table>
         </div>
     </div>

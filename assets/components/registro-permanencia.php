@@ -36,8 +36,12 @@ if($resultado == $tablaRequerida){
                 </tr>
 
                 <?php
-                $sql="select id_permanencia,programa, porcentaje 
-                            from permanencia";
+                $sql="select 
+                            permanencia.ID_PERMANENCIA,
+                            carreras.ID_CARRERA,
+                            permanencia.PORCENTAJE 
+                            from carreras
+                            right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA";
                 $result=mysqli_query($conexion,$sql);
                 while ($ver=mysqli_fetch_row($result)){
 

@@ -1,7 +1,7 @@
 
-function agregardatos(programa_educativo,cantidad_alumnos) {
+function agregardatos(id_carrera,cantidad_alumnos) {
 
-    cadena="programa_educativo=" + programa_educativo +
+    cadena="id_carrera=" + id_carrera +
            "&cantidad_alumnos=" + cantidad_alumnos;
 
     $.ajax({
@@ -35,11 +35,11 @@ function agregaform(datos) {
 function actualizaDatos(){
 
     id_matricula=$('#id_matricula').val();
-    programa_educativo=$('#programa_educativo_editar').val();
+    id_carrera=$('#programa_educativo_editar').val();
     cantidad_alumnos=$('#cantidad_alumnos_editar').val();
 
     cadena="id_matricula=" + id_matricula +
-        "&programa_educativo=" + programa_educativo +
+        "&id_carrera=" + id_carrera +
         "&cantidad_alumnos=" + cantidad_alumnos;
 
     $.ajax({

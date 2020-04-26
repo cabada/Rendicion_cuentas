@@ -14,16 +14,16 @@ $stmt->execute();
 if($stmt->fetch()){
 
 $id_permanencia=$_POST['id_permanencia'];
-$programa=$_POST['programa'];
+$id_carrera=$_POST['id_carrera'];
 $porcentaje=$_POST['porcentaje'];
 $porcentaje = strval($porcentaje);
 
 $stmt = $conexion->prepare("update permanencia set
-                                   PROGRAMA=?,
+                                   ID_CARRERA=?,
                                    PORCENTAJE=?
                                    where ID_PERMANENCIA=$id_permanencia");
 
-$stmt->bind_param("ss",$programa,$porcentaje);
+$stmt->bind_param("is",$id_carrera,$porcentaje);
 
 echo $resultado = $stmt->execute();
 $stmt->close();

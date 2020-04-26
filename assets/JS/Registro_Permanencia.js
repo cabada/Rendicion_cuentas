@@ -32,7 +32,7 @@ function agregaform(datos) {
 function actualizaDatos() {
     id_permanencia=$('#id_permanencia').val();
     programa=$('#nombre_programa_editar').val();
-    porcentaje=parseFloat($('#porcentaje_editar').val());
+    porcentaje=$('#porcentaje_editar').val();
 
     cadena="id_permanencia=" + id_permanencia +
         "&programa=" + programa +

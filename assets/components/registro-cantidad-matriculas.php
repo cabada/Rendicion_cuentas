@@ -37,8 +37,12 @@ if($resultado == $tablaRequerida){
                 </tr>
 
                 <?php
-                $sql="select ID_MATRICULA,PROGRAMA_EDUCATIVO,CANTIDAD_ALUMNOS 
-                      from matriculas";
+                $sql="select
+                matriculas.ID_MATRICULA,
+                carreras.ID_CARRERA,
+                matriculas.CANTIDAD_ALUMNOS
+                      from carreras
+                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA";
                 $result=mysqli_query($conexion,$sql);
                 while($ver=mysqli_fetch_row($result)) {
 
