@@ -18,23 +18,19 @@ $conexion = conexion();
 					<div class="modal-body">
                         <label>Programa educativo</label>
                         <select type="text" id="programa_educativo_agregar" class="form-control-page input-group-sm">
-                            <option selected>Seleccione un programa educativo...</option>
-                            <option>Ingeniería en Gestión Empresarial</option>
-                            <option>Ingeniería en Logística </option>
-                            <option>Contador Público </option>
-                            <option >Ingeniería Eléctrica </option>
-                            <option>Ingeniería Electromecánica</option>
-                            <option>Ingeniería Electrónica </option>
-                            <option>Ingeniería en Sistemas Computacionales </option>
-                            <option>Ingeniería en Tecnología de la Informática y Comunicaciones </option>
-                            <option>Ingeniería Industrial </option>
-                            <option>Ingeniería Mecánica</option>
-                            <option>Ingeniería Mecatrónica </option>
-                            <option>Licenciatura en Administración </option>
-                            <option>Maestría en Ingeniería Administrativa </option>
-                            <option>Maestría en Ingeniería Industrial</option>
-                            <option>Maestría en Administración de Negocios Internacionales </option>
-                            <option>Doctorado en Ciencias de la Ingeniería</option>
+                                <?php
+
+                                $query = "select id_carrera,nombre_carrera from carreras where id_programa_universi=1";
+                                $resultado = mysqli_query($conexion,$query);
+
+                                while($fila = mysqli_fetch_array($resultado)){
+                                    $valor = $fila['nombre_carrera'];
+
+                                    echo "<option value=\"".$fila['id_carrera']."\">".$fila['nombre_carrera']."</option>\n";
+                                }
+                                ?>
+                        </select>
+
                         </select>
 
 						<label>Cantidad de alumnos</label>
@@ -63,23 +59,17 @@ $conexion = conexion();
 
                         <label>Programa educativo</label>
                         <select type="text" id="programa_educativo_editar" class="form-control-page input-group-sm">
-                            <option selected>Seleccione un programa educativo...</option>
-                            <option>Ingeniería en Gestión Empresarial</option>
-                            <option>Ingeniería en Logística </option>
-                            <option>Contador Público </option>
-                            <option>Ingeniería Eléctrica </option>
-                            <option>Ingeniería Electromecánica</option>
-                            <option>Ingeniería Electrónica </option>
-                            <option>Ingeniería en Sistemas Computacionales </option>
-                            <option>Ingeniería en Tecnología de la Informática y Comunicaciones </option>
-                            <option>Ingeniería Industrial </option>
-                            <option>Ingeniería Mecánica</option>
-                            <option>Ingeniería Mecatrónica </option>
-                            <option>Licenciatura en Administración </option>
-                            <option>Maestría en Ingeniería Administrativa </option>
-                            <option>Maestría en Ingeniería Industrial</option>
-                            <option>Maestría en Administración de Negocios Internacionales </option>
-                            <option>Doctorado en Ciencias de la Ingeniería</option>
+                                <?php
+
+                                $query = "select id_carrera,nombre_carrera from carreras where id_programa_universi=1";
+                                $resultado = mysqli_query($conexion,$query);
+
+                                while($fila = mysqli_fetch_array($resultado)){
+                                    $valor = $fila['nombre_carrera'];
+
+                                    echo "<option value=\"".$fila['id_carrera']."\">".$fila['nombre_carrera']."</option>\n";
+                                }
+                                ?>
                         </select>
 
 						<label>Cantidad de alumnos</label>
