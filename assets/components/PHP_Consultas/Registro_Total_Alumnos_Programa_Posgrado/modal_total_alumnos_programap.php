@@ -92,7 +92,10 @@ $conexion = conexion();
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
 
-            id_carrera=$('#nombre_curso_agregar').val();
+            var carrera_sel = document.getElementById("nombre_curso_agregar");
+            var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].value;
+
+            id_carrera=carrera_valor;
             console.log(id_carrera);
             cantidad=$('#cantidad_agregar').val();
             console.log(cantidad);

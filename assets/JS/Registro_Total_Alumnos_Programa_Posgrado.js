@@ -34,12 +34,15 @@ function agregaform(datos) {
 function actualizaDatos(){
 
     id_total_prog_posgrado=$('#id_total_prog_posgrado').val();
-    programa=$('#nombre_curso_editar').val();
+    var carrera_sel = document.getElementById("nombre_curso_editar");
+    var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].value;
+
+    id_carrera=carrera_valor;
     cantidad=$('#cantidad_editar').val();
     registrado_en=$('#registro_editar').val();
 
     cadena="id_total_prog_posgrado=" + id_total_prog_posgrado +
-        "&programa=" + programa +
+        "&programa=" + id_carrera +
         "&cantidad=" + cantidad +
         "&registrado_en=" + registrado_en;
 

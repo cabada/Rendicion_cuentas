@@ -19,8 +19,8 @@ $programa=$_POST['programa'];
 $cantidad=$_POST['cantidad'];
 $registrado_en=$_POST['registrado_en'];
 
-$stmt = $conexion->prepare("insert into total_alumnos_programa_posgrado(programa, cantidad, registrado_en) VALUES (?,?,?,?)");
-$stmt->bind_param("sis",$programa,$cantidad,$registrado_en);
+$stmt = $conexion->prepare("insert into total_alumnos_programa_posgrado(id_carrera, cantidad, registrado_en) VALUES (?,?,?)");
+$stmt->bind_param("iis",$programa,$cantidad,$registrado_en);
 
 echo $resultado = $stmt->execute();
 $stmt->close();
