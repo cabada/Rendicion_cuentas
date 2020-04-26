@@ -17,7 +17,19 @@ $conexion = conexion();
             </div>
             <div class="modal-body">
                 <label>Nombre de programa</label>
-                <input type="text" id="nombre_curso_agregar" class="form-control-page input-group-sm">
+                <select type="text" id="nombre_curso_agregar" class="form-control-page input-group-sm">
+                    <?php
+
+                    $query = "select id_carrera,nombre_carrera from carreras where id_programa_universi=2";
+                    $resultado = mysqli_query($conexion,$query);
+
+                    while($fila = mysqli_fetch_array($resultado)){
+                        $valor = $fila['nombre_carrera'];
+
+                        echo "<option value=\"".$fila['id_carrera']."\">".$fila['nombre_carrera']."</option>\n";
+                    }
+                    ?>
+                </select>
 
                 <label>Cantidad</label>
                 <input type="number" value="0" id="cantidad_agregar" class="form-control-page input-group-sm">
@@ -50,7 +62,19 @@ $conexion = conexion();
                 <input type="id" id="id_total_prog_posgrado" class="form-control-page input-group-sm" readonly="readonly">
 
                 <label>Nombre de programa</label>
-                <input type="text" id="nombre_curso_editar" class="form-control-page input-group-sm">
+                <select type="text" id="nombre_curso_editar" class="form-control-page input-group-sm">
+                    <?php
+
+                    $query = "select id_carrera,nombre_carrera from carreras where id_programa_universi=2";
+                    $resultado = mysqli_query($conexion,$query);
+
+                    while($fila = mysqli_fetch_array($resultado)){
+                        $valor = $fila['nombre_carrera'];
+
+                        echo "<option value=\"".$fila['id_carrera']."\">".$fila['nombre_carrera']."</option>\n";
+                    }
+                    ?>
+                </select>
 
                 <label>Cantidad</label>
                 <input type="number" value="0" id="cantidad_editar" class="form-control-page input-group-sm">
