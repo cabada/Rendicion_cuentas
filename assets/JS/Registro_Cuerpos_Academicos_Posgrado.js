@@ -1,5 +1,4 @@
 
-
 function agregarDatos(nombre_cuerpo,grado,estado,anio_registro,vigencia,area) {
 
     cadena= "nombre_cuerpo=" + nombre_cuerpo +
