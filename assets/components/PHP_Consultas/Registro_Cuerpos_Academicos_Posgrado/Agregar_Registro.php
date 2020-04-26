@@ -21,7 +21,7 @@ $anio_registro=$_POST['anio_registro'];
 $vigencia=$_POST['vigencia'];
 $area=$_POST['area'];
 
-$stmt = $conexion->prepare("insert into cuerpos_academicos_posgrado (NOMBRE_CUERPO, GRADO, ESTADO, ANIO_REGISTRO, VIGENCIA, AREA) values (?,?,?,?,?,?,?)");
+$stmt = $conexion->prepare("insert into cuerpos_academicos_posgrado (NOMBRE_CUERPO, GRADO, ESTADO, ANIO_REGISTRO, VIGENCIA, AREA) values (?,?,?,?,?,?)");
 $stmt->bind_param("sssiss", $nombre_cuerpo,$grado,$estado,$anio_registro,$vigencia,$area );
 
 echo $resultado = $stmt->execute();

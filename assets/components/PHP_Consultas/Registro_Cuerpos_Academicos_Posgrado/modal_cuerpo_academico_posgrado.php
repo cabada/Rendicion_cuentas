@@ -26,7 +26,7 @@ $conexion = conexion();
                         <input type="text" id="nombre_estado_agregar" class="form-control-page input-group-sm">
 
 						<label>Año de registro</label>
-                        <input class="form-control-page input-group-sm" type="text" maxlength="4" id="anio_registro_agregar">
+                        <input class="form-control-page input-group-sm" type="number" maxlength="4" id="anio_registro_agregar">
 
 						<label>Vigencia</label>
                         <input class="form-control-page input-group-sm" type="text" id="vigencia_agregar">
@@ -67,7 +67,7 @@ $conexion = conexion();
                 <input type="text" id="nombre_estado_editar" class="form-control-page input-group-sm">
 
                 <label>Año de registro</label>
-                <input class="form-control-page input-group-sm" type="text" maxlength="4" id="anio_registro_editar">
+                <input class="form-control-page input-group-sm" type="number" maxlength="4" id="anio_registro_editar">
 
                 <label>Vigencia</label>
                 <input class="form-control-page input-group-sm" type="text" id="vigencia_editar">
@@ -89,11 +89,17 @@ $conexion = conexion();
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
             nombre_cuerpo=$('#nombre_cuerpo_academico_agregar').val();
+            console.log(nombre_cuerpo);
             grado=$('#grado_agregar').val();
+            console.log(grado);
             estado=$('#nombre_estado_agregar').val();
-            anio_registro=$('#anio_registro_agregar').val();
+            console.log(estado);
+            anio_registro=parseInt($('#anio_registro_agregar').val());
+            console.log(anio_registro);
             vigencia=$('#vigencia_agregar').val();
+            console.log(vigencia);
             area=$('#area_agregar').val();
+            console.log(area);
 
             // FUNCION PARA VALIDAR LONGITUD DE AÑO
             function validarLongitud(parametro) {
