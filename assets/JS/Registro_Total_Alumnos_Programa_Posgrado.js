@@ -24,8 +24,12 @@ function agregardatos(programa,cantidad,registrado_en) {
 function agregaform(datos) {
     d=datos.split('||');
 
+    $('option:selected', 'select[nombre_curso_editar="options"]').removeAttr('selected');
+
+
     $('#id_total_prog_posgrado').val(d[0]);
-    $('#nombre_curso_editar').val(d[1]);
+    $("#nombre_curso_editar option:contains('"+d[1]+"')").attr('selected', true);
+
     $('#cantidad_editar').val(d[2]);
     $('#registro_editar').val(d[3]);
 
