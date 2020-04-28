@@ -14,7 +14,7 @@ function agregardatos(id_carrera,nombre_especialidad){
                 $('#registro-lineas-investigacion-licenciaturas').load('assets/components/registro-lineas-investigacion-licenciaturas.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -22,9 +22,10 @@ function agregardatos(id_carrera,nombre_especialidad){
 
 function agregaform(datos) {
     d=datos.split('||');
+    $('option:selected', 'select[programa_educativo_editar="options"]').removeAttr('selected');
     //llenar valores de la caja de texto
     $('#id_linea').val(d[0]);
-    $('#programa_educativo_editar').val(d[1]);
+    $("#programa_educativo_editar option:contains('"+d[1]+"')").attr('selected', true);
     $('#investigacion_editar').val(d[2]);
 
 }
@@ -49,7 +50,7 @@ function actualizaDatos() {
                 $('#registro-lineas-investigacion-licenciaturas').load('assets/components/registro-lineas-investigacion-licenciaturas.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -75,7 +76,7 @@ function eliminarDatos(id_linea) {
                 $('#registro-lineas-investigacion-licenciaturas').load('assets/components/registro-lineas-investigacion-licenciaturas.php');
                 alertify.success("Eliminado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

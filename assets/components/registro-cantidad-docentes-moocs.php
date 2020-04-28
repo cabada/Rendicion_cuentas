@@ -1,10 +1,25 @@
 <?php
 
 require_once "PHP_Consultas/Conexion.php";
+require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$stmt = consultaTablas($conn,$id_usuario);
+
+
+$stmt->execute();
+
+$stmt->bind_result($resultado);
+
+while($stmt->fetch()){
+
+$tablaRequerida = 'moocs';
+
+if($resultado == $tablaRequerida){
 
 ?>
-
 
 <div class="row">
     <div class="col-sm-12">
@@ -44,7 +59,33 @@ $conexion = conexion();
                     <?php
                 }
                 ?>
+                <tr style="font-weight: bold;">
+                    <td>Total</td>
+
+                    <?php
+                    $sql="select sum(numero_docentes) as numero_docentes
+                            from moocs";
+                    $result=mysqli_query($conexion,$sql);
+
+                     $buscar=mysqli_fetch_row($result);
+                    ?>
+
+                    <td><?php echo $buscar[0]?></td>
+                </tr>
             </table>
         </div>
     </div>
 </div>
+
+    <?php
+}
+
+
+}
+
+$stmt->close();
+$conexion->close();
+
+
+
+?>

@@ -1,7 +1,19 @@
 <?php
 
-require_once "../Conexion.php";
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'programa_delfin';
+
+$query = consultaPermisos($conn,$id_usuario,$tabla,'Insert');
+
+
+$query->execute();
+
+if($query->fetch()) {
 
      $nombre_proyecto=$_POST['nombre_proyecto'];
      $cantidad_alumnos=$_POST['cantidad_alumnos'];
@@ -17,5 +29,11 @@ echo $resultado = $stmt->execute();
 
 $stmt->close();
 $conexion->close();
+
+}
+else{
+     echo "2";
+}
+
 
 ?>

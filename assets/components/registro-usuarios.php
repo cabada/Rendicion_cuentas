@@ -1,7 +1,23 @@
 <?php
 
 require_once "PHP_Consultas/Conexion.php";
+require_once "PHP_Consultas/Usuarios/Verificar_Rol_Usuario.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$stmt = consultaRol($conn,$id_usuario);
+
+
+$stmt->execute();
+
+$stmt->bind_result($resultado);
+
+while($stmt->fetch()){
+
+$rol = 'Administrador';
+
+if($resultado == $rol){
 
 ?>
 
@@ -57,3 +73,16 @@ $conexion = conexion();
 
     </div>
 </div>
+
+    <?php
+}
+
+
+}
+
+$stmt->close();
+$conexion->close();
+
+
+
+?>

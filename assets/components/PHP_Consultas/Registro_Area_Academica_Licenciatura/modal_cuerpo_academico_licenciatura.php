@@ -106,19 +106,12 @@ $conexion = conexion();
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_editar_curso_actual">Guardar cambios</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- JAVASCRIPT CODE -->
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#navbar').load('navbar.html');
-        $('#registro-cuerpos-academicos').load('assets/components/registro-cuerpos-academicos.php');
-    });
-</script>
 
 <script type="text/javascript">
     $(document).ready(function () {

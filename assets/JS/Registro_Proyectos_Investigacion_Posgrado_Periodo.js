@@ -14,7 +14,7 @@ function agregardatos(clave,nombre_proyecto,responsable) {
                 $('#registro-proyectos-investigacion-posgrado-periodo').load('assets/components/registro-proyectos-investigacion-posgrado-periodo.php');
                 alertify.success("Agregado con exito");
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -53,7 +53,7 @@ function actualizaDatos(){
                 alertify.success("Actualizado con exito");
 
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -78,7 +78,7 @@ function eliminarDatos(id_proyecto_inv_posgrado_periodo) {
                 $('#registro-proyectos-investigacion-posgrado-periodo').load('assets/components/registro-proyectos-investigacion-posgrado-periodo.php');
                 alertify.success("Eliminado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

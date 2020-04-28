@@ -16,9 +16,6 @@ $conexion = conexion();
 						</button>
 					</div>
 					<div class="modal-body">
-                        <label>Área académica</label>
-                        <input type="text" id="area-academica-agregar" class="form-control-page input-group-sm">
-
 						<label>Nombre de cuerpo académico</label>
 						<input type="text" id="nombre_cuerpo_academico_agregar" class="form-control-page input-group-sm">
 
@@ -29,7 +26,7 @@ $conexion = conexion();
                         <input type="text" id="nombre_estado_agregar" class="form-control-page input-group-sm">
 
 						<label>Año de registro</label>
-                        <input class="form-control-page input-group-sm" type="text" maxlength="4" id="anio_registro_agregar">
+                        <input class="form-control-page input-group-sm" type="number" maxlength="4" id="anio_registro_agregar">
 
 						<label>Vigencia</label>
                         <input class="form-control-page input-group-sm" type="text" id="vigencia_agregar">
@@ -60,9 +57,6 @@ $conexion = conexion();
                 <label>Numero de registro del cuerpo académico de posgrado</label>
                 <input type="id" id="id_cuerpos_academicos_posgrado" class="form-control-page input-group-sm" readonly="readonly">
 
-                <label>Área académica</label>
-                <input type="text" id="area-academica-editar" class="form-control-page input-group-sm">
-
                 <label>Nombre de cuerpo académico</label>
                 <input type="text" id="nombre_cuerpo_academico_editar" class="form-control-page input-group-sm">
 
@@ -73,7 +67,7 @@ $conexion = conexion();
                 <input type="text" id="nombre_estado_editar" class="form-control-page input-group-sm">
 
                 <label>Año de registro</label>
-                <input class="form-control-page input-group-sm" type="text" maxlength="4" id="anio_registro_editar">
+                <input class="form-control-page input-group-sm" type="number" maxlength="4" id="anio_registro_editar">
 
                 <label>Vigencia</label>
                 <input class="form-control-page input-group-sm" type="text" id="vigencia_editar">
@@ -91,24 +85,21 @@ $conexion = conexion();
     </div>
 </div>
 
-<!-- JAVASCRIPT CODE -->
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#navbar').load('navbar.html');
-        $('#registro-cuerpos-academicos-posgrado').load('assets/components/registro-cuerpos-academicos-posgrado.php');
-    });
-</script>
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
-            area_academica=$('#area-academica-agregar').val();
             nombre_cuerpo=$('#nombre_cuerpo_academico_agregar').val();
+            console.log(nombre_cuerpo);
             grado=$('#grado_agregar').val();
+            console.log(grado);
             estado=$('#nombre_estado_agregar').val();
-            anio_registro=$('#anio_registro_agregar').val();
+            console.log(estado);
+            anio_registro=parseInt($('#anio_registro_agregar').val());
+            console.log(anio_registro);
             vigencia=$('#vigencia_agregar').val();
+            console.log(vigencia);
             area=$('#area_agregar').val();
+            console.log(area);
 
             // FUNCION PARA VALIDAR LONGITUD DE AÑO
             function validarLongitud(parametro) {
@@ -120,10 +111,7 @@ $conexion = conexion();
             }
 
             // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
-           if(area_academica === ""){
-                alertify.alert("Error","¡El campo de área académica esta vacío!");
-                return false;
-            } else if (nombre_cuerpo === ""){
+            if (nombre_cuerpo === ""){
                 alertify.alert("Error","¡El nombre de cuerpo académico esta vacío!");
                 return false;
             } else if (grado === ""){
@@ -149,9 +137,8 @@ $conexion = conexion();
                 alertify.alert("Error","¡El campo de área esta vacío!");
                 return false;
             } else {
-                agregarDatos(area_academica,nombre_cuerpo,grado,estado,anio_registro,vigencia,area);
+                agregarDatos(nombre_cuerpo,grado,estado,anio_registro,vigencia,area);
                 $('#new-modal').modal('hide');
-                $('#area-academica-agregar').val('');
                 $('#nombre_cuerpo_academico_agregar').val('');
                 $('#nombre_estado_agregar').val('');
                 $('#anio_registro_agregar').val('');
@@ -164,11 +151,10 @@ $conexion = conexion();
         $('#btn_editar_curso_actual').click(function () {
             //AGREGANDO CAMPOS DE EDITAR PARA PODER ASIGNAR VALIDACIONES
             id_cuerpos_academicos_posgrado=$('#id_cuerpos_academicos_posgrado').val();
-            area_academica=$('#area-academica-editar').val();
             nombre_cuerpo=$('#nombre_cuerpo_academico_editar').val();
             grado=$('#grado_editar').val();
             estado=$('#nombre_estado_editar').val();
-            anio_registro=$('#anio_registro_editar').val();
+            anio_registro=parseInt($('#anio_registro_editar').val());
             vigencia=$('#vigencia_editar').val();
             area=$('#area_editar').val();
 
@@ -182,10 +168,7 @@ $conexion = conexion();
             }
 
             // VALIDACIONES PARA ACTUALIZAR NUEVO REGISTRO
-            if(area_academica === ""){
-                alertify.alert("Error","¡El campo de área académica esta vacío!");
-                return false;
-            } else if (nombre_cuerpo === ""){
+             if (nombre_cuerpo === ""){
                 alertify.alert("Error","¡El nombre de cuerpo académico esta vacío!");
                 return false;
             } else if (grado === ""){

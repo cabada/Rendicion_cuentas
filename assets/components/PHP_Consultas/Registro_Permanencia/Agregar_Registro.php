@@ -1,15 +1,35 @@
 <?php
 
-require_once "../Conexion.php";
-$conexion=conexion();
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
+$conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'permanencia';
 
-$programa=$_POST['programa'];
+$query = consultaPermisos($conn,$id_usuario,$tabla,'Insert');
+
+
+$query->execute();
+
+if($query->fetch()) {
+
+$id_carrera=$_POST['permanencia'];
 $porcentaje=$_POST['porcentaje'];
+$porcentaje = strval($porcentaje);
 
-$stmt = $conexion->prepare("insert into permanencia (PROGRAMA, PORCENTAJE) values (?,?)");
-$stmt->bind_param("ss",$programa,$porcentaje);
+$stmt = $conexion->prepare("insert into permanencia (ID_CARRERA, PORCENTAJE) values (?,?)");
+$stmt->bind_param("is",$id_carrera,$porcentaje);
 
 echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
+
+
+}
+else{
+    echo "2";
+}
+
 ?>

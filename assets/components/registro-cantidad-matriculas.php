@@ -1,9 +1,26 @@
 <?php
 
 require_once "PHP_Consultas/Conexion.php";
+require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$stmt = consultaTablas($conn,$id_usuario);
+
+
+$stmt->execute();
+
+$stmt->bind_result($resultado);
+
+while($stmt->fetch()){
+
+$tablaRequerida = 'matriculas';
+
+if($resultado == $tablaRequerida){
 
 ?>
+
 
 <div class="row">
     <div class="col-sm-12">
@@ -20,8 +37,12 @@ $conexion = conexion();
                 </tr>
 
                 <?php
-                $sql="select ID_MATRICULA,PROGRAMA_EDUCATIVO,CANTIDAD_ALUMNOS 
-                      from matriculas";
+                $sql="select
+                matriculas.ID_MATRICULA,
+                carreras.ID_CARRERA,
+                matriculas.CANTIDAD_ALUMNOS
+                      from carreras
+                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA";
                 $result=mysqli_query($conexion,$sql);
                 while($ver=mysqli_fetch_row($result)) {
 
@@ -44,7 +65,33 @@ $conexion = conexion();
                     <?php
                 }
                 ?>
+                <tr style="font-weight: bold">
+                    <td>Total</td>
+
+                    <?php
+
+                    $sql="select sum(CANTIDAD_ALUMNOS) 
+                      from matriculas";
+                    $result=mysqli_query($conexion,$sql);
+                    $ver=mysqli_fetch_row($result);
+                    ?>
+
+                    <td><?php echo $ver[0]?></td>
+                </tr>
             </table>
         </div>
     </div>
 </div>
+
+    <?php
+}
+
+
+}
+
+$stmt->close();
+$conexion->close();
+
+
+
+?>

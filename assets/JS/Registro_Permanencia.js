@@ -1,7 +1,7 @@
 
 function agregarDatos(programa,porcentaje) {
 
-    cadena="programa=" + programa +
+    cadena="permanencia=" + programa +
            "&porcentaje=" + porcentaje;
 
     $.ajax({
@@ -13,7 +13,7 @@ function agregarDatos(programa,porcentaje) {
                 $('#registro-permanencia').load('assets/components/registro-permanencia.php');
                 alertify.success("Agregado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -22,17 +22,22 @@ function agregarDatos(programa,porcentaje) {
 function agregaform(datos) {
 
     d=datos.split('||');
+    $('option:selected', 'select[nombre_programa_editar="options"]').removeAttr('selected');
 
     $('#id_permanencia').val(d[0]);
-    $('#nombre_programa_editar').val(d[1]);
+    $("#nombre_programa_editar option:contains('"+d[1]+"')").attr('selected', true);
     $('#porcentaje_editar').val(d[2]);
 
 }
 
 function actualizaDatos() {
     id_permanencia=$('#id_permanencia').val();
-    programa=$('#nombre_programa_editar').val();
-    porcentaje=$('#porcentaje_editar').val();
+    var carrera_sel = document.getElementById("nombre_programa_editar");
+    var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].value;
+
+    programa=carrera_valor;
+
+    porcentaje=parseFloat($('#porcentaje_editar').val());
 
     cadena="id_permanencia=" + id_permanencia +
         "&programa=" + programa +
@@ -47,7 +52,7 @@ function actualizaDatos() {
                 $('#registro-permanencia').load('assets/components/registro-permanencia.php');
                 alertify.success("Actualizado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -72,7 +77,7 @@ function eliminarDatos(id_permanencia) {
                 $('#registro-permanencia').load('assets/components/registro-permanencia.php');
                 alertify.success("Eliminado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

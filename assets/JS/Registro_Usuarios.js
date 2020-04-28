@@ -29,12 +29,14 @@ function agregaform(datos) {
 
     d=datos.split('||');
 
+    $('option:selected', 'select[rol_editar="options"]').removeAttr('selected');
+
     $('#id_usuario_editar').val(d[0]);
     $('#nombre_usuario_editar').val(d[1]);
     $('#apellido_usuario_editar').val(d[2]);
     $('#email_editar').val(d[3]);
-    $('#v_contrasena_editar').val(d[4]);
-    $('#rol_editar').val(d[5]);
+    $("#rol_editar option:contains('"+d[4]+"')").attr('selected', true);
+
 
 }
 
@@ -46,14 +48,14 @@ function actualizaDatos(){
 
 
     nombre_usuario =  $('#nombre_usuario_editar').val();
-    console.log(nombre_usuario);
+
     apellido= $('#apellido_usuario_editar').val();
-    console.log(apellido);
+
     email= $('#email_editar').val();
-    console.log(email);
+
     contra = $('#contrasena_editar').val();
-    v_contrasena= parseInt($('#v_contrasena_editar').val());
-    console.log(v_contrasena);
+    v_contrasena= $('#v_contrasena_editar').val();
+
     rol = rol_valor;
 
 

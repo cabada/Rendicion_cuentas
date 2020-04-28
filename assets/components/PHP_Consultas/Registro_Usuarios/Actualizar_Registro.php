@@ -8,6 +8,7 @@ $nombre=$_POST['nombre'];
 $apellido=$_POST['apellido'];
 $email=$_POST['email'];
 $contrasena=$_POST['contrasena'];
+$contrasena = md5($contrasena);
 $rol=$_POST['rol'];
 
 

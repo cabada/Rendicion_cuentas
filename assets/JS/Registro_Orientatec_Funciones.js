@@ -13,7 +13,7 @@ function agregarDatos(nombre_preparatoria,fecha,estudiantes_atendidos) {
                 $('#registro-orientatec').load('assets/components/registro-orientatec.php');
                 alertify.success("Agregado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -58,7 +58,7 @@ function actualizaDatos() {
                 $('#registro-orientatec').load('assets/components/registro-orientatec.php');
                 alertify.success("Actualizado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -85,7 +85,7 @@ function eliminarDatos(id_orientatec) {
                  $('#registro-orientatec').load('assets/components/registro-orientatec.php');
                  alertify.success("Eliminado con exito");
              }else{
-                 alertify.error("Fallo el servidor");
+                 alertify.error("No tiene los privilegios suficientes...");
              }
          }
       });

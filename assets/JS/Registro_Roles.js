@@ -123,12 +123,16 @@ function actualizaDatos(){
 
     });
 
+    console.log(moduloEditUCHK);
+
     permisoEditUCHK = [];
     $('input[name=permisosEdit]:not(:checked)').each(function () {
 
         permisoEditUCHK.push(this.value);
 
     });
+
+    console.log(permisoEditUCHK);
 
 
 

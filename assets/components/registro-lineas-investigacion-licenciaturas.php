@@ -1,7 +1,23 @@
 <?php
 
 require_once "PHP_Consultas/Conexion.php";
+require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$stmt = consultaTablas($conn,$id_usuario);
+
+
+$stmt->execute();
+
+$stmt->bind_result($resultado);
+
+while($stmt->fetch()){
+
+$tablaRequerida = 'lineas_investigacion_licenciatura';
+
+if($resultado == $tablaRequerida){
 
 ?>
 
@@ -21,7 +37,7 @@ $conexion = conexion();
 
                 <?php
                 $sql="select lineas_investigacion_licenciatura.ID_LINEA,
-                                 carreras.ID_CARRERA, 
+                                 carreras.NOMBRE_CARRERA, 
                                  lineas_investigacion_licenciatura.NOMBRE_ESPECIALIDAD
                                  from carreras
                                  right join lineas_investigacion_licenciatura on carreras.ID_CARRERA = lineas_investigacion_licenciatura.ID_CARRERA";
@@ -50,3 +66,16 @@ $conexion = conexion();
         </div>
     </div>
 </div>
+
+    <?php
+}
+
+
+}
+
+$stmt->close();
+$conexion->close();
+
+
+
+?>

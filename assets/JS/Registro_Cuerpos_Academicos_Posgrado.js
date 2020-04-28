@@ -1,9 +1,7 @@
 
+function agregarDatos(nombre_cuerpo,grado,estado,anio_registro,vigencia,area) {
 
-function agregarDatos(area_academica,nombre_cuerpo,grado,estado,anio_registro,vigencia,area) {
-
-    cadena="area_academica=" + area_academica +
-        "&nombre_cuerpo=" + nombre_cuerpo +
+    cadena= "nombre_cuerpo=" + nombre_cuerpo +
         "&grado=" + grado +
         "&estado=" + estado +
         "&anio_registro=" + anio_registro +
@@ -19,7 +17,7 @@ function agregarDatos(area_academica,nombre_cuerpo,grado,estado,anio_registro,vi
                 $('#registro-cuerpos-academicos-posgrado').load('assets/components/registro-cuerpos-academicos-posgrado.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -29,19 +27,17 @@ function agregaform(datos) {
     d=datos.split('||');
 
     $('#id_cuerpos_academicos_posgrado').val(d[0]);
-    $('#area-academica-editar').val(d[1]);
-    $('#nombre_cuerpo_academico_editar').val(d[2]);
-    $('#grado_editar').val(d[3]);
-    $('#nombre_estado_editar').val(d[4]);
-    $('#anio_registro_editar').val(d[5]);
-    $('#vigencia_editar').val(d[6]);
-    $('#area_editar').val(d[7]);
+    $('#nombre_cuerpo_academico_editar').val(d[1]);
+    $('#grado_editar').val(d[2]);
+    $('#nombre_estado_editar').val(d[3]);
+    $('#anio_registro_editar').val(d[4]);
+    $('#vigencia_editar').val(d[5]);
+    $('#area_editar').val(d[6]);
 
 }
 
 function actualizarDatos() {
     id_cuerpos_academicos_posgrado=$('#id_cuerpos_academicos_posgrado').val();
-    area_academica=$('#area-academica-editar').val();
     nombre_cuerpo=$('#nombre_cuerpo_academico_editar').val();
     grado=$('#grado_editar').val();
     estado=$('#nombre_estado_editar').val();
@@ -50,7 +46,6 @@ function actualizarDatos() {
     area=$('#area_editar').val();
 
     cadena="id_cuerpos_academicos_posgrado=" + id_cuerpos_academicos_posgrado +
-        "&area_academica=" + area_academica +
         "&nombre_cuerpo=" + nombre_cuerpo +
         "&grado=" + grado +
         "&estado=" + estado +
@@ -67,7 +62,7 @@ function actualizarDatos() {
                 $('#registro-cuerpos-academicos-posgrado').load('assets/components/registro-cuerpos-academicos-posgrado.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -92,7 +87,7 @@ function eliminarDatos(id_cuerpos_academicos_posgrado) {
                 $('#registro-cuerpos-academicos-posgrado').load('assets/components/registro-cuerpos-academicos-posgrado.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

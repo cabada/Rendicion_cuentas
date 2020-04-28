@@ -15,7 +15,7 @@ function agregardatos(periodo,anio,cantidad_alumnos) {
                 alertify.success("agregado con exito");
 
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -54,7 +54,7 @@ function actualizaDatos() {
                 alertify.success("Actualizado con exito");
 
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -80,7 +80,7 @@ function eliminarDatos(id_estudiantes_capacidades_diferentes) {
                 $('#registro-estudiantes-capacidades-diferentes').load('assets/components/registro-estudiantes-capacidades-diferentes.php');
                 alertify.success("Eliminado con exito");
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

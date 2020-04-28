@@ -15,6 +15,7 @@
     <script src="assets/libraries/js/popper.min.js"></script>
     <script src="assets/libraries/js/bootstrap.min.js"></script>
     <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/js/Registro_Periodo_Docentes_Capacitados.js"></script>
 
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
@@ -47,26 +48,27 @@
 					</div>
 					<div class="modal-body">
 						<label>Nombramiento</label>
-						<input type="text" id="nombramiento_agregar" class="form-control-page input-group-sm">
+                        <select type="text" class="form-control-page input-group-sm" id="nombramiento_agregar">
+                            <option >Elija Tipo de Nombramiento</option>
+                            <option value="Base">Base</option>
+                            <option value="Honorarios/Interinato">Honorarios/Interinato</option>
+                        </select>
 
 						<label>Cantidad de docentes</label>
                         <input type="number" value="0" id="cantidad_docentes_agregar" class="form-control-page input-group-sm">
                         
-						<label>Cantidad de docentes no capacitados</label>
+						<label>Cantidad de docentes capacitados</label>
                         <input type="number" value="0" id="cantidad_docentes_no_capacitados_agregar" class="form-control-page input-group-sm">
-
-						<label>Porcentaje de docentes capacitados</label>
-                        <input type="text" id="porcentaje_docentes_capacitados_agregar" class="form-control-page input-group-sm">
 
                         <label>Periodo</label>
                         <select type="text" class="form-control-page input-group-sm" id="periodo_agregar">
-                            <option selected>-</option>
-                            <option>Agosto - Diciembre</option>
-                            <option>Enero - Junio</option>
+                            <option selected>Elija Periodo</option>
+                            <option value="Enero">Enero</option>
+                            <option value="Junio">Junio</option>
                         </select>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_periodo">Agregar Nuevo Registro</button>
 					</div>
 				</div>
 			</div>
@@ -84,28 +86,34 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<label>Nombramiento</label>
-						<input type="text" id="nombramiento_editar" class="form-control-page input-group-sm">
+                        <label>ID Registro</label>
+                        <input type="number" readonly="readonly" value="0" id="id_periodo" class="form-control-page input-group-sm">
+
+
+                        <label>Nombramiento</label>
+                        <select type="text" class="form-control-page input-group-sm" id="nombramiento_editar">
+                            <option >Elija Tipo de Nombramiento</option>
+                            <option value="Base">Base</option>
+                            <option value="Honorarios/Interinato">Honorarios/Interinato</option>
+                        </select>
 
 						<label>Cantidad de docentes</label>
                         <input type="number" value="0" id="cantidad_docentes_editar" class="form-control-page input-group-sm">
                         
-						<label>Cantidad de docentes no capacitados</label>
+						<label>Cantidad de docentes capacitados</label>
                         <input type="number" value="0" id="cantidad_docentes_no_capacitados_editar" class="form-control-page input-group-sm">
 
-						<label>Porcentaje de docentes capacitados</label>
-                        <input type="text" id="porcentaje_docentes_capacitados_editar" class="form-control-page input-group-sm">
 
                         <label>Periodo</label>
                         <select type="text" class="form-control-page input-group-sm" id="periodo_editar">
-                            <option selected>-</option>
-                            <option>Agosto - Diciembre</option>
-                            <option>Enero - Junio</option>
+                            <option selected>Elija Periodo</option>
+                            <option value="Enero">Enero</option>
+                            <option value="Junio">Junio</option>
                         </select>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+						<button type="button" class="btn btn-main" data-dismiss="modal" id="btn_editar_periodo">Guardar cambios</button>
 					</div>
 				</div>
 			</div>
@@ -139,7 +147,41 @@
 <!-- JAVASCRIPT CODE -->
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#navbar').load('navbar.html');
+        $('#navbar').load('navbar.php');
         $('#registro-periodo-docentes-capacitados').load('assets/components/registro-periodo-docentes-capacitados.php');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_periodo').click(function () {
+
+            tipo_nombramiento=$('#nombramiento_agregar').val();
+
+            console.log(tipo_nombramiento);
+
+            total_docentes=parseInt($('#cantidad_docentes_agregar').val());
+            console.log(total_docentes);
+
+            no_docentes_capacitados=parseInt($('#cantidad_docentes_no_capacitados_agregar').val());
+
+            console.log(no_docentes_capacitados);
+
+
+            porcentaje= (no_docentes_capacitados*100)/total_docentes;
+            porcentaje = Math.round(porcentaje);
+            porcentaje = porcentaje.toString() + "%";
+
+
+            console.log(porcentaje);
+            periodo=$('#periodo_agregar').val();
+            console.log(periodo);
+
+
+            agregardatos(tipo_nombramiento,total_docentes,no_docentes_capacitados,porcentaje,periodo);
+        });
+        $('#btn_editar_periodo').click(function () {
+            actualizaDatos();
+        });
     });
 </script>

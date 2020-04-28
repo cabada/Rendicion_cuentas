@@ -1,8 +1,19 @@
 <?php
 
-require_once "../Conexion.php";
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'equipo_apoyo_asesores_pda';
 
+$query = consultaPermisos($conn,$id_usuario,$tabla,'Insert');
+
+
+$query->execute();
+
+if($query->fetch()) {
 $nombre=$_POST['nombre'];
 $puesto=$_POST['puesto'];
 $grado_estudios=$_POST['grado_estudios'];
@@ -14,6 +25,12 @@ $stmt->bind_param("ssss", $nombre,$puesto,$grado_estudios,$funciones);
 echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
+
+}
+else{
+    echo "2";
+}
+
 
 ?>
 

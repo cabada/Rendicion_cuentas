@@ -1,11 +1,25 @@
 <?php
 
 require_once "PHP_Consultas/Conexion.php";
+require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$stmt = consultaTablas($conn,$id_usuario);
+
+
+$stmt->execute();
+
+$stmt->bind_result($resultado);
+
+while($stmt->fetch()){
+
+$tablaRequerida = 'equipo_maestros_itcj';
+
+if($resultado == $tablaRequerida){
 
 ?>
-
-
 
 <div class="row">
     <div class="col-sm-12">
@@ -55,8 +69,8 @@ $conexion = conexion();
                     <td><?php echo $buscar[6]?></td>
                     <td><?php echo $buscar[7]?></td>
                     <td class="text-center align-middle">
-                    <td class="centered-table-title"><button class="btn btn-warning" onclick="agregaform('<?php echo $datos?>')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button></td>
-                    <td class="centered-table-title"><button class="btn btn-danger" onclick="preguntarSiNo('<?php echo $buscar[0]?>')"><i class="far fa-window-close"></i></button></td>
+                    <button class="btn btn-warning" onclick="agregaform('<?php echo $datos?>')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i></button>
+                    <button class="btn btn-danger" onclick="preguntarSiNo('<?php echo $buscar[0]?>')"><i class="far fa-window-close"></i></button>
                     </td>
                 </tr>
 
@@ -68,3 +82,16 @@ $conexion = conexion();
         </div>
     </div>
 </div>
+
+    <?php
+}
+
+
+}
+
+$stmt->close();
+$conexion->close();
+
+
+
+?>

@@ -1,8 +1,19 @@
 <?php
 
-require_once "../Conexion.php";
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'cuerpos_academicos';
 
+$query = consultaPermisos($conn,$id_usuario,$tabla,'Insert');
+
+
+$query->execute();
+
+if($query->fetch()) {
 $id_area_academica=$_POST['id_area_academica'];
 $nombre_cuerpo_academico=$_POST['nombre_cuerpo_academico'];
 $grado=$_POST['grado'];
@@ -18,5 +29,9 @@ $stmt->bind_param("isssiss", $id_area_academica,$nombre_cuerpo_academico,
 echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
+}
+else{
+    echo "2";
+}
 
 ?>

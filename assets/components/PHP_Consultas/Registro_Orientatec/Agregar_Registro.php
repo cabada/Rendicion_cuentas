@@ -1,7 +1,19 @@
 <?php
 
-require_once "../Conexion.php";
-$conexion=conexion();
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
+$conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'orientatec';
+
+$query = consultaPermisos($conn,$id_usuario,$tabla,'Insert');
+
+
+$query->execute();
+
+if($query->fetch()) {
 
    $nombre_preparatoria=$_POST['nombre_preparatoria'];
    $fecha=$_POST['fecha'];
@@ -14,5 +26,12 @@ echo $resultado = $stmt->execute();
 
 $stmt->close();
 $conexion->close();
+
+
+}
+else{
+   echo "2";
+}
+
 
 ?>

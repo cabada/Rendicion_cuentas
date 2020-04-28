@@ -14,7 +14,7 @@ function  agregarDatos(nombre,puesto,grado_estudios,funciones) {
                 $('#registro-equipo-apoyo-asesores').load('assets/components/registro-equipo-apoyo-asesores.php');
                 alertify.success("Agregado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -59,7 +59,7 @@ function actualizarDatos() {
                 $('#registro-equipo-apoyo-asesores').load('assets/components/registro-equipo-apoyo-asesores.php');
                 alertify.success("Actualizado con exito");
             } else {
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -84,7 +84,7 @@ function eliminarDatos(id_equipo_apoyo_as) {
                 $('#registro-equipo-maestros-itcj').load('assets/components/registro-equipo-apoyo-asesores.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

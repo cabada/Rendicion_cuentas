@@ -98,11 +98,11 @@ $conexion = conexion();
                 <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_editar">
 
                 <label>Fecha de terminación</label>
-                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_editar">
+                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_termino_editar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-main" id="btn_editar_curso_actual">Guardar cambios</button>
+                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_editar_curso_actual">Guardar cambios</button>
             </div>
         </div>
     </div>
@@ -112,7 +112,7 @@ $conexion = conexion();
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#btn_editar_curso_actual').click(function () {
+        $('#btn_agregar_curso_actual').click(function () {
 
             nombre_proyecto=$('#nombre_proyecto_agregar').val();
             console.log(nombre_proyecto);

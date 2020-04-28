@@ -1,7 +1,19 @@
 <?php
 
-require_once "../Conexion.php";
+require "../Conexion.php";
+require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
 $conexion = conexion();
+$conn = conexion();
+session_start();
+$id_usuario = $_SESSION["id_usuario"];
+$tabla = 'equipo_maestros_itcj';
+
+$query = consultaPermisos($conn,$id_usuario,$tabla,'Insert');
+
+
+$query->execute();
+
+if($query->fetch()) {
 
 $nombre_docente=$_POST['nombre_docente'];
 $categoria=$_POST['categoria'];
@@ -17,5 +29,10 @@ $stmt->bind_param("sssssii", $nombre_docente,$categoria,$grado_estudios,$sni,$ar
 echo $resultado = $stmt->execute();
 $stmt->close();
 $conexion->close();
+
+}
+else{
+    echo "2";
+}
 
 ?>

@@ -1,11 +1,12 @@
 function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
-                      periodo) {
+                      periodo,total) {
     cadena = "carrera=" + carrera +
         "&modalidad=" + modalidad +
         "&nuevo_ingreso=" + nuevo_ingreso +
         "&reingreso=" + reingreso +
         "&status=" + status +
-        "&periodo=" + periodo;
+        "&periodo=" + periodo+
+        "&total="+total;
 
     $.ajax({
         type:"post",
@@ -14,27 +15,37 @@ function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
         success:function(r) {
             if(r==1){
                 $('#registro-programa-educativo').load('assets/components/registro-programa-educativo.php');
+
                 alertify.success("Agregado con exito: ");
             }
             else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
+
         }
+
     });
 
 }
 
 function agregaForm(datos) {
 
+
     d = datos.split('||');
 
     $('#id_programa_educativo').val(d[0]);
-    $('#carrera_editar').val(d[1]);
-    $('#modalidad_editar').val(d[2]);
+
+    $('option:selected', 'select[carrera_editar="options"]').removeAttr('selected');
+    $('option:selected', 'select[modalidad_editar="options"]').removeAttr('selected');
+    $('option:selected', 'select[estatus_editar="options"]').removeAttr('selected');
+    $('option:selected', 'select[periodo_editar="options"]').removeAttr('selected');
+
+    $("#carrera_editar option:contains('"+d[1]+"')").attr('selected', true);
+    $("#modalidad_editar option:contains('"+d[2]+"')").attr('selected', true);
     $('#ingreso_editar').val(d[3]);
     $('#reingreso_editar').val(d[4]);
-    $('#estatus_editar').val(d[5]);
-    $('#periodo_editar').val(d[6]);
+    $("#estatus_editar option:contains('"+d[5]+"')").attr('selected', true);
+    $("#periodo_editar option:contains('"+d[6]+"')").attr('selected', true);
 
 }
 
@@ -64,6 +75,7 @@ function actualizarDatos() {
 
     periodo=periodo_valor;
     console.log(periodo);
+    total = nuevo_ingreso + reingreso;
 
     cadena ="id_programa_educativo=" + id_programa_educativo +
         "&carrera=" + carrera +
@@ -71,7 +83,8 @@ function actualizarDatos() {
         "&nuevo_ingreso=" + nuevo_ingreso +
         "&reingreso=" + reingreso +
         "&status=" + status +
-        "&periodo=" + periodo;
+        "&periodo=" + periodo+
+        "&total="+total;
 
     $.ajax({
         type:"post",
@@ -83,7 +96,7 @@ function actualizarDatos() {
                 alertify.success("Actualizado con exito ");
             }
             else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -108,8 +121,34 @@ function eliminardatos(id_programa_educativo) {
                 $('#registro-programa-educativo').load('assets/components/registro-programa-educativo.php');
                 alertify.success("Eliminado con exito!");
             }else{
-                alertify.error("Fallo el servidor!");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
 }
+
+// FUNCION PARA BUSCAR DATOS DE TABLA PROGRAMA EDUCATIVO
+$(buscar_datos());
+function buscar_datos(consulta){
+	$.ajax({
+		url:'assets/components/registro-programa-educativo.php',
+		type: 'POST' ,
+		dataType: 'html',
+		data: {consulta: consulta},
+	})
+	.done(function(respuesta){
+		$("#registro-programa-educativo").html(respuesta);
+	})
+	.fail(function(){
+		console.log("error");
+	});
+}
+
+$(document).on('keyup','#caja_busqueda', function(){
+	var valor = $(this).val();
+	if (valor != "") {
+		buscar_datos(valor);
+	}else{
+		buscar_datos();
+	}
+});

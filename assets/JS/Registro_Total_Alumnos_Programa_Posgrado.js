@@ -1,9 +1,8 @@
 
-function agregardatos(programa,cantidad,porcentaje,registrado_en) {
+function agregardatos(programa,cantidad,registrado_en) {
 
     cadena="programa=" + programa +
         "&cantidad=" + cantidad +
-        "&porcentaje=" + porcentaje +
         "&registrado_en=" + registrado_en;
 
     $.ajax({
@@ -16,7 +15,7 @@ function agregardatos(programa,cantidad,porcentaje,registrado_en) {
                 alertify.success("agregado con exito");
 
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -25,26 +24,30 @@ function agregardatos(programa,cantidad,porcentaje,registrado_en) {
 function agregaform(datos) {
     d=datos.split('||');
 
+    $('option:selected', 'select[nombre_curso_editar="options"]').removeAttr('selected');
+
+
     $('#id_total_prog_posgrado').val(d[0]);
-    $('#nombre_curso_editar').val(d[1]);
+    $("#nombre_curso_editar option:contains('"+d[1]+"')").attr('selected', true);
+
     $('#cantidad_editar').val(d[2]);
-    $('#porcentaje_editar').val(d[3]);
-    $('#registro_editar').val(d[4]);
+    $('#registro_editar').val(d[3]);
 
 }
 
 function actualizaDatos(){
 
     id_total_prog_posgrado=$('#id_total_prog_posgrado').val();
-    programa=$('#nombre_curso_editar').val();
+    var carrera_sel = document.getElementById("nombre_curso_editar");
+    var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].value;
+
+    id_carrera=carrera_valor;
     cantidad=$('#cantidad_editar').val();
-    porcentaje=$('#porcentaje_editar').val();
     registrado_en=$('#registro_editar').val();
 
     cadena="id_total_prog_posgrado=" + id_total_prog_posgrado +
-        "&programa=" + programa +
+        "&programa=" + id_carrera +
         "&cantidad=" + cantidad +
-        "&porcentaje=" + porcentaje +
         "&registrado_en=" + registrado_en;
 
     $.ajax({
@@ -57,7 +60,7 @@ function actualizaDatos(){
                 alertify.success("Actualizado con exito");
 
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -82,7 +85,7 @@ function eliminarDatos(id_total_prog_posgrado) {
                 $('#registro-total-alumnos-programa-posgrado').load('assets/components/registro-total-alumnos-programa-posgrado.php');
                 alertify.success("Eliminado con exito");
             }else{
-                alertify.error("Fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });

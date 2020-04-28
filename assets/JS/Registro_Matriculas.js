@@ -1,7 +1,7 @@
 
-function agregardatos(programa_educativo,cantidad_alumnos) {
+function agregardatos(id_carrera,cantidad_alumnos) {
 
-    cadena="programa_educativo=" + programa_educativo +
+    cadena="id_carrera=" + id_carrera +
            "&cantidad_alumnos=" + cantidad_alumnos;
 
     $.ajax({
@@ -13,7 +13,7 @@ function agregardatos(programa_educativo,cantidad_alumnos) {
                 $('#registro-cantidad-matriculas').load('assets/components/registro-cantidad-matriculas.php');
                 alertify.success("Agregado con exito");
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -22,9 +22,12 @@ function agregardatos(programa_educativo,cantidad_alumnos) {
 function agregaform(datos) {
 
     d=datos.split('||');
+    console.log(d[1]);
+    $('option:selected', 'select[programa_educativo_editar="options"]').removeAttr('selected');
+
 
     $('#id_matricula').val(d[0]);
-    $('#programa_educativo_editar').val(d[1]);
+    $("#programa_educativo_editar option:contains('"+d[1]+"')").attr('selected', true);
     $('#cantidad_alumnos_editar').val(d[2]);
 
 }
@@ -32,11 +35,11 @@ function agregaform(datos) {
 function actualizaDatos(){
 
     id_matricula=$('#id_matricula').val();
-    programa_educativo=$('#programa_educativo_editar').val();
+    id_carrera=$('#programa_educativo_editar').val();
     cantidad_alumnos=$('#cantidad_alumnos_editar').val();
 
     cadena="id_matricula=" + id_matricula +
-        "&programa_educativo=" + programa_educativo +
+        "&id_carrera=" + id_carrera +
         "&cantidad_alumnos=" + cantidad_alumnos;
 
     $.ajax({
@@ -48,7 +51,7 @@ function actualizaDatos(){
                 $('#registro-cantidad-matriculas').load('assets/components/registro-cantidad-matriculas.php');
                 alertify.success("Actualizado con exito");
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
@@ -73,7 +76,7 @@ function eliminardatos(id_matricula){
                 $('#registro-cantidad-matriculas').load('assets/components/registro-cantidad-matriculas.php');
                 alertify.success("Eliminado con exito");
             }else{
-                alertify.error("fallo el servidor");
+                alertify.error("No tiene los privilegios suficientes...");
             }
         }
     });
