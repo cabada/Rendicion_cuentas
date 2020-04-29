@@ -74,7 +74,7 @@
 					<div class="modal-body">
 
                         <label>ID Registro</label>
-                        <input type="text" id="id_registro_editar" class="form-control-page input-group-sm">
+                        <input type="text" readonly="readonly" id="id_registro_editar" class="form-control-page input-group-sm">
 
 
                         <label>Cantidad de Profesores en Tiempo Parcial</label>
@@ -134,13 +134,47 @@
             grado =  $('#grado_agregar').val();
             console.log(grado);
 
+            if (cantidad===""){
+                alertify.alert("Error","¡El campo de Cantidad esta vacio!")
+                return false;
+            } else if (isNaN(cantidad)){
+                alertify.alert("Error","¡El campo de Cantidad es invalido!")
+                return false;
+            }else if (cantidad<0){
+                alertify.alert("Error","¡El campo de Cantidad es invalido!")
+                return false;
+            } else if (grado===""){
+                alertify.alert("Error","¡El campo de Cantidad esta vacio!")
+                return false;
+            }  else {
 
-            agregarDatos(cantidad,grado);
 
+                agregarDatos(cantidad, grado);
+            }
         });
 
         $('#btn_editar_prof_tmp').click(function () {
-            actualizarDatos();
+
+            cantidad = parseInt($('#cantidad_editar').val());
+            console.log(cantidad);
+            grado =  $('#grado_editar').val();
+            console.log(grado);
+
+            if (cantidad===""){
+                alertify.alert("Error","¡El campo de Cantidad esta vacio!")
+                return false;
+            } else if (isNaN(cantidad)){
+                alertify.alert("Error","¡El campo de Cantidad es invalido!")
+                return false;
+            }else if (cantidad<0){
+                alertify.alert("Error","¡El campo de Cantidad es invalido!")
+                return false;
+            } else if (grado===""){
+                alertify.alert("Error","¡El campo de Cantidad esta vacio!")
+                return false;
+            }  else {
+                actualizarDatos();
+            }
         });
 
     });
