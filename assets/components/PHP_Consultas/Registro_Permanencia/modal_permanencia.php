@@ -95,11 +95,48 @@ $conexion = conexion();
             porcentaje=parseFloat(porcentaje);
             console.log(porcentaje);
 
-            agregarDatos(id_carrera,porcentaje)
-
+            if (id_carrera===""){
+                alertify.alert("Error","¡El campo de Carrera esta vacío!");
+                return false;
+            }else if(porcentaje===""){
+                alertify.alert("Error","¡El campo de porcentaje esta vacio!");
+                return false;
+            }else if(porcentaje<=1) {
+                alertify.alert("Error", "¡El campo de porcentaje es invalido!");
+                return false;
+            }else {
+                agregarDatos(id_carrera, porcentaje);
+                $('#new-modal').modal('hide');
+                $('#carrera_agregar').val('');
+                $('#porcentaje_agregar').val('');
+            }
         });
         $('#btn_editar_curso_actual').click(function () {
-            actualizaDatos();
+            var carrera_sel = document.getElementById("nombre_programa_agregar");
+            var carrera_valor = carrera_sel.options[carrera_sel.selectedIndex].value;
+
+            id_carrera=carrera_valor;
+
+            console.log(id_carrera);
+            porcentaje=$('#porcentaje_editar').val();
+            porcentaje=parseFloat(porcentaje);
+            console.log(porcentaje);
+
+            if (id_carrera===""){
+                alertify.alert("Error","¡El campo de Carrera esta vacío!");
+                return false;
+            }else if(porcentaje===""){
+                alertify.alert("Error","¡El campo de porcentaje esta vacio!");
+                return false;
+            }else if(porcentaje<=1) {
+                alertify.alert("Error", "¡El campo de porcentaje es invalido!");
+                return false;
+            }else {
+                actualizarDatos(id_carrera, porcentaje);
+                $('#new-modal').modal('hide');
+                $('#carrera_editar').val('');
+                $('#porcentaje_editar').val('');
+            }
         });
     });
 </script>

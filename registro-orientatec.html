@@ -143,19 +143,22 @@
           console.log(estudiantes_atendidos);
 
           //VALIDACIONES PARA AGREGAR UN REGISTRO
-          if (nombre_preparatoria=== ""){
-              alertify.alert("Error","¡El campo de Preparatoria esta vacío!")
-              return false;
-          } else if (fecha=== ""){
-              alertify.alert("Error","¡El campo de Fecha esta vacío!");
-              return false;
-          } else if (isNaN(estudiantes_atendidos)){
-              alertify.alert("Error","¡El tipo de dato no es valido!");
-              return false;
-          }else if (estudiantes_atendidos=== "") {
-              alertify.alert("Error", "¡El campo de Estudiantes atendidos esta vacío!")
-              return false;
-          }else {
+              if (nombre_preparatoria=== ""){
+                  alertify.alert("Error","¡El campo de Preparatoria esta vacío!")
+                  return false;
+              } else if (fecha=== ""){
+                  alertify.alert("Error","¡El campo de Fecha esta vacío!");
+                  return false;
+              } else if (isNaN(estudiantes_atendidos)){
+                  alertify.alert("Error","¡El tipo de dato no es valido!");
+                  return false;
+              }else if (estudiantes_atendidos=== "") {
+                  alertify.alert("Error", "¡El campo de Estudiantes atendidos esta vacío!")
+                  return false;
+              }else if (estudiantes_atendidos=== "0") {
+                  alertify.alert("Error", "¡El valor ingresado no es valido!")
+                  return false;
+              }else {
 
               agregarDatos(nombre_preparatoria, fecha, estudiantes_atendidos)
           }
@@ -183,6 +186,9 @@
               return false;
           }else if (estudiantes_atendidos=== "") {
               alertify.alert("Error", "¡El campo de Estudiantes atendidos esta vacío!")
+              return false;
+          }else if (estudiantes_atendidos=== "0") {
+              alertify.alert("Error", "¡El valor ingresado no es valido!")
               return false;
           }else {
               actualizaDatos();

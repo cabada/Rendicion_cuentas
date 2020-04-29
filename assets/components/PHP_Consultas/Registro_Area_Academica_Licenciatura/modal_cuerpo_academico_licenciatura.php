@@ -114,6 +114,7 @@ $conexion = conexion();
 
 
 <script type="text/javascript">
+
     $(document).ready(function () {
         $('#btn_agregar_curso_actual').click(function () {
 
