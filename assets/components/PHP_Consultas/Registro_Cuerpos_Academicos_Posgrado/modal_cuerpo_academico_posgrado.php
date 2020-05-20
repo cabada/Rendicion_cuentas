@@ -140,6 +140,7 @@ $conexion = conexion();
                 agregarDatos(nombre_cuerpo,grado,estado,anio_registro,vigencia,area);
                 $('#new-modal').modal('hide');
                 $('#nombre_cuerpo_academico_agregar').val('');
+                $('#grado_agregar').val('');
                 $('#nombre_estado_agregar').val('');
                 $('#anio_registro_agregar').val('');
                 $('#vigencia_agregar').val('');
