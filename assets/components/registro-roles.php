@@ -2,9 +2,10 @@
 
 require_once "PHP_Consultas/Conexion.php";
 require_once "PHP_Consultas/Usuarios/Verificar_Rol_Usuario.php";
+
+session_start();
 $conexion = conexion();
 $conn = conexion();
-session_start();
 $id_usuario = $_SESSION["id_usuario"];
 $stmt = consultaRol($conn,$id_usuario);
 
