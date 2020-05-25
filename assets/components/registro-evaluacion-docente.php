@@ -3,6 +3,7 @@
 
 require_once "PHP_Consultas/Conexion.php";
 require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
+
 session_start();
 $conexion = conexion();
 $conn = conexion();
