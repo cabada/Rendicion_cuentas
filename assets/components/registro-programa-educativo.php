@@ -73,7 +73,7 @@ while($stmt->fetch()){
 
                             $suma = $buscar[3]+$buscar[4];
                             $salida.='<tr class="tablasuma">
-                                    <td>'.$buscar[1].'</td>
+                                    <td>'.utf8_encode($buscar[1]).'</td>
                                     <td>'.$buscar[2].'</td>
                                     <td>'.$buscar[3].'</td>
                                     <td>'.$buscar[4].'</td>

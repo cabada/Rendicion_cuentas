@@ -26,7 +26,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_carrera'];
 
-                                    echo "<option value=\"".$fila['id_carrera']."\">".$fila['nombre_carrera']."</option>\n";
+                                    echo "<option value=\"".$fila['id_carrera']."\">".utf8_encode($fila['nombre_carrera'])."</option>\n";
                                 }
                                 ?>
                         </select>
@@ -67,7 +67,7 @@ $conexion = conexion();
                                 while($fila = mysqli_fetch_array($resultado)){
                                     $valor = $fila['nombre_carrera'];
 
-                                    echo "<option value=\"".$fila['id_carrera']."\">".$fila['nombre_carrera']."</option>\n";
+                                    echo "<option value=\"".$fila['id_carrera']."\">".utf8_encode($fila['nombre_carrera'])."</option>\n";
                                 }
                                 ?>
                         </select>

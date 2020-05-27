@@ -117,7 +117,7 @@ if($resultado == $rol){
 <!--                     Se hace un ciclo para capturar las operaciones que tiene dicho rol que se hace con la ultima query-->
                         <td><?php  $filaMod = array();
                             while($filaModulos = mysqli_fetch_array($modulos)){
-                                echo "<label>".$filaModulos['nombre_modulo']."</label><br>";
+                                echo "<label>".utf8_encode($filaModulos['nombre_modulo'])."</label><br>";
 
                                 array_push($filaMod,$filaModulos['id_modulo']);
 
