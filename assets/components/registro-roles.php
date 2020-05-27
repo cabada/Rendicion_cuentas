@@ -2,9 +2,10 @@
 
 require_once "PHP_Consultas/Conexion.php";
 require_once "PHP_Consultas/Usuarios/Verificar_Rol_Usuario.php";
+
+session_start();
 $conexion = conexion();
 $conn = conexion();
-session_start();
 $id_usuario = $_SESSION["id_usuario"];
 $stmt = consultaRol($conn,$id_usuario);
 
@@ -116,7 +117,7 @@ if($resultado == $rol){
 <!--                     Se hace un ciclo para capturar las operaciones que tiene dicho rol que se hace con la ultima query-->
                         <td><?php  $filaMod = array();
                             while($filaModulos = mysqli_fetch_array($modulos)){
-                                echo "<label>".$filaModulos['nombre_modulo']."</label><br>";
+                                echo "<label>".utf8_encode($filaModulos['nombre_modulo'])."</label><br>";
 
                                 array_push($filaMod,$filaModulos['id_modulo']);
 

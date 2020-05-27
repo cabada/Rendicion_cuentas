@@ -2,9 +2,9 @@
 
 require "../Conexion.php";
 require_once "../Usuarios/Verificar_Permisos_Usuarios.php";
+session_start();
 $conexion = conexion();
 $conn = conexion();
-session_start();
 $id_usuario = $_SESSION["id_usuario"];
 $tabla = 'cuerpos_academicos';
 $stmt = consultaPermisos($conn,$id_usuario,$tabla,'Update');

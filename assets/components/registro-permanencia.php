@@ -2,9 +2,10 @@
 
 require_once "PHP_Consultas/Conexion.php";
 require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
+
+session_start();
 $conexion = conexion();
 $conn = conexion();
-session_start();
 $id_usuario = $_SESSION["id_usuario"];
 $stmt = consultaTablas($conn,$id_usuario);
 
@@ -51,7 +52,7 @@ if($resultado == $tablaRequerida){
                 ?>
 
                 <tr>
-                    <td><?php echo $ver[1]?></td>
+                    <td><?php echo utf8_encode($ver[1])?></td>
                     <td><?php echo $ver[2]?>%</td>
                     <td class="text-center align-middle">
                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i class="far fa-edit"></i>  Editar</button>

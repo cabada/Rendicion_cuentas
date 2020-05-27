@@ -2,9 +2,10 @@
 
 require_once "PHP_Consultas/Conexion.php";
 require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
+
+session_start();
 $conexion = conexion();
 $conn = conexion();
-session_start();
 $id_usuario = $_SESSION["id_usuario"];
 $stmt = consultaTablas($conn,$id_usuario);
 
@@ -68,7 +69,7 @@ if($resultado == $tablaRequerida){
                 <tr>
                     <td><?php echo $ver[1]?></td>
                     <td><?php echo $ver[2]?></td>
-                    <td><?php echo $ver[3]?></td>
+                    <td><?php echo utf8_encode($ver[3])?></td>
                     <td><?php echo $ver[4]?></td>
                     <td><?php echo $ver[5]?></td>
                     <td><?php echo $ver[6]?></td>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/libraries/css/all.css">
+    <link rel="stylesheet" href="assets/libraries/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/libraries/css/styles-page.css">
+    <link rel="stylesheet" href="assets/libraries/css/alertify.css">
+    <link rel="stylesheet" href="assets/libraries/css/themes/default.css">
+
+    <script defer src="assets/libraries/js/all.js"></script>
+    <script src="assets/libraries/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/libraries/js/popper.min.js"></script>
+    <script src="assets/libraries/js/bootstrap.min.js"></script>
+    <script src="assets/libraries/js/alertify.js"></script>
+    <script src="assets/JS/Registro_Evaluacion_Docente.js"></script>
+
+
+    <!-- FAVICON AND TITLE IN BROWSER  -->
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png">
+    <title>ITCJ | Registro de Evaluación Docente</title>
+</head>
+<body>
+<!-- HEADER ADVERTISEMENTS-->
+<header>
+    <div id="navbar">
+        <!-- ADD NAVBAR -->
+    </div>
+</header>
+
+<!-- PRINCIPAL MAIN -->
+<main>
+    <!-- PAGE TABLE -->
+    <div class="container-fluid">
+        <div id="registro-evaluacion-docente"></div>
+    </div>
+
+    <!-- MODAL FOR NEW FORM -->
+    <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="new-modalLabel">Agregar nuevo registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label>Periodo</label>
+                    <select type="text" class="form-control-page input-group-sm" id="periodo_agregar">
+                        <option selected>-</option>
+                        <option>Agosto - Diciembre</option>
+                        <option>Enero - Junio</option>
+                    </select>
+
+                    <label>Docentes activos evaluados</label>
+                    <input type="number" value="0" id="docentes_activos_evaluados_agregar" class="form-control-page input-group-sm">
+
+                    <label>Porcentaje</label>
+                    <input type="text" id="porcentaje_agregar" class="form-control-page input-group-sm">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_eva_doc">Agregar Nuevo Registro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL FOR EDITION -->
+    <div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label>ID Evaluacion Docente</label>
+                    <input type="number" value="0" id="id_evaluacion_doc" class="form-control-page input-group-sm" readonly="readonly">
+
+
+                    <label>Periodo</label>
+                    <select type="text" class="form-control-page input-group-sm" id="periodo_editar">
+                        <option selected>-</option>
+                        <option>Agosto - Diciembre</option>
+                        <option>Enero - Junio</option>
+                    </select>
+
+                    <label>Docentes activos evaluados</label>
+                    <input type="number" value="0" id="docentes_activos_evaluados_editar" class="form-control-page input-group-sm">
+
+                    <label>Porcentaje</label>
+                    <input type="text" id="porcentaje_editar" class="form-control-page input-group-sm">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_editar_eva_doc">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="container-fluid my-5 border-top">
+    <div class="row mt-2 text-center">
+        <div class="col-12">
+            <p class="text-center">
+                <strong>
+                    <br>INSTITUTO TECNOLÓGICO DE CIUDAD JUÁREZ
+                    <br>Av. Tecnológico No. 1340 Frac. El Crucero C.P. 32500 Ciudad Juárez, Chih. México
+                </strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mt-2 text-center">
+        <div class="col-12">
+            <small class="d-block text-muted mt-3">Servicio social departamento de Sistemas ITCJ - 2020.</small>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+
+<!-- JAVASCRIPT CODE -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#navbar').load('navbar.php');
+        $('#registro-evaluacion-docente').load('assets/components/registro-evaluacion-docente.php');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn_agregar_eva_doc').click(function () {
+
+            periodo = $('#periodo_agregar').val();
+            console.log(periodo);
+            docentes_evaluados =  parseInt($('#docentes_activos_evaluados_agregar').val());
+            console.log(docentes_evaluados);
+            porcentaje = $('#porcentaje_agregar').val();
+            console.log(porcentaje);
+
+
+            agregarDatos(periodo,docentes_evaluados,porcentaje);
+
+        });
+
+        $('#btn_editar_eva_doc').click(function () {
+            actualizarDatos();
+        });
+
+    });
+
+</script>

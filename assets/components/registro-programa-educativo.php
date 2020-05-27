@@ -1,9 +1,10 @@
 <?php
 require_once "PHP_Consultas/Conexion.php";
 require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
+
+session_start();
 $conexion = conexion();
 $conn = conexion();
-session_start();
 $id_usuario = $_SESSION["id_usuario"];
 $stmt = consultaTablas($conn,$id_usuario);
 $stmt->execute();
@@ -72,7 +73,7 @@ while($stmt->fetch()){
 
                             $suma = $buscar[3]+$buscar[4];
                             $salida.='<tr class="tablasuma">
-                                    <td>'.$buscar[1].'</td>
+                                    <td>'.utf8_encode($buscar[1]).'</td>
                                     <td>'.$buscar[2].'</td>
                                     <td>'.$buscar[3].'</td>
                                     <td>'.$buscar[4].'</td>
