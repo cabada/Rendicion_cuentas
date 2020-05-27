@@ -29,15 +29,17 @@ if($resultado == $tablaRequerida){
             <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
         </caption>
         <div class="table-responsive-xl">
-            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
-                <tr>
+            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="Tabla">
+                <thead>
+                  <tr>
                     <td class="text-center align-middle background-table">Nombre de programa</td>
                     <td class="text-center align-middle background-table">Cantidad</td>
                     <td class="text-center align-middle background-table">Porcentaje</td>
                     <td class="text-center align-middle background-table">Registrado en</td>
                     <td class="text-center align-middle background-table">Acciones</td>
-                </tr>
-
+                  </tr>
+                </thead>
+                <tbody>
                 <?php
                 $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
                             carreras.nombre_carrera,
@@ -94,6 +96,7 @@ if($resultado == $tablaRequerida){
                     <td>100%</td>
 
                 </tr>
+                </tbody>
             </table>
         </div>
     </div>
@@ -111,3 +114,43 @@ $conexion->close();
 
 
 ?>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Tabla').DataTable({
+            dom: 'Brtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ],
+            language:{
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            }
+cc
+        });
+    });
+
+</script>

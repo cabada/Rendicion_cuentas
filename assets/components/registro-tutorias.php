@@ -48,7 +48,6 @@ if($resultado == $tablaRequerida){
 
                 $result=mysqli_query($conexion,$sql);
                 while($ver=mysqli_fetch_row($result)){
-
                     $datos=$ver[0]."||".
                         $ver[1]."||".
                         $ver[2]."||".
