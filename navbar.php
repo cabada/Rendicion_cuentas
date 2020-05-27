@@ -82,6 +82,9 @@ while($stmt->fetch()){
                    <li class="nav-item dropdown">
                        <a href="roles.html" class="nav-link">Roles y Permisos<span class="sr-only">(current)</span></a>
                    </li>
+                   <li class="nav-item dropdown">
+                       <a href="registro-informes-pdf.html" class="nav-link">Informes de Rendicion de Cuentas<span class="sr-only">(current)</span></a>
+                   </li>
 
                </ul>
            </div>
