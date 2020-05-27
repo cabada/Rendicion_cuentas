@@ -90,3 +90,5 @@ function eliminarDatos(id_total_prog_posgrado) {
         }
     });
 }
+
+
