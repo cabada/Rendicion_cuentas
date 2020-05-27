@@ -25,7 +25,7 @@ $conexion = conexion();
                     while($fila = mysqli_fetch_array($resultado)){
                         $valor = $fila['nombre_area_academica'];
 
-                        echo "<option value=\"".$fila['id_area_academica']."\">".$fila['nombre_area_academica']."</option>\n";
+                        echo "<option value=\"".$fila['id_area_academica']."\">".utf8_encode($fila['nombre_area_academica'])."</option>\n";
 
                     }
                     ?>
@@ -61,17 +61,37 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
+                <label>ID Registro</label>
+                <input type="number" readonly id="id_registro" class="form-control-page input-group-sm">
+
+                <label>Área académica</label>
+                <select type="text" class="form-control-page input-group-sm" id="area_academica_editar">
+                    <?php
+                    $query = "select id_area_academica,nombre_area_academica from area_academica";
+                    $resultado = mysqli_query($conexion,$query);
+
+                    while($fila = mysqli_fetch_array($resultado)){
+                        $valor = $fila['nombre_area_academica'];
+
+                        echo "<option value=\"".$fila['id_area_academica']."\">".utf8_encode($fila['nombre_area_academica'])."</option>\n";
+
+                    }
+                    ?>
+                </select>
+
                 <label>Número de sala</label>
                 <input type="number" value="0" id="numero_sala_editar" class="form-control-page input-group-sm">
 
                 <label>Ingrese la cantidad de computadoras por sala</label>
 
-                <label>Cantidad de computadoras</label>
-                <input type="number" value="0" id="numero_computadoras_editar" class="form-control-page input-group-sm">
-            </div>
+                <div id="div2">
+
+                </div>
+
+              </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_editar_curso_actual">Guardar cambios</button>
+                <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_editar_stock">Guardar cambios</button>
             </div>
         </div>
     </div>
@@ -119,15 +139,16 @@ $conexion = conexion();
 
                 for(i=0;i<valorSalas;i++){
 
-                    g = document.getElementById(i);
+
                     console.log(g);
 
                     if( g !== null){
-                        div.removeChild(g);
+                        $('#div1').find('input').remove();
                         $('#div1').find('br').remove();
                         $('#div1').find('label').remove();
 
                     }
+
 
                 }
 
@@ -138,6 +159,8 @@ $conexion = conexion();
                 g.setAttribute("class","form-control-page input-group-sm")
                 div.appendChild(bk);
                 div.appendChild(g);
+
+
 
             }
 
@@ -191,8 +214,8 @@ $conexion = conexion();
 
         });
 
-        $('#btn_editar_prod_as').click(function () {
-            actualizarDatos();
+        $('#btn_editar_stock').click(function () {
+            actualizaDatos();
         });
 
     });

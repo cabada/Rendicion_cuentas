@@ -2,7 +2,10 @@
 
 
 require_once "../Conexion.php";
+require_once "Start_Session.php";
+iniciarSesion();
 $conexion = conexion();
+
 
 $correo_electronico = $_POST['correo_electronico'];
 $contrasena = $_POST['contrasena'];
@@ -18,8 +21,10 @@ $stmt->bind_result($resultado);
 
  if($stmt->fetch()){
      echo $result;
-     session_start();
      $_SESSION["id_usuario"] = $resultado;
+ }
+ else{
+     session_destroy();
  }
 
 $stmt->close();
