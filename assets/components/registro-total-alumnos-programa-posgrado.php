@@ -29,8 +29,7 @@ if($resultado == $tablaRequerida){
             <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
         </caption>
         <div class="table-responsive-xl">
-            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="Tabla">
-                <thead>
+            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                   <tr>
                     <td class="text-center align-middle background-table">Nombre de programa</td>
                     <td class="text-center align-middle background-table">Cantidad</td>
@@ -112,4 +111,3 @@ $conexion->close();
 
 
 ?>
-

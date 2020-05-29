@@ -12,7 +12,6 @@
     <table>
             <tr>
                 <h4>Reporte de Registro Evaliacion Docente</h4>
-
                 <th>ID</th>
                 <th>Periodo</th>
                 <th>Docentes Activos Evaluados</th>
