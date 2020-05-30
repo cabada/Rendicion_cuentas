@@ -30,6 +30,7 @@ if($resultado == $tablaRequerida){
         </caption>
         <div class="table-responsive-xl">
             <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+                <thead>
                     <tr>
                         <td class="text-center align-middle background-table">Tutores registrados</td>
                         <td class="text-center align-middle background-table">Cantidad de alumnos grupal</td>
@@ -38,6 +39,8 @@ if($resultado == $tablaRequerida){
                         <td class="text-center align-middle background-table">Cantidad de alumnos en conferencia</td>
                         <td class="text-center align-middle background-table">Acciones</td>
                     </tr>
+                </thead>
+                <tbody>
 
                 <?php
                 $sql="select id_tutorias,tutores_registrados, alumnos_tuto_grupal,encuentro_padres,conferencias_alumnos,
@@ -67,6 +70,7 @@ if($resultado == $tablaRequerida){
                 <?php
                 }
                 ?>
+                </tbody>
             </table>
         </div>
     </div>
@@ -82,3 +86,42 @@ $conexion->close();
 
 ?>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+      $('#TablaDinamicaLoad').DataTable({
+          dom: 'Brtip',
+          buttons: [
+              'copyHtml5',
+              'excelHtml5',
+              'csvHtml5',
+              'pdfHtml5'
+          ],
+          language:{
+          "sProcessing":     "Procesando...",
+        "sLengthMenu":     "Mostrar _MENU_ registros",
+        "sZeroRecords":    "No se encontraron resultados",
+        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":    "",
+        "sSearch":         "Buscar:",
+        "sUrl":            "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst":    "Primero",
+            "sLast":     "Último",
+            "sNext":     "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    }
+
+      });
+    });
+
+</script>
