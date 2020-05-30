@@ -37,11 +37,11 @@ if($resultado == $tablaRequerida){
                         <div class="form-row">
                             <div class="col">
                                 <input class="btn btn-danger text-white" type="button" target="_blank" value="Exportar PDF"
-                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Tutorias/Reporte de Registro_Tutorias.php';
+                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Tutorias/reportePDF.php';
                                 document.reporte.submit()" />
 
                                 <input class="btn btn-success text-white" type="button" value="Exportar Excel"
-                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Tutorias/Reporte de Registro Tutorias.php';
+                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Tutorias/reporteExcel.php';
                                 document.reporte.submit()" />
                             </div>
                         </div>
