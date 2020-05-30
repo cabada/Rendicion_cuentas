@@ -28,6 +28,28 @@ if($resultado == $tablaRequerida){
         <caption>
             <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
         </caption>
+
+        <!--Botones Excel y PDF -->
+        <div class="row mt-2">
+            <div class="col-12">
+                <form id="reporte" name="reporte" method="POST" target="_blank">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col">
+                                <input class="btn btn-danger text-white" type="button" target="_blank" value="Exportar PDF"
+                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Permanencia/reportePDF.php';
+                                document.reporte.submit()" />
+
+                                <input class="btn btn-success text-white" type="button" value="Exportar Excel"
+                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Permanencia/reporteExcel.php';
+                                document.reporte.submit()" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="table-responsive-xl">
             <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                 <tr>
