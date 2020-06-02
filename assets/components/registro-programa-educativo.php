@@ -70,10 +70,9 @@ while($stmt->fetch()){
                                 $buscar[5]."||".
                                 $buscar[6];
 
-
                             $suma = $buscar[3]+$buscar[4];
                             $salida.='<tr class="tablasuma">
-                                    <td>'.utf8_encode($buscar[1]).'</td>
+                                    <td>'.utf8_decode($buscar[1]).'</td>
                                     <td>'.$buscar[2].'</td>
                                     <td>'.$buscar[3].'</td>
                                     <td>'.$buscar[4].'</td>
@@ -86,7 +85,6 @@ while($stmt->fetch()){
                                     </td>
                                 </tr>';
                         }
-
                         $salida.="<tr style='font-weight: bold'>
 
                                     <td>Total</td>";

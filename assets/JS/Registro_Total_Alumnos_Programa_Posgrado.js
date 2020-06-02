@@ -91,4 +91,28 @@ function eliminarDatos(id_total_prog_posgrado) {
     });
 }
 
+// FUNCION PARA BUSCAR DATOS DE TABLA PROGRAMA EDUCATIVO
+$(buscar_datos());
+function buscar_datos(consulta){
+    $.ajax({
+        url:'assets/components/registro-total-alumnos-programa-posgrado.php',
+        type: 'POST' ,
+        dataType: 'html',
+        data: {consulta: consulta},
+    })
+        .done(function(respuesta){
+            $("#registro-total-alumnos-programa-posgrado").html(respuesta);
+        })
+        .fail(function(){
+            console.log("error");
+        });
+}
 
+$(document).on('keyup','#caja_busqueda', function(){
+    var valor = $(this).val();
+    if (valor != "") {
+        buscar_datos(valor);
+    }else{
+        buscar_datos();
+    }
+});

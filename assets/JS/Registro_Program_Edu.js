@@ -10,7 +10,7 @@ function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
 
     $.ajax({
         type:"post",
-        url:"assets/components/PHP_Consultas/Registro_Programa_Educativo/Agregar_Registro.php",
+        url:"assets/components/P HP_Consultas/Registro_Programa_Educativo/Agregar_Registro.php",
         data:cadena,
         success:function(r) {
             if(r==1){
