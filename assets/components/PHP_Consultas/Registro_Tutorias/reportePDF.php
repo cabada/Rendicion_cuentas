@@ -1,8 +1,6 @@
 <?php
 require('../../pdf/fpdf_horizontal.php');
 
-header('Content-Type: application/octet-stream');
-header('Content-Disposition: attachment; filename= Reporte de registro tutorias.pdf');
 
 require_once "../conexion.php";
     $conexion = conexion();
@@ -82,5 +80,5 @@ public function Footer()
         $pdf->Cell(50,8, $row['alumnos_asistieron_conferencias'], 1,1,'C',1);
     }
     
-    $pdf->Output(D);
+    $pdf->Output();
 ?>
