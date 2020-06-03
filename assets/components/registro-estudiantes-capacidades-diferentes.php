@@ -24,9 +24,6 @@ if($resultado == $tablaRequerida){
 <div class="row">
     <div class="col-sm-12">
         <h2>Registro de estudiantes con capacidades diferentes</h2>
-        <caption>
-            <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
-        </caption>
 
         <!--Botones Excel y PDF -->
         <div class="row mt-2">
@@ -50,39 +47,63 @@ if($resultado == $tablaRequerida){
         </div>
 
         <div class="table-responsive-xl">
-            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+            <?php
+            $salida = "";
+            $sql="select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
+                              from estudiantes_capacidades_diferentes";
+
+            if(isset($_POST['consulta'])){
+                $q = $conexion->real_escape_string($_POST['consulta']);
+                $sql="select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
+                              from estudiantes_capacidades_diferentes where estudiantes_capacidades_diferentes.PERIODO LIKE '%$q%'
+                              or estudiantes_capacidades_diferentes.ANIO LIKE '%$q%'";
+            }
+
+            $resultado = $conexion->query($sql);
+            if ($resultado->num_rows>0){
+
+            $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                 <tr>
                     <td class="text-center align-middle background-table">Periodo</td>
                     <td class="text-center align-middle background-table">Año</td>
                     <td class="text-center align-middle background-table">Cantidad de estudiantes</td>
                     <td class="text-center align-middle background-table">Acciones</td>
-                </tr>
+                </tr>';
 
-                <?php
-                    $sql="select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
-                              from estudiantes_capacidades_diferentes";
                     $result=mysqli_query($conexion,$sql);
-                    while ($ver=mysqli_fetch_row($result)){
+                    while ($ver=mysqli_fetch_row($result)) {
 
-                        $datos=$ver[0]."||".
-                               $ver[1]."||".
-                               $ver[2]."||".
-                               $ver[3];
-                ?>
+                        $datos = $ver[0] . "||" .
+                            $ver[1] . "||" .
+                            $ver[2] . "||" .
+                            $ver[3];
 
-                <tr>
-                    <td><?php echo $ver[1]?></td>
-                    <td><?php echo $ver[2]?></td>
-                    <td><?php echo $ver[3]?></td>
+                        $salida .= '<tr>
+                    <td>' . utf8_decode($ver[1]) . '</td>
+                    <td>' . $ver[2] . '</td>
+                    <td>' . $ver[3] . '</td>
                     <td class="text-center align-middle">
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos?>')"><i class="far fa-edit"></i>  Editar</button>
-                        <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $ver[0]?>')"><i class="fas fa-trash"></i>  Eliminar</button>
+                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform(\'' . $datos . '\')"><i class="far fa-edit"></i>  Editar</button>
+                        <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\'' . $ver[0] . '\')"><i class="fas fa-trash"></i>  Eliminar</button>
                     </td>
-                </tr>
-                <?php
+                </tr>';
                     }
-                ?>
-            </table>
+                $salida.="</table>";
+                    } else {
+                        $salida.='<div class="row mt-3">
+                        <div class="col-12 text-center">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>¡No se encontró ningún elemento!</strong><br>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>';
+                          }
+                    echo $salida;
+                    ?>
+
         </div>
     </div>
 </div>
