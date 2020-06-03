@@ -2,6 +2,8 @@
 require('../../pdf/fpdf_horizontal.php');
 
 require_once "../conexion.php";
+session_start();
+$q = $_SESSION['buscar'];
     $conexion = conexion();
 
 class PDF extends FPDF
@@ -59,6 +61,7 @@ public function Footer()
     $pdf->SetTextColor(0, 0, 0);
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->SetLineWidth(1);
+
     
     
     $sentencia = ("select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
@@ -67,7 +70,8 @@ public function Footer()
                             total_alumnos_programa_posgrado.REGISTRADO_EN
                     from total_alumnos_programa_posgrado
                     join carreras
-                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera");
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera
+                    where carreras.NOMBRE_CARRERA LIKE '%$q%'");
     $query = mysqli_query($conexion,$sentencia);
     
     while($row = $query -> fetch_assoc()){
