@@ -91,7 +91,7 @@ if($resultado == $tablaRequerida){
                                     experiencia_profesional,
                                     experiencia_docente 
                                     from equipo_maestros_itcj
-                                    where nombre_docente like '%$q%' or grado_estudios like '%$q%' or grado_estudios like '%$q%'";
+                                    where nombre_docente like '%$q%' or grado_estudios like '%$q%'";
                 }
 
                 if(isset($_POST['consulta_anio'])){
