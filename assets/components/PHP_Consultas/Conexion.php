@@ -1,12 +1,11 @@
 <?php
-//Hola perrita
 
 function conexion()
 {
     $servidor = "localhost";
     $usuario = "root";
     $bd = "rendicion_cuentas";
-    $password = "";
+    $password = "mysql";
 
     $conexion = mysqli_connect($servidor, $usuario, $password, $bd);
 
