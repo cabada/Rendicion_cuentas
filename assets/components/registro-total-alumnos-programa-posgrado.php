@@ -97,8 +97,7 @@ while($stmt->fetch()){
                         <td>'. $ver[3] .'</td>
                         <td class="text-center align-middle">
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform(\''.$datos.'\')"><i
-                                        class="far fa-edit"></i> Editar
-                            </button>
+                                        class="far fa-edit"></i> Editar </button>
                             <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\''.$ver[0].'\')"><i class="fas fa-trash"></i> Eliminar</button>
                         </td>
                     </tr>';

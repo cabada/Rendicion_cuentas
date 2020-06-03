@@ -83,3 +83,29 @@ function eliminarDatos(id_proyecto_inv_posgrado_periodo) {
         }
     });
 }
+
+// FUNCION PARA BUSCAR DATOS DE TABLA PROGRAMA EDUCATIVO
+$(buscar_datos());
+function buscar_datos(consulta){
+    $.ajax({
+        url:'assets/components/registro-proyectos-investigacion-posgrado-periodo.php',
+        type: 'POST' ,
+        dataType: 'html',
+        data: {consulta: consulta},
+    })
+        .done(function(respuesta){
+            $("#registro-proyectos-investigacion-posgrado-periodo").html(respuesta);
+        })
+        .fail(function(){
+            console.log("error");
+        });
+}
+
+$(document).on('keyup','#caja_busqueda', function(){
+    var valor = $(this).val();
+    if (valor != "") {
+        buscar_datos(valor);
+    }else{
+        buscar_datos();
+    }
+});
