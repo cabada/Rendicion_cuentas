@@ -113,7 +113,7 @@ while($stmt->fetch()){
                     $salida.="<td> $ver1[0]</td>";
                     $salida.="<td>100%</td>";
 
-                        $salida.="</tr>";
+                $salida.="</tr>";
                 $salida.="</table>";
                     } else {
                         $salida.='<div class="row mt-3">
