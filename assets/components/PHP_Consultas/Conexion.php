@@ -1,5 +1,4 @@
 <?php
-//Hola perrita
 
 function conexion()
 {
