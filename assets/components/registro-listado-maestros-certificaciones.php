@@ -102,11 +102,6 @@ if($resultado == $tablaRequerida){
 
 
                         $q = $conexion->real_escape_string($_POST['consulta_anio']);
-
-
-                        var_dump($q);
-
-
                         /*variable goblal*/
                         $_SESSION['consulta_anio']=$q;
                         $sql="select profesores.id_profesor,
