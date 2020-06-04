@@ -51,7 +51,8 @@ if($resultado == $tablaRequerida) {
                                 <!--Select de anio-->
                                 <div class="col d-flex justify-content-end">
                                     <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
-                                        <option>Buscar por año</option>
+                                        <option disabled selected hidden>Buscar por año</option>
+                                        <option>Todos los registros</option>
                                         <?php
                                         $query = "select distinct year(fecha_creado) as fecha_creado from profesores where id_categoria_profesores = 2 order by fecha_creado desc";
                                         $resultado = mysqli_query($conexion, $query);
@@ -90,16 +91,38 @@ if($resultado == $tablaRequerida) {
                             where profesores.id_categoria_profesores = 2";
 
                         if(isset($_POST['consulta_anio'])){
-                            $q = $conexion->real_escape_string($_POST['consulta_anio']);
-                            $_SESSION['consulta_anio'] = $q;
-                            $sql="select profesores.id_profesor,
+
+                            if($_POST['consulta_anio']!='Todos los registros'){
+
+                                $q = $conexion->real_escape_string($_POST['consulta_anio']);
+                                $_SESSION['consulta_anio'] = $q;
+                                $sql="select profesores.id_profesor,
+                                profesores.nombre_completo,
+                                area_academica.nombre_area_academica,
+                                profesores.vigencia
+                                from profesores
+                                join area_academica
+                                on area_academica.id_area_academica = profesores.id_area_academica
+                                where profesores.id_categoria_profesores = 2
+                                and profesores.fecha_creado like '%$q%'";
+
+
+
+                            }
+                            else{
+
+
+                                $sql="select profesores.id_profesor,
                             profesores.nombre_completo,
                             area_academica.nombre_area_academica,
                             profesores.vigencia
                             from profesores
                             join area_academica
                             on area_academica.id_area_academica = profesores.id_area_academica
-                            where profesores.id_categoria_profesores = 2 and profesores.fecha_creado like '%$q%'";
+                            where profesores.id_categoria_profesores = 2";
+
+                            }
+
 
                         }
 
@@ -115,6 +138,22 @@ if($resultado == $tablaRequerida) {
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 2
                             and(profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')";
+
+                            if(isset($_SESSION['consulta_anio'])){
+
+                                $p = $_SESSION['consulta_anio'];
+                                $sql = "select profesores.id_profesor,
+                            profesores.nombre_completo,
+                            area_academica.nombre_area_academica,
+                            profesores.vigencia
+                            from profesores
+                            join area_academica
+                            on area_academica.id_area_academica = profesores.id_area_academica
+                            where profesores.id_categoria_profesores = 2
+                            and(profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')
+                            and profesores.fecha_creado like '%$q%'";
+
+                            }
 
                         }
 
