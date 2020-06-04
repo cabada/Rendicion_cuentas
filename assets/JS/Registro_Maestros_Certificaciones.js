@@ -146,7 +146,8 @@ function buscar_datos_anio(consulta_anio){
         data: {consulta_anio: consulta_anio},
     })
         .done(function(respuesta){
-            $("#registro-listado-maestros-certificaciones").html(respuesta);
+            $("#tabla-php").load('assets/components/registro-listado-maestros-certificaciones.php #tabla-php')
+           /* $("#registro-listado-maestros-certificaciones").html(respuesta);*/
         })
         .fail(function(){
             console.log("error");

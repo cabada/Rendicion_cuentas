@@ -2,18 +2,37 @@
 //cabeceras y que permita descargar desde el navegador
      header("Content-Type:application/xls");
      header("Content-Disposition: attachment; filename=Registro_Total_Alumnos_Programa_Posgrado.xls"); //nombre del documento
-
+    session_start();
      require_once "../conexion.php";
+
      $conexion = conexion();
 
-     $sentencia = ("select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+
+if (isset($_SESSION['buscar'])){
+    $q = $_SESSION['buscar'];
+    $sentencia = ("select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
                             carreras.nombre_carrera,
                             total_alumnos_programa_posgrado.CANTIDAD,
                             total_alumnos_programa_posgrado.REGISTRADO_EN
                     from total_alumnos_programa_posgrado
                     join carreras
-                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera");
-     $query = mysqli_query($conexion,$sentencia);
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera
+                    where carreras.NOMBRE_CARRERA LIKE '%$q%'");
+    $query = mysqli_query($conexion,$sentencia);
+
+}
+else{
+
+    $sentencia = ("select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+                            carreras.nombre_carrera,
+                            total_alumnos_programa_posgrado.CANTIDAD,
+                            total_alumnos_programa_posgrado.REGISTRADO_EN
+                    from total_alumnos_programa_posgrado
+                    join carreras
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera
+                    ");
+    $query = mysqli_query($conexion,$sentencia);
+}
 
 ?>
     <table>

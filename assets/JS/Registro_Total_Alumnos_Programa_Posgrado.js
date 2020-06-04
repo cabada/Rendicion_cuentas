@@ -109,7 +109,6 @@ function buscar_datos(consulta){
 }
 
 
-
 $(document).on('keyup','#caja_busqueda', function(){
     var valor = $(this).val();
     if (valor != "") {

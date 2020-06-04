@@ -34,7 +34,8 @@ if($resultado == $tablaRequerida){
                         <div class="form-row d-flex">
                             <div class="col">
                                 <input class="btn btn-danger text-white" type="button" target="_blank" value="Exportar PDF"
-                                       onclick= "createPDF()" />
+                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Maestros_Certificaciones/reportePDF.php';
+                                document.reporte.submit()" />
 
 
                                 <!--document.reporte.action = 'assets/components/PHP_Consultas/Registro_Total_Alumnos_Programa_Posgrado/reportePDF.php';
@@ -71,7 +72,7 @@ if($resultado == $tablaRequerida){
 
 
 
-
+        <div id="tabla">
         <div class="row">
             <div class="col-sm-12">
                  <div class="table-responsive-xl">
@@ -118,7 +119,7 @@ if($resultado == $tablaRequerida){
                 if($result->num_rows>0) {
 
                     $salida .= ' 
-                <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla">
+                <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla-php">
                 <tr>
                     <th class="text-center align-middle background-table">Nombre</th>
                     <th class="text-center align-middle background-table">Área académica</th>
@@ -173,6 +174,8 @@ if($resultado == $tablaRequerida){
     </div>
     </div>
 </div>
+</div>
+
 </div>
 
     <?php
