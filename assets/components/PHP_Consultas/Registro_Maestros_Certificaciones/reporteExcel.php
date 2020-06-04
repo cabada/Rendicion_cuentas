@@ -3,17 +3,13 @@
      header("Content-Type:application/xls");
      header("Content-Disposition: attachment; filename=Registro_Total_Alumnos_Programa_Posgrado.xls"); //nombre del documento
 
+/*Iniciacion de las variables globales de la sesion*/
+     session_start();
      require_once "../conexion.php";
+
+
      $conexion = conexion();
 
-     $sentencia = ("select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
-                            carreras.nombre_carrera,
-                            total_alumnos_programa_posgrado.CANTIDAD,
-                            total_alumnos_programa_posgrado.REGISTRADO_EN
-                    from total_alumnos_programa_posgrado
-                    join carreras
-                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera");
-     $query = mysqli_query($conexion,$sentencia);
 
 ?>
     <table>
@@ -25,7 +21,50 @@
 
          </tr>
         <?php
-        $sql="select profesores.id_profesor,
+
+
+        /*Verifica si la variable global fue definida*/
+        if(isset($_SESSION['consulta'])){
+
+            /*Se le pasa el valor de la variable global a $q*/
+            $q = $_SESSION['consulta'];
+            $sql="select profesores.id_profesor,
+                            profesores.nombre_completo,
+                            area_academica.nombre_area_academica,
+                            profesores.disciplina
+                            from profesores
+                            join area_academica
+                            on area_academica.id_area_academica = profesores.id_area_academica
+                            where profesores.id_categoria_profesores = 1
+                            and (profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')";
+
+            /*Se destruye/quita el valor dentro de la variable global*/
+            unset($_SESSION['consulta']);
+
+        }
+
+        /*Sino se cumple el if de arriba, se pasa a este.
+        Verifica si la variable global fue definida*/
+        elseif (isset($_SESSION['consulta_anio'])){
+            /*Se le pasa el valor de la variable global a $q*/
+            $q = $_SESSION['consulta_anio'];
+
+            $sql="select profesores.id_profesor,
+                            profesores.nombre_completo,
+                            area_academica.nombre_area_academica,
+                            profesores.disciplina
+                            from profesores
+                            join area_academica
+                            on area_academica.id_area_academica = profesores.id_area_academica
+                            where profesores.id_categoria_profesores = 1 and profesores.fecha_creado like '%$q%'";
+            /*Se destruye/quita el valor dentro de la variable global*/
+            unset($_SESSION['consulta_anio']);
+        }
+        /*Sino se cumplio ninguno de arriba, se va a ejecutar esta instruccion que es la de por defecto. Es una query para ver todos los registros
+        de la tabla.*/
+        else{
+
+            $sql="select profesores.id_profesor,
                             profesores.nombre_completo,
                             area_academica.nombre_area_academica,
                             profesores.disciplina
@@ -33,6 +72,9 @@
                             join area_academica
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 1";
+
+        }
+
 
         $result=mysqli_query($conexion,$sql);
         while($ver=mysqli_fetch_row($result)){

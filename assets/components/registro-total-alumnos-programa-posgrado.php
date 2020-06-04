@@ -60,6 +60,8 @@ while($stmt->fetch()){
                     from total_alumnos_programa_posgrado
                     join carreras
                     on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+
+                $_SESSION['buscar'] =$q;
             }
 
             $resultado = $conexion->query($sql);
