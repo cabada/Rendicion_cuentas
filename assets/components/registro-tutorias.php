@@ -25,9 +25,6 @@ if($resultado == $tablaRequerida){
 <div class="row">
     <div class="col-sm-12">
         <h2>Registro de tutorias</h2>
-        <caption>
-            <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
-        </caption>
 
         <!--Botones Excel y PDF -->
         <div class="row mt-2">
@@ -51,6 +48,18 @@ if($resultado == $tablaRequerida){
         </div>
 
         <div class="table-responsive-xl">
+            <?php
+            $salida="";
+            $sql="select id_tutorias,tutores_registrados, alumnos_tuto_grupal,encuentro_padres,conferencias_alumnos,
+                alumnos_asistieron_conferencias from tutorias";
+
+            if(isset($_POST['cunsulta'])){
+                $q = $conexion->real_escape_string($_POST['consulta']);
+                $sql="select id_tutorias,tutores_registrados, alumnos_tuto_grupal,encuentro_padres,conferencias_alumnos,
+                alumnos_asistieron_conferencias from tutorias where ";
+
+            }
+            ?>
             <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                 <thead>
                     <tr>

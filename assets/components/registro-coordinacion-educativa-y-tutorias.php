@@ -57,7 +57,7 @@ if($resultado == $tablaRequerida){
             if(isset($_POST['consulta'])){
                 $q = $conexion->real_escape_string($_POST['consulta']);
                 $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
-                            from coordinacion_educativa_y_tutorias where coordinacion_educativa_y_tutorias.NOMBRE_ACTIVIDAD LIKE '%$q%'";
+                            from coordinacion_educativa_y_tutorias where coordinacion_educativa_y_tutorias.NOMBRE_ACTIVIDAD LIKE '%$q%'"  ;
             }
 
                 $resultado = $conexion->query($sql);
