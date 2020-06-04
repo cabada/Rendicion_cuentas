@@ -26,9 +26,6 @@ if($resultado == $tablaRequerida){
 <div class="row">
     <div class="col-sm-12">
         <h2>Registro de coordinación educativa</h2>
-        <caption>
-            <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
-        </caption>
 
         <!--Botones Excel y PDF -->
         <div class="row mt-2">
@@ -52,42 +49,64 @@ if($resultado == $tablaRequerida){
         </div>
 
         <div class="table-responsive-xl">
-            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
-                <tr>
-                    <td class="text-center align-middle background-table">Nombre de actividad</td>
-                    <td class="text-center align-middle background-table">Periodo ENE-JUN</td>
-                    <td class="text-center align-middle background-table">Periodo AGO-DIC</td>
-                    <td class="text-center align-middle background-table">Total</td>
-                    <td class="text-center align-middle background-table">Acciones</td>
-                </tr>
-
-                <?php
-                     $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+            <?php
+            $salida = "";
+            $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
                             from coordinacion_educativa_y_tutorias";
-                     $result=mysqli_query($conexion,$sql);
 
+            if(isset($_POST['consulta'])){
+                $q = $conexion->real_escape_string($_POST['consulta']);
+                $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+                            from coordinacion_educativa_y_tutorias where coordinacion_educativa_y_tutorias.NOMBRE_ACTIVIDAD LIKE '%$q%'"  ;
+            }
+
+                $resultado = $conexion->query($sql);
+                if ($resultado->num_rows>0){
+               $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+                    <tr>
+                        <td class="text-center align-middle background-table">Nombre de actividad</td>
+                        <td class="text-center align-middle background-table">Periodo ENE-JUN</td>
+                        <td class="text-center align-middle background-table">Periodo AGO-DIC</td>
+                        <td class="text-center align-middle background-table">Total</td>
+                        <td class="text-center align-middle background-table">Acciones</td>
+                    </tr>';
+
+                     $result=mysqli_query($conexion,$sql);
                      while($ver=mysqli_fetch_row($result)){
 
                          $datos=$ver[0]."||".
                                 $ver[1]."||".
                                 $ver[2]."||".
                                 $ver[3];
-                ?>
 
-                <tr>
-                    <td><?php echo $ver[1]?></td>
-                    <td><?php echo $ver[2]?></td>
-                    <td><?php echo $ver[3]?></td>
-                    <td><?php echo $ver[2] + $ver[3]?></td>
+            $suma=$ver[2]+$ver[3];
+            $salida.='<tr>
+                    <td>'. utf8_decode($ver[1]).'</td>
+                    <td>'. $ver[2].'</td>
+                    <td>'. $ver[3].'</td>
+                    <td>'. $suma .'</td>
                     <td class="text-center align-middle">
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i class="far fa-edit"></i>  Editar</button>
-                        <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo  $ver[0] ?>')"><i class="fas fa-trash"></i>  Eliminar</button>
+                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform(\''.$datos.'\')"><i class="far fa-edit"></i>  Editar</button>
+                        <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\''.$ver[0].'\')"><i class="fas fa-trash"></i>  Eliminar</button>
                     </td>
-                </tr>
-                <?php
+                </tr>';
                      }
-                ?>
-            </table>
+
+                    $salida.="</table>";
+                } else {
+                    $salida.='<div class="row mt-3">
+                        <div class="col-12 text-center">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>¡No se encontró ningún elemento!</strong><br>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>';
+                }
+            echo $salida;
+            ?>
         </div>
     </div>
 </div>

@@ -99,8 +99,7 @@ while($stmt->fetch()){
                         <td>'. $ver[3] .'</td>
                         <td class="text-center align-middle">
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform(\''.$datos.'\')"><i
-                                        class="far fa-edit"></i> Editar
-                            </button>
+                                        class="far fa-edit"></i> Editar </button>
                             <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\''.$ver[0].'\')"><i class="fas fa-trash"></i> Eliminar</button>
                         </td>
                     </tr>';
@@ -110,13 +109,14 @@ while($stmt->fetch()){
 
                     $sql1 ="select sum(cantidad) as cantidad from
                             total_alumnos_programa_posgrado";
+
                     $result1 = mysqli_query($conexion,$sql1);
                     $ver1 = mysqli_fetch_row($result1);
 
                     $salida.="<td> $ver1[0]</td>";
                     $salida.="<td>100%</td>";
 
-                        $salida.="</tr>";
+                $salida.="</tr>";
                 $salida.="</table>";
                     } else {
                         $salida.='<div class="row mt-3">

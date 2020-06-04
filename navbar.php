@@ -63,7 +63,6 @@ while($stmt->fetch()){
                            <a class="dropdown-item" href="registro-estudiantes-capacidades-diferentes.html">Estudiantes con capacidades diferentes</a>
                            <a class="dropdown-item" href="registro-permanencia.html">Porcentaje de permanencia</a>
                            <a class="dropdown-item" href="registro-coordinacion-educativa-y-tutorias.html">Actividades de coordinación de orientación educativa</a>
-                           <a class="dropdown-item" href="registro-tutorias.html">Tutorías</a>
                            <a class="dropdown-item" href="registro-orientatec.html">OrientaTec</a>
                            <a class="dropdown-item" href="registro-programa-delfin.html">Lineas de investigación del verano delfín</a>
                            <a class="dropdown-item" href="registro-cuerpos-academicos.html">Cuerpos académicos nivel licenciatura</a>
@@ -148,7 +147,6 @@ while($stmt->fetch()){
                            <a class="dropdown-item" href="registro-estudiantes-capacidades-diferentes.html">Estudiantes con capacidades diferentes</a>
                            <a class="dropdown-item" href="registro-permanencia.html">Porcentaje de permanencia</a>
                            <a class="dropdown-item" href="registro-coordinacion-educativa-y-tutorias.html">Actividades de coordinación de orientación educativa</a>
-                           <a class="dropdown-item" href="registro-tutorias.html">Tutorías</a>
                            <a class="dropdown-item" href="registro-orientatec.html">OrientaTec</a>
                            <a class="dropdown-item" href="registro-programa-delfin.html">Lineas de investigación del verano delfín</a>
                            <a class="dropdown-item" href="registro-cuerpos-academicos.html">Cuerpos académicos nivel licenciatura</a>
