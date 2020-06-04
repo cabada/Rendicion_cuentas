@@ -107,6 +107,7 @@ while($stmt->fetch()){
 
                     $sql1 ="select sum(cantidad) as cantidad from
                             total_alumnos_programa_posgrado";
+
                     $result1 = mysqli_query($conexion,$sql1);
                     $ver1 = mysqli_fetch_row($result1);
 
