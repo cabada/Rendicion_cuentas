@@ -76,10 +76,16 @@ while($stmt->fetch()){
                        </div>
                    </li>
                    <li class="nav-item dropdown">
-                       <a href="usuarios.html" class="nav-link" >Usuarios<span class="sr-only">(current)</span></a>
-                   </li>
-                   <li class="nav-item dropdown">
-                       <a href="roles.html" class="nav-link">Roles y Permisos<span class="sr-only">(current)</span></a>
+                       <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="desplegable">Operaciones Administrativas</a>
+                       <div class="dropdown-menu">
+                           <a href="usuarios.html" class="dropdown-item" >Usuarios</a>
+                           <a href="roles.html" class="dropdown-item">Roles y Permisos</a>
+                           <a href="bitacora.html" class="dropdown-item">Bitacora de Transacciones de Registros</a>
+
+
+
+                       </div>
+
                    </li>
                   <!-- <li class="nav-item dropdown">
                        <a href="registro-informes-pdf.html" class="nav-link">Informes de Rendicion de Cuentas<span class="sr-only">(current)</span></a>
