@@ -120,7 +120,10 @@ function buscar_datos(consulta){
         data: {consulta: consulta},
     })
         .done(function(respuesta){
-            $("#registro-listado-maestros-certificaciones").html(respuesta);
+
+            //Se pone el ID de la tabla en los dos argumentos por ejemplo
+            // $("#ID_TABLA").html($(respuesta).find("#ID_TABLA"));
+            $("#tabla-php").html($(respuesta).find("#tabla-php"));
         })
         .fail(function(){
             console.log("error");
@@ -146,8 +149,9 @@ function buscar_datos_anio(consulta_anio){
         data: {consulta_anio: consulta_anio},
     })
         .done(function(respuesta){
-            $("#tabla-php").load('assets/components/registro-listado-maestros-certificaciones.php #tabla-php')
-           /* $("#registro-listado-maestros-certificaciones").html(respuesta);*/
+            //Se pone el ID de la tabla en los dos argumentos por ejemplo
+            // $("#ID_TABLA").html($(respuesta).find("#ID_TABLA"));
+           $("#tabla-php").html($(respuesta).find("#tabla-php"));
         })
         .fail(function(){
             console.log("error");
