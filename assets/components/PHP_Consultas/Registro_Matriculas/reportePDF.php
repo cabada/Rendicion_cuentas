@@ -2,6 +2,7 @@
 require('../../pdf/fpdf_horizontal.php');
 
 require_once "../conexion.php";
+session_start();
     $conexion = conexion();
 
 class PDF extends FPDF
@@ -58,15 +59,46 @@ public function Footer()
     $pdf->SetTextColor(0, 0, 0);
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->SetLineWidth(1);
-    
-    
-    $sentencia = ("select
+
+    if(isset($_SESSION['consulta'])) {
+        /*Se le pasa el valor de la variable global a $q*/
+        $q = $_SESSION['consulta'];
+        $sql = "select
                 matriculas.ID_MATRICULA,
                 carreras.nombre_carrera,
                 matriculas.CANTIDAD_ALUMNOS
                       from carreras
-                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA");
-    $query = mysqli_query($conexion,$sentencia);
+                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
+                      where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+        /*Se destruye/quita el valor dentro de la variable global*/
+        unset($_SESSION['consulta']);
+    }
+    /*Sino se cumple el if de arriba, se pasa a este.
+Verifica si la variable global fue definida*/
+    elseif (isset($_SESSION['consulta_anio'])) {
+        /*Se le pasa el valor de la variable global a $q*/
+        $q = $_SESSION['consulta_anio'];
+        $sql = "select
+                matriculas.ID_MATRICULA,
+                carreras.nombre_carrera,
+                matriculas.CANTIDAD_ALUMNOS
+                      from carreras
+                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
+                      where matriculas.fecha_creado LIKE '%$q%'";
+        /*Se destruye/quita el valor dentro de la variable global*/
+        unset($_SESSION['consulta_anio']);
+    }
+    else{
+        //query predefinido
+        $sql="select
+                matriculas.ID_MATRICULA,
+                carreras.nombre_carrera,
+                matriculas.CANTIDAD_ALUMNOS
+                      from carreras
+                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA";
+    }
+
+    $query = mysqli_query($conexion,$sql);
     
     while($row = $query -> fetch_assoc()){
         $pdf->SetX(20);//posicion en X

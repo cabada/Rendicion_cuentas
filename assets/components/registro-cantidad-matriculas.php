@@ -37,15 +37,37 @@ while($stmt->fetch()){
                                        onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Matriculas/reporteExcel.php';
                                 document.reporte.submit()" />
                             </div>
+
+                            <!--Select de año-->
+                            <div class="col d-flex justify-content-end">
+                                <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
+                                    <option>Buscar por año</option>
+                                    <?php
+                                    $query = "select distinct year(fecha_creado) as fecha_creado from matriculas order by fecha_creado desc";
+                                    $resultado = mysqli_query($conexion,$query);
+
+                                    while($fila = mysqli_fetch_array($resultado)){
+                                        $valor = $fila['nombre_area_academica'];
+
+                                        echo "<option>".($fila['fecha_creado'])."</option>\n";
+                                    }
+
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 
+    <div class="row">
+        <div class="col-sm-12">
+
         <div class="table-responsive-xl">
             <?php
             $salida = "";
+            //query predefinido
             $sql="select
                 matriculas.ID_MATRICULA,
                 carreras.nombre_carrera,
@@ -55,17 +77,57 @@ while($stmt->fetch()){
 
             if (isset($_POST['consulta'])){
                 $q = $conexion->real_escape_string($_POST['consulta']);
+                $_SESSION['consulta'] = $q;
                 $sql="select
                 matriculas.ID_MATRICULA,
                 carreras.nombre_carrera,
                 matriculas.CANTIDAD_ALUMNOS
                       from carreras
-                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
+                      where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+
+            if (isset($_POST['consulta_anio'])) {
+                /*variable goblal*/
+                $p = $_SESSION['consulta_anio'];
+                $sql="select
+                matriculas.ID_MATRICULA,
+                carreras.nombre_carrera,
+                matriculas.CANTIDAD_ALUMNOS
+                      from carreras
+                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
+                      where carreras.NOMBRE_CARRERA LIKE '%$q%'
+                      and matriculas.fecha_creado LIKE '%$p%'";
+                }
+
+            }
+
+            /*Query para consultas del buscador*/
+            if(isset($_POST['consulta_anio'])){
+            $q = $conexion->real_escape_string($_POST['consulta_anio']);
+            /*Variable global*/
+            if($_POST['consulta_anio']!='Todos los registros'){
+                $_SESSION['consulta_anio']=$q;
+                $sql="select
+                matriculas.ID_MATRICULA,
+                carreras.nombre_carrera,
+                matriculas.CANTIDAD_ALUMNOS
+                      from carreras
+                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
+                      where matriculas.fecha_creado LIKE '%$p%'";
+
+            } else{
+                $sql="select
+                matriculas.ID_MATRICULA,
+                carreras.nombre_carrera,
+                matriculas.CANTIDAD_ALUMNOS
+                      from carreras
+                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA";
+                }
             }
 
             $resultado = $conexion->query($sql);
             if ($resultado->num_rows>0){
-            $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+            $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla-php">
                 <tr>
                     <td class="text-center align-middle background-table">Programa educativo</td>
                     <td class="text-center align-middle background-table">Cantidad de alumnos</td>
@@ -75,33 +137,35 @@ while($stmt->fetch()){
                 $result=mysqli_query($conexion,$sql);
                 while($ver=mysqli_fetch_row($result)) {
 
-                    $datos=$ver[0]."||".
-                           $ver[1]."||".
-                           $ver[2];
+                    $datos = $ver[0] . "||" .
+                        $ver[1] . "||" .
+                        $ver[2];
 
-                    $salida.='<tr>
-                        <td>'. utf8_decode($ver[1]).'</td>
-                        <td>'. $ver[2] .'</td>
+                    $salida .= '<tr>
+                        <td>' . utf8_decode($ver[1]) . '</td>
+                        <td>' . $ver[2] . '</td>
                         <td class="text-center align-middle">
-                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform(\''.$datos.'\')" ><i
+                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform(\'' . $datos . '\')" ><i
                                     class="far fa-edit"></i> Editar
                             </button>
-                            <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\''.$ver[0].'\')"><i class="fas fa-trash"></i> Eliminar</button>
+                            <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\'' . $ver[0] . '\')"><i class="fas fa-trash"></i> Eliminar</button>
                         </td>
                     </tr>';
                 }
-
-                $salida.="<tr style='font-weight: bold'>
+                    $salida .= "<tr style='font-weight: bold'>
                           <td>Total</td>";
 
-                    $sql="select sum(CANTIDAD_ALUMNOS) 
+                    $sql = "select sum(CANTIDAD_ALUMNOS) 
                       from matriculas";
-                    $result=mysqli_query($conexion,$sql);
-                    $ver=mysqli_fetch_row($result);
+                    $result = mysqli_query($conexion, $sql);
+                    $ver = mysqli_fetch_row($result);
 
-                   $salida.="<td> $ver[0]</td>";
-                   $salida.="</tr>";
-                $salida.="</table>";
+                    $salida .= "<td> $ver[0]</td>";
+                    $salida .= "</tr>";
+
+                ?>
+                </table>
+                <?php
                 } else {
                         $salida.='<div class="row mt-3">
                         <div class="col-12 text-center">
@@ -117,6 +181,8 @@ while($stmt->fetch()){
                      echo $salida;
                      ?>
         </div>
+    </div>
+</div>
     </div>
 </div>
 

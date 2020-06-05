@@ -112,7 +112,7 @@ while($stmt->fetch()){
 
             $resultado = $conexion->query($sql);
             if ($resultado->num_rows>0){
-            $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+            $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla-php>
                 <tr>
                     <td class="text-center align-middle background-table">Clave</td>
                     <td class="text-center align-middle background-table">Nombre de proyecto</td>
