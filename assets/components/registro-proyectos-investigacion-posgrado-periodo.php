@@ -35,25 +35,79 @@ while($stmt->fetch()){
                                        onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Proyectos_Investigacion_Posgrado_Periodo/reporteExcel.php';
                                 document.reporte.submit()" />
                             </div>
+
+                            <!--Select de año-->
+                            <div class="col d-flex justify-content-end">
+                                <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
+                                    <option>Buscar por año</option>
+                                    <?php
+                                    $query = "select distinct year(fecha_creado) as fecha_creado from proyectos_investigacion_posgrado_periodo order by fecha_creado desc";
+                                    $resultado = mysqli_query($conexion,$query);
+
+                                    while($fila = mysqli_fetch_array($resultado)){
+                                        $valor = $fila['nombre_area_academica'];
+
+                                        echo "<option>".($fila['fecha_creado'])."</option>\n";
+                                    }
+
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 
+    <div class="row">
+        <div class="col-sm-12">
+
         <div class="table-responsive-xl">
             <?php
             $salida = "";
+            //query predefinido
             $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo";
 
             if(isset($_POST['consulta'])){
+
                 $q= $conexion->real_escape_string($_POST['consulta']);
+                $_SESSION['consulta'] = $q;
                 $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo 
                       where proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
                       proyectos_investigacion_posgrado_periodo.NOMBRE_PROYECTO LIKE '%$q%' or 
                       proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%'";
+
+                if (isset($_POST['consulta_anio'])) {
+                    /*variable goblal*/
+                    $p = $_SESSION['consulta_anio'];
+                    $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo 
+                      where proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
+                      proyectos_investigacion_posgrado_periodo.NOMBRE_PROYECTO LIKE '%$q%' or 
+                      proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%'
+                      and fecha_creado LIKE '%$p%'";
+
+                }
+
+            }
+            /*Query para consultas del buscador*/
+
+            if(isset($_POST['consulta_anio'])){
+                $q = $conexion->real_escape_string($_POST['consulta_anio']);
+                /*Variable global*/
+                if($_POST['consulta_anio']!='Todos los registros'){
+                $_SESSION['consulta_anio']=$q;
+                $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo
+                      where fecha_creado LIKE '%$q%'";
+
+            } else {
+                    $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo";
+
+                }
             }
 
             $resultado = $conexion->query($sql);
@@ -84,7 +138,9 @@ while($stmt->fetch()){
                     </td>
                 </tr>';
                 }
-                $salida.="</table>";
+                ?>
+                </table>
+                <?php
                 } else {
                         $salida.='<div class="row mt-3">
                         <div class="col-12 text-center">
@@ -102,6 +158,8 @@ while($stmt->fetch()){
         </div>
     </div>
 </div>
+    </div>
+          </div>
 
        <?php
      }

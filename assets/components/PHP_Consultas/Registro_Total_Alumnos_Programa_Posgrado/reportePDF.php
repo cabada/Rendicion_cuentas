@@ -64,7 +64,6 @@ public function Footer()
 
 
 if(isset($_SESSION['consulta'])){
-
     /*Se le pasa el valor de la variable global a $q*/
     $q = $_SESSION['consulta'];
         $sql = ("select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,

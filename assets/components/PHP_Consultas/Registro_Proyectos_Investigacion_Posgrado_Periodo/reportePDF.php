@@ -2,6 +2,7 @@
 require('../../pdf/fpdf_horizontal.php');
 
 require_once "../conexion.php";
+session_start();
     $conexion = conexion();
 
 class PDF extends FPDF
@@ -47,8 +48,8 @@ public function Footer()
     $pdf->SetX(20);//posicion en X
     $pdf->Cell(30,9,'ID', 0,0,'C',0);
     $pdf->Cell(40,9,'Clave', 0,0,'C',0);
-    $pdf->Cell(95,9,'Nombre del proyecto', 0,0,'C',0);
-    $pdf->Cell(90,9,'Responsable',0,1,'C',0);
+    $pdf->Cell(115,9,'Nombre del proyecto', 0,0,'C',0);
+    $pdf->Cell(70,9,'Responsable',0,1,'C',0);
     $pdf->SetDrawColor(255, 0, 0);//pinta lo que se quiere (linea)
     $pdf->SetLineWidth(1);//grosor de la linea
     $pdf->Line(20,50,275,50); //linea y posicion
@@ -59,11 +60,38 @@ public function Footer()
     $pdf->SetTextColor(0, 0, 0);
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->SetLineWidth(1);
-    
-    
-    $sentencia = ("select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
-                      from proyectos_investigacion_posgrado_periodo");
-    $query = mysqli_query($conexion,$sentencia);
+
+if(isset($_SESSION['consulta'])) {
+    /*Se le pasa el valor de la variable global a $q*/
+    $q = $_SESSION['consulta'];
+    $sql = "select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo 
+                      where proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
+                      proyectos_investigacion_posgrado_periodo.NOMBRE_PROYECTO LIKE '%$q%' or 
+                      proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%'";
+    /*Se destruye/quita el valor dentro de la variable global*/
+    unset($_SESSION['consulta']);
+
+}
+/*Sino se cumple el if de arriba, se pasa a este.
+Verifica si la variable global fue definida*/
+elseif (isset($_SESSION['consulta_anio'])) {
+    /*Se le pasa el valor de la variable global a $q*/
+    $q = $_SESSION['consulta_anio'];
+    $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo
+                      where fecha_creado LIKE '%$q%'";
+               /*Se destruye/quita el valor dentro de la variable global*/
+               unset($_SESSION['consulta_anio']);
+
+} else{
+
+    $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo";
+
+}
+
+    $query = mysqli_query($conexion,$sql);
     
     while($row = $query -> fetch_assoc()){
         $pdf->SetX(20);//posicion en X
@@ -71,8 +99,8 @@ public function Footer()
 
         $pdf->Cell(30,8, $row['ID_PROYECTO_INV_POSGRADO_PERIODO'], 1,0,'C',1);
         $pdf->Cell(40,8, $row['CLAVE'], 1,0,'C',1);
-        $pdf->Cell(95,8, $row['NOMBRE_PROYECTO'], 1,0,'C',1);
-        $pdf->Cell(90,8, $row['RESPONSABLE'], 1,1,'C',1);
+        $pdf->Cell(115,8, $row['NOMBRE_PROYECTO'], 1,0,'C',1);
+        $pdf->Cell(70,8, $row['RESPONSABLE'], 1,1,'C',1);
     }
     
     $pdf->Output();
