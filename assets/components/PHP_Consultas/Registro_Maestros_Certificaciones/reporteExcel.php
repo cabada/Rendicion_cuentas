@@ -14,7 +14,7 @@
 ?>
     <table>
          <tr>
-              <h4>Reporte de Registro de Maestros con Certificaciones</h4>
+             <h4>Reporte de Registro de Maestros con Certificaciones</h4>
              <th class="text-center align-middle background-table">Nombre</th>
              <th class="text-center align-middle background-table">Área académica</th>
              <th class="text-center align-middle background-table">Disciplina</th>
@@ -25,7 +25,6 @@
 
         /*Verifica si la variable global fue definida*/
         if(isset($_SESSION['consulta'])){
-
             /*Se le pasa el valor de la variable global a $q*/
             $q = $_SESSION['consulta'];
             $sql="select profesores.id_profesor,

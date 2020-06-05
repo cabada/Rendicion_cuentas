@@ -68,7 +68,6 @@ if($resultado == $tablaRequerida){
                     </div>
                 </form>
             </div>
-
         </div>
 
 

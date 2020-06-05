@@ -34,15 +34,32 @@ while($stmt->fetch()){
                                        onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Total_Alumnos_Programa_Posgrado/reporteExcel.php';
                                 document.reporte.submit()" />
                             </div>
+
+                            <!--Select de año QUERY INCORRECTO-->
+                            <div class="col d-flex justify-content-end">
+                                <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
+                                    <option>Buscar por año</option>
+                                    <?php
+                                    $query = "select year(fecha_creado) as fecha_creado from total_alumnos_programa_posgrado order by fecha_creado desc";
+                                    $resultado = mysqli_query($conexion,$query);
+
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 
+    <div id="tabla">
+    <div class="row">
+        <div class="col-sm-12">
+
         <div class="table-responsive-xl">
             <?php
             $salida = "";
+            //query predefinido
             $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
                             carreras.nombre_carrera,
                             total_alumnos_programa_posgrado.CANTIDAD,
@@ -51,8 +68,26 @@ while($stmt->fetch()){
                     join carreras
                     on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera";
 
+            if(isset($_POST['consulta_anio'])){
+                $q = $conexion->real_escape_string($_POST['consulta_anio']);
+
+                /*variable goblal*/
+                $_SESSION['consulta_anio']=$q;
+                $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+                            carreras.nombre_carrera,
+                            total_alumnos_programa_posgrado.CANTIDAD,
+                            total_alumnos_programa_posgrado.REGISTRADO_EN
+                    from total_alumnos_programa_posgrado
+                    join carreras
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera where total_alumnos_programa_posgrado.fecha_creado LIKE '%$q%'";
+
+            }
+            /*Query para consultas del buscador*/
+            /*Verifica que se haya definido $_Post['consulta]*/
             if(isset($_POST['consulta'])){
                 $q = $conexion->real_escape_string($_POST['consulta']);
+                /*Variable global*/
+                $_SESSION['consulta']=$q;
                 $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
                             carreras.nombre_carrera,
                             total_alumnos_programa_posgrado.CANTIDAD,
@@ -60,8 +95,6 @@ while($stmt->fetch()){
                     from total_alumnos_programa_posgrado
                     join carreras
                     on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera where carreras.NOMBRE_CARRERA LIKE '%$q%'";
-
-                $_SESSION['buscar'] =$q;
             }
 
             $resultado = $conexion->query($sql);
@@ -93,7 +126,7 @@ while($stmt->fetch()){
 
 
                     $salida.='<tr>
-                        <td>'.utf8_encode($ver[1]).'</td>
+                        <td>'.utf8_decode($ver[1]).'</td>
                         <td>'. $ver[2] .'</td>
                         <td>'. $porcentaje .'</td>
                         <td>'. $ver[3] .'</td>
@@ -135,6 +168,9 @@ while($stmt->fetch()){
         </div>
     </div>
 </div>
+    </div>
+        </div>
+            </div>
 
     <?php
 }
