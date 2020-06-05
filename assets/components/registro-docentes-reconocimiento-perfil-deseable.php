@@ -35,21 +35,24 @@ if($resultado == $tablaRequerida) {
                                 <div class="col">
                                     <input class="btn btn-danger text-white" type="button" target="_blank"
                                            value="Exportar PDF"
-                                           onclick="createPDF()"/>
+                                           onclick="document.reporte.action = 'assets/components/PHP_Consultas/Registro_Docentes_Perfil/reportePDF.php';
+                                document.reporte.submit()"/>
 
 
                                     <!--document.reporte.action = 'assets/components/PHP_Consultas/Registro_Total_Alumnos_Programa_Posgrado/reportePDF.php';
                                     document.reporte.submit()-->
 
                                     <input class="btn btn-success text-white" type="button" value="Exportar Excel"
-                                           onclick="tableToExcel('tabla', 'Listado de Maestros con Certificaciones')"/>
+                                           onclick="document.reporte.action = 'assets/components/PHP_Consultas/Registro_Docentes_Perfil/reporteExcel.php';
+                                       document.reporte.submit()"/>
 
                                 </div>
 
                                 <!--Select de anio-->
                                 <div class="col d-flex justify-content-end">
                                     <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
-                                        <option>Buscar por año</option>
+                                        <option disabled selected hidden>Buscar por año</option>
+                                        <option>Todos los registros</option>
                                         <?php
                                         $query = "select distinct year(fecha_creado) as fecha_creado from profesores where id_categoria_profesores = 2 order by fecha_creado desc";
                                         $resultado = mysqli_query($conexion, $query);
@@ -88,20 +91,44 @@ if($resultado == $tablaRequerida) {
                             where profesores.id_categoria_profesores = 2";
 
                         if(isset($_POST['consulta_anio'])){
-                            $q = $conexion->real_escape_string($_POST['consulta_anio']);
-                            $sql="select profesores.id_profesor,
+
+                            if($_POST['consulta_anio']!='Todos los registros'){
+
+                                $q = $conexion->real_escape_string($_POST['consulta_anio']);
+                                $_SESSION['consulta_anio'] = $q;
+                                $sql="select profesores.id_profesor,
+                                profesores.nombre_completo,
+                                area_academica.nombre_area_academica,
+                                profesores.vigencia
+                                from profesores
+                                join area_academica
+                                on area_academica.id_area_academica = profesores.id_area_academica
+                                where profesores.id_categoria_profesores = 2
+                                and profesores.fecha_creado like '%$q%'";
+
+
+
+                            }
+                            else{
+
+
+                                $sql="select profesores.id_profesor,
                             profesores.nombre_completo,
                             area_academica.nombre_area_academica,
                             profesores.vigencia
                             from profesores
                             join area_academica
                             on area_academica.id_area_academica = profesores.id_area_academica
-                            where profesores.id_categoria_profesores = 2 and profesores.fecha_creado like '%$q%'";
+                            where profesores.id_categoria_profesores = 2";
+
+                            }
+
 
                         }
 
                         if (isset($_POST['consulta'])) {
                             $q = $conexion->real_escape_string($_POST['consulta']);
+                            $_SESSION['consulta'] = $q;
                             $sql = "select profesores.id_profesor,
                             profesores.nombre_completo,
                             area_academica.nombre_area_academica,
@@ -112,12 +139,28 @@ if($resultado == $tablaRequerida) {
                             where profesores.id_categoria_profesores = 2
                             and(profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')";
 
+                            if(isset($_SESSION['consulta_anio'])){
+
+                                $p = $_SESSION['consulta_anio'];
+                                $sql = "select profesores.id_profesor,
+                            profesores.nombre_completo,
+                            area_academica.nombre_area_academica,
+                            profesores.vigencia
+                            from profesores
+                            join area_academica
+                            on area_academica.id_area_academica = profesores.id_area_academica
+                            where profesores.id_categoria_profesores = 2
+                            and(profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')
+                            and profesores.fecha_creado like '%$q%'";
+
+                            }
+
                         }
 
                         $result = $conexion->query($sql);
                         if ($result->num_rows > 0) {
 
-                            $salida .= ' <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla">
+                            $salida .= ' <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla-php">
                 <tr>
                     <td class="text-center align-middle background-table">Docente</td>
                     <td class="text-center align-middle background-table">Área adscripción</td>

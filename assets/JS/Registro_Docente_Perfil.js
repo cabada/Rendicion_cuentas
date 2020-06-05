@@ -118,7 +118,7 @@ function buscar_datos(consulta){
         data: {consulta: consulta},
     })
         .done(function(respuesta){
-            $("#registro-docentes-reconocimiento-perfil-deseable").html(respuesta);
+            $("#tabla-php").html($(respuesta).find('#tabla-php'));
         })
         .fail(function(){
             console.log("error");
@@ -144,7 +144,7 @@ function buscar_datos_anio(consulta_anio){
         data: {consulta_anio: consulta_anio},
     })
         .done(function(respuesta){
-            $("#registro-docentes-reconocimiento-perfil-deseable").html(respuesta);
+            $("#tabla-php").html($(respuesta).find('#tabla-php'));
         })
         .fail(function(){
             console.log("error");
