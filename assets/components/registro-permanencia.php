@@ -41,15 +41,37 @@ if($resultado == $tablaRequerida){
                                        onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Permanencia/reporteExcel.php';
                                 document.reporte.submit()" />
                             </div>
+
+                            <!--Select de año-->
+                            <div class="col d-flex justify-content-end">
+                                <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
+                                    <option>Buscar por año</option>
+                                    <?php
+                                    $query = "select distinct year(fecha_creado) as fecha_creado from permanencia order by fecha_creado desc";
+                                    $resultado = mysqli_query($conexion,$query);
+
+                                    while($fila = mysqli_fetch_array($resultado)){
+                                        $valor = $fila['nombre_area_academica'];
+
+                                        echo "<option>".($fila['fecha_creado'])."</option>\n";
+                                    }
+
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 
+    <div class="row">
+        <div class="col-sm-12">
+
         <div class="table-responsive-xl">
             <?php
             $salida = "";
+            /*query predefinido*/
             $sql="select 
                             permanencia.ID_PERMANENCIA,
                             carreras.nombre_CARRERA,
@@ -59,17 +81,55 @@ if($resultado == $tablaRequerida){
 
             if(isset($_POST['consulta'])){
                 $q = $conexion->real_escape_string($_POST['consulta']);
+                $_SESSION['consulta'] = $q;
                 $sql="select 
                             permanencia.ID_PERMANENCIA,
                             carreras.nombre_CARRERA,
                             permanencia.PORCENTAJE 
                             from carreras
-                            right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+                            right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA 
+                            where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+
+                if (isset($_POST['consulta_anio'])){
+                    /*variable goblal*/
+                    $p = $_SESSION['consulta_anio'];
+                    $sql="select 
+                            permanencia.ID_PERMANENCIA,
+                            carreras.nombre_CARRERA,
+                            permanencia.PORCENTAJE 
+                            from carreras
+                            right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA 
+                            where carreras.NOMBRE_CARRERA LIKE '%$q%'
+                            and permanencia.fecha_creado LIKE '%$p%'";
+                }
+
+            }     /*Query para consultas del buscador*/
+            if (isset($_POST['consulta_anio'])){
+                $q = $conexion->real_escape_string($_POST['consulta_anio']);
+                /*Variable global*/
+                if($_POST['consulta_anio']!='Todos los registros'){
+                $_SESSION['consulta_anio']=$q;
+                $sql="select 
+                            permanencia.ID_PERMANENCIA,
+                            carreras.nombre_CARRERA,
+                            permanencia.PORCENTAJE 
+                            from carreras
+                            right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA
+                            where permanencia.fecha_creado LIKE '%$q%'";
+
+            }   else {
+                    $sql="select 
+                            permanencia.ID_PERMANENCIA,
+                            carreras.nombre_CARRERA,
+                            permanencia.PORCENTAJE 
+                            from carreras
+                            right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA";
+                }
             }
 
             $resultado = $conexion->query($sql);
             if ($resultado->num_rows>0){
-            $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+            $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla-php">
                 <tr>
                     <td class="text-center align-middle background-table">Nombre de programa</td>
                     <td class="text-center align-middle background-table">Porcentaje</td>
@@ -105,11 +165,14 @@ if($resultado == $tablaRequerida){
                     $salida.="<td> $ver[0] %</td>";
 
                 $salida.="</tr>";
-                $salida.="</table>";
+
+                ?>
+               </table>
+               <?php
             } else {
                 $salida.='<div class="row mt-3">
-                        <div class="col-12 text-center">
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="col-12 text-center"> <!--cambiar alert por alertify -->
+                            <div class="alert alertify-danger alert-dismissible fade show" role="alert">
                                 <strong>¡No se encontró ningún elemento!</strong><br>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -121,6 +184,8 @@ if($resultado == $tablaRequerida){
             echo $salida;
             ?>
         </div>
+    </div>
+</div>
     </div>
 </div>
 
