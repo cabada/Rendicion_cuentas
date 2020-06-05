@@ -62,10 +62,12 @@ public function Footer()
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->SetLineWidth(1);
 
-    
-    if (isset($_SESSION['buscar'])){
-        $q = $_SESSION['buscar'];
-        $sentencia = ("select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+
+if(isset($_SESSION['consulta'])){
+
+    /*Se le pasa el valor de la variable global a $q*/
+    $q = $_SESSION['consulta'];
+        $sql = ("select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
                             carreras.nombre_carrera,
                             total_alumnos_programa_posgrado.CANTIDAD,
                             total_alumnos_programa_posgrado.REGISTRADO_EN
@@ -73,22 +75,42 @@ public function Footer()
                     join carreras
                     on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera
                     where carreras.NOMBRE_CARRERA LIKE '%$q%'");
-        $query = mysqli_query($conexion,$sentencia);
+    /*Se destruye/quita el valor dentro de la variable global*/
+    unset($_SESSION['consulta']);
 
     }
-    else{
 
-        $sentencia = ("select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+/*Sino se cumple el if de arriba, se pasa a este.
+Verifica si la variable global fue definida*/
+elseif (isset($_SESSION['consulta_anio'])) {
+    /*Se le pasa el valor de la variable global a $q*/
+    $q = $_SESSION['consulta_anio'];
+    $sql = "select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
                             carreras.nombre_carrera,
                             total_alumnos_programa_posgrado.CANTIDAD,
                             total_alumnos_programa_posgrado.REGISTRADO_EN
                     from total_alumnos_programa_posgrado
                     join carreras
-                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera
-                    ");
-        $query = mysqli_query($conexion,$sentencia);
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera 
+                    where total_alumnos_programa_posgrado.fecha_creado LIKE '%$q%'";
+
+                /*Se destruye/quita el valor dentro de la variable global*/
+               unset($_SESSION['consulta_anio']);
+}
+
+    else{
+
+        $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+                            carreras.nombre_carrera,
+                            total_alumnos_programa_posgrado.CANTIDAD,
+                            total_alumnos_programa_posgrado.REGISTRADO_EN
+                    from total_alumnos_programa_posgrado
+                    join carreras
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera";
+
     }
 
+         $query = mysqli_query($conexion,$sql);
     
     while($row = $query -> fetch_assoc()){
         $pdf->SetX(20);//posicion en X
@@ -102,5 +124,4 @@ public function Footer()
     
     $pdf->Output();
 
-    unset($_SESSION['buscar']);
 ?>

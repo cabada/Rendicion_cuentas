@@ -67,12 +67,7 @@ if($resultado == $tablaRequerida){
                         </div>
                     </form>
                 </div>
-
             </div>
-
-
-
-
 
 
             <div class="row">
@@ -112,7 +107,6 @@ if($resultado == $tablaRequerida){
                                     from equipo_maestros_itcj
                                     where (nombre_docente like '%$q%' or grado_estudios like '%$q%')
                                     and fecha_creado like '%$p%'";
-
 
 
                     }

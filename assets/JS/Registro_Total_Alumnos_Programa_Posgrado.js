@@ -102,10 +102,7 @@ function buscar_datos(consulta){
         data: {consulta: consulta},
     })
         .done(function(respuesta){
-
-            //Se pone el ID de la tabla en los dos argumentos por ejemplo
-            // $("#ID_TABLA").html($(respuesta).find("#ID_TABLA"));
-            $("#tabla-php").html($(respuesta).find("#tabla-php"));
+            $("#tabla-php").html($(respuesta).find('#tabla-php'));
         })
         .fail(function(){
             console.log("error");
@@ -125,15 +122,13 @@ $(document).on('keyup','#caja_busqueda', function(){
 $(buscar_datos());
 function buscar_datos_anio(consulta_anio){
     $.ajax({
-        url:'assets/components/registro-total-alumnos-programa-posgrado.php',
+        url:'assets/components//registro-total-alumnos-programa-posgrado.php',
         type: 'POST' ,
         dataType: 'html',
         data: {consulta_anio: consulta_anio},
     })
         .done(function(respuesta){
-            //Se pone el ID de la tabla en los dos argumentos por ejemplo
-            // $("#ID_TABLA").html($(respuesta).find("#ID_TABLA"));
-            $("#tabla-php").html($(respuesta).find("#tabla-php"));
+            $("#tabla-php").html($(respuesta).find('#tabla-php'));
         })
         .fail(function(){
             console.log("error");

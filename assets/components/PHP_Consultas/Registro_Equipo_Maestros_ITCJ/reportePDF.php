@@ -121,8 +121,6 @@ else{
 }
 
 
-
-
     $query = mysqli_query($conexion,$sql);
     
     while($row = $query -> fetch_assoc()){

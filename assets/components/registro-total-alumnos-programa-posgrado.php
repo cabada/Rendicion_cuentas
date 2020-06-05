@@ -35,13 +35,19 @@ while($stmt->fetch()){
                                 document.reporte.submit()" />
                             </div>
 
-                            <!--Select de año QUERY INCORRECTO-->
+                            <!--Select de año-->
                             <div class="col d-flex justify-content-end">
                                 <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
                                     <option>Buscar por año</option>
                                     <?php
-                                    $query = "select year(fecha_creado) as fecha_creado from total_alumnos_programa_posgrado order by fecha_creado desc";
+                                    $query = "select distinct year(fecha_creado) as fecha_creado from total_alumnos_programa_posgrado order by fecha_creado desc";
                                     $resultado = mysqli_query($conexion,$query);
+
+                                    while($fila = mysqli_fetch_array($resultado)){
+                                        $valor = $fila['nombre_area_academica'];
+
+                                        echo "<option>".($fila['fecha_creado'])."</option>\n";
+                                    }
 
                                     ?>
                                 </select>
@@ -52,7 +58,6 @@ while($stmt->fetch()){
             </div>
         </div>
 
-    <div id="tabla">
     <div class="row">
         <div class="col-sm-12">
 
@@ -68,38 +73,65 @@ while($stmt->fetch()){
                     join carreras
                     on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera";
 
-            if(isset($_POST['consulta_anio'])){
-                $q = $conexion->real_escape_string($_POST['consulta_anio']);
+         if(isset($_POST['consulta'])) {
 
-                /*variable goblal*/
-                $_SESSION['consulta_anio']=$q;
-                $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
-                            carreras.nombre_carrera,
-                            total_alumnos_programa_posgrado.CANTIDAD,
-                            total_alumnos_programa_posgrado.REGISTRADO_EN
-                    from total_alumnos_programa_posgrado
-                    join carreras
-                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera where total_alumnos_programa_posgrado.fecha_creado LIKE '%$q%'";
-
-            }
-            /*Query para consultas del buscador*/
-            /*Verifica que se haya definido $_Post['consulta]*/
-            if(isset($_POST['consulta'])){
-                $q = $conexion->real_escape_string($_POST['consulta']);
-                /*Variable global*/
-                $_SESSION['consulta']=$q;
-                $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+             $q = $conexion->real_escape_string($_POST['consulta']);
+             $_SESSION['consulta'] = $q;
+             $sql = "select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
                             carreras.nombre_carrera,
                             total_alumnos_programa_posgrado.CANTIDAD,
                             total_alumnos_programa_posgrado.REGISTRADO_EN
                     from total_alumnos_programa_posgrado
                     join carreras
                     on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+
+             if (isset($_POST['consulta_anio'])) {
+                 /*variable goblal*/
+                 $p = $_SESSION['consulta_anio'];
+                 $sql = "select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+                            carreras.nombre_carrera,
+                            total_alumnos_programa_posgrado.CANTIDAD,
+                            total_alumnos_programa_posgrado.REGISTRADO_EN
+                    from total_alumnos_programa_posgrado
+                    join carreras
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera 
+                    where carreras.NOMBRE_CARRERA LIKE '%$q%' 
+                    and fecha_creado like '%$p%'";
+
+             }
+
+         }
+            /*Query para consultas del buscador*/
+
+            if(isset($_POST['consulta_anio'])){
+                $q = $conexion->real_escape_string($_POST['consulta_anio']);
+                /*Variable global*/
+                if($_POST['consulta_anio']!='Todos los registros'){
+                $_SESSION['consulta_anio']=$q;
+
+                $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+                            carreras.nombre_carrera,
+                            total_alumnos_programa_posgrado.CANTIDAD,
+                            total_alumnos_programa_posgrado.REGISTRADO_EN
+                    from total_alumnos_programa_posgrado
+                    join carreras
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera 
+                    where total_alumnos_programa_posgrado.fecha_creado LIKE '%$q%'";
+            }
+                else{
+                    $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+                            carreras.nombre_carrera,
+                            total_alumnos_programa_posgrado.CANTIDAD,
+                            total_alumnos_programa_posgrado.REGISTRADO_EN
+                    from total_alumnos_programa_posgrado
+                    join carreras
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera";
+                }
             }
 
             $resultado = $conexion->query($sql);
             if ($resultado->num_rows>0){
-            $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+            $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla-php">
                   <tr>
                     <td class="text-center align-middle background-table">Nombre de programa</td>
                     <td class="text-center align-middle background-table">Cantidad</td>
@@ -150,7 +182,10 @@ while($stmt->fetch()){
                     $salida.="<td>100%</td>";
 
                 $salida.="</tr>";
-                $salida.="</table>";
+
+                ?>
+                </table>
+                    <?php
                     } else {
                         $salida.='<div class="row mt-3">
                         <div class="col-12 text-center">
@@ -170,7 +205,6 @@ while($stmt->fetch()){
 </div>
     </div>
         </div>
-            </div>
 
     <?php
 }

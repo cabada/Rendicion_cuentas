@@ -46,7 +46,8 @@
                             total_alumnos_programa_posgrado.REGISTRADO_EN
                     from total_alumnos_programa_posgrado
                     join carreras
-                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera where total_alumnos_programa_posgrado.fecha_creado LIKE '%$q%'";
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera 
+                    where total_alumnos_programa_posgrado.fecha_creado LIKE '%$q%'";
                   /*Se destruye/quita el valor dentro de la variable global*/
                   unset($_SESSION['consulta_anio']);
               }
