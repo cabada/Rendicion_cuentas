@@ -2,6 +2,7 @@
 require('../../pdf/fpdf_horizontal.php');
 
 require_once "../conexion.php";
+session_start();
     $conexion = conexion();
 
 class PDF extends FPDF
@@ -59,11 +60,41 @@ public function Footer()
     $pdf->SetTextColor(0, 0, 0);
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->SetLineWidth(1);
-    
-    
-    $sentencia = ("select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+
+
+    if (isset($_SESSION['consulta'])){
+        /*Se le pasa el valor de la variable global a $q*/
+        $q = $_SESSION['consulta'];
+        $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+                            from coordinacion_educativa_y_tutorias 
+                            where coordinacion_educativa_y_tutorias.NOMBRE_ACTIVIDAD LIKE '%$q%'";
+
+               /*Se destruye/quita el valor dentro de la variable global*/
+               unset($_SESSION['consulta']);
+
+    }
+
+/*Sino se cumple el if de arriba, se pasa a este.
+Verifica si la variable global fue definida*/
+
+          elseif (isset($_SESSION['consulta_anio'])){
+              /*Se le pasa el valor de la variable global a $q*/
+              $q = $_SESSION['consulta_anio'];
+              $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+                            from coordinacion_educativa_y_tutorias 
+                            where fecha_creado LIKE '%$q%'";
+
+              /*Se destruye/quita el valor dentro de la variable global*/
+              unset($_SESSION['consulta_anio']);
+
+          }
+
+          else {
+              $sql = ("select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
                             from coordinacion_educativa_y_tutorias");
-    $query = mysqli_query($conexion,$sentencia);
+          }
+
+    $query = mysqli_query($conexion,$sql);
     
     while($row = $query -> fetch_assoc()){
         $pdf->SetX(20);//posicion en X

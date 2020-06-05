@@ -42,27 +42,80 @@ if($resultado == $tablaRequerida){
                                        onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Coordinacion_Educativa/reporteExcel.php';
                                 document.reporte.submit()" />
                             </div>
+
+                            <!--Select de año-->
+                            <div class="col d-flex justify-content-end">
+                                <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
+                                    <option>Buscar por año</option>
+                                    <?php
+                                    $query = "select distinct year(fecha_creado) as fecha_creado from total_alumnos_programa_posgrado order by fecha_creado desc";
+                                    $resultado = mysqli_query($conexion,$query);
+
+                                    while($fila = mysqli_fetch_array($resultado)){
+                                        $valor = $fila['nombre_area_academica'];
+
+                                        echo "<option>".($fila['fecha_creado'])."</option>\n";
+                                    }
+
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 
+    <div class="row">
+        <div class="col-sm-12">
+
         <div class="table-responsive-xl">
             <?php
             $salida = "";
+            //query predefinido
             $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
                             from coordinacion_educativa_y_tutorias";
 
             if(isset($_POST['consulta'])){
                 $q = $conexion->real_escape_string($_POST['consulta']);
+                $_SESSION['consulta'] = $q;
                 $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
-                            from coordinacion_educativa_y_tutorias where coordinacion_educativa_y_tutorias.NOMBRE_ACTIVIDAD LIKE '%$q%'"  ;
+                            from coordinacion_educativa_y_tutorias 
+                            where coordinacion_educativa_y_tutorias.NOMBRE_ACTIVIDAD LIKE '%$q%'";
+
+                if(isset($_POST['consulta_anio'])){
+                    /*variable goblal*/
+                    $p = $_SESSION['consulta_anio'];
+                    $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+                            from coordinacion_educativa_y_tutorias 
+                            where coordinacion_educativa_y_tutorias.NOMBRE_ACTIVIDAD LIKE '%$q%'
+                            and fecha_creado LIKE '%$p%'";
+
+                }
+
+            }
+
+            /*Query para consultas del buscador*/
+
+            if(isset($_POST['consulta_anio'])){
+                $q = $conexion->real_escape_string($_POST['consulta_anio']);
+                /*Variable global*/
+                if($_POST['consulta_anio']!='Todos los registros'){
+                $_SESSION['consulta_anio']=$q;
+
+                $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+                            from coordinacion_educativa_y_tutorias 
+                            where fecha_creado LIKE '%$q%'";
+                }
+                else {
+                    $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+                            from coordinacion_educativa_y_tutorias";
+                }
             }
 
                 $resultado = $conexion->query($sql);
                 if ($resultado->num_rows>0){
-               $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+               $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla-php">
                     <tr>
                         <td class="text-center align-middle background-table">Nombre de actividad</td>
                         <td class="text-center align-middle background-table">Periodo ENE-JUN</td>
@@ -91,12 +144,14 @@ if($resultado == $tablaRequerida){
                     </td>
                 </tr>';
                      }
+                     ?>
 
-                    $salida.="</table>";
+                    </table>
+                    <?php
                 } else {
                     $salida.='<div class="row mt-3">
                         <div class="col-12 text-center">
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <div class="alert alert-danger alertify-dismissible fade show" role="alert">
                                 <strong>¡No se encontró ningún elemento!</strong><br>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -108,6 +163,8 @@ if($resultado == $tablaRequerida){
             echo $salida;
             ?>
         </div>
+    </div>
+</div>
     </div>
 </div>
 

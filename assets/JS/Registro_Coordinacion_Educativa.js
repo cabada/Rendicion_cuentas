@@ -81,7 +81,8 @@
      });
  }
 
- // FUNCION PARA BUSCAR DATOS DE TABLA PROGRAMA EDUCATIVO
+ // FUNCION PARA BUSCAR DATOS DE TABLA LISTADO DE MAESTROS CON CERTIFICACIONES
+ //BUSCAR CON BUSCADOR DE TEXTO
  $(buscar_datos());
  function buscar_datos(consulta){
      $.ajax({
@@ -91,7 +92,7 @@
          data: {consulta: consulta},
      })
          .done(function(respuesta){
-             $("#registro-coordinacion-educativa-y-tutorias").html(respuesta);
+             $("#tabla-php").html($(respuesta).find('#tabla-php'));
          })
          .fail(function(){
              console.log("error");
@@ -104,5 +105,33 @@
          buscar_datos(valor);
      }else{
          buscar_datos();
+     }
+ });
+
+ //BUSCADOR CON FECHA
+ $(buscar_datos());
+ function buscar_datos_anio(consulta_anio){
+     $.ajax({
+         url:'assets/components/registro-coordinacion-educativa-y-tutorias.php',
+         type: 'POST' ,
+         dataType: 'html',
+         data: {consulta_anio: consulta_anio},
+     })
+         .done(function(respuesta){
+             $("#tabla-php").html($(respuesta).find('#tabla-php'));
+         })
+         .fail(function(){
+             console.log("error");
+         });
+ }
+
+ $(document).on('change','.anio', function(){
+
+
+     var valor = $(this).val();
+     if (valor != "") {
+         buscar_datos_anio(valor);
+     }else{
+         buscar_datos_anio();
      }
  });
