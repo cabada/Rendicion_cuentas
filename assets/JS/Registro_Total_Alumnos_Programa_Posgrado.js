@@ -122,7 +122,7 @@ $(document).on('keyup','#caja_busqueda', function(){
 $(buscar_datos());
 function buscar_datos_anio(consulta_anio){
     $.ajax({
-        url:'assets/components//registro-total-alumnos-programa-posgrado.php',
+        url:'assets/components/registro-total-alumnos-programa-posgrado.php',
         type: 'POST' ,
         dataType: 'html',
         data: {consulta_anio: consulta_anio},
