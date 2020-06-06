@@ -115,10 +115,10 @@ elseif (isset($_SESSION['consulta_anio'])) {
         $pdf->SetX(20);//posicion en X
         $pdf->SetFillColor(248, 249, 249 ); //relleno de la tabla y su color
 
-        $pdf->Cell(40,8, $row['ID_TOTAL_PROG_POSGRADO'], 1,0,'C',1);
-        $pdf->Cell(95,8, $row['nombre_carrera'], 1,0,'C',1);
-        $pdf->Cell(30,8, $row['CANTIDAD'], 1,0,'C',1);
-        $pdf->Cell(90,8, $row['REGISTRADO_EN'], 1,1,'C',1);
+        $pdf->Cell(40,8, $row[utf8_decode('ID_TOTAL_PROG_POSGRADO')], 1,0,'C',1);
+        $pdf->Cell(95,8, $row[utf8_decode('nombre_carrera')], 1,0,'C',1);
+        $pdf->Cell(30,8, $row[utf8_decode('CANTIDAD')], 1,0,'C',1);
+        $pdf->Cell(90,8, $row[utf8_decode('REGISTRADO_EN')], 1,1,'C',1);
     }
     
     $pdf->Output();

@@ -100,10 +100,10 @@ Verifica si la variable global fue definida*/
         $pdf->SetX(20);//posicion en X
         $pdf->SetFillColor(248, 249, 249 ); //relleno de la tabla y su color
 
-        $pdf->Cell(30,8, $row['id_actividad'], 1,0,'C',1);
-        $pdf->Cell(105,8, $row['nombre_actividad'], 1,0,'C',1);
-        $pdf->Cell(60,8, $row['PERIODO_ENE_JUN'], 1,0,'C',1);
-        $pdf->Cell(60,8, $row['PERIODO_AGO_DIC'], 1,1,'C',1);
+        $pdf->Cell(30,8, $row[utf8_decode('id_actividad')], 1,0,'C',1);
+        $pdf->Cell(105,8, $row[utf8_decode('nombre_actividad')], 1,0,'C',1);
+        $pdf->Cell(60,8, $row[utf8_decode('PERIODO_ENE_JUN')], 1,0,'C',1);
+        $pdf->Cell(60,8, $row[utf8_decode('PERIODO_AGO_DIC')], 1,1,'C',1);
     }
     
     $pdf->Output();
