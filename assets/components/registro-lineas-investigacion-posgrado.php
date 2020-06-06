@@ -25,9 +25,7 @@ if($resultado == $tablaRequerida){
 <div class="row">
     <div class="col-sm-12">
         <h2>Registro de líneas de investigación (Posgrado)</h2>
-        <caption>
-            <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
-        </caption>
+
         <div class="table-responsive-xl">
             <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                 <tr>
