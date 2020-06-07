@@ -161,10 +161,14 @@ function buscar_datos_anio(consulta_anio){
 $(document).on('change','.anio', function(){
 
 
-   var valor = $(this).val();
-    if (valor != "") {
+    var valor = $(this).val();
+    if (valor != "Todos los registros") {
         buscar_datos_anio(valor);
-    }else{
+
+    }
+    else{
         buscar_datos_anio();
+        $('#caja_busqueda').val('');
+        buscar_datos("");
     }
 });
