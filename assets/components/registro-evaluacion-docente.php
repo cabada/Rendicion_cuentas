@@ -73,7 +73,6 @@
                             FROM evaluacion_docente WHERE fecha_creado LIKE '%$q%'";
 
                     } else {
-                        // unset($_POST['consulta']);
                         unset($_SESSION['consulta_anio']);
                         $sql="SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado FROM evaluacion_docente";
                         

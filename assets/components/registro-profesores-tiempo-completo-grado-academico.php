@@ -45,7 +45,6 @@
                                         $resultado = mysqli_query($conexion, $query);
 
                                         while ($fila = mysqli_fetch_array($resultado)) {
-                                            $valor = $fila['grado'];
                                             echo "<option>" . ($fila['fecha_creado']) . "</option>\n";
                                         }
                                     ?>
@@ -73,6 +72,7 @@
                         $sql="SELECT id_prof_tiemp_comp, grado, mujer, hombre, total, fecha_creado FROM profesores_tiempo_completo WHERE fecha_creado LIKE '%$q%'";
                     
                     } else {
+                        unset($_SESSION['consulta_anio']);
                         $sql="SELECT id_prof_tiemp_comp, grado, mujer, hombre, total, fecha_creado FROM profesores_tiempo_completo";
 
                     }
@@ -89,7 +89,7 @@
                         $p = $_SESSION['consulta_anio'];
                         $sql = "SELECT id_prof_tiemp_comp, grado, mujer, hombre, total, fecha_creado FROM profesores_tiempo_completo 
                             WHERE (grado LIKE '%$q%' OR mujer LIKE '%$q%' 
-                            OR hombre LIKE '%$q%' OR total LIKE '%$q%') AND fecha_creado LIKE '%$q%'";
+                            OR hombre LIKE '%$q%' OR total LIKE '%$q%') AND fecha_creado LIKE '%$p%'";
                     }
                 }
 
