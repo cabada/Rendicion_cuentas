@@ -8,7 +8,7 @@ session_start();
 
 class PDF extends FPDF
 {
-    //** ENCABEZADO **
+    //** ENCABEZADO **     //** ENCABEZADO **
 public function Header()
 {
     $this->Image('tecnologico-icon.png',20,15,45); //logo, posicion y tamaño
