@@ -120,6 +120,8 @@ while($stmt->fetch()){
                 matriculas.CANTIDAD_ALUMNOS
                       from carreras
                       right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA";
+
+                unset($_SESSION['consulta_anio']);
                 }
             }
 

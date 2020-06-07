@@ -15,46 +15,64 @@ $conexion = conexion();
         <th class="text-center align-middle background-table">Nombre carrera</th>
         <th class="text-center align-middle background-table">Cantidad de alumnos</th>
     </tr>
+
     <?php
                /*Verifica si la variable global fue definida*/
                if(isset($_SESSION['consulta'])) {
                    /*Se le pasa el valor de la variable global a $q*/
                    $q = $_SESSION['consulta'];  //query para buscador
                    $sql = "select
-                matriculas.ID_MATRICULA,
-                carreras.nombre_carrera,
-                matriculas.CANTIDAD_ALUMNOS
+                   matriculas.ID_MATRICULA,
+                   carreras.nombre_carrera,
+                   matriculas.CANTIDAD_ALUMNOS
                       from carreras
                       right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
                       where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+
+
+                   if (isset($_SESSION['consulta_anio'])) {
+                       /*Se le pasa el valor de la variable global a $q*/
+                       $p = $_SESSION['consulta_anio'];
+                       $sql = "select
+                       matriculas.ID_MATRICULA,
+                       carreras.nombre_carrera,
+                       matriculas.CANTIDAD_ALUMNOS
+                       from carreras
+                       right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
+                       where carreras.NOMBRE_CARRERA LIKE '%$q%'
+                       and matriculas.fecha_creado LIKE '%$p%'";
+
+                   }
                    /*Se destruye/quita el valor dentro de la variable global*/
                    unset($_SESSION['consulta']);
+                   unset($_SESSION['consulta_anio']);
+
                }
-                /*Sino se cumple el if de arriba, se pasa a este.
-                Verifica si la variable global fue definida*/
-                elseif (isset($_SESSION['consulta_anio'])) {
-                    /*Se le pasa el valor de la variable global a $q*/
-                    $q = $_SESSION['consulta_anio'];
-                    $sql = "select
-                matriculas.ID_MATRICULA,
-                carreras.nombre_carrera,
-                matriculas.CANTIDAD_ALUMNOS
-                      from carreras
-                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
-                      where matriculas.fecha_creado LIKE '%$q%'";
-                    /*Se destruye/quita el valor dentro de la variable global*/
-                    unset($_SESSION['consulta_anio']);
-                }
-                /*Sino se cumplio ninguno de arriba, se va a ejecutar esta instruccion que es la de por defecto. Es una query para ver todos los registros
-               de la tabla.*/
-                else{
-                    $sql="select
+                   elseif (isset($_SESSION['consulta_anio'])){
+                      /*Se le pasa el valor de la variable global a $q*/
+                      $q = $_SESSION['consulta_anio'];
+                      $sql="select
                        matriculas.ID_MATRICULA,
                        carreras.nombre_carrera,
                        matriculas.CANTIDAD_ALUMNOS
                       from carreras
-                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA";
+                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA
+                      where matriculas.fecha_creado LIKE '%$q%'";
 
+                      /*Se destruye/quita el valor dentro de la variable global*/
+                      unset($_SESSION['consulta_anio']);
+                  }
+
+                       else{
+                       $sql="select
+                       matriculas.ID_MATRICULA,
+                       carreras.nombre_carrera,
+                       matriculas.CANTIDAD_ALUMNOS
+                       from carreras
+                       right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA";
+
+                           unset($_SESSION['consulta']);
+                           unset($_SESSION['consulta_anio']);
                }
 
     $result = mysqli_query($conexion,$sql);

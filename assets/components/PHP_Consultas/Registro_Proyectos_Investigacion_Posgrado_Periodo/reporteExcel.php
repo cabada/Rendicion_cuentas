@@ -65,13 +65,14 @@
                 }
 
 
-             $result=mysqli_query($conexion,$sql);
-             while($ver=mysqli_fetch_row($result)){
-             $datos=$ver[0]."||".
-                 $ver[1]."||".
-                 $ver[2]."||".
-                 $ver[3];
-        ?>
+                 $result=mysqli_query($conexion,$sql);
+                 while($ver=mysqli_fetch_row($result)){
+                       $datos=$ver[0]."||".
+                       $ver[1]."||".
+                       $ver[2]."||".
+                       $ver[3];
+
+                       ?>
 
         <tr>
             <td><?php echo utf8_decode($ver[1])?></td>
