@@ -61,35 +61,51 @@ public function Footer()
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->SetLineWidth(1);
 
-if(isset($_SESSION['consulta'])) {
-    /*Se le pasa el valor de la variable global a $q*/
-    $q = $_SESSION['consulta'];
-    $sql = "select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+
+/*Verifica si la variable global fue definida*/
+          if (isset($_SESSION['consulta'])) {
+          /*Se le pasa el valor de la variable global a $q*/
+              $q = $_SESSION['consulta'];  //query para buscador
+              $sql = "select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo 
-                      where proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
-                      proyectos_investigacion_posgrado_periodo.NOMBRE_PROYECTO LIKE '%$q%' or 
-                      proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%'";
-    /*Se destruye/quita el valor dentro de la variable global*/
-    unset($_SESSION['consulta']);
+                      where (CLAVE LIKE '%$q%' or 
+                      NOMBRE_PROYECTO LIKE '%$q%' or 
+                      RESPONSABLE LIKE '%$q%')";
 
-}
-/*Sino se cumple el if de arriba, se pasa a este.
-Verifica si la variable global fue definida*/
-elseif (isset($_SESSION['consulta_anio'])) {
-    /*Se le pasa el valor de la variable global a $q*/
-    $q = $_SESSION['consulta_anio'];
-    $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+              if (isset($_SESSION['consulta_anio'])) {
+                  /*Se le pasa el valor de la variable global a $q*/
+                  $p = $_SESSION['consulta_anio'];
+                  $sql = "select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo 
+                      where (CLAVE LIKE '%$q%' or 
+                      NOMBRE_PROYECTO LIKE '%$q%' or 
+                      RESPONSABLE LIKE '%$q%')
+                      and fecha_creado '%$p%'";
+              }
+
+                   /*Se destruye/quita el valor dentro de la variable global*/
+                   unset($_SESSION['consulta']);
+                   unset($_SESSION['consulta_anio']);
+
+          } elseif (isset($_SESSION['consulta_anio'])) {
+           /*Se le pasa el valor de la variable global a $q*/
+              $q = $_SESSION['consulta_anio'];
+              $sql = "select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo
-                      where fecha_creado LIKE '%$q%'";
-               /*Se destruye/quita el valor dentro de la variable global*/
-               unset($_SESSION['consulta_anio']);
+                      where fecha_creado like '%$q%'";
 
-} else{
+              /*Se destruye/quita el valor dentro de la variable global*/
+              unset($_SESSION['consulta_anio']);
 
-    $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+          } else {
+              $sql = "select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo";
 
-}
+              unset($_SESSION['consulta']);
+              unset($_SESSION['consulta_anio']);
+
+          }
+
 
     $query = mysqli_query($conexion,$sql);
     
