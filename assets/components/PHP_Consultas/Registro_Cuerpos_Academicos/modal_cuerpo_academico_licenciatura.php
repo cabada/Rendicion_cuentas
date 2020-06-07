@@ -140,7 +140,7 @@ $conexion = conexion();
         });
 
         $('#btn_editar_curso_actual').click(function () {
-            actualizarDatos();
+            actualizaDatos();
         });
     });
 
