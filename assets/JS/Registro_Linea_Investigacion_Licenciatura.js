@@ -2,7 +2,7 @@
 function agregardatos(id_carrera,nombre_especialidad){
 
     cadena="id_carrera=" + id_carrera +
-           "&nombre_especialidad=" + nombre_especialidad;
+        "&nombre_especialidad=" + nombre_especialidad;
 
     $.ajax({
         type: "POST",
