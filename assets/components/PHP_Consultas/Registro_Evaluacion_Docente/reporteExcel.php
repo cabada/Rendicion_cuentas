@@ -1,33 +1,67 @@
 <?php
-    //cabeceras y que permita descargar desde el navegador 
+    //CABEZERAS Y QUE PERMITA DESCARGAR DESDE EL NAVEGADOR
     header("Content-Type:application/xls");
-    header("Content-Disposition: attachment; filename=registro_evaluacion_docente_2020.xls"); //nombre del documento
+    header("Content-Disposition: attachment; filename=Registro_de_evaluacion_docente.xls"); //nombre del documento
 
+    // INICIACION DE LAS VARIABLES GLOBALES DE LA SESION
+    session_start();
     require_once "../conexion.php";
     $conexion = conexion();
-
-    $sentencia = ("SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje FROM evaluacion_docente");
-    $query = mysqli_query($conexion,$sentencia);
 ?>
-    <table>
-            <tr>
-                <h4>Reporte de Registro Evaliacion Docente</h4>
-                <th>ID</th>
-                <th>Periodo</th>
-                <th>Docentes Activos Evaluados</th>
-                <th>Porcentaje</th>
-            </tr>
-        <?php
 
-        while($registros = mysqli_fetch_assoc($query)){
-        ?>
-            <tr>
-                <td><?php echo utf8_decode($registros['id_eva_docente']); ?></td>
-                <td><?php echo utf8_decode($registros['periodo']); ?></td>
-                <td><?php echo utf8_decode($registros['docentes_activos_evaluados']); ?></td>
-                <td><?php echo utf8_decode($registros['porcentaje']); ?></td>
-            </tr>
-        <?php
+<table>
+    <tr>
+        <h4>Reporte de Registro de Evaluacion Docente</h4>
+        <th class="text-center align-middle background-table">Periodo</th>
+        <th class="text-center align-middle background-table">Docentes activos evaluados</th>
+        <th class="text-center align-middle background-table">Porcentaje</th>
+    </tr>
+
+    <?php
+        // VERIFICA SI LA VARIABLE GLOBAL FUE DEFINIDA
+        if(isset($_SESSION['consulta'])){
+            // SE LE PASA EL VALOR DE LA VARIABLE GLOBAL A $q
+            $q = $_SESSION['consulta'];
+            $sql = "SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado
+                FROM evaluacion_docente WHERE periodo LIKE '%$q%' OR docentes_activos_evaluados LIKE '%$q%' 
+                OR porcentaje LIKE '%$q%'";
+            // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
+            unset($_SESSION['consulta']);
         }
-        ?>
-  </table>
+
+        // SI NO SE CUMPLE EL IF DE ARRIBA, SE PASA A ESTE.
+        // VERIFICA SI LA VARIABLE GLOBAL FUE DEFINIDA
+        elseif (isset($_SESSION['consulta_anio'])){
+            // SE LE PASA EL VALOR DE LA VARIABLE GLOBAL A $q
+            $q = $_SESSION['consulta_anio'];
+            $sql="SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado
+                FROM evaluacion_docente WHERE fecha_creado LIKE '%$q%'";
+            // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
+            unset($_SESSION['consulta_anio']);
+        }
+        // SI NO SE CIMPLIO NINGUNO DE ARRIBA, SE VA EJECUTAR ESTA INSTRUCCION QUE ES POR DEFECTO, 
+        // ES UNA QUERY PARA VER TODOS LOS REGISTROS DE LA TABLA
+        else{
+            $sql="SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado FROM evaluacion_docente";
+        }
+
+        $result=mysqli_query($conexion,$sql);
+        while($buscar=mysqli_fetch_row($result)){
+            $datos = $buscar[0]."||".
+                $buscar[1]."||".
+                $buscar[2]."||".
+                $buscar[3]."||".
+                $buscar[4];
+    ?>
+
+    <tr>
+        <td><?php echo utf8_decode($buscar[1])?></td>
+        <td><?php echo utf8_decode($buscar[2])?></td>
+        <td><?php echo utf8_decode($buscar[3])?></td>
+    </tr>
+
+    <?php
+        }
+    ?>
+
+</table>
