@@ -63,33 +63,41 @@ public function Footer()
     $pdf->SetLineWidth(1);
 
 
-if(isset($_SESSION['consulta'])){
-    // SE LE PASA EL VALOR DE LA VARIABLE GLOBAL A $q
-    $q = $_SESSION['consulta'];
-    $sql = "SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado
-        FROM evaluacion_docente WHERE periodo LIKE '%$q%' OR docentes_activos_evaluados LIKE '%$q%' 
-        OR porcentaje LIKE '%$q%'";
+    // VERIFICA SI LA VARIABLE GLOBAL FUE DEFINIDA
+    if(isset($_SESSION['consulta'])){
+        // SE LE PASA EL VALOR DE LA VARIABLE GLOBAL A $q
+        $q = $_SESSION['consulta'];
+        $sql = "SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado
+            FROM evaluacion_docente WHERE periodo LIKE '%$q%' OR docentes_activos_evaluados LIKE '%$q%' 
+            OR porcentaje LIKE '%$q%'";
 
-    // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
-    unset($_SESSION['consulta']);
+        if(isset($_SESSION['consulta_anio'])){
+            $p = $_SESSION['consulta_anio'];
+            $sql = "SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado
+                FROM evaluacion_docente WHERE (periodo LIKE '%$q%' OR docentes_activos_evaluados LIKE '%$q%' 
+                OR porcentaje LIKE '%$q%') AND fecha_creado LIKE '%$p%'";
+        }
+        // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
+        unset($_SESSION['consulta']);
+        unset($_SESSION['consulta_anio']);
 
-// SI NO SE CUMPLE EL IF DE ARRIBA, SE PASA A ESTE.
-// VERIFICA SI LA VARIABLE GLOBAL FUE DEFINIDA
-} else if (isset($_SESSION['consulta_anio'])){
-    // SE LE PASA EL VALOR DE LA VARIABLE GLOBAL A $q
-    $q = $_SESSION['consulta_anio'];
-    $sql="SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado
-        FROM evaluacion_docente WHERE fecha_creado LIKE '%$q%'";
+    // SI NO SE CUMPLE EL IF DE ARRIBA, SE PASA A ESTE.
+    // VERIFICA SI LA VARIABLE GLOBAL FUE DEFINIDA
+    } else if (isset($_SESSION['consulta_anio'])){
+        // SE LE PASA EL VALOR DE LA VARIABLE GLOBAL A $q
+        $q = $_SESSION['consulta_anio'];
+        $sql="SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado
+            FROM evaluacion_docente WHERE fecha_creado LIKE '%$q%'";
+        // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
+        unset($_SESSION['consulta_anio']);
 
-    // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
-    unset($_SESSION['consulta_anio']);
-
-// SI NO SE CIMPLIO NINGUNO DE ARRIBA, SE VA EJECUTAR ESTA INSTRUCCION QUE ES POR DEFECTO, 
-// ES UNA QUERY PARA VER TODOS LOS REGISTROS DE LA TABLA
-} else {
-    $sql="SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado FROM evaluacion_docente";
-
-}
+    // SI NO SE CIMPLIO NINGUNO DE ARRIBA, SE VA EJECUTAR ESTA INSTRUCCION QUE ES POR DEFECTO, 
+    // ES UNA QUERY PARA VER TODOS LOS REGISTROS DE LA TABLA
+    } else {
+        unset($_SESSION['consulta_anio']);
+        unset($_SESSION['consulta']);
+        $sql="SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado FROM evaluacion_docente";
+    }
 
     $query = mysqli_query($conexion,$sql);
     while($row = $query -> fetch_assoc()){
