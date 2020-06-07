@@ -9,6 +9,13 @@ $id_usuario = $_SESSION["id_usuario"];
 $stmt = consultaRol($conn,$id_usuario);
 $stmt->execute();
 
+if((isset($_SESSION['consulta']))or (isset($_SESSION['consulta_anio']))){
+
+    unset($_SESSION['consulta_anio']);
+    unset($_SESSION['consulta']);
+
+}
+
 $stmt->bind_result($resultado);
 
 while($stmt->fetch()){

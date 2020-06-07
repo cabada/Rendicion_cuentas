@@ -136,11 +136,11 @@ $conexion = conexion();
             area=$('#area_agregar').val();
             console.log(area);
 
-            agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area);
+            agregardatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area);
         });
 
         $('#btn_editar_curso_actual').click(function () {
-            actualizarDatos();
+            actualizaDatos();
         });
     });
 
