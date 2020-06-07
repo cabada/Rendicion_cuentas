@@ -18,7 +18,6 @@ while($stmt->fetch()){
 
 <div class="row">
     <div class="col-sm-12">
-        <h2>Registro total de alumnos de programa posgrado</h2>
         <!--Botones Excel y PDF -->
         <div class="row mt-2">
             <div class="col-12">
@@ -172,7 +171,7 @@ while($stmt->fetch()){
                         </td>
                     </tr>';
                 }
-                $salida.="<tr style='font-weight: bold'>
+                $salida.="<tr style=' font-weight: bold'>
                            <td>Total</td>";
 
                     $sql1 ="select sum(cantidad) as cantidad from
