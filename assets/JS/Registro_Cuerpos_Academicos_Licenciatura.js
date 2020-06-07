@@ -1,17 +1,23 @@
 
-function agregardatos(id_carrera,nombre_especialidad){
+function agregardatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area){
 
-    cadena="id_carrera=" + id_carrera +
-        "&nombre_especialidad=" + nombre_especialidad;
+    cadena="id_area_academica=" + id_area_academica +
+        "&nombre_cuerpo_academico=" + nombre_cuerpo_academico +
+        "&grado=" + grado +
+        "&estado=" + estado +
+        "&anio_registro=" + anio_registro +
+        "&vigencia=" + vigencia +
+        "&area=" + area
+        ;
 
     $.ajax({
         type: "POST",
-        url: "assets/components/PHP_Consultas/Registro_Lineas_Investigacion_Licenciaturas/Agregar_Registro.php",
+        url: "assets/components/PHP_Consultas/Registro_Cuerpos_Academicos/Agregar_Registro.php",
         data: cadena,
         success: function (r) {
             if (r == 1) {
                 //cuando se agrega un registro se recarga la tabla
-                $('#registro-lineas-investigacion-licenciaturas').load('assets/components/registro-lineas-investigacion-licenciaturas.php');
+                $('#registro-cuerpos-academicos').load('assets/components/registro-cuerpos-academicos.php');
                 alertify.success("Agregado con exito");
             } else {
                 alertify.error("No tiene los privilegios suficientes...");

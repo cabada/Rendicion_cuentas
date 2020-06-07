@@ -23,7 +23,6 @@ if($resultado == $tablaRequerida){
 ?>
 <div class="row">
     <div class="col-sm-12">
-        <h2>Registro de Aulas Equipadas con Equipo Informático por Carrera</h2>
         <!--Botones Excel y PDF -->
         <div class="row mt-2">
             <div class="col-12">

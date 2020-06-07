@@ -29,17 +29,13 @@
                             total_alumnos_programa_posgrado.REGISTRADO_EN
                     from total_alumnos_programa_posgrado
                     join carreras
-                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera 
+                    where carreras.NOMBRE_CARRERA LIKE '%$q%'";
 
-                  /*Se destruye/quita el valor dentro de la variable global*/
-                  unset($_SESSION['consulta']);
-              }
 
-              /*Sino se cumple el if de arriba, se pasa a este.
-        Verifica si la variable global fue definida*/
-              elseif (isset($_SESSION['consulta_anio'])){
+              if(isset($_SESSION['consulta_anio'])){
                   /*Se le pasa el valor de la variable global a $q*/
-                  $q = $_SESSION['consulta_anio'];
+                  $p = $_SESSION['consulta_anio'];
                   $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
                             carreras.nombre_carrera,
                             total_alumnos_programa_posgrado.CANTIDAD,
@@ -47,12 +43,33 @@
                     from total_alumnos_programa_posgrado
                     join carreras
                     on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera 
-                    where total_alumnos_programa_posgrado.fecha_creado LIKE '%$q%'";
-                  /*Se destruye/quita el valor dentro de la variable global*/
-                  unset($_SESSION['consulta_anio']);
+                    where carreras.NOMBRE_CARRERA LIKE '%$q%'
+                    and total_alumnos_programa_posgrado.fecha_creado LIKE '%$p%'";
+
               }
-              /*Sino se cumplio ninguno de arriba, se va a ejecutar esta instruccion que es la de por defecto. Es una query para ver todos los registros
-        de la tabla.*/
+                  /*Se destruye/quita el valor dentro de la variable global*/
+                  unset($_SESSION['consulta']);
+                  unset($_SESSION['consulta_anio']);
+
+              }
+              /*Sino se cumple el if de arriba, se pasa a este.
+        Verifica si la variable global fue definida*/
+        elseif (isset($_SESSION['consulta_anio'])) {
+            /*Se le pasa el valor de la variable global a $q*/
+            $q = $_SESSION['consulta_anio'];
+            $sql = "select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
+                            carreras.nombre_carrera,
+                            total_alumnos_programa_posgrado.CANTIDAD,
+                            total_alumnos_programa_posgrado.REGISTRADO_EN
+                    from total_alumnos_programa_posgrado
+                    join carreras
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera 
+                    where total_alumnos_programa_posgrado.fecha_creado LIKE '%$q%'";
+
+            /*Se destruye/quita el valor dentro de la variable global*/
+            unset($_SESSION['consulta_anio']);
+        }
+
               else{
                   $sql="select total_alumnos_programa_posgrado.ID_TOTAL_PROG_POSGRADO,
                             carreras.nombre_carrera,
@@ -61,6 +78,10 @@
                     from total_alumnos_programa_posgrado
                     join carreras
                     on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera";
+
+                  unset($_SESSION['consulta']);
+                  unset($_SESSION['consulta_anio']);
+
               }
 
               $result=mysqli_query($conexion,$sql);

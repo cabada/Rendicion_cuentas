@@ -20,8 +20,6 @@ while($stmt->fetch()){
 
 <div class="row">
     <div class="col-sm-12">
-        <h2>Registro de cantidad de matriculas</h2>
-
         <!--Botones Excel y PDF -->
         <div class="row mt-2">
             <div class="col-12">
