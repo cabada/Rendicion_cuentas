@@ -12,6 +12,7 @@ $stmt = consultaRol($conn,$id_usuario);
 
 $stmt->execute();
 
+
 $stmt->bind_result($resultado);
 
 while($stmt->fetch()){

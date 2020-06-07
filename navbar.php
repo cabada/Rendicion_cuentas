@@ -83,7 +83,6 @@ while($stmt->fetch()){
                            <a href="bitacora.html" class="dropdown-item">Bitacora de Transacciones de Registros</a>
 
 
-
                        </div>
 
                    </li>
