@@ -120,6 +120,7 @@ if($resultado == $tablaRequerida) {
                             join area_academica
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 2";
+                                unset($_SESSION['consulta_anio']);
 
                             }
 
@@ -151,7 +152,7 @@ if($resultado == $tablaRequerida) {
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 2
                             and(profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')
-                            and profesores.fecha_creado like '%$q%'";
+                            and profesores.fecha_creado like '%$p%'";
 
                             }
 

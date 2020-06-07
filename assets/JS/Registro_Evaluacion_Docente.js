@@ -134,9 +134,12 @@ $(document).on('change','.anio', function(){
 
 
     var valor = $(this).val();
-    if (valor != "") {
+    if (valor != "Todos los registros") {
         buscar_datos_anio(valor);
-    }else{
+
+    }
+    else{
         buscar_datos_anio();
+        $('#caja_busqueda').val('');
     }
 });

@@ -71,6 +71,8 @@
                             join area_academica
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 1";
+            unset($_SESSION['consulta']);
+            unset($_SESSION['consulta_anio']);
 
         }
 
