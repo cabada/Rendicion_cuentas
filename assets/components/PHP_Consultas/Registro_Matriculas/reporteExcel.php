@@ -12,8 +12,8 @@ $conexion = conexion();
 <table>
     <tr>
         <h4>Reporte de Registro de Cantidad de Matriculas</h4>
-        <th>Nombre carrera</th>
-        <th>Cantidad de alumnos</th>
+        <th class="text-center align-middle background-table">Nombre carrera</th>
+        <th class="text-center align-middle background-table">Cantidad de alumnos</th>
     </tr>
     <?php
                /*Verifica si la variable global fue definida*/
