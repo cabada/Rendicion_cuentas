@@ -41,7 +41,7 @@ public function Footer()
     $pdf->SetFont('Arial','B',13);
     $pdf->SetY(30);//posicion en Y
     $pdf->Ln(10);
-    $pdf->Cell(0,5,'Registro de Lineas de Investigacion Pertenecientes a Licenciatura', 0,0,'C');
+    $pdf->Cell(0,5,'Registro de Lineas de Investigacion Pertenecientes a Posgrado', 0,0,'C');
     $pdf->Ln(10);//salto de linea y su tamaño
 
     //** Encabezado de la tabla **
@@ -64,34 +64,34 @@ public function Footer()
     
     if (isset($_SESSION['consulta'])){
         $q = $_SESSION['consulta'];
-        $sql="select lineas_investigacion_licenciatura.ID_LINEA,
+        $sql="select lineas_investigacion_posgrado.ID_LINEA,
                                  carreras.NOMBRE_CARRERA, 
-                                 lineas_investigacion_licenciatura.NOMBRE_ESPECIALIDAD
+                                 lineas_investigacion_posgrado.NOMBRE_ESPECIALIDAD
                                  from carreras
-                                 right join lineas_investigacion_licenciatura on carreras.ID_CARRERA = lineas_investigacion_licenciatura.ID_CARRERA
+                                 right join lineas_investigacion_posgrado on carreras.ID_CARRERA = lineas_investigacion_posgrado.ID_CARRERA
                                  where carreras.NOMBRE_CARRERA LIKE '%$q%' or 
-                                 lineas_investigacion_licenciatura.NOMBRE_ESPECIALIDAD LIKE '%$q%'";
+                                 lineas_investigacion_posgrado.NOMBRE_ESPECIALIDAD LIKE '%$q%'";
     unset($_SESSION['consulta']);
 
     }
 
     elseif (isset($_SESSION['consulta_anio'])){
         $q=$_SESSION['consulta_anio'];
-        $sql = "select lineas_investigacion_licenciatura.ID_LINEA,
+        $sql = "select lineas_investigacion_posgrado.ID_LINEA,
                                  carreras.NOMBRE_CARRERA, 
-                                 lineas_investigacion_licenciatura.NOMBRE_ESPECIALIDAD
+                                 lineas_investigacion_posgrado.NOMBRE_ESPECIALIDAD
                                  from carreras
-                                 right join lineas_investigacion_licenciatura on carreras.ID_CARRERA = lineas_investigacion_licenciatura.ID_CARRERA
-                                 where lineas_investigacion_licenciatura.fecha_creado LIKE '%$q%'";
+                                 right join lineas_investigacion_posgrado on carreras.ID_CARRERA = lineas_investigacion_posgrado.ID_CARRERA
+                                 where lineas_investigacion_posgrado.fecha_creado LIKE '%$q%'";
         unset($_SESSION['consulta_anio']);
     }
     else{
 
-        $sql="select lineas_investigacion_licenciatura.ID_LINEA,
+        $sql="select lineas_investigacion_posgrado.ID_LINEA,
                                  carreras.NOMBRE_CARRERA, 
-                                 lineas_investigacion_licenciatura.NOMBRE_ESPECIALIDAD
+                                 lineas_investigacion_posgrado.NOMBRE_ESPECIALIDAD
                                  from carreras
-                                 right join lineas_investigacion_licenciatura on carreras.ID_CARRERA = lineas_investigacion_licenciatura.ID_CARRERA";
+                                 right join lineas_investigacion_posgrado on carreras.ID_CARRERA =lineas_investigacion_posgrado.ID_CARRERA";
 
 
 

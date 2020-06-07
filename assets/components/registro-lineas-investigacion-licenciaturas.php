@@ -21,7 +21,7 @@ while($stmt->fetch()){
         <div class="row">
             <div class="col-sm-12">
                 <h2>Registro de líneas de investigación (Licenciatura)</h2>
-                <!--Botones Excel y PDF -->
+                <!--Botones Excel y PDF -->                    <!--Botones Excel y PDF -->
                 <div class="row mt-2">
                     <div class="col-12">
                         <form id="reporte" name="reporte" method="POST" target="_blank">

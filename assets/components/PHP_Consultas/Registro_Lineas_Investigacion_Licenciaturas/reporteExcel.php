@@ -18,7 +18,7 @@ $conexion = conexion();
 
     <?php
 
-    /*Verifica si la variable global fue definida*/
+    /*Verifica si la variable global fue definida*/     /*Verifica si la variable global fue definida*/
     if(isset($_SESSION['consulta'])){
         /*Se le pasa el valor de la variable global a $q*/
         $q = $_SESSION['consulta'];  //query para buscador
