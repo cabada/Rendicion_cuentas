@@ -141,5 +141,7 @@ $(document).on('change','.anio', function(){
     else{
         buscar_datos_anio();
         $('#caja_busqueda').val('');
+        console.log("Estoy dentro");
+        buscar_datos("");
     }
 });
