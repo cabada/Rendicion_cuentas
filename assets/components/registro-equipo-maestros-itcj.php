@@ -110,6 +110,7 @@ if($resultado == $tablaRequerida){
 
 
                     }
+
                 }
 
 
@@ -144,6 +145,8 @@ if($resultado == $tablaRequerida){
                                     experiencia_profesional,
                                     experiencia_docente 
                                     from equipo_maestros_itcj";
+
+                        unset($_SESSION['consulta_anio']);
 
                     }
 

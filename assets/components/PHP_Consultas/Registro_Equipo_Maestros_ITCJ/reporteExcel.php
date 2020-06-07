@@ -41,9 +41,27 @@
                                     experiencia_docente 
                                     from equipo_maestros_itcj
                                     where nombre_docente like '%$q%' or grado_estudios like '%$q%'";
+            if(isset($_SESSION['consulta_anio'])){
+
+                $p = $_SESSION['consulta_anio'];
+
+                $sql = "select id_equipo_maestros_itcj,
+                                    nombre_docente,
+                                    categoria_hora,
+                                    grado_estudios,
+                                    sni,area_especializacion,
+                                    experiencia_profesional,
+                                    experiencia_docente 
+                                    from equipo_maestros_itcj
+                                    where (nombre_docente like '%$q%' or grado_estudios like '%$q%')
+                                    and fecha_creado like '%$p%'";
+
+
+            }
 
             /*Se destruye/quita el valor dentro de la variable global*/
             unset($_SESSION['consulta']);
+            unset($_SESSION['consulta_anio']);
 
         }
 
@@ -78,6 +96,8 @@
                             experiencia_profesional,
                             experiencia_docente 
                             from equipo_maestros_itcj";
+            unset($_SESSION['consulta']);
+            unset($_SESSION['consulta_anio']);
 
         }
 

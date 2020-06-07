@@ -38,8 +38,25 @@
                             where profesores.id_categoria_profesores = 2
                             and(profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')";
 
+            if(isset($_SESSION['consulta_anio'])){
+
+                $p = $_SESSION['consulta_anio'];
+                $sql = "select profesores.id_profesor,
+                            profesores.nombre_completo,
+                            area_academica.nombre_area_academica,
+                            profesores.vigencia
+                            from profesores
+                            join area_academica
+                            on area_academica.id_area_academica = profesores.id_area_academica
+                            where profesores.id_categoria_profesores = 2
+                            and(profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')
+                            and profesores.fecha_creado like '%$p%'";
+
+            }
+
             /*Se destruye/quita el valor dentro de la variable global*/
             unset($_SESSION['consulta']);
+            unset($_SESSION['consulta_anio']);
 
         }
 
@@ -72,6 +89,10 @@
                             join area_academica
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 2";
+
+
+            unset($_SESSION['consulta']);
+            unset($_SESSION['consulta_anio']);
 
         }
 

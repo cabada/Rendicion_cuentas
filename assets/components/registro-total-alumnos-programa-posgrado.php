@@ -83,7 +83,8 @@ while($stmt->fetch()){
                             total_alumnos_programa_posgrado.REGISTRADO_EN
                     from total_alumnos_programa_posgrado
                     join carreras
-                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+                    on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera 
+                    where carreras.NOMBRE_CARRERA LIKE '%$q%'";
 
              if (isset($_POST['consulta_anio'])) {
                  /*variable goblal*/
@@ -126,6 +127,8 @@ while($stmt->fetch()){
                     from total_alumnos_programa_posgrado
                     join carreras
                     on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera";
+
+                    unset($_SESSION['consulta_anio']);
                 }
             }
 

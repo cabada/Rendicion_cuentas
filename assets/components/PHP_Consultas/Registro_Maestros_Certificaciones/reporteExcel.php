@@ -1,7 +1,7 @@
 <?php
 //cabeceras y que permita descargar desde el navegador
      header("Content-Type:application/xls");
-     header("Content-Disposition: attachment; filename=Registro_Total_Alumnos_Programa_Posgrado.xls"); //nombre del documento
+     header("Content-Disposition: attachment; filename=Registro_Maestros_Certificaciones.xls"); //nombre del documento
 
 /*Iniciacion de las variables globales de la sesion*/
      session_start();
@@ -37,8 +37,25 @@
                             where profesores.id_categoria_profesores = 1
                             and (profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')";
 
+
+            if(isset($_SESSION['consulta_anio'])){
+
+                $p = $_SESSION['consulta_anio'];
+                $sql="select profesores.id_profesor,
+                            profesores.nombre_completo,
+                            area_academica.nombre_area_academica,
+                            profesores.disciplina
+                            from profesores
+                            join area_academica
+                            on area_academica.id_area_academica = profesores.id_area_academica
+                            where profesores.id_categoria_profesores = 1
+                            and (profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')
+                            and profesores.fecha_creado like '%$p%'";
+
+            }
             /*Se destruye/quita el valor dentro de la variable global*/
             unset($_SESSION['consulta']);
+            unset($_SESSION['consulta_anio']);
 
         }
 
