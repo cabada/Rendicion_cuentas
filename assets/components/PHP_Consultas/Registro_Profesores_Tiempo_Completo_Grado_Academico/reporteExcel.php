@@ -11,12 +11,12 @@
 
 <table>
     <tr>
-        <h4>Registro de profesores de tiempo completo por grado académico</h4>
-        <td class="text-center align-middle background-table">Grado</td>
-        <td class="text-center align-middle background-table">Mujer</td>
-        <td class="text-center align-middle background-table">Hombre</td>
-        <td class="text-center align-middle background-table">Total</td>
-        <td class="text-center align-middle background-table">Porcentaje</td>
+        <h4 style="text-align: center;">Registro de profesores de tiempo completo por grado académico</h4>
+        <td>Grado</td>
+        <td>Mujer</td>
+        <td>Hombre</td>
+        <td>Total</td>
+        <td>Porcentaje</td>
     </tr>
 
     <?php
