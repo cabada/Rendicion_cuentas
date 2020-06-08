@@ -1,5 +1,6 @@
-function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
-                      periodo,total) {
+
+function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,periodo,total) {
+
     cadena = "carrera=" + carrera +
         "&modalidad=" + modalidad +
         "&nuevo_ingreso=" + nuevo_ingreso +
@@ -10,22 +11,18 @@ function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
 
     $.ajax({
         type:"post",
-        url:"assets/components/P HP_Consultas/Registro_Programa_Educativo/Agregar_Registro.php",
+        url:"assets/components/PHP_Consultas/Registro_Programa_Educativo/Agregar_Registro.php",
         data:cadena,
         success:function(r) {
             if(r==1){
                 $('#registro-programa-educativo').load('assets/components/registro-programa-educativo.php');
-
                 alertify.success("Agregado con exito: ");
             }
             else{
                 alertify.error("No tiene los privilegios suficientes...");
             }
-
         }
-
     });
-
 }
 
 function agregaForm(datos) {

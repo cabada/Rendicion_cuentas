@@ -159,8 +159,8 @@ $conexion = conexion();
             periodo = $('#periodo_agregar').val();
             console.log(periodo);
             total = nuevo_ingreso + reingreso;
-            agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
-                periodo,total);
+
+            agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,periodo,total);
         });
 
         $('#btn_editar_curso_actual').click(function () {

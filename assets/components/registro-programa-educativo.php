@@ -17,6 +17,48 @@ while($stmt->fetch()){
 
         <div class="row">
             <div class="col-sm-12">
+                <!--Botones Excel y PDF -->
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <form id="reporte" name="reporte" method="POST" target="_blank">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input class="btn btn-danger text-white" type="button" target="_blank" value="Exportar PDF"
+                                               onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Total_Alumnos_Programa_Posgrado/reportePDF.php';
+                                document.reporte.submit()" />
+
+                                        <input class="btn btn-success text-white" type="button" value="Exportar Excel"
+                                               onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Total_Alumnos_Programa_Posgrado/reporteExcel.php';
+                                document.reporte.submit()" />
+                                    </div>
+
+                                    <!--Select de año-->
+                                    <div class="col d-flex justify-content-end">
+                                        <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
+                                            <option>Buscar por año</option>
+                                            <?php
+                                            $query = "select distinct year(fecha_creado) as fecha_creado from programa_educativo order by fecha_creado desc";
+                                            $resultado = mysqli_query($conexion,$query);
+
+                                            while($fila = mysqli_fetch_array($resultado)){
+                                                $valor = $fila['nombre_area_academica'];
+
+                                                echo "<option>".($fila['fecha_creado'])."</option>\n";
+                                            }
+
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
                 <div class="table-responsive-xl">
                     <?php
                     $salida = "";
@@ -27,7 +69,8 @@ while($stmt->fetch()){
                     programa_educativo.nuevo_ingreso,
                     programa_educativo.reingreso,
                     programa_educativo.estatus,
-                    programa_educativo.periodo 
+                    programa_educativo.periodo,
+                    programa_educativo.total 
                     FROM carreras 
                     RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera";
 
@@ -40,7 +83,8 @@ while($stmt->fetch()){
                         programa_educativo.nuevo_ingreso,
                         programa_educativo.reingreso,
                         programa_educativo.estatus,
-                        programa_educativo.periodo 
+                        programa_educativo.periodo,
+                        programa_educativo.total 
                         FROM carreras 
                         RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera WHERE carreras.nombre_carrera LIKE '%$q%'";
                     }
@@ -68,7 +112,8 @@ while($stmt->fetch()){
                                 $buscar[3]."||".
                                 $buscar[4]."||".
                                 $buscar[5]."||".
-                                $buscar[6];
+                                $buscar[6]."||".
+                                $buscar[7];
 
                             $suma = $buscar[3]+$buscar[4];
                             $salida.='<tr class="tablasuma">
@@ -106,7 +151,9 @@ while($stmt->fetch()){
                                     $salida.="<td>$buscar[0]</td>";
 
                                   $salida.="</tr>";
-                        $salida.="</table>";
+                                  ?>
+                        </table>
+                        <?php
                     } else {
                         $salida.='<div class="row mt-3">
                             <div class="col-12 text-center">
@@ -123,6 +170,8 @@ while($stmt->fetch()){
                     ?>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
 
         <?php
