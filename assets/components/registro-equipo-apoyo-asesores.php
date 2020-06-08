@@ -138,7 +138,7 @@ if($resultado == $tablaRequerida){
                         $buscar[4];
 
                     $salida .= '<tr>
-                    <td>' . utf8_decode($buscar[1] ). '</td>
+                    <td>' . $buscar[1]. '</td>
                     <td>' . $buscar[2] . '</td>
                     <td>' . $buscar[3] . '</td>
                     <td>' . $buscar[4] . '</td>

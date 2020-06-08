@@ -113,9 +113,9 @@
                             $buscar[4];
 
                         $salida.='<tr>
-                            <td>'.utf8_encode($buscar[1]).'</td>
-                            <td>'.utf8_encode($buscar[2]).'</td>
-                            <td>'.utf8_encode($buscar[3]).'</td>
+                            <td>'.$buscar[1].'</td>
+                            <td>'.$buscar[2].'</td>
+                            <td>'.$buscar[3].'</td>
                             <td class="text-center align-middle">
                                 <button class="btn btn-sm btn-warning" onclick="agregaform(\''.$datos.'\')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i> Editar</button>
                                 <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\''.$buscar[0].'\')"><i class="fas fa-trash"></i> Eliminar</button>

@@ -129,7 +129,7 @@ while($stmt->fetch()){
                            $ver[3];
 
                 $salida.='<tr>
-                    <td>'.utf8_decode($ver[1]) .'</td>
+                    <td>'.$ver[1].'</td>
                     <td>'. $ver[2] .'</td>
                     <td>'. $ver[3] .'</td>
                     <td class="text-center align-middle">

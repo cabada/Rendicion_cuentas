@@ -181,7 +181,7 @@ if($resultado == $tablaRequerida) {
 
                                 $salida .= '<tr>
                         <td>'.$ver[1].'</td>
-                        <td>'.utf8_encode($ver[2]).'</td>
+                        <td>'.$ver[2].'</td>
                         <td>'.$ver[3].'</td>
                         <td class="text-center align-middle">
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"  onclick="agregaform(\'' . $datos . '\')" ><i class="far fa-edit"></i>  Editar</button>

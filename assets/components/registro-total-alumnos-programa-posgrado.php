@@ -160,10 +160,10 @@ while($stmt->fetch()){
 
 
                     $salida.='<tr>
-                        <td>'.utf8_decode($ver[1]).'</td>
+                        <td>'.$ver[1].'</td>
                         <td>'. $ver[2] .'</td>
                         <td>'. $porcentaje .'</td>
-                        <td>'.utf8_decode( $ver[3]) .'</td>
+                        <td>'. $ver[3].'</td>
                         <td class="text-center align-middle">
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform(\''.$datos.'\')"><i
                                         class="far fa-edit"></i> Editar </button>

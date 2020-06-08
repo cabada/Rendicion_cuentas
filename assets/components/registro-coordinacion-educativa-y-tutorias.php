@@ -134,7 +134,7 @@ if($resultado == $tablaRequerida){
 
             $suma=$ver[2]+$ver[3];
             $salida.='<tr>
-                    <td>'. utf8_decode($ver[1]).'</td>
+                    <td>'. $ver[1].'</td>
                     <td>'. $ver[2].'</td>
                     <td>'. $ver[3].'</td>
                     <td>'. $suma .'</td>

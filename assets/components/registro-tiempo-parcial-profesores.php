@@ -110,8 +110,8 @@
                             $buscar[3];
 
                         $salida.='<tr>
-                            <td>'.utf8_encode($buscar[1]).'</td>
-                            <td>'.utf8_encode($buscar[2]).'</td>
+                            <td>'.$buscar[1].'</td>
+                            <td>'.$buscar[2].'</td>
                             <td></td>
                             <td class="text-center align-middle">
                                 <button class="btn btn-sm btn-warning" onclick="agregaform(\''.$datos.'\')" data-toggle="modal" data-target="#modalEdicion"><i class="far fa-edit"></i> Editar</button>
