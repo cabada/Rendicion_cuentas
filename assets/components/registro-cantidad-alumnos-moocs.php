@@ -68,16 +68,77 @@ if($resultado == $tablaRequerida){
                 </form>
             </div>
         </div>
-        <div class="table-responsive-xl">
-            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
+
+        <div class="row">
+            <div class="col-sm-12">
+            <div class="table-responsive-xl">
+            <?php
+                $salida="";
+            $sql="select moocs_alumnos.id_moocs_alumnos,
+                  moocs_alumnos.cursos_mooc,
+                  moocs_alumnos.numero_alumnos_inscritos
+                            from moocs_alumnos";
+
+                if(isset($_POST['consulta'])) {
+                    $q = $conexion->real_escape_string($_POST['consulta']);
+                    $_SESSION['consulta'] = $q; 
+
+                    $sql="select moocs_alumnos.id_moocs_alumnos,
+                       moocs_alumnos.cursos_mooc,
+                       moocs_alumnos.numero_alumnos_inscritos
+                       from moocs_alumnos
+                       where (moocs_alumnos.cursos_mooc like '%$q%'
+                       or moocs_alumnos.numero_alumnos_inscritos like '%$q%')";  
+
+                       if (isset($_POST['consulta_anio'])) {
+                        /*variable goblal*/
+                        $p = $_SESSION['consulta_anio'];   
+
+                        $sql="select moocs_alumnos.id_moocs_alumnos,
+                       moocs_alumnos.cursos_mooc,
+                       moocs_alumnos.numero_alumnos_inscritos
+                       from moocs_alumnos
+                       where (moocs_alumnos.cursos_mooc like '%$q%'
+                       or moocs_alumnos.numero_alumnos_inscritos like '%$q%')
+                       and moocs_alumnos.fecha_creado like '%$p%'"; 
+                    }   
+                }
+                /*Query para consultas del buscador*/
+
+            if(isset($_POST['consulta_anio'])){
+                $q = $conexion->real_escape_string($_POST['consulta_anio']);
+                /*Variable global*/
+                if($_POST['consulta_anio']!='Todos los registros'){
+                $_SESSION['consulta_anio']=$q;
+
+                $sql="select moocs_alumnos.id_moocs_alumnos,
+                       moocs_alumnos.cursos_mooc,
+                       moocs_alumnos.numero_alumnos_inscritos
+                       from moocs_alumnos
+                       where moocs_alumnos.fecha_creado like '%$q%'"; 
+
+                    }else {
+                        $sql="select moocs_alumnos.id_moocs_alumnos,
+                       moocs_alumnos.cursos_mooc,
+                       moocs_alumnos.numero_alumnos_inscritos
+                       from moocs_alumnos"; 
+                       unset($_SESSION['çonsulta_anio']);
+                    }
+                }
+    
+                $resultado = $conexion->query($sql);
+                if ($resultado->num_rows>0){
+
+
+
+
+
+                    $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla-php">
                 <tr>
                     <td class="text-center align-middle background-table">Nombre de curso</td>
                     <td class="text-center align-middle background-table">Cantidad de alumnos inscritos</td>
                     <td class="text-center align-middle background-table">Acciones</td>
-                </tr>
-                <?php
-                $sql="select id_moocs_alumnos,cursos_mooc,numero_alumnos_inscritos
-                            from moocs_alumnos";
+                </tr>';
 
                 $result=mysqli_query($conexion,$sql);
 
@@ -86,18 +147,18 @@ if($resultado == $tablaRequerida){
                     $datos=$buscar[0]."||".
                         $buscar[1]."||".
                         $buscar[2];
-                    ?>
+                    
 
-                    <tr>
-                        <td><?php echo $buscar[1]?></td>
-                        <td><?php echo $buscar[2]?></td>
+                        $salida.='<tr>
+                        <td>'.$buscar[1].'</td>
+                        <td>'.$buscar[2].'</td>
 
                         <td class="text-center align-middle">
-                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')"><i class="far fa-edit"></i>  Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="preguntarSiNo('<?php echo $buscar[0]?>')"><i class="fas fa-trash" ></i>  Eliminar</button>
+                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform(\'' . $datos . '\')"><i class="far fa-edit"></i>  Editar</button>
+                            <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\'' . $buscar[0] . '\')"><i class="fas fa-trash" ></i>  Eliminar</button>
                         </td>
-                    </tr>
-                    <?php
+                    </tr>';
+                    
                 }
                 ?>
                 <tr style="font-weight: bold">
@@ -114,6 +175,23 @@ if($resultado == $tablaRequerida){
 
                 </tr>
             </table>
+            <?php
+        } else {
+            $salida.='<div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>¡No se encontró ningún elemento!</strong><br>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>';
+        }
+        echo $salida;
+        ?>
+             </div>
+          </div>
         </div>
     </div>
 </div>

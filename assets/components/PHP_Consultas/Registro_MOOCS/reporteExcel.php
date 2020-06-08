@@ -15,14 +15,9 @@ $query = mysqli_query($conexion,$sentencia);
 
                      <table>
                          <tr>
-                             <h4>Registro de cuerpos académicos</h4>
-                             <th class="text-center align-middle background-table">Area académica</th>
-                             <th class="text-center align-middle background-table">Nombre de cuerpo académico</th>
-                             <th class="text-center align-middle background-table">Grado</th>
-                             <th class="text-center align-middle background-table">Estado</th>
-                             <th class="text-center align-middle background-table">Año de registro</th>
-                             <th class="text-center align-middle background-table">Fecha de vigencia</th>
-                             <th class="text-center align-middle background-table">Área</th>
+                             <h4>Registro de cantidad de docentes moocs</h4>
+                             <th class="text-center align-middle background-table">Periodo</th>
+                             <th class="text-center align-middle background-table">Cantidad de docentes</th>
                          </tr>
                 <?php
 
@@ -30,48 +25,23 @@ $query = mysqli_query($conexion,$sentencia);
                 if(isset($_SESSION['consulta'])) {
                     /*Se le pasa el valor de la variable global a $q*/
                     $q = $_SESSION['consulta'];  //query para buscador
-                    $sql="select 
-                        cuerpos_academicos.id_cuerpo_academico,
-                        area_academica.nombre_area_academica,
-                        cuerpos_academicos.nombre_cuerpo_academico,
-                        cuerpos_academicos.grado,
-                        cuerpos_academicos.estado,
-                        cuerpos_academicos.anio_registro,
-                        cuerpos_academicos.vigencia,
-                        cuerpos_academicos.AREA
-                        from area_academica
-                        right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA
-                        where (area_academica.nombre_area_academica like '%$q%'
-                        or cuerpos_academicos.nombre_cuerpo_academico like '%$q%'
-                        or cuerpos_academicos.grado like '%$q%'
-                        or cuerpos_academicos.estado like '%$q%'
-                        or cuerpos_academicos.anio_registro like '%$q%'
-                        or cuerpos_academicos.vigencia like '%$q%'
-                        or cuerpos_academicos.AREA like '%$q%')";
-                    
+                    $sql="select moocs.id_moocs,
+                               moocs.periodo,
+                               moocs.numero_docentes
+                               from moocs
+                               where (moocs.periodo like '%$q%'
+                               or moocs.numero_docentes like '%$q%')";
 
                 if (isset($_SESSION['consulta_anio'])) {
                     /*Se le pasa el valor de la variable global a $q*/
                     $p = $_SESSION['consulta_anio'];
-                    $sql="select 
-                    cuerpos_academicos.id_cuerpo_academico,
-                    area_academica.nombre_area_academica,
-                    cuerpos_academicos.nombre_cuerpo_academico,
-                    cuerpos_academicos.grado,
-                    cuerpos_academicos.estado,
-                    cuerpos_academicos.anio_registro,
-                    cuerpos_academicos.vigencia,
-                    cuerpos_academicos.AREA
-                    from area_academica
-                    right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA
-                    where (area_academica.nombre_area_academica like '%$q%'
-                    or cuerpos_academicos.nombre_cuerpo_academico like '%$q%'
-                    or cuerpos_academicos.grado like '%$q%'
-                    or cuerpos_academicos.estado like '%$q%'
-                    or cuerpos_academicos.anio_registro like '%$q%'
-                    or cuerpos_academicos.vigencia like '%$q%'
-                    or cuerpos_academicos.AREA like '%$q%')
-                    and cuerpos_academicos.fecha_creado like '%$p%'";
+                    $sql="select moocs.id_moocs,
+                               moocs.periodo,
+                               moocs.numero_docentes
+                               from moocs
+                               where (moocs.periodo like '%$q%'
+                               or moocs.numero_docentes like '%$q%')
+                               and moocs.fecha_creado like '%$p%'"; 
                     
                 }
                 unset($_SESSION['consulta']);
@@ -81,34 +51,20 @@ $query = mysqli_query($conexion,$sentencia);
                 elseif (isset($_SESSION['consulta_anio'])) {
                 /*Se le pasa el valor de la variable global a $q*/
                 $q = $_SESSION['consulta_anio'];
-                $sql="select 
-                      cuerpos_academicos.id_cuerpo_academico,
-                      area_academica.nombre_area_academica,
-                      cuerpos_academicos.nombre_cuerpo_academico,
-                      cuerpos_academicos.grado,
-                      cuerpos_academicos.estado,
-                      cuerpos_academicos.anio_registro,
-                      cuerpos_academicos.vigencia,
-                      cuerpos_academicos.AREA
-                      from area_academica
-                      right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA
-                      where cuerpos_academicos.fecha_creado like '%$q%'";
+                $sql="select moocs.id_moocs,
+                               moocs.periodo,
+                               moocs.numero_docentes
+                               from moocs
+                               where moocs.fecha_creado like '%$q%'";
                 /*Se destruye/quita el valor dentro de la variable global*/
             unset($_SESSION['consulta_anio']);
                 }
 
                 else {
-                    $sql="select 
-                      cuerpos_academicos.id_cuerpo_academico,
-                      area_academica.nombre_area_academica,
-                      cuerpos_academicos.nombre_cuerpo_academico,
-                      cuerpos_academicos.grado,
-                      cuerpos_academicos.estado,
-                      cuerpos_academicos.anio_registro,
-                      cuerpos_academicos.vigencia,
-                      cuerpos_academicos.AREA
-                      from area_academica
-                      right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA";
+                    $sql="select moocs.id_moocs,
+                      moocs.periodo,
+                      moocs.numero_docentes
+                      from moocs";
                       unset($_SESSION['consulta']);
                       unset($_SESSION['consulta_anio']);  
                     }
@@ -117,22 +73,13 @@ $query = mysqli_query($conexion,$sentencia);
                 while($ver=mysqli_fetch_row($result)){
                     $datos=$ver[0]."||".
                         $ver[1]."||".
-                        $ver[2]."||".
-                        $ver[3]."||".
-                        $ver[4]."||".
-                        $ver[5]."||".
-                        $ver[6]."||".
-                        $ver[7];
+                        $ver[2];
 
         ?>
         <tr>
             <td><?php echo utf8_decode($ver[1])?></td>
             <td><?php echo utf8_decode($ver[2])?></td>
-            <td><?php echo utf8_decode($ver[3])?></td>
-            <td><?php echo utf8_decode($ver[4])?></td>
-            <td><?php echo utf8_decode($ver[5])?></td>
-            <td><?php echo utf8_decode($ver[6])?></td>
-            <td><?php echo utf8_decode($ver[7])?></td>
+            
         </tr>
         <?php
     }
