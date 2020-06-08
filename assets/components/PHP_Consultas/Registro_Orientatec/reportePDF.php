@@ -46,10 +46,10 @@ public function Footer()
     //** Encabezado de la tabla **
     $pdf->SetFont('Arial','B',11);
     $pdf->SetX(20);//posicion en X
-    $pdf->Cell(20,9,'ID', 0,0,'C',0);
-    $pdf->Cell(40,9,'Nombre de preparatoria', 0,0,'C',0);
-    $pdf->Cell(45,9,'Fecha', 0,0,'C',0);
-    $pdf->Cell(40,9,'Cantidad de estudiantes atendidos', 0,1,'C',0);
+    $pdf->Cell(30,9,'ID', 0,0,'C',0);
+    $pdf->Cell(80,9,'Nombre de preparatoria', 0,0,'C',0);
+    $pdf->Cell(50,9,'Fecha', 0,0,'C',0);
+    $pdf->Cell(95,9,'Cantidad de estudiantes atendidos', 0,1,'C',0);
     $pdf->SetDrawColor(255, 0, 0);//pinta lo que se quiere (linea)
     $pdf->SetLineWidth(1);//grosor de la linea
     $pdf->Line(20,50,275,50); //linea y posicion
@@ -122,10 +122,10 @@ unset($_SESSION['consulta_anio']);
         $pdf->SetX(20);//posicion en X
         $pdf->SetFillColor(248, 249, 249 ); //relleno de la tabla y su color
 
-        $pdf->Cell(20,8, $row[utf8_decode('ID_ORIENTATEC')], 1,0,'C',1);
-        $pdf->Cell(40,8, $row[utf8_decode('nombre_preparatoria')], 1,0,'C',1);
-        $pdf->Cell(45,8, $row[utf8_decode('fecha')], 1,0,'C',1);
-        $pdf->Cell(40,8, $row[utf8_decode('estudiantes_atendidos')], 1,1,'C',1);
+        $pdf->Cell(30,8, $row[utf8_decode('ID_ORIENTATEC')], 1,0,'C',1);
+        $pdf->Cell(80,8, $row[utf8_decode('nombre_preparatoria')], 1,0,'C',1);
+        $pdf->Cell(50,8, $row[utf8_decode('fecha')], 1,0,'C',1);
+        $pdf->Cell(95,8, $row[utf8_decode('estudiantes_atendidos')], 1,1,'C',1);
     }
     
     $pdf->Output();

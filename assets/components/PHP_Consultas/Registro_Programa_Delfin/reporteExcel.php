@@ -15,14 +15,13 @@ $query = mysqli_query($conexion,$sentencia);
 
                      <table>
                          <tr>
-                             <h4>Registro de cuerpos académicos</h4>
-                             <th class="text-center align-middle background-table">Area académica</th>
-                             <th class="text-center align-middle background-table">Nombre de cuerpo académico</th>
-                             <th class="text-center align-middle background-table">Grado</th>
-                             <th class="text-center align-middle background-table">Estado</th>
-                             <th class="text-center align-middle background-table">Año de registro</th>
-                             <th class="text-center align-middle background-table">Fecha de vigencia</th>
-                             <th class="text-center align-middle background-table">Área</th>
+                             <h4>Registro Programa Delfin</h4>
+                             <th class="text-center align-middle background-table">Nombre de proyecto</th>
+                             <th class="text-center align-middle background-table">Cantidad de alumnos</th>
+                             <th class="text-center align-middle background-table">Carrera</th>
+                             <th class="text-center align-middle background-table">Año</th>
+                             <th class="text-center align-middle background-table">Fecha de inicio</th>
+                             <th class="text-center align-middle background-table">Fecha de terminación</th>
                          </tr>
                 <?php
 
@@ -30,48 +29,46 @@ $query = mysqli_query($conexion,$sentencia);
                 if(isset($_SESSION['consulta'])) {
                     /*Se le pasa el valor de la variable global a $q*/
                     $q = $_SESSION['consulta'];  //query para buscador
-                    $sql="select 
-                        cuerpos_academicos.id_cuerpo_academico,
-                        area_academica.nombre_area_academica,
-                        cuerpos_academicos.nombre_cuerpo_academico,
-                        cuerpos_academicos.grado,
-                        cuerpos_academicos.estado,
-                        cuerpos_academicos.anio_registro,
-                        cuerpos_academicos.vigencia,
-                        cuerpos_academicos.AREA
-                        from area_academica
-                        right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA
-                        where (area_academica.nombre_area_academica like '%$q%'
-                        or cuerpos_academicos.nombre_cuerpo_academico like '%$q%'
-                        or cuerpos_academicos.grado like '%$q%'
-                        or cuerpos_academicos.estado like '%$q%'
-                        or cuerpos_academicos.anio_registro like '%$q%'
-                        or cuerpos_academicos.vigencia like '%$q%'
-                        or cuerpos_academicos.AREA like '%$q%')";
+                    $sql="select
+                            programa_delfin.id_programa,
+                            programa_delfin.nombre_proyecto,
+                            programa_delfin.cantidad_alumnos,
+                            carreras.nombre_carrera,
+                            programa_delfin.anio,
+                            programa_delfin.fecha_inicio,
+                            programa_delfin.fecha_termino
+                            from carreras
+                            right join programa_delfin on carreras.ID_CARRERA = programa_delfin.ID_CARRERA
+                            where (
+                            programa_delfin.nombre_proyecto like '%$q%'
+                            or programa_delfin.cantidad_alumnos like '%$q%'
+                            or carreras.nombre_carrera like '%$q%'
+                            or programa_delfin.anio like '%$q%'
+                            or programa_delfin.fecha_inicio like '%$q%'
+                            or programa_delfin.fecha_termino like '%$q%')";
                     
 
                 if (isset($_SESSION['consulta_anio'])) {
                     /*Se le pasa el valor de la variable global a $q*/
                     $p = $_SESSION['consulta_anio'];
-                    $sql="select 
-                    cuerpos_academicos.id_cuerpo_academico,
-                    area_academica.nombre_area_academica,
-                    cuerpos_academicos.nombre_cuerpo_academico,
-                    cuerpos_academicos.grado,
-                    cuerpos_academicos.estado,
-                    cuerpos_academicos.anio_registro,
-                    cuerpos_academicos.vigencia,
-                    cuerpos_academicos.AREA
-                    from area_academica
-                    right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA
-                    where (area_academica.nombre_area_academica like '%$q%'
-                    or cuerpos_academicos.nombre_cuerpo_academico like '%$q%'
-                    or cuerpos_academicos.grado like '%$q%'
-                    or cuerpos_academicos.estado like '%$q%'
-                    or cuerpos_academicos.anio_registro like '%$q%'
-                    or cuerpos_academicos.vigencia like '%$q%'
-                    or cuerpos_academicos.AREA like '%$q%')
-                    and cuerpos_academicos.fecha_creado like '%$p%'";
+                    $sql="select
+                            programa_delfin.id_programa,
+                            programa_delfin.nombre_proyecto,
+                            programa_delfin.cantidad_alumnos,
+                            carreras.nombre_carrera,
+                            programa_delfin.anio,
+                            programa_delfin.fecha_inicio,
+                            programa_delfin.fecha_termino
+                            from carreras
+                            right join programa_delfin on carreras.ID_CARRERA = programa_delfin.ID_CARRERA
+                            where (
+                            programa_delfin.nombre_proyecto like '%$q%'
+                            or programa_delfin.cantidad_alumnos like '%$q%'
+                            or carreras.nombre_carrera like '%$q%'
+                            or programa_delfin.anio like '%$q%'
+                            or programa_delfin.fecha_inicio like '%$q%'
+                            or programa_delfin.fecha_termino like '%$q%')
+                            and programa_delfin.fecha_creado like '%$p%'";
                     
                 }
                 unset($_SESSION['consulta']);
@@ -81,34 +78,32 @@ $query = mysqli_query($conexion,$sentencia);
                 elseif (isset($_SESSION['consulta_anio'])) {
                 /*Se le pasa el valor de la variable global a $q*/
                 $q = $_SESSION['consulta_anio'];
-                $sql="select 
-                      cuerpos_academicos.id_cuerpo_academico,
-                      area_academica.nombre_area_academica,
-                      cuerpos_academicos.nombre_cuerpo_academico,
-                      cuerpos_academicos.grado,
-                      cuerpos_academicos.estado,
-                      cuerpos_academicos.anio_registro,
-                      cuerpos_academicos.vigencia,
-                      cuerpos_academicos.AREA
-                      from area_academica
-                      right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA
-                      where cuerpos_academicos.fecha_creado like '%$q%'";
+                $sql="select
+                programa_delfin.id_programa,
+                programa_delfin.nombre_proyecto,
+                programa_delfin.cantidad_alumnos,
+                carreras.nombre_carrera,
+                programa_delfin.anio,
+                programa_delfin.fecha_inicio,
+                programa_delfin.fecha_termino
+                from carreras
+                right join programa_delfin on carreras.ID_CARRERA = programa_delfin.ID_CARRERA
+                where programa_delfin.fecha_creado like '%$q%'";
                 /*Se destruye/quita el valor dentro de la variable global*/
             unset($_SESSION['consulta_anio']);
                 }
 
                 else {
-                    $sql="select 
-                      cuerpos_academicos.id_cuerpo_academico,
-                      area_academica.nombre_area_academica,
-                      cuerpos_academicos.nombre_cuerpo_academico,
-                      cuerpos_academicos.grado,
-                      cuerpos_academicos.estado,
-                      cuerpos_academicos.anio_registro,
-                      cuerpos_academicos.vigencia,
-                      cuerpos_academicos.AREA
-                      from area_academica
-                      right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA";
+                    $sql="select
+                        programa_delfin.id_programa,
+                        programa_delfin.nombre_proyecto,
+                        programa_delfin.cantidad_alumnos,
+                        carreras.nombre_carrera,
+                        programa_delfin.anio,
+                        programa_delfin.fecha_inicio,
+                        programa_delfin.fecha_termino
+                        from carreras
+                        right join programa_delfin on carreras.ID_CARRERA = programa_delfin.ID_CARRERA";
                       unset($_SESSION['consulta']);
                       unset($_SESSION['consulta_anio']);  
                     }
@@ -121,8 +116,7 @@ $query = mysqli_query($conexion,$sentencia);
                         $ver[3]."||".
                         $ver[4]."||".
                         $ver[5]."||".
-                        $ver[6]."||".
-                        $ver[7];
+                        $ver[6];
 
         ?>
         <tr>
@@ -132,7 +126,6 @@ $query = mysqli_query($conexion,$sentencia);
             <td><?php echo utf8_decode($ver[4])?></td>
             <td><?php echo utf8_decode($ver[5])?></td>
             <td><?php echo utf8_decode($ver[6])?></td>
-            <td><?php echo utf8_decode($ver[7])?></td>
         </tr>
         <?php
     }
