@@ -34,7 +34,7 @@
                 programa_educativo.reingreso,
                 programa_educativo.estatus,
                 programa_educativo.periodo, 
-                carreras.fecha_creado 
+                programa_educativo.total
                 FROM carreras 
                 RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
                 WHERE carreras.nombre_carrera LIKE '%$q%' OR programa_educativo.modalidad LIKE '%$q%' 
@@ -50,7 +50,7 @@
                     programa_educativo.reingreso,
                     programa_educativo.estatus,
                     programa_educativo.periodo, 
-                    carreras.fecha_creado 
+                    programa_educativo.total
                     FROM carreras 
                     RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
                     WHERE (carreras.nombre_carrera LIKE '%$q%' OR programa_educativo.modalidad LIKE '%$q%' 
@@ -74,7 +74,7 @@
                 programa_educativo.reingreso,
                 programa_educativo.estatus,
                 programa_educativo.periodo, 
-                carreras.fecha_creado 
+                programa_educativo.total 
                 FROM carreras 
                 RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
                 WHERE carreras.fecha_creado LIKE '%$q%'";
@@ -94,7 +94,7 @@
                 programa_educativo.reingreso,
                 programa_educativo.estatus,
                 programa_educativo.periodo, 
-                carreras.fecha_creado 
+                programa_educativo.total 
                 FROM carreras 
                 RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera";
         }
