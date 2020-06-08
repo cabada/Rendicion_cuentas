@@ -75,9 +75,9 @@ $query = mysqli_query($conexion,$sentencia);
 
         ?>
         <tr>
-            <td><?php echo utf8_decode($ver[1])?></td>
-            <td><?php echo utf8_decode($ver[2])?></td>
-            <td><?php echo utf8_decode($ver[3])?></td>
+            <td><?php echo $ver[1]?></td>
+            <td><?php echo $ver[2]?></td>
+            <td><?php echo $ver[3]?></td>
         </tr>
         <?php
     }

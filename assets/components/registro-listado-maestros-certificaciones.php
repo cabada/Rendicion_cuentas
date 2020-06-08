@@ -112,7 +112,8 @@ if($resultado == $tablaRequerida){
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 1 and profesores.fecha_creado like '%$q%'";
 
-                        if(isset($_SESSION['consulta'])){
+                      if(isset($_SESSION['consulta'])){
+
                             $sql="select profesores.id_profesor,
                             profesores.nombre_completo,
                             area_academica.nombre_area_academica,
