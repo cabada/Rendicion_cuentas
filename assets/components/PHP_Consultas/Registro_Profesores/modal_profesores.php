@@ -49,7 +49,7 @@ $conexion = conexion();
                     while($fila = mysqli_fetch_array($resultado)){
                         $valor = $fila['nombre_area_academica'];
 
-                        echo "<option value=\"".$fila['id_area_academica']."\">".utf8_encode($fila['nombre_area_academica'])."</option>\n";
+                        echo "<option value=\"".$fila['id_area_academica']."\">".$fila['nombre_area_academica']."</option>\n";
 
                        }
                     ?>
