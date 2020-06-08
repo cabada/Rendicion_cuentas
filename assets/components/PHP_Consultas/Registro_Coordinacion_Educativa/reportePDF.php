@@ -61,38 +61,51 @@ public function Footer()
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->SetLineWidth(1);
 
-
-    if (isset($_SESSION['consulta'])){
-        /*Se le pasa el valor de la variable global a $q*/
-        $q = $_SESSION['consulta'];
-        $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+             /*Verifica si la variable global fue definida*/
+             if(isset($_SESSION['consulta'])) {
+                 /*Se le pasa el valor de la variable global a $q*/
+                 $q = $_SESSION['consulta'];  //query para buscador
+                 $sql = "select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
                             from coordinacion_educativa_y_tutorias 
                             where coordinacion_educativa_y_tutorias.NOMBRE_ACTIVIDAD LIKE '%$q%'";
 
-               /*Se destruye/quita el valor dentro de la variable global*/
-               unset($_SESSION['consulta']);
+                 if (isset($_SESSION['consulta_anio'])) {
+                     /*Se le pasa el valor de la variable global a $q*/
+                     $p = $_SESSION['consulta_anio'];
+                     $sql = "select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+                            from coordinacion_educativa_y_tutorias
+                            where coordinacion_educativa_y_tutorias.NOMBRE_ACTIVIDAD LIKE '%$q%'
+                            and fecha_creado LIKE '%$p%'";
+                 }
 
-    }
+                 /*Se destruye/quita el valor dentro de la variable global*/
+                 unset($_SESSION['consulta']);
+                 unset($_SESSION['consulta_anio']);
+             }
 
-/*Sino se cumple el if de arriba, se pasa a este.
-Verifica si la variable global fue definida*/
 
-          elseif (isset($_SESSION['consulta_anio'])){
-              /*Se le pasa el valor de la variable global a $q*/
-              $q = $_SESSION['consulta_anio'];
-              $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
-                            from coordinacion_educativa_y_tutorias 
+             /*Sino se cumple el if de arriba, se pasa a este.
+             Verifica si la variable global fue definida*/
+             elseif (isset($_SESSION['consulta_anio'])) {
+                 /*Se le pasa el valor de la variable global a $q*/
+                 $q = $_SESSION['consulta_anio'];
+                 $sql = "select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+                            from coordinacion_educativa_y_tutorias
                             where fecha_creado LIKE '%$q%'";
 
-              /*Se destruye/quita el valor dentro de la variable global*/
-              unset($_SESSION['consulta_anio']);
+                 /*Se destruye/quita el valor dentro de la variable global*/
+                 unset($_SESSION['consulta_anio']);
+             }
 
-          }
+             else {
 
-          else {
-              $sql = ("select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
-                            from coordinacion_educativa_y_tutorias");
-          }
+                 $sql = "select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
+                            from coordinacion_educativa_y_tutorias";
+
+                 unset($_SESSION['consulta']);
+                 unset($_SESSION['consulta_anio']);
+             }
+
 
     $query = mysqli_query($conexion,$sql);
     

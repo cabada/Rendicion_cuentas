@@ -108,6 +108,8 @@ if($resultado == $tablaRequerida){
                 else {
                     $sql="select id_actividad,nombre_actividad,PERIODO_ENE_JUN,PERIODO_AGO_DIC
                             from coordinacion_educativa_y_tutorias";
+
+                    unset($_SESSION['consulta_anio']);
                 }
             }
 
