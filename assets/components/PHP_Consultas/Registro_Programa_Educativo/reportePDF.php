@@ -50,10 +50,10 @@ public function Footer()
     $pdf->Cell(30,8,'ID', 0,0,'C',0);
     $pdf->Cell(75,8,'Carrera', 0,0,'C',0);
     $pdf->Cell(30,8,'Modalidad', 0,0,'C',0);
-    $pdf->Cell(30,8,'Nuevo ingreso', 0,0,'C',0);
-    $pdf->Cell(30,8,'Re-ingreso', 0,0,'C',0);
-    $pdf->Cell(30,8,'Estatus', 0,0,'C',0);
-    $pdf->Cell(30,8,'Periodo', 0,1,'C',0);
+    $pdf->Cell(25,8,'Nuevo ingreso', 0,0,'C',0);
+    $pdf->Cell(25,8,'Re-ingreso', 0,0,'C',0);
+    $pdf->Cell(25,8,'Estatus', 0,0,'C',0);
+    $pdf->Cell(45,8,'Periodo', 0,1,'C',0);
     $pdf->SetDrawColor(255, 0, 0);//pinta lo que se quiere (linea)
     $pdf->SetLineWidth(1);//grosor de la linea
     $pdf->Line(20,50,275,50); //linea y posicion
@@ -151,10 +151,10 @@ public function Footer()
         $pdf->Cell(30,8, $row['ID'], 1,0,'C',1);
         $pdf->Cell(75,8, $row['Carreras'], 1,0,'C',1);
         $pdf->Cell(30,8, $row['Modalidad'], 1,0,'C',1);
-        $pdf->Cell(30,8, $row['Nuevo_Ingreso'], 1,0,'C',1);
-        $pdf->Cell(30,8, $row['Reingreso'], 1,0,'C',1);
-        $pdf->Cell(30,8, $row['Estatus'], 1,0,'C',1);
-        $pdf->Cell(30,8, $row['Periodo'], 1,0,'C',1);
+        $pdf->Cell(25,8, $row['Nuevo_Ingreso'], 1,0,'C',1);
+        $pdf->Cell(25,8, $row['Reingreso'], 1,0,'C',1);
+        $pdf->Cell(25,8, $row['Estatus'], 1,0,'C',1);
+        $pdf->Cell(45,8, $row['Periodo'], 1,0,'C',1);
     }
     
     $pdf->Output();

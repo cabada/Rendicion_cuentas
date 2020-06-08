@@ -1,184 +1,255 @@
 <?php
-require_once "PHP_Consultas/Conexion.php";
-require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
+    require_once "PHP_Consultas/Conexion.php";
+    require_once "PHP_Consultas/Usuarios/Verificar_Tablas_Usuarios.php";
 
-session_start();
-$conexion = conexion();
-$conn = conexion();
-$id_usuario = $_SESSION["id_usuario"];
-$stmt = consultaTablas($conn,$id_usuario);
-$stmt->execute();
-$stmt->bind_result($resultado);
+    session_start();
+    $conexion = conexion();
+    $conn = conexion();
+    $id_usuario = $_SESSION["id_usuario"];
+    $stmt = consultaTablas($conn,$id_usuario);
 
-while($stmt->fetch()){
-    $tablaRequerida = 'programa_educativo';
-    if($resultado == $tablaRequerida){
-        ?>
+    $stmt->execute();
+    $stmt->bind_result($resultado);
 
-        <div class="row">
-            <div class="col-sm-12">
-                <!--Botones Excel y PDF -->
-                <div class="row mt-2">
-                    <div class="col-12">
-                        <form id="reporte" name="reporte" method="POST" target="_blank">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col">
-                                        <input class="btn btn-danger text-white" type="button" target="_blank" value="Exportar PDF"
-                                               onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Programa_Educativo/reportePDF.php';
-                                document.reporte.submit()" />
+    while($stmt->fetch()){
+        $tablaRequerida = 'programa_educativo';
+        if($resultado == $tablaRequerida){
+?>
 
-                                        <input class="btn btn-success text-white" type="button" value="Exportar Excel"
-                                               onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Programa_Educativo/reporteExcel.php';
-                                document.reporte.submit()" />
-                                    </div>
+<div class="row">
+    <div class="col-sm-12">
+       <!--BOTONES EXCEL Y PDF -->
+        <div class="row mt-2">
+            <div class="col-12">
+                <form id="reporte" name="reporte" method="POST" target="_blank">
+                    <div class="form-group">
+                        <div class="form-row d-flex">
+                            <div class="col">
+                                <input class="btn btn-danger text-white" type="button" target="_blank"
+                                    value="Exportar PDF"
+                                    onclick="document.reporte.action = 'assets/components/PHP_Consultas/Registro_Programa_Educativo/reportePDF.php';
+                                    document.reporte.submit()"/>
 
-                                    <!--Select de año-->
-                                    <div class="col d-flex justify-content-end">
-                                        <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
-                                            <option>Buscar por año</option>
-                                            <?php
-                                            $query = "select distinct year(fecha_creado) as fecha_creado from programa_educativo order by fecha_creado desc";
-                                            $resultado = mysqli_query($conexion,$query);
-
-                                            while($fila = mysqli_fetch_array($resultado)){
-                                                $valor = $fila['nombre_area_academica'];
-
-                                                echo "<option>".($fila['fecha_creado'])."</option>\n";
-                                            }
-
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
+                                    <input class="btn btn-success text-white" type="button" value="Exportar Excel"
+                                    onclick="document.reporte.action = 'assets/components/PHP_Consultas/Registro_Programa_Educativo/reporteExcel.php';
+                                    document.reporte.submit()"/>
                             </div>
-                        </form>
+
+                            <!--SELECT DE ANIO -->
+                            <div class="col d-flex justify-content-end">
+                                <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
+                                    <option disabled selected hidden>Buscar por año</option>
+                                    <option>Todos los registros</option>
+                                    <?php
+                                        $query = "SELECT DISTINCT year(fecha_creado) AS fecha_creado FROM carreras ORDER BY fecha_creado DESC";
+                                        $resultado = mysqli_query($conexion, $query);
+
+                                        while ($fila = mysqli_fetch_array($resultado)) {
+                                            echo "<option>" . ($fila['fecha_creado']) . "</option>\n";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <div class="row">
-            <div class="col-sm-12">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="table-responsive-xl">
+            <?php
+            $salida = "";
+            $sql = "SELECT 
+                programa_educativo.id_programa_educativo,
+                carreras.nombre_carrera,
+                programa_educativo.modalidad,
+                programa_educativo.nuevo_ingreso,
+                programa_educativo.reingreso,
+                programa_educativo.estatus,
+                programa_educativo.periodo, 
+                carreras.fecha_creado 
+                FROM carreras 
+                RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera";
 
-                <div class="table-responsive-xl">
-                    <?php
-                    $salida = "";
+            if(isset($_POST['consulta_anio'])){
+                if($_POST['consulta_anio']!='Todos los registros'){
+                    $q = $conexion->real_escape_string($_POST['consulta_anio']);
+                    $_SESSION['consulta_anio'] = $q;
                     $sql="SELECT 
-                    programa_educativo.id_programa_educativo,
-                    carreras.nombre_carrera,
-                    programa_educativo.modalidad,
-                    programa_educativo.nuevo_ingreso,
-                    programa_educativo.reingreso,
-                    programa_educativo.estatus,
-                    programa_educativo.periodo,
-                    programa_educativo.total 
-                    FROM carreras 
-                    RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera";
-
-                    if (isset($_POST['consulta'])) {
-                        $q = $conexion->real_escape_string($_POST['consulta']);
-                        $sql="SELECT 
                         programa_educativo.id_programa_educativo,
                         carreras.nombre_carrera,
                         programa_educativo.modalidad,
                         programa_educativo.nuevo_ingreso,
                         programa_educativo.reingreso,
                         programa_educativo.estatus,
-                        programa_educativo.periodo,
-                        programa_educativo.total 
+                        programa_educativo.periodo, 
+                        carreras.fecha_creado 
                         FROM carreras 
                         RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
-                        WHERE carreras.nombre_carrera LIKE '%$q%'";
-                    }
+                        WHERE carreras.fecha_creado LIKE '%$q%'";
 
-                    $resultado = $conexion->query($sql);
-                    if ($resultado->num_rows>0) {
-                        $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
-                        <tr>
-                            <td class="text-center align-middle background-table">Carrera</td>
-                            <td class="text-center align-middle background-table">Modalidad</td>
-                            <td class="text-center align-middle background-table">Nuevo ingreso</td>
-                            <td class="text-center align-middle background-table">Reingreso</td>
-                            <td class="text-center align-middle background-table">Estatus</td>
-                            <td class="text-center align-middle background-table">Periodo</td>
-                            <td class="text-center align-middle background-table">Total</td>
-                            <td class="text-center align-middle background-table">Acciones</td>
+                } else {
+                    unset($_SESSION['consulta_anio']);
+                    $sql="SELECT 
+                        programa_educativo.id_programa_educativo,
+                        carreras.nombre_carrera,
+                        programa_educativo.modalidad,
+                        programa_educativo.nuevo_ingreso,
+                        programa_educativo.reingreso,
+                        programa_educativo.estatus,
+                        programa_educativo.periodo, 
+                        carreras.fecha_creado 
+                        FROM carreras 
+                        RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera";
+                    
+                }
+            }
+
+            if (isset($_POST['consulta'])) {
+                $q = $conexion->real_escape_string($_POST['consulta']);
+                $_SESSION['consulta'] = $q;
+                $sql = "SELECT 
+                    programa_educativo.id_programa_educativo,
+                    carreras.nombre_carrera,
+                    programa_educativo.modalidad,
+                    programa_educativo.nuevo_ingreso,
+                    programa_educativo.reingreso,
+                    programa_educativo.estatus,
+                    programa_educativo.periodo, 
+                    carreras.fecha_creado 
+                    FROM carreras 
+                    RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
+                    WHERE carreras.nombre_carrera LIKE '%$q%' OR programa_educativo.modalidad LIKE '%$q%' 
+                    OR programa_educativo.estatus LIKE '%$q%' OR programa_educativo.periodo LIKE '%$q%'";
+
+                if(isset($_SESSION['consulta_anio'])){
+                    $p = $_SESSION['consulta_anio'];
+                    $sql = "SELECT 
+                    programa_educativo.id_programa_educativo,
+                    carreras.nombre_carrera,
+                    programa_educativo.modalidad,
+                    programa_educativo.nuevo_ingreso,
+                    programa_educativo.reingreso,
+                    programa_educativo.estatus,
+                    programa_educativo.periodo, 
+                    carreras.fecha_creado 
+                    FROM carreras 
+                    RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
+                    WHERE (carreras.nombre_carrera LIKE '%$q%' OR programa_educativo.modalidad LIKE '%$q%' 
+                    OR programa_educativo.estatus LIKE '%$q%' OR programa_educativo.periodo LIKE '%$q%') 
+                    AND carreras.fecha_creado LIKE '%$p%'";
+                }
+            }
+
+            $resultado = $conexion->query($sql);
+            if ($resultado->num_rows>0) {
+                $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped" id="tabla-php">
+                <tr>
+                    <td class="text-center align-middle background-table">Carrera</td>
+                    <td class="text-center align-middle background-table">Modalidad</td>
+                    <td class="text-center align-middle background-table">Nuevo ingreso</td>
+                    <td class="text-center align-middle background-table">Reingreso</td>
+                    <td class="text-center align-middle background-table">Estatus</td>
+                    <td class="text-center align-middle background-table">Periodo</td>
+                    <td class="text-center align-middle background-table">Total</td>
+                    <td class="text-center align-middle background-table" style="min-width: 180px; width: 180px;">Acciones</td>
+                </tr>';
+
+                $resultado = mysqli_query($conexion,$sql);
+                while($buscar=mysqli_fetch_row($resultado)) {
+
+                    $datos = $buscar[0]."||".
+                        $buscar[1]."||".
+                        $buscar[2]."||".
+                        $buscar[3]."||".
+                        $buscar[4]."||".
+                        $buscar[5]."||".
+                        $buscar[6]."||".
+                        $buscar[7];
+
+                    $suma = $buscar[3]+$buscar[4];
+                    $salida.='<tr class="tablasuma">
+                            <td>'.utf8_encode($buscar[1]).'</td>
+                            <td>'.utf8_encode($buscar[2]).'</td>
+                            <td>'.utf8_encode($buscar[3]).'</td>
+                            <td>'.utf8_encode($buscar[4]).'</td>
+                            <td>'.utf8_encode($buscar[5]).'</td>
+                            <td>'.utf8_encode($buscar[6]).'</td>
+                            <td class="tdsuma">'.$suma.'</td>
+                            <td class="text-center align-middle">
+                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"  onclick="agregaForm(\''.$datos.'\')" ><i class="far fa-edit"></i>  Editar</button>
+                                <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\''.$buscar[0].'\')"><i class="fas fa-trash"></i>  Eliminar</button>
+                            </td>
                         </tr>';
+                }
 
-                        $resultado = mysqli_query($conexion,$sql);
-                        while($buscar=mysqli_fetch_row($resultado)) {
+                $salida.='<tr style="font-weight: bold">
+                    <td>Total</td>';
+                
+                $sql = "SELECT SUM(nuevo_ingreso) AS nuevo_ingreso FROM programa_educativo";
+                $resultado = $conexion->query($sql);
+                $buscar = mysqli_fetch_row($resultado);
+                
+                $salida.='<td></td>
+                    <td>'.$buscar[0].'</td>';
 
-                            $datos = $buscar[0]."||".
-                                $buscar[1]."||".
-                                $buscar[2]."||".
-                                $buscar[3]."||".
-                                $buscar[4]."||".
-                                $buscar[5]."||".
-                                $buscar[6]."||".
-                                $buscar[7];
+                $sql = "SELECT SUM(reingreso) AS reingreso FROM programa_educativo";
+                $resultado = $conexion->query($sql);
+                $buscar = mysqli_fetch_row($resultado);
 
-                            $suma = $buscar[3]+$buscar[4];
-                            $salida.='<tr class="tablasuma">
-                                    <td>'.utf8_decode($buscar[1]).'</td>
-                                    <td>'.$buscar[2].'</td>
-                                    <td>'.$buscar[3].'</td>
-                                    <td>'.$buscar[4].'</td>
-                                    <td>'.$buscar[5].'</td>
-                                    <td>'.$buscar[6].'</td>
-                                    <td class="tdsuma">'.$suma.'</td>
-                                    <td class="text-center align-middle">
-                                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"  onclick="agregaForm(\''.$datos.'\')" ><i class="far fa-edit"></i>  Editar</button>
-                                        <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\''.$buscar[0].'\')"><i class="fas fa-trash"></i>  Eliminar</button>
-                                    </td>
-                                </tr>';
-                        }
-                        $salida.="<tr style='font-weight: bold'>
+                $salida.='<td>'.$buscar[0].'</td>
+                    <td></td>
+                    <td></td>';
 
-                                    <td>Total</td>";
-                        $sql = "select sum(nuevo_ingreso) as nuevo_ingreso from programa_educativo";
-                        $resultado = $conexion->query($sql);
-                        $buscar = mysqli_fetch_row($resultado);
-                           $salida.="<td></td>
-                                    <td>$buscar[0]</td>";
-                        $sql = "select sum(reingreso) as reingreso from programa_educativo";
-                        $resultado = $conexion->query($sql);
-                        $buscar = mysqli_fetch_row($resultado);
-                                    $salida.="<td>$buscar[0]</td>
-                                    <td></td>
-                                    <td></td>";
-                        $sql = "select sum(total) as total from programa_educativo";
-                        $resultado = $conexion->query($sql);
-                        $buscar = mysqli_fetch_row($resultado);
+                $sql = "SELECT SUM(total) AS total FROM programa_educativo";
+                $resultado = $conexion->query($sql);
+                $buscar = mysqli_fetch_row($resultado);
 
-                                    $salida.="<td>$buscar[0]</td>";
+                $salida.='<td>'.$buscar[0].'</td>
+                    </tr>';
 
-                                  $salida.="</tr>";
-                                  ?>
-                        </table>
-                        <?php
-                    } else {
-                        $salida.='<div class="row mt-3">
-                            <div class="col-12 text-center">
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>¡No se encontró ningún elemento!</strong><br>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>';
-                    }
-                    echo $salida;
-                    ?>
-                </div>
-            </div>
+                $salida.="</table>";
+
+            } else {
+                $salida.='<div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>¡No se encontró ningún elemento!</strong><br>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>';
+            }
+                echo $salida;
+            ?>
         </div>
-        </div>
-        </div>
+    </div>
+</div>
 
-        <?php
+<?php
+        }
     }
 
-}
-$stmt->close();
-$conexion->close();
+    $stmt->close();
+    $conexion->close();
 ?>
+
+<script>
+    var tableToExcel = (function() {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+            , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+        return function(table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+</script>
