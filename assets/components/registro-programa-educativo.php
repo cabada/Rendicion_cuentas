@@ -25,11 +25,11 @@ while($stmt->fetch()){
                                 <div class="form-row">
                                     <div class="col">
                                         <input class="btn btn-danger text-white" type="button" target="_blank" value="Exportar PDF"
-                                               onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Total_Alumnos_Programa_Posgrado/reportePDF.php';
+                                               onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Programa_Educativo/reportePDF.php';
                                 document.reporte.submit()" />
 
                                         <input class="btn btn-success text-white" type="button" value="Exportar Excel"
-                                               onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Total_Alumnos_Programa_Posgrado/reporteExcel.php';
+                                               onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Programa_Educativo/reporteExcel.php';
                                 document.reporte.submit()" />
                                     </div>
 
@@ -86,7 +86,8 @@ while($stmt->fetch()){
                         programa_educativo.periodo,
                         programa_educativo.total 
                         FROM carreras 
-                        RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera WHERE carreras.nombre_carrera LIKE '%$q%'";
+                        RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
+                        WHERE carreras.nombre_carrera LIKE '%$q%'";
                     }
 
                     $resultado = $conexion->query($sql);
