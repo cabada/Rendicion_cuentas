@@ -173,12 +173,12 @@
 
                     $suma = $buscar[3]+$buscar[4];
                     $salida.='<tr class="tablasuma">
-                            <td>'.utf8_encode($buscar[1]).'</td>
-                            <td>'.utf8_encode($buscar[2]).'</td>
-                            <td>'.utf8_encode($buscar[3]).'</td>
-                            <td>'.utf8_encode($buscar[4]).'</td>
-                            <td>'.utf8_encode($buscar[5]).'</td>
-                            <td>'.utf8_encode($buscar[6]).'</td>
+                            <td>'.$buscar[1].'</td>
+                            <td>'.$buscar[2].'</td>
+                            <td>'.$buscar[3].'</td>
+                            <td>'.$buscar[4].'</td>
+                            <td>'.$buscar[5].'</td>
+                            <td>'.$buscar[6].'</td>
                             <td class="tdsuma">'.$suma.'</td>
                             <td class="text-center align-middle">
                                 <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"  onclick="agregaForm(\''.$datos.'\')" ><i class="far fa-edit"></i>  Editar</button>
