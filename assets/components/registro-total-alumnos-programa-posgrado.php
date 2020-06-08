@@ -37,7 +37,8 @@ while($stmt->fetch()){
                             <!--Select de año-->
                             <div class="col d-flex justify-content-end">
                                 <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
-                                    <option>Buscar por año</option>
+                                    <option disabled selected hidden>Buscar por año</option>
+                                    <option>Todos los registros</option>
                                     <?php
                                     $query = "select distinct year(fecha_creado) as fecha_creado from total_alumnos_programa_posgrado order by fecha_creado desc";
                                     $resultado = mysqli_query($conexion,$query);
