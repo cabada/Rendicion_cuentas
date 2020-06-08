@@ -5,7 +5,6 @@ require_once "../conexion.php";
 session_start();
     $conexion = conexion();
 
-
 class PDF extends FPDF
 {
     //** ENCABEZADO **
@@ -41,99 +40,81 @@ public function Footer()
     $pdf->SetFont('Arial','B',13);
     $pdf->SetY(30);//posicion en Y
     $pdf->Ln(10);
-    $pdf->Cell(0,5,'Reporte de Registro de Listado de Maestros con Certificaciones', 0,0,'C');
+    $pdf->Cell(0,5,'Reporte de Registro OrientaTec', 0,0,'C');
     $pdf->Ln(10);//salto de linea y su tamaño
 
     //** Encabezado de la tabla **
-    $pdf->SetFont('Arial','B',8);
+    $pdf->SetFont('Arial','B',11);
     $pdf->SetX(20);//posicion en X
-    $pdf->Cell(60,5,'ID', 0,0,'C',0);
-    $pdf->Cell(60,5,'Nombre', 0,0,'C',0);
-    $pdf->Cell(60,5,'Area Academica', 0,0,'C',0);
-    $pdf->Cell(60,5,'Disciplina', 0,0,'C',0);
+    $pdf->Cell(20,9,'ID', 0,0,'C',0);
+    $pdf->Cell(40,9,'Nombre de preparatoria', 0,0,'C',0);
+    $pdf->Cell(45,9,'Fecha', 0,0,'C',0);
+    $pdf->Cell(40,9,'Cantidad de estudiantes atendidos', 0,1,'C',0);
     $pdf->SetDrawColor(255, 0, 0);//pinta lo que se quiere (linea)
     $pdf->SetLineWidth(1);//grosor de la linea
     $pdf->Line(20,50,275,50); //linea y posicion
 
     //****TABLA SALIDA***** 
-    $pdf->Ln(4);//salto de linea tamaño
+    $pdf->Ln(2);//salto de linea tamaño
     $pdf->SetFont('Arial','',10);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->SetLineWidth(1);
 
 
-/*Verifica si la variable global fue definida*/
-if(isset($_SESSION['consulta'])){
-    /*Se le pasa el valor de la variable global a $q*/
-    $q = $_SESSION['consulta'];
-    $sql="select profesores.id_profesor,
-                            profesores.nombre_completo,
-                            area_academica.nombre_area_academica,
-                            profesores.disciplina
-                            from profesores
-                            join area_academica
-                            on area_academica.id_area_academica = profesores.id_area_academica
-                            where profesores.id_categoria_profesores = 1
-                            and (profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')";
+    /*Verifica si la variable global fue definida*/
+    if(isset($_SESSION['consulta'])) {
+        /*Se le pasa el valor de la variable global a $q*/
+        $q = $_SESSION['consulta'];  //query para buscador
+        $sql="select orientatec.ID_ORIENTATEC,
+        orientatec.nombre_preparatoria,
+        orientatec.fecha,
+        orientatec.estudiantes_atendidos 
+      from orientatec
+      where (orientatec.nombre_preparatoria like '%$q%'
+      or orientatec.fecha like '%$q%'
+      or orientatec.estudiantes_atendidos like '%$q%')";
 
-
-    if(isset($_SESSION['consulta_anio'])){
-
+    if (isset($_SESSION['consulta_anio'])) {
+        /*Se le pasa el valor de la variable global a $q*/
         $p = $_SESSION['consulta_anio'];
-        $sql="select profesores.id_profesor,
-                            profesores.nombre_completo,
-                            area_academica.nombre_area_academica,
-                            profesores.disciplina
-                            from profesores
-                            join area_academica
-                            on area_academica.id_area_academica = profesores.id_area_academica
-                            where profesores.id_categoria_profesores = 1
-                            and (profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')
-                            and profesores.fecha_creado like '%$p%'";
-
+        $sql="select orientatec.ID_ORIENTATEC,
+        orientatec.nombre_preparatoria,
+        orientatec.fecha,
+        orientatec.estudiantes_atendidos 
+        orientatec.from orientatec
+      where (orientatec.nombre_preparatoria like '%$q%'
+      or orientatec.fecha like '%$q%'
+      or orientatec.estudiantes_atendidos like '%$q%')
+      and orientatec.fecha_creado like '%$p%'";  
     }
-    /*Se destruye/quita el valor dentro de la variable global*/
     unset($_SESSION['consulta']);
     unset($_SESSION['consulta_anio']);
-
 }
 
-/*Sino se cumple el if de arriba, se pasa a este.
-Verifica si la variable global fue definida*/
-elseif (isset($_SESSION['consulta_anio'])){
+    elseif (isset($_SESSION['consulta_anio'])) {
     /*Se le pasa el valor de la variable global a $q*/
     $q = $_SESSION['consulta_anio'];
+    $sql="select orientatec.ID_ORIENTATEC,
+    orientatec.nombre_preparatoria,
+    orientatec.fecha,
+    orientatec.estudiantes_atendidos 
+      from orientatec
+      where orientatec.fecha_creado like '%$q%'";
+       /*Se destruye/quita el valor dentro de la variable global*/
+unset($_SESSION['consulta_anio']);
+    }
 
-    $sql="select profesores.id_profesor,
-                            profesores.nombre_completo,
-                            area_academica.nombre_area_academica,
-                            profesores.disciplina
-                            from profesores
-                            join area_academica
-                            on area_academica.id_area_academica = profesores.id_area_academica
-                            where profesores.id_categoria_profesores = 1 and profesores.fecha_creado like '%$q%'";
-    /*Se destruye/quita el valor dentro de la variable global*/
-    unset($_SESSION['consulta_anio']);
-}
-/*Sino se cumplio ninguno de arriba, se va a ejecutar esta instruccion que es la de por defecto. Es una query para ver todos los registros
-de la tabla.*/
-else{
+    else {
+        $sql="select orientatec.ID_ORIENTATEC,
+        orientatec.nombre_preparatoria,
+        orientatec.fecha,
+        orientatec.estudiantes_atendidos 
+      from orientatec";
 
-    $sql="select profesores.id_profesor,
-                            profesores.nombre_completo,
-                            area_academica.nombre_area_academica,
-                            profesores.disciplina
-                            from profesores
-                            join area_academica
-                            on area_academica.id_area_academica = profesores.id_area_academica
-                            where profesores.id_categoria_profesores = 1";
-    unset($_SESSION['consulta']);
-    unset($_SESSION['consulta_anio']);
-
-}
-
-
+      unset($_SESSION['consulta']);
+      unset($_SESSION['consulta_anio']);  
+        }
 
     $query = mysqli_query($conexion,$sql);
     
@@ -141,10 +122,10 @@ else{
         $pdf->SetX(20);//posicion en X
         $pdf->SetFillColor(248, 249, 249 ); //relleno de la tabla y su color
 
-        $pdf->Cell(60,8, $row['id_profesor'], 1,0,'C',1);
-        $pdf->Cell(60,8, $row['nombre_completo'], 1,0,'C',1);
-        $pdf->Cell(60,8, $row['nombre_area_academica'], 1,0,'C',1);
-        $pdf->Cell(60,8, $row['disciplina'], 1,1,'C',1);
+        $pdf->Cell(20,8, $row[utf8_decode('ID_ORIENTATEC')], 1,0,'C',1);
+        $pdf->Cell(40,8, $row[utf8_decode('nombre_preparatoria')], 1,0,'C',1);
+        $pdf->Cell(45,8, $row[utf8_decode('fecha')], 1,0,'C',1);
+        $pdf->Cell(40,8, $row[utf8_decode('estudiantes_atendidos')], 1,1,'C',1);
     }
     
     $pdf->Output();

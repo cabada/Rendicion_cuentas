@@ -22,13 +22,53 @@ if($resultado == $tablaRequerida){
 
 ?>
 
-
 <div class="row">
     <div class="col-sm-12">
-        <h2>Registro de programa delfín</h2>
-        <caption>
-            <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
-        </caption>
+
+        <!--Botones Excel y PDF -->
+        <div class="row mt-2">
+            <div class="col-12">
+                <form id="reporte" name="reporte" method="POST" target="_blank">
+                    <div class="form-group">
+                        <div class="form-row d-flex">
+                            <div class="col">
+                                <input class="btn btn-danger text-white" type="button" target="_blank" value="Exportar PDF"
+                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Programa_Delfin/reportePDF.php';
+                                document.reporte.submit()" />
+
+
+                                <!--document.reporte.action = 'assets/components/PHP_Consultas/Registro_Total_Alumnos_Programa_Posgrado/reportePDF.php';
+                                document.reporte.submit()-->
+
+                                <input class="btn btn-success text-white" type="button" value="Exportar Excel"
+                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Programa_Delfin/reporteExcel.php';
+                                       document.reporte.submit()" />
+
+                            </div>
+
+                            <!--Select de anio-->
+                            <div class="col d-flex justify-content-end">
+                                <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
+                                    <option disabled selected hidden>Buscar por año</option>
+                                    <option>Todos los registros</option>
+                                    <?php
+                                    $query = "select distinct year(fecha_creado) as fecha_creado from programa_delfin order by fecha_creado desc";
+                                    $resultado = mysqli_query($conexion,$query);
+
+                                    while($fila = mysqli_fetch_array($resultado)){
+                                        $valor = $fila['nombre_area_academica'];
+
+                                        echo "<option>".($fila['fecha_creado'])."</option>\n";
+
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="table-responsive-xl">
                 <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                 <tr>
