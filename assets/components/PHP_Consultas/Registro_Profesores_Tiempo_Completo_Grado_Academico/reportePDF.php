@@ -41,16 +41,17 @@ public function Footer()
     $pdf->SetFont('Arial','B',13);
     $pdf->SetY(30);//posicion en Y
     $pdf->Ln(10);
-    $pdf->Cell(0,5, utf8_decode('Reporte de Registro de Evaluación Docente'), 0,0,'C');
+    $pdf->Cell(0,5, utf8_decode('Registro de profesores de tiempo completo por grado académico'), 0,0,'C');
     $pdf->Ln(10);//salto de linea y su tamaño
 
     //** Encabezado de la tabla **
     $pdf->SetFont('Arial','B',9);
     $pdf->SetX(20);//posicion en X
-    $pdf->Cell(55,8,'ID', 0,0,'C',0);
-    $pdf->Cell(85,8,'Periodo', 0,0,'C',0);
-    $pdf->Cell(75,8,'Docentes activos evaluados', 0,0,'C',0);
-    $pdf->Cell(40,8,'Porcentaje', 0,1,'C',0);
+    $pdf->Cell(45,8,'ID', 0,0,'C',0);
+    $pdf->Cell(90,8,'Grado', 0,0,'C',0);
+    $pdf->Cell(40,8,'Mujer', 0,0,'C',0);
+    $pdf->Cell(40,8,'Hombre', 0,0,'C',0);
+    $pdf->Cell(40,8,'Total', 0,1,'C',0);
     $pdf->SetDrawColor(255, 0, 0);//pinta lo que se quiere (linea)
     $pdf->SetLineWidth(1);//grosor de la linea
     $pdf->Line(20,50,275,50); //linea y posicion
@@ -67,36 +68,35 @@ public function Footer()
     if(isset($_SESSION['consulta'])){
         // SE LE PASA EL VALOR DE LA VARIABLE GLOBAL A $q
         $q = $_SESSION['consulta'];
-        $sql = "SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado
-            FROM evaluacion_docente WHERE periodo LIKE '%$q%' OR docentes_activos_evaluados LIKE '%$q%' 
-            OR porcentaje LIKE '%$q%'";
+        $sql = "SELECT id_prof_tiemp_comp, grado, mujer, hombre, total, fecha_creado FROM profesores_tiempo_completo 
+            WHERE grado LIKE '%$q%' OR mujer LIKE '%$q%' 
+            OR hombre LIKE '%$q%' OR total LIKE '%$q%'";
 
         if(isset($_SESSION['consulta_anio'])){
             $p = $_SESSION['consulta_anio'];
-            $sql = "SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado
-                FROM evaluacion_docente WHERE (periodo LIKE '%$q%' OR docentes_activos_evaluados LIKE '%$q%' 
-                OR porcentaje LIKE '%$q%') AND fecha_creado LIKE '%$p%'";
+            $sql = "SELECT id_prof_tiemp_comp, grado, mujer, hombre, total, fecha_creado FROM profesores_tiempo_completo 
+                WHERE (grado LIKE '%$q%' OR mujer LIKE '%$q%' 
+                OR hombre LIKE '%$q%' OR total LIKE '%$q%') AND fecha_creado LIKE '%$p%'";
         }
         // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
         unset($_SESSION['consulta']);
         unset($_SESSION['consulta_anio']);
-
+    
     // SI NO SE CUMPLE EL IF DE ARRIBA, SE PASA A ESTE.
     // VERIFICA SI LA VARIABLE GLOBAL FUE DEFINIDA
     } else if (isset($_SESSION['consulta_anio'])){
         // SE LE PASA EL VALOR DE LA VARIABLE GLOBAL A $q
         $q = $_SESSION['consulta_anio'];
-        $sql="SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado
-            FROM evaluacion_docente WHERE fecha_creado LIKE '%$q%'";
+        $sql="SELECT id_prof_tiemp_comp, grado, mujer, hombre, total, fecha_creado FROM profesores_tiempo_completo WHERE fecha_creado LIKE '%$q%'";
         // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
         unset($_SESSION['consulta_anio']);
-
+    
     // SI NO SE CIMPLIO NINGUNO DE ARRIBA, SE VA EJECUTAR ESTA INSTRUCCION QUE ES POR DEFECTO, 
     // ES UNA QUERY PARA VER TODOS LOS REGISTROS DE LA TABLA
     } else {
         unset($_SESSION['consulta_anio']);
         unset($_SESSION['consulta']);
-        $sql="SELECT id_eva_docente, periodo, docentes_activos_evaluados, porcentaje, fecha_creado FROM evaluacion_docente";
+        $sql="SELECT id_prof_tiemp_comp, grado, mujer, hombre, total, fecha_creado FROM profesores_tiempo_completo";
     }
 
     $query = mysqli_query($conexion,$sql);
@@ -104,10 +104,11 @@ public function Footer()
         $pdf->SetX(20);//posicion en X
         $pdf->SetFillColor(248, 249, 249 ); //relleno de la tabla y su color
 
-        $pdf->Cell(55,8, $row['id_eva_docente'], 1,0,'C',1);
-        $pdf->Cell(85,8, $row['periodo'], 1,0,'C',1);
-        $pdf->Cell(75,8, $row['docentes_activos_evaluados'], 1,0,'C',1);
-        $pdf->Cell(40,8, $row['porcentaje'], 1,1,'C',1);
+        $pdf->Cell(45,8, $row[utf8_decode('id_prof_tiemp_comp')], 1,0,'C',1);
+        $pdf->Cell(90,8, $row[utf8_decode('grado')], 1,0,'C',1);
+        $pdf->Cell(40,8, $row[utf8_decode('mujer')], 1,0,'C',1);
+        $pdf->Cell(40,8, $row[utf8_decode('hombre')], 1,0,'C',1);
+        $pdf->Cell(40,8, $row[utf8_decode('total')], 1,1,'C',1);
     }
     
     $pdf->Output();
