@@ -10,13 +10,13 @@
 
 ?>
 
-<table>
-    <tr>
-        <h4>Reporte de Registro de Proyectos de Investigacion Pertenecientes a Posgrado</h4>
-        <th>Clave</th>
-        <th>Nombre del proyecto</th>
-        <th>Responsable</th>
-    </tr>
+          <table>
+              <tr>
+                  <h4>Reporte de Registro de Proyectos de Investigacion Pertenecientes a Posgrado</h4>
+                  <th class="text-center align-middle background-table">Clave</th>
+                  <th class="text-center align-middle background-table">Nombre del proyecto</th>
+                  <th class="text-center align-middle background-table">Responsable</th>
+              </tr>
 
     <?php
     /*Verifica si la variable global fue definida*/
@@ -25,39 +25,54 @@
         $q = $_SESSION['consulta'];  //query para buscador
         $sql = "select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo 
-                      where proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
-                      proyectos_investigacion_posgrado_periodo.NOMBRE_PROYECTO LIKE '%$q%' or 
-                      proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%'";
+                      where (CLAVE LIKE '%$q%' or 
+                      NOMBRE_PROYECTO LIKE '%$q%' or 
+                      RESPONSABLE LIKE '%$q%')";
 
+
+        if (isset($_SESSION['consulta_anio'])) {
+            /*Se le pasa el valor de la variable global a $q*/
+            $p = $_SESSION['consulta_anio'];
+            $sql = "select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo 
+                      where (CLAVE LIKE '%$q%' or 
+                      NOMBRE_PROYECTO LIKE '%$q%' or 
+                      RESPONSABLE LIKE '%$q%')
+                      and fecha_creado '%$p%'";
+        }
         /*Se destruye/quita el valor dentro de la variable global*/
         unset($_SESSION['consulta']);
-    }
-    /*Sino se cumple el if de arriba, se pasa a este.
-   Verifica si la variable global fue definida*/
-    elseif (isset($_SESSION['consulta_anio'])) {
-        /*Se le pasa el valor de la variable global a $q*/
-        $q = $_SESSION['consulta_anio'];
-        $sql = "select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
-                      from proyectos_investigacion_posgrado_periodo
-                      where fecha_creado LIKE '%$q%'";
-
-        /*Se destruye/quita el valor dentro de la variable global*/
         unset($_SESSION['consulta_anio']);
+
     }
-    /*Sino se cumplio ninguno de arriba, se va a ejecutar esta instruccion que es la de por defecto. Es una query para ver todos los registros
-        de la tabla.*/
-    else{
-        $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+            elseif (isset($_SESSION['consulta_anio'])){
+                /*Se le pasa el valor de la variable global a $q*/
+                $q = $_SESSION['consulta_anio'];
+                $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo
+                      where fecha_creado like '%$q%'";
+
+                /*Se destruye/quita el valor dentro de la variable global*/
+                unset($_SESSION['consulta_anio']);
+            }
+                else{
+                $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo";
 
-    }
-             $result=mysqli_query($conexion,$sql);
-             while($ver=mysqli_fetch_row($result)){
-             $datos=$ver[0]."||".
-                 $ver[1]."||".
-                 $ver[2]."||".
-                 $ver[3];
-        ?>
+                    unset($_SESSION['consulta']);
+                    unset($_SESSION['consulta_anio']);
+
+                }
+
+
+                 $result=mysqli_query($conexion,$sql);
+                 while($ver=mysqli_fetch_row($result)){
+                       $datos=$ver[0]."||".
+                       $ver[1]."||".
+                       $ver[2]."||".
+                       $ver[3];
+
+                       ?>
 
         <tr>
             <td><?php echo utf8_decode($ver[1])?></td>

@@ -72,16 +72,16 @@ while($stmt->fetch()){
                 $_SESSION['consulta'] = $q;
                 $sql="select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
                               from estudiantes_capacidades_diferentes 
-                              where estudiantes_capacidades_diferentes.PERIODO LIKE '%$q%'
-                              or estudiantes_capacidades_diferentes.ANIO LIKE '%$q%'";
+                              where (PERIODO LIKE '%$q%'
+                              or ANIO LIKE '%$q%')";
 
                 if(isset($_POST['consulta_anio'])){
                     /*variable goblal*/
                     $p = $_SESSION['consulta_anio'];
                     $sql="select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
                               from estudiantes_capacidades_diferentes 
-                              where estudiantes_capacidades_diferentes.PERIODO LIKE '%$q%'
-                              or estudiantes_capacidades_diferentes.ANIO LIKE '%$q%'
+                              where where (PERIODO LIKE '%$q%'
+                              or ANIO LIKE '%$q%')
                               and fecha_creado LIKE '%$p%'";
                 }
 
@@ -100,6 +100,8 @@ while($stmt->fetch()){
                 else{
                     $sql="select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
                               from estudiantes_capacidades_diferentes";
+
+                    unset($_SESSION['consulta_anio']);
                 }
             }
 

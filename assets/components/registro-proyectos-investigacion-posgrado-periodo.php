@@ -74,18 +74,18 @@ while($stmt->fetch()){
                 $_SESSION['consulta'] = $q;
                 $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo 
-                      where proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
+                      where (proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
                       proyectos_investigacion_posgrado_periodo.NOMBRE_PROYECTO LIKE '%$q%' or 
-                      proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%'";
+                      proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%')";
 
                 if (isset($_POST['consulta_anio'])) {
                     /*variable goblal*/
                     $p = $_SESSION['consulta_anio'];
                     $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo 
-                      where proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
+                      where (proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
                       proyectos_investigacion_posgrado_periodo.NOMBRE_PROYECTO LIKE '%$q%' or 
-                      proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%'
+                      proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%')
                       and fecha_creado LIKE '%$p%'";
 
                 }
@@ -106,6 +106,7 @@ while($stmt->fetch()){
                     $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo";
 
+                    unset($_SESSION['consulta_anio']);
                 }
             }
 

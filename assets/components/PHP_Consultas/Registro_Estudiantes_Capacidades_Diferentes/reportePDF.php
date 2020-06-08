@@ -61,32 +61,49 @@ public function Footer()
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->SetLineWidth(1);
 
-    if(isset($_SESSION['consulta'])) {
+/*Verifica si la variable global fue definida*/
+if(isset($_SESSION['consulta'])) {
+    /*Se le pasa el valor de la variable global a $q*/
+    $q = $_SESSION['consulta'];  //query para buscador
+    $sql = "select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
+                                          from estudiantes_capacidades_diferentes 
+                                          where (PERIODO LIKE '%$q%'
+                                          or ANIO LIKE '%$q%')";
+
+    if (isset($_SESSION['consulta_anio'])) {
         /*Se le pasa el valor de la variable global a $q*/
-        $q = $_SESSION['consulta'];
-        $sql = "select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
-                              from estudiantes_capacidades_diferentes 
-                              where estudiantes_capacidades_diferentes.PERIODO LIKE '%$q%'
-                              or estudiantes_capacidades_diferentes.ANIO LIKE '%$q%'";
-        /*Se destruye/quita el valor dentro de la variable global*/
-        unset($_SESSION['consulta']);
-    }
-    /*Sino se cumple el if de arriba, se pasa a este.
-Verifica si la variable global fue definida*/
-    elseif (isset($_SESSION['consulta_anio'])) {
-        /*Se le pasa el valor de la variable global a $q*/
-        $q = $_SESSION['consulta_anio'];
+        $p = $_SESSION['consulta_anio'];
         $sql = "select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
                               from estudiantes_capacidades_diferentes
-                              where fecha_creado LIKE '%$q%'";
-        /*Se destruye/quita el valor dentro de la variable global*/
-        unset($_SESSION['consulta_anio']);
+                              where (PERIODO LIKE '%$q%'
+                              or ANIO LIKE '%$q%') 
+                              and fecha_creado LIKE '%$p%'";
+
     }
-     else{
-         $sql="select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
+    /*Se destruye/quita el valor dentro de la variable global*/
+    unset($_SESSION['consulta']);
+    unset($_SESSION['consulta_anio']);
+}
+
+elseif (isset($_SESSION['consulta_anio'])) {
+    /*Se le pasa el valor de la variable global a $q*/
+    $q = $_SESSION['consulta_anio'];
+    $sql = "select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
+                                         from estudiantes_capacidades_diferentes
+                                         where fecha_creado LIKE '%$q%'";
+
+    /*Se destruye/quita el valor dentro de la variable global*/
+    unset($_SESSION['consulta_anio']);
+}
+
+else{
+    $sql="select id_estudiantes_capacidades_diferentes,PERIODO,ANIO,CANTIDAD_ALUMNOS 
                               from estudiantes_capacidades_diferentes";
 
-     }
+    unset($_SESSION['consulta']);
+    unset($_SESSION['consulta_anio']);
+}
+
 
     $query = mysqli_query($conexion,$sql);
     
