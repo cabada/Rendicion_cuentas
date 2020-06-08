@@ -5,7 +5,6 @@ require_once "../conexion.php";
 session_start();
     $conexion = conexion();
 
-
 class PDF extends FPDF
 {
     //** ENCABEZADO **
@@ -41,99 +40,118 @@ public function Footer()
     $pdf->SetFont('Arial','B',13);
     $pdf->SetY(30);//posicion en Y
     $pdf->Ln(10);
-    $pdf->Cell(0,5,'Reporte de Registro de Listado de Maestros con Certificaciones', 0,0,'C');
+    $pdf->Cell(0,5,'Reporte de Registro de Cuerpos Academicos (Licenciatura)', 0,0,'C');
     $pdf->Ln(10);//salto de linea y su tamaño
 
     //** Encabezado de la tabla **
-    $pdf->SetFont('Arial','B',8);
+    $pdf->SetFont('Arial','B',11);
     $pdf->SetX(20);//posicion en X
-    $pdf->Cell(60,5,'ID', 0,0,'C',0);
-    $pdf->Cell(60,5,'Nombre', 0,0,'C',0);
-    $pdf->Cell(60,5,'Area Academica', 0,0,'C',0);
-    $pdf->Cell(60,5,'Disciplina', 0,0,'C',0);
+    $pdf->Cell(20,9,'ID', 0,0,'C',0);
+    $pdf->Cell(40,9,'Area Academica', 0,0,'C',0);
+    $pdf->Cell(45,9,'Nombre de Cuerpo Academico', 0,0,'C',0);
+    $pdf->Cell(30,9,'Grado', 0,0,'C',0);
+    $pdf->Cell(30,9,'Estado', 0,0,'C',0);
+    $pdf->Cell(20,9,'Año de Registro', 0,0,'C',0);
+    $pdf->Cell(40,9,'Fecha de Vigencia', 0,0,'C',0);
+    $pdf->Cell(30,9,'Area', 0,1,'C',0);
     $pdf->SetDrawColor(255, 0, 0);//pinta lo que se quiere (linea)
     $pdf->SetLineWidth(1);//grosor de la linea
     $pdf->Line(20,50,275,50); //linea y posicion
 
     //****TABLA SALIDA***** 
-    $pdf->Ln(4);//salto de linea tamaño
+    $pdf->Ln(2);//salto de linea tamaño
     $pdf->SetFont('Arial','',10);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->SetLineWidth(1);
 
 
-/*Verifica si la variable global fue definida*/
-if(isset($_SESSION['consulta'])){
-    /*Se le pasa el valor de la variable global a $q*/
-    $q = $_SESSION['consulta'];
-    $sql="select profesores.id_profesor,
-                            profesores.nombre_completo,
-                            area_academica.nombre_area_academica,
-                            profesores.disciplina
-                            from profesores
-                            join area_academica
-                            on area_academica.id_area_academica = profesores.id_area_academica
-                            where profesores.id_categoria_profesores = 1
-                            and (profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')";
+    /*Verifica si la variable global fue definida*/
+    if(isset($_SESSION['consulta'])) {
+        /*Se le pasa el valor de la variable global a $q*/
+        $q = $_SESSION['consulta'];  //query para buscador
+        $sql="select 
+            cuerpos_academicos.id_cuerpo_academico,
+            area_academica.nombre_area_academica,
+            cuerpos_academicos.nombre_cuerpo_academico,
+            cuerpos_academicos.grado,
+            cuerpos_academicos.estado,
+            cuerpos_academicos.anio_registro,
+            cuerpos_academicos.vigencia,
+            cuerpos_academicos.AREA
+            from area_academica
+            right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA
+            where (area_academica.nombre_area_academica like '%$q%'
+            or cuerpos_academicos.nombre_cuerpo_academico like '%$q%'
+            or cuerpos_academicos.grado like '%$q%'
+            or cuerpos_academicos.estado like '%$q%'
+            or cuerpos_academicos.anio_registro like '%$q%'
+            or cuerpos_academicos.vigencia like '%$q%'
+            or cuerpos_academicos.AREA like '%$q%')";
+        
 
-
-    if(isset($_SESSION['consulta_anio'])){
-
+    if (isset($_SESSION['consulta_anio'])) {
+        /*Se le pasa el valor de la variable global a $q*/
         $p = $_SESSION['consulta_anio'];
-        $sql="select profesores.id_profesor,
-                            profesores.nombre_completo,
-                            area_academica.nombre_area_academica,
-                            profesores.disciplina
-                            from profesores
-                            join area_academica
-                            on area_academica.id_area_academica = profesores.id_area_academica
-                            where profesores.id_categoria_profesores = 1
-                            and (profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')
-                            and profesores.fecha_creado like '%$p%'";
-
+        $sql="select 
+        cuerpos_academicos.id_cuerpo_academico,
+        area_academica.nombre_area_academica,
+        cuerpos_academicos.nombre_cuerpo_academico,
+        cuerpos_academicos.grado,
+        cuerpos_academicos.estado,
+        cuerpos_academicos.anio_registro,
+        cuerpos_academicos.vigencia,
+        cuerpos_academicos.AREA
+        from area_academica
+        right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA
+        where (area_academica.nombre_area_academica like '%$q%'
+        or cuerpos_academicos.nombre_cuerpo_academico like '%$q%'
+        or cuerpos_academicos.grado like '%$q%'
+        or cuerpos_academicos.estado like '%$q%'
+        or cuerpos_academicos.anio_registro like '%$q%'
+        or cuerpos_academicos.vigencia like '%$q%'
+        or cuerpos_academicos.AREA like '%$q%')
+        and cuerpos_academicos.fecha_creado like '%$p%'";
+        
     }
-    /*Se destruye/quita el valor dentro de la variable global*/
     unset($_SESSION['consulta']);
     unset($_SESSION['consulta_anio']);
-
 }
 
-/*Sino se cumple el if de arriba, se pasa a este.
-Verifica si la variable global fue definida*/
-elseif (isset($_SESSION['consulta_anio'])){
+    elseif (isset($_SESSION['consulta_anio'])) {
     /*Se le pasa el valor de la variable global a $q*/
     $q = $_SESSION['consulta_anio'];
-
-    $sql="select profesores.id_profesor,
-                            profesores.nombre_completo,
-                            area_academica.nombre_area_academica,
-                            profesores.disciplina
-                            from profesores
-                            join area_academica
-                            on area_academica.id_area_academica = profesores.id_area_academica
-                            where profesores.id_categoria_profesores = 1 and profesores.fecha_creado like '%$q%'";
+    $sql="select 
+          cuerpos_academicos.id_cuerpo_academico,
+          area_academica.nombre_area_academica,
+          cuerpos_academicos.nombre_cuerpo_academico,
+          cuerpos_academicos.grado,
+          cuerpos_academicos.estado,
+          cuerpos_academicos.anio_registro,
+          cuerpos_academicos.vigencia,
+          cuerpos_academicos.AREA
+          from area_academica
+          right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA
+          where cuerpos_academicos.fecha_creado like '%$q%'";
     /*Se destruye/quita el valor dentro de la variable global*/
-    unset($_SESSION['consulta_anio']);
-}
-/*Sino se cumplio ninguno de arriba, se va a ejecutar esta instruccion que es la de por defecto. Es una query para ver todos los registros
-de la tabla.*/
-else{
+unset($_SESSION['consulta_anio']);
+    }
 
-    $sql="select profesores.id_profesor,
-                            profesores.nombre_completo,
-                            area_academica.nombre_area_academica,
-                            profesores.disciplina
-                            from profesores
-                            join area_academica
-                            on area_academica.id_area_academica = profesores.id_area_academica
-                            where profesores.id_categoria_profesores = 1";
-    unset($_SESSION['consulta']);
-    unset($_SESSION['consulta_anio']);
-
-}
-
-
+    else {
+        $sql="select 
+          cuerpos_academicos.id_cuerpo_academico,
+          area_academica.nombre_area_academica,
+          cuerpos_academicos.nombre_cuerpo_academico,
+          cuerpos_academicos.grado,
+          cuerpos_academicos.estado,
+          cuerpos_academicos.anio_registro,
+          cuerpos_academicos.vigencia,
+          cuerpos_academicos.AREA
+          from area_academica
+          right join cuerpos_academicos on area_academica.ID_AREA_ACADEMICA = cuerpos_academicos.ID_AREA_ACADEMICA";
+          unset($_SESSION['consulta']);
+          unset($_SESSION['consulta_anio']);  
+        }
 
     $query = mysqli_query($conexion,$sql);
     
@@ -141,10 +159,14 @@ else{
         $pdf->SetX(20);//posicion en X
         $pdf->SetFillColor(248, 249, 249 ); //relleno de la tabla y su color
 
-        $pdf->Cell(60,8, $row['id_profesor'], 1,0,'C',1);
-        $pdf->Cell(60,8, $row['nombre_completo'], 1,0,'C',1);
-        $pdf->Cell(60,8, $row['nombre_area_academica'], 1,0,'C',1);
-        $pdf->Cell(60,8, $row['disciplina'], 1,1,'C',1);
+        $pdf->Cell(20,8, $row[utf8_decode('id_cuerpo_academico')], 1,0,'C',1);
+        $pdf->Cell(40,8, $row[utf8_decode('nombre_area_academica')], 1,0,'C',1);
+        $pdf->Cell(45,8, $row[utf8_decode('nombre_cuerpo_academico')], 1,0,'C',1);
+        $pdf->Cell(30,8, $row[utf8_decode('grado')], 1,0,'C',1);
+        $pdf->Cell(30,8, $row[utf8_decode('estado')], 1,0,'C',1);
+        $pdf->Cell(20,8, $row[utf8_decode('anio_registro')], 1,0,'C',1);
+        $pdf->Cell(40,8, $row[utf8_decode('vigencia')], 1,0,'C',1);
+        $pdf->Cell(30,8, $row[utf8_decode('AREA')], 1,1,'C',1);
     }
     
     $pdf->Output();
