@@ -44,7 +44,8 @@ if($resultado == $tablaRequerida){
                             <!--Select de año-->
                             <div class="col d-flex justify-content-end">
                                 <select class="form-control col-md-5 anio" id="anio-select" name="anio-select">
-                                    <option>Buscar por año</option>
+                                    <option disabled selected hidden>Buscar por año</option>
+                                    <option>Todos los registros</option>
                                     <?php
                                     $query = "select distinct year(fecha_creado) as fecha_creado from total_alumnos_programa_posgrado order by fecha_creado desc";
                                     $resultado = mysqli_query($conexion,$query);
@@ -134,7 +135,7 @@ if($resultado == $tablaRequerida){
 
             $suma=$ver[2]+$ver[3];
             $salida.='<tr>
-                    <td>'. utf8_decode($ver[1]).'</td>
+                    <td>'. $ver[1].'</td>
                     <td>'. $ver[2].'</td>
                     <td>'. $ver[3].'</td>
                     <td>'. $suma .'</td>

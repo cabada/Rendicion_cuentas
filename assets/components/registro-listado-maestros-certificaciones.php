@@ -112,6 +112,20 @@ if($resultado == $tablaRequerida){
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 1 and profesores.fecha_creado like '%$q%'";
 
+                      if(isset($_SESSION['consulta'])){
+
+                            $sql="select profesores.id_profesor,
+                            profesores.nombre_completo,
+                            area_academica.nombre_area_academica,
+                            profesores.disciplina
+                            from profesores
+                            join area_academica
+                            on area_academica.id_area_academica = profesores.id_area_academica
+                            where profesores.id_categoria_profesores = 1 and profesores.fecha_creado like '%$q%'
+                            and (profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')";
+
+                        }
+
 
                     }else{
 
@@ -123,7 +137,9 @@ if($resultado == $tablaRequerida){
                             join area_academica
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 1";
+
                         unset($_SESSION['consulta_anio']);
+                        unset($_SESSION['consulta']);
 
                     }
 
@@ -196,7 +212,7 @@ if($resultado == $tablaRequerida){
 
                         $salida.='<tr>
                             <td>'.$ver[1].'</td>
-                            <td>'.utf8_encode($ver[2]).'</td>
+                            <td>'.$ver[2].'</td>
                             <td>'.$ver[3].'</td>
                             <td class="text-center align-middle">
                                  <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion"  onclick="agregaform(\''.$datos.'\')" ><i class="far fa-edit"></i>  Editar</button>

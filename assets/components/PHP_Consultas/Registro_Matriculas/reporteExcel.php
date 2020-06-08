@@ -83,8 +83,8 @@ $conexion = conexion();
 
              ?>
         <tr>
-            <td><?php echo utf8_decode($ver[1])?></td>
-            <td><?php echo utf8_decode($ver[2])?></td>
+            <td><?php echo($ver[1])?></td>
+            <td><?php echo($ver[2])?></td>
         </tr>
         <?php
     }

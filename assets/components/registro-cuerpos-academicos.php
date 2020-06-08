@@ -209,7 +209,7 @@ if($resultado == $tablaRequerida){
                
 
                            $salida .= '<tr>
-                    <td>'. utf8_encode($ver[1]).'</td>
+                    <td>'. $ver[1].'</td>
                     <td>'.$ver[2].'</td>
                     <td>'.$ver[3].'</td>
                     <td>'.$ver[4].'</td>

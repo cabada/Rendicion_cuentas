@@ -50,10 +50,10 @@ public function Footer()
     $pdf->Cell(30,8,'ID', 0,0,'C',0);
     $pdf->Cell(75,8,'Carrera', 0,0,'C',0);
     $pdf->Cell(30,8,'Modalidad', 0,0,'C',0);
-    $pdf->Cell(30,8,'Nuevo ingreso', 0,0,'C',0);
-    $pdf->Cell(30,8,'Re-ingreso', 0,0,'C',0);
-    $pdf->Cell(30,8,'Estatus', 0,0,'C',0);
-    $pdf->Cell(30,8,'Periodo', 0,1,'C',0);
+    $pdf->Cell(25,8,'Nuevo ingreso', 0,0,'C',0);
+    $pdf->Cell(25,8,'Re-ingreso', 0,0,'C',0);
+    $pdf->Cell(25,8,'Estatus', 0,0,'C',0);
+    $pdf->Cell(45,8,'Periodo', 0,1,'C',0);
     $pdf->SetDrawColor(255, 0, 0);//pinta lo que se quiere (linea)
     $pdf->SetLineWidth(1);//grosor de la linea
     $pdf->Line(20,50,275,50); //linea y posicion
@@ -78,7 +78,7 @@ public function Footer()
             programa_educativo.reingreso AS Reingreso,
             programa_educativo.estatus AS Estatus,
             programa_educativo.periodo AS Periodo, 
-            carreras.fecha_creado 
+            programa_educativo.fecha_creado 
             FROM carreras 
             RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
             WHERE carreras.nombre_carrera LIKE '%$q%' OR programa_educativo.modalidad LIKE '%$q%' 
@@ -94,12 +94,12 @@ public function Footer()
                 programa_educativo.reingreso AS Reingreso,
                 programa_educativo.estatus AS Estatus,
                 programa_educativo.periodo AS Periodo, 
-                carreras.fecha_creado 
+                programa_educativo.fecha_creado 
                 FROM carreras 
                 RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
                 WHERE (carreras.nombre_carrera LIKE '%$q%' OR programa_educativo.modalidad LIKE '%$q%' 
                 OR programa_educativo.estatus LIKE '%$q%' OR programa_educativo.periodo LIKE '%$q%') 
-                AND carreras.fecha_creado LIKE '%$p%'";
+                AND programa_educativo.fecha_creado LIKE '%$p%'";
         }
         // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
         unset($_SESSION['consulta']);
@@ -118,10 +118,10 @@ public function Footer()
             programa_educativo.reingreso AS Reingreso,
             programa_educativo.estatus AS Estatus,
             programa_educativo.periodo AS Periodo, 
-            carreras.fecha_creado 
+            programa_educativo.fecha_creado 
             FROM carreras 
             RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
-            WHERE carreras.fecha_creado LIKE '%$q%'";
+            WHERE programa_educativo.fecha_creado LIKE '%$q%'";
         // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
         unset($_SESSION['consulta_anio']);
     
@@ -138,7 +138,7 @@ public function Footer()
             programa_educativo.reingreso AS Reingreso,
             programa_educativo.estatus AS Estatus,
             programa_educativo.periodo AS Periodo, 
-            carreras.fecha_creado 
+            programa_educativo.fecha_creado 
             FROM carreras 
             RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera";
     }
@@ -151,10 +151,10 @@ public function Footer()
         $pdf->Cell(30,8, $row['ID'], 1,0,'C',1);
         $pdf->Cell(75,8, $row['Carreras'], 1,0,'C',1);
         $pdf->Cell(30,8, $row['Modalidad'], 1,0,'C',1);
-        $pdf->Cell(30,8, $row['Nuevo_Ingreso'], 1,0,'C',1);
-        $pdf->Cell(30,8, $row['Reingreso'], 1,0,'C',1);
-        $pdf->Cell(30,8, $row['Estatus'], 1,0,'C',1);
-        $pdf->Cell(30,8, $row['Periodo'], 1,0,'C',1);
+        $pdf->Cell(25,8, $row['Nuevo_Ingreso'], 1,0,'C',1);
+        $pdf->Cell(25,8, $row['Reingreso'], 1,0,'C',1);
+        $pdf->Cell(25,8, $row['Estatus'], 1,0,'C',1);
+        $pdf->Cell(45,8, $row['Periodo'], 1,0,'C',1);
     }
     
     $pdf->Output();

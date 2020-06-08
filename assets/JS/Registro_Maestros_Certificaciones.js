@@ -165,9 +165,11 @@ $(document).on('change','.anio', function(){
     if (valor != "Todos los registros") {
         buscar_datos_anio(valor);
 
+        console.log(valor);
+
     }
     else{
-        buscar_datos_anio();
+        buscar_datos_anio('Todos los registros');
         $('#caja_busqueda').val('');
         buscar_datos("");
     }

@@ -1,4 +1,3 @@
-
 function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,periodo,total) {
 
     cadena = "carrera=" + carrera +
@@ -172,9 +171,10 @@ $(document).on('change','.anio', function(){
     var valor = $(this).val();
     if (valor != "Todos los registros") {
         buscar_datos_anio(valor);
-
+        console.log(valor);
+        
     } else {
-        buscar_datos_anio();
+        buscar_datos_anio('Todos los registros');
         $('#caja_busqueda').val('');
         buscar_datos("");
     }
