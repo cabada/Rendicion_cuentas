@@ -138,7 +138,7 @@ if($resultado == $tablaRequerida){
             if ($resultado->num_rows>0){
 
         
-                $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2 id="tabla-php">
+                $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla-php">
                 <tr>
                     <td class="text-center align-middle background-table">Nombre de preparatoria</td>
                     <td class="text-center align-middle background-table">Fecha</td>
