@@ -50,10 +50,8 @@ $conexion = conexion();
 
                 <label>Status</label>
                 <select type="text" class="form-control-page input-group-sm" id="status_agregar">
-                    <option selected>Seleccione un Status...</option>
                     <option value="1">Activo</option>
-                    <option value="2">No Activo</option>
-
+                    <option value="2">Acreditada</option>
                 </select>
 
                 <label>Periodo</label>
@@ -115,8 +113,8 @@ $conexion = conexion();
 
                 <label>Estatus</label>
                 <select type="text" class="form-control-page input-group-sm" id="estatus_editar">
-                    <option selected>-</option>
-                    <option>Activo</option>
+                    <option value="1">Activo</option>
+                    <option value="2">Acreditada</option>
                 </select>
 
                 <label>Periodo</label>
@@ -161,8 +159,8 @@ $conexion = conexion();
             periodo = $('#periodo_agregar').val();
             console.log(periodo);
             total = nuevo_ingreso + reingreso;
-            agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
-                periodo,total);
+
+            agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,periodo,total);
         });
 
         $('#btn_editar_curso_actual').click(function () {

@@ -61,42 +61,67 @@ public function Footer()
     $pdf->SetLineWidth(1);
 
 
-          if (isset($_SESSION['consulta'])){
-              /*Se le pasa el valor de la variable global a $q*/
-              $q = $_SESSION['consulta'];
-              $sql="select 
+                 /*Verifica si la variable global fue definida*/
+                 if(isset($_SESSION['consulta'])) {
+                     /*Se le pasa el valor de la variable global a $q*/
+                     $q = $_SESSION['consulta'];  //query para buscador
+                     $sql = "select 
                             permanencia.ID_PERMANENCIA,
                             carreras.nombre_CARRERA,
                             permanencia.PORCENTAJE 
                             from carreras
                             right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA 
                             where carreras.NOMBRE_CARRERA LIKE '%$q%'";
-              /*Se destruye/quita el valor dentro de la variable global*/
-              unset($_SESSION['consulta']);
 
-          }
-/*Sino se cumple el if de arriba, se pasa a este.
-Verifica si la variable global fue definida*/
-          elseif (isset($_SESSION['consulta_anio'])){
-              $q=$_SESSION['consulta_anio'];
-              $sql="select 
+
+                     if (isset($_SESSION['consulta_anio'])) {
+                         /*Se le pasa el valor de la variable global a $q*/
+                         $p = $_SESSION['consulta_anio'];
+                         $sql = "select 
                             permanencia.ID_PERMANENCIA,
                             carreras.nombre_CARRERA,
                             permanencia.PORCENTAJE 
                             from carreras
                             right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA
-                            where permanencia.fecha_creado LIKE '%$q%'";
-              /*Se destruye/quita el valor dentro de la variable global*/
-              unset($_SESSION['consulta_anio']);
-          }
-            else {
-                $sql="select 
+                            where permanencia.fecha_creado LIKE '%$q%'
+                            and permanencia.fecha_creado LIKE '%$p%'";
+                     }
+
+                     /*Se destruye/quita el valor dentro de la variable global*/
+                     unset($_SESSION['consulta']);
+                     unset($_SESSION['consulta_anio']);
+                 }
+
+
+                   /*Sino se cumple el if de arriba, se pasa a este.
+                   Verifica si la variable global fue definida*/
+                  elseif (isset($_SESSION['consulta_anio'])) {
+                      /*Se le pasa el valor de la variable global a $q*/
+                      $q = $_SESSION['consulta_anio'];
+                      $sql = "select 
+                              permanencia.ID_PERMANENCIA,
+                              carreras.nombre_CARRERA,
+                              permanencia.PORCENTAJE 
+                              from carreras
+                              right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA
+                              where permanencia.fecha_creado LIKE '%$q%'";
+
+                      /*Se destruye/quita el valor dentro de la variable global*/
+                      unset($_SESSION['consulta_anio']);
+                  }
+
+                  else {
+
+                      $sql = "select 
                             permanencia.ID_PERMANENCIA,
                             carreras.nombre_CARRERA,
                             permanencia.PORCENTAJE 
                             from carreras
                             right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA";
-            }
+
+                      unset($_SESSION['consulta']);
+                      unset($_SESSION['consulta_anio']);
+                  }
 
 
     $query = mysqli_query($conexion,$sql);

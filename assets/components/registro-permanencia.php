@@ -122,6 +122,8 @@ if($resultado == $tablaRequerida){
                             permanencia.PORCENTAJE 
                             from carreras
                             right join permanencia on carreras.ID_CARRERA = permanencia.ID_CARRERA";
+
+                    unset($_SESSION['consulta_anio']);
                 }
             }
 
