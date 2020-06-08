@@ -102,7 +102,7 @@
                             <td class="text-center align-middle background-table">Hombre</td>
                             <td class="text-center align-middle background-table">Total</td>
                             <td class="text-center align-middle background-table">Porcentaje</td>
-                            <td class="text-center align-middle background-table">Acciones</td>
+                            <td class="text-center align-middle background-table" style="min-width: 180px; width: 180px;">Acciones</td>
                         </tr>';
 
                     $result = mysqli_query($conexion, $sql);
