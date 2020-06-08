@@ -1,4 +1,3 @@
-
 function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,periodo,total) {
 
     cadena = "carrera=" + carrera +
