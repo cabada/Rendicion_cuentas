@@ -4,8 +4,8 @@ function conexion()
 {
     $servidor = "localhost";
     $usuario = "root";
-    $bd = "rendicion_cuentas_temporal";
-    $password = "mysql";
+    $bd = "rendicion_cuentas";
+    $password = "";
 
     $conexion = mysqli_connect($servidor, $usuario, $password, $bd);
 
