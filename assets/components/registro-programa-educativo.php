@@ -41,7 +41,7 @@
                                     <option disabled selected hidden>Buscar por año</option>
                                     <option>Todos los registros</option>
                                     <?php
-                                        $query = "SELECT DISTINCT year(fecha_creado) AS fecha_creado FROM carreras ORDER BY fecha_creado DESC";
+                                        $query = "SELECT DISTINCT year(fecha_creado) AS fecha_creado FROM programa_educativo ORDER BY fecha_creado DESC";
                                         $resultado = mysqli_query($conexion, $query);
 
                                         while ($fila = mysqli_fetch_array($resultado)) {
