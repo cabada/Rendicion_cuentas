@@ -71,7 +71,7 @@
                 programa_educativo.reingreso,
                 programa_educativo.estatus,
                 programa_educativo.periodo, 
-                carreras.fecha_creado 
+                programa_educativo.fecha_creado 
                 FROM carreras 
                 RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera";
 
@@ -87,10 +87,10 @@
                         programa_educativo.reingreso,
                         programa_educativo.estatus,
                         programa_educativo.periodo, 
-                        carreras.fecha_creado 
+                        programa_educativo.fecha_creado 
                         FROM carreras 
                         RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
-                        WHERE carreras.fecha_creado LIKE '%$q%'";
+                        WHERE programa_educativo.fecha_creado LIKE '%$q%'";
 
                 } else {
                     unset($_SESSION['consulta_anio']);
@@ -102,7 +102,7 @@
                         programa_educativo.reingreso,
                         programa_educativo.estatus,
                         programa_educativo.periodo, 
-                        carreras.fecha_creado 
+                        programa_educativo.fecha_creado 
                         FROM carreras 
                         RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera";
                     
@@ -120,7 +120,7 @@
                     programa_educativo.reingreso,
                     programa_educativo.estatus,
                     programa_educativo.periodo, 
-                    carreras.fecha_creado 
+                    programa_educativo.fecha_creado 
                     FROM carreras 
                     RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
                     WHERE carreras.nombre_carrera LIKE '%$q%' OR programa_educativo.modalidad LIKE '%$q%' 
@@ -136,12 +136,12 @@
                     programa_educativo.reingreso,
                     programa_educativo.estatus,
                     programa_educativo.periodo, 
-                    carreras.fecha_creado 
+                    programa_educativo.fecha_creado 
                     FROM carreras 
                     RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
                     WHERE (carreras.nombre_carrera LIKE '%$q%' OR programa_educativo.modalidad LIKE '%$q%' 
                     OR programa_educativo.estatus LIKE '%$q%' OR programa_educativo.periodo LIKE '%$q%') 
-                    AND carreras.fecha_creado LIKE '%$p%'";
+                    AND programa_educativo.fecha_creado LIKE '%$p%'";
                 }
             }
 

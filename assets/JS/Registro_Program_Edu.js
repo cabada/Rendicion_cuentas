@@ -171,6 +171,7 @@ $(document).on('change','.anio', function(){
     var valor = $(this).val();
     if (valor != "Todos los registros") {
         buscar_datos_anio(valor);
+        console.log(valor);
         
     } else {
         buscar_datos_anio('Todos los registros');

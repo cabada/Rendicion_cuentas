@@ -78,7 +78,7 @@ public function Footer()
             programa_educativo.reingreso AS Reingreso,
             programa_educativo.estatus AS Estatus,
             programa_educativo.periodo AS Periodo, 
-            carreras.fecha_creado 
+            programa_educativo.fecha_creado 
             FROM carreras 
             RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
             WHERE carreras.nombre_carrera LIKE '%$q%' OR programa_educativo.modalidad LIKE '%$q%' 
@@ -94,12 +94,12 @@ public function Footer()
                 programa_educativo.reingreso AS Reingreso,
                 programa_educativo.estatus AS Estatus,
                 programa_educativo.periodo AS Periodo, 
-                carreras.fecha_creado 
+                programa_educativo.fecha_creado 
                 FROM carreras 
                 RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
                 WHERE (carreras.nombre_carrera LIKE '%$q%' OR programa_educativo.modalidad LIKE '%$q%' 
                 OR programa_educativo.estatus LIKE '%$q%' OR programa_educativo.periodo LIKE '%$q%') 
-                AND carreras.fecha_creado LIKE '%$p%'";
+                AND programa_educativo.fecha_creado LIKE '%$p%'";
         }
         // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
         unset($_SESSION['consulta']);
@@ -118,10 +118,10 @@ public function Footer()
             programa_educativo.reingreso AS Reingreso,
             programa_educativo.estatus AS Estatus,
             programa_educativo.periodo AS Periodo, 
-            carreras.fecha_creado 
+            programa_educativo.fecha_creado 
             FROM carreras 
             RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera 
-            WHERE carreras.fecha_creado LIKE '%$q%'";
+            WHERE programa_educativo.fecha_creado LIKE '%$q%'";
         // SE DESTRUYE/QUITA EL VALOR DENTRO DE LA VARIABLE GLOBAL
         unset($_SESSION['consulta_anio']);
     
@@ -138,7 +138,7 @@ public function Footer()
             programa_educativo.reingreso AS Reingreso,
             programa_educativo.estatus AS Estatus,
             programa_educativo.periodo AS Periodo, 
-            carreras.fecha_creado 
+            programa_educativo.fecha_creado 
             FROM carreras 
             RIGHT JOIN programa_educativo ON carreras.id_carrera = programa_educativo.id_carrera";
     }

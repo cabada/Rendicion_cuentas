@@ -142,11 +142,10 @@ $(document).on('change','.anio', function(){
     if (valor != "Todos los registros") {
         buscar_datos_anio(valor);
 
-        console.log(valor);
-
     }
     else{
         buscar_datos_anio('Todos los registros');
+        console.log("hOLA");
         $('#caja_busqueda').val('');
         buscar_datos("");
     }
