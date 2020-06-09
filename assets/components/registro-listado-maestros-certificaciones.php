@@ -120,6 +120,8 @@ if($resultado == $tablaRequerida){
 
                           $p =$_SESSION['consulta'];
 
+                          //Realiza la query con condiciones de que se esta buscando en la caja de busqueda y ademas en el select de anio
+
                             $sql="select profesores.id_profesor,
                             profesores.nombre_completo,
                             area_academica.nombre_area_academica,
