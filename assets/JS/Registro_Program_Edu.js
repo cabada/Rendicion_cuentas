@@ -31,13 +31,16 @@ function agregaForm(datos) {
 
     $('#id_programa_educativo').val(d[0]);
 
+
     $('option:selected', 'select[carrera_editar="options"]').removeAttr('selected');
     $('option:selected', 'select[modalidad_editar="options"]').removeAttr('selected');
     $('option:selected', 'select[estatus_editar="options"]').removeAttr('selected');
     $('option:selected', 'select[periodo_editar="options"]').removeAttr('selected');
 
-    $("#carrera_editar option:contains('"+d[1]+"')").attr('selected', true);
-    $("#modalidad_editar option:contains('"+d[2]+"')").attr('selected', true);
+
+    $("#carrera_editar option:contains("+d[1]+")").attr('selected', 'selected');
+    console.log(d[1]);
+    $("#modalidad_editar option:contains("+d[2]+")").attr('selected', true);
     $('#ingreso_editar').val(d[3]);
     $('#reingreso_editar').val(d[4]);
     $("#estatus_editar option:contains('"+d[5]+"')").attr('selected', true);

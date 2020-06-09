@@ -112,7 +112,15 @@ if($resultado == $tablaRequerida){
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 1 and profesores.fecha_creado like '%$q%'";
 
-                      if(isset($_SESSION['consulta'])){
+                        //Verifica si hay algo dentro de la caja de busqueda para buscar por el texto y por el anio
+                        //Nueva implementacion
+
+                     if(isset($_SESSION['consulta'])){
+                          echo "estoy dentro";
+
+                          $p =$_SESSION['consulta'];
+
+                          //Realiza la query con condiciones de que se esta buscando en la caja de busqueda y ademas en el select de anio
 
                             $sql="select profesores.id_profesor,
                             profesores.nombre_completo,
@@ -122,7 +130,7 @@ if($resultado == $tablaRequerida){
                             join area_academica
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 1 and profesores.fecha_creado like '%$q%'
-                            and (profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')";
+                            and (profesores.nombre_completo like '%$p%' or area_academica.nombre_area_academica like '%$p%')";
 
                         }
 
@@ -153,10 +161,14 @@ if($resultado == $tablaRequerida){
 
                 /*Verifica que se haya definido $_Post['consulta]*/
                 if(isset($_POST['consulta'])){
+
+
                     $q = $conexion->real_escape_string($_POST['consulta']);
+
 
                     /*Variable global*/
                     $_SESSION['consulta']=$q;
+                    var_dump($_SESSION['consulta']);
                     $sql="select profesores.id_profesor,
                             profesores.nombre_completo,
                             area_academica.nombre_area_academica,
