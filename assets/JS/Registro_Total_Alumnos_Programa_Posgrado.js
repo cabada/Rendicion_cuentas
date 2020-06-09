@@ -145,7 +145,6 @@ $(document).on('change','.anio', function(){
     }
     else{
         buscar_datos_anio('Todos los registros');
-        console.log("hOLA");
         $('#caja_busqueda').val('');
         buscar_datos("");
     }
