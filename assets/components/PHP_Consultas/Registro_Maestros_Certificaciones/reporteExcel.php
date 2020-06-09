@@ -37,7 +37,8 @@
                             where profesores.id_categoria_profesores = 1
                             and (profesores.nombre_completo like '%$q%' or area_academica.nombre_area_academica like '%$q%')";
 
-
+            //Nuevo
+            //Verifica si la variable global consulta anio esta iniciada para filtrar por ambas busquedas
             if(isset($_SESSION['consulta_anio'])){
 
                 $p = $_SESSION['consulta_anio'];
