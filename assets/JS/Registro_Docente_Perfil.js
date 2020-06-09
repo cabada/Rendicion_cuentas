@@ -32,6 +32,8 @@ function agregaform(datos) {
     $('#id_profesor').val(d[0]);
     $('#nombre_editar').val(d[1]);
     $("#area_academica_editar option:contains('"+d[2]+"')").attr('selected', true);
+
+    console.log(d[2]);
     $('#vigencia_editar').val(d[3]);
 
 
