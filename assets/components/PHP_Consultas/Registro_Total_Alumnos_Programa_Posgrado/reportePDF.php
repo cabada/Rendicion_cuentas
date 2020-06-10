@@ -48,9 +48,10 @@ public function Footer()
     $pdf->SetFont('Arial','B',11);
     $pdf->SetX(20);//posicion en X
     $pdf->Cell(40,9,'ID', 0,0,'C',0);
-    $pdf->Cell(95,9,'Nombre carrera', 0,0,'C',0);
+    $pdf->Cell(95,9,'Nombre de programa', 0,0,'C',0);
+    $pdf->Cell(30,9,'Cantidad', 0,0,'C',0);
     $pdf->Cell(30,9,'Porcentaje', 0,0,'C',0);
-    $pdf->Cell(90,9,'Registrado en',0,1,'C',0);
+    $pdf->Cell(60,9,'Registrado en',0,1,'C',0);
     $pdf->SetDrawColor(255, 0, 0);//pinta lo que se quiere (linea)
     $pdf->SetLineWidth(1);//grosor de la linea
     $pdf->Line(20,50,275,50); //linea y posicion
@@ -86,10 +87,9 @@ if (isset($_SESSION['consulta_anio'])) {
                     from total_alumnos_programa_posgrado
                     join carreras
                     on carreras.id_carrera = total_alumnos_programa_posgrado.id_carrera 
-                    where total_alumnos_programa_posgrado.fecha_creado LIKE '%$q%'
+                    where carreras.nombre_carrera LIKE '%$q%'
                     and total_alumnos_programa_posgrado.fecha_creado LIKE '%$p%'";
 }
-
                 /*Se destruye/quita el valor dentro de la variable global*/
     unset($_SESSION['consulta']);
     unset($_SESSION['consulta_anio']);
@@ -136,7 +136,8 @@ else{
         $pdf->Cell(40,8, $row[('ID_TOTAL_PROG_POSGRADO')], 1,0,'C',1);
         $pdf->Cell(95,8, $row[('nombre_carrera')], 1,0,'C',1);
         $pdf->Cell(30,8, $row[('CANTIDAD')], 1,0,'C',1);
-        $pdf->Cell(90,8, $row[('REGISTRADO_EN')], 1,1,'C',1);
+        $pdf->Cell(30,8, $row[('CANTIDAD')], 1,0,'C',1);
+        $pdf->Cell(60,8, $row[('REGISTRADO_EN')], 1,1,'C',1);
     }
     
     $pdf->Output();

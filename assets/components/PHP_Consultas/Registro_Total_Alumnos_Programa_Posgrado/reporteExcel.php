@@ -14,6 +14,7 @@
                   <h4>Reporte de Registro Total de Alumnos por Programa de Posgrado</h4>
                   <th class="text-center align-middle background-table">Nombre de programa</th>
                   <th class="text-center align-middle background-table">Cantidad</th>
+                  <th class="text-center align-middle background-table">Porcentaje</th>
                   <th class="text-center align-middle background-table">Registrado en</th>
               </tr>
 
@@ -91,11 +92,19 @@
                       $ver[2]."||".
                       $ver[3];
 
+                  $sql1 ="select sum(cantidad) as cantidad from
+                            total_alumnos_programa_posgrado";
+                  $result1 = mysqli_query($conexion,$sql1);
+                  $ver1 = mysqli_fetch_row($result1);
+                  $porcentaje = ($ver[2]*100)/$ver1[0];
+                  $porcentaje = round($porcentaje);
+
                   ?>
 
               <tr>
                   <td><?php echo($ver[1])?></td>
                   <td><?php echo($ver[2])?></td>
+                  <td><?php echo $porcentaje ?></td>
                   <td><?php echo($ver[3])?></td>
               </tr>
          <?php
