@@ -106,6 +106,22 @@ if($resultado == $tablaRequerida) {
                                 where profesores.id_categoria_profesores = 2
                                 and profesores.fecha_creado like '%$q%'";
 
+                                if(isset($_SESSION['consulta'])){
+
+                                    $p = $_SESSION['consulta'];
+                                    $sql="select profesores.id_profesor,
+                                    profesores.nombre_completo,
+                                    area_academica.nombre_area_academica,
+                                    profesores.vigencia
+                                    from profesores
+                                    join area_academica
+                                    on area_academica.id_area_academica = profesores.id_area_academica
+                                    where profesores.id_categoria_profesores = 2
+                                    and profesores.fecha_creado like '%$q%'
+                                    and (profesores.nombre_completo like '%$p%' or area_academica.nombre_area_academica like '%$p%') ";
+
+                                }
+
 
 
                             }
@@ -120,8 +136,9 @@ if($resultado == $tablaRequerida) {
                             join area_academica
                             on area_academica.id_area_academica = profesores.id_area_academica
                             where profesores.id_categoria_profesores = 2";
-                                unset($_SESSION['consulta_anio']);
 
+                                unset($_SESSION['consulta_anio']);
+                                unset($_SESSION['consulta']);
                             }
 
 
