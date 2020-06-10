@@ -114,7 +114,7 @@ function eliminarDatos(id_profesor) {
 $(buscar_datos());
 function buscar_datos(consulta){
     $.ajax({
-        url:'assets/components/registro-listado-maestros-certificaciones.php',
+        url:'assets/components/registro-docentes-reconocimiento-perfil-deseable.php',
         type: 'POST' ,
         dataType: 'html',
         data: {consulta: consulta},
@@ -162,7 +162,7 @@ $(document).on('keyup','#caja_busqueda', function(){
 $(buscar_datos());
 function buscar_datos_anio(consulta_anio){
     $.ajax({
-        url:'assets/components/registro-listado-maestros-certificaciones.php',
+        url:'assets/components/registro-docentes-reconocimiento-perfil-deseable.php',
         type: 'POST' ,
         dataType: 'html',
         data: {consulta_anio: consulta_anio},
