@@ -25,11 +25,42 @@ if($resultado == $tablaRequerida){
 <div class="row">
     <div class="col-sm-12">
         <h2>Registro de tutorias</h2>
-        <caption>
-            <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
-        </caption>
+
+        <!--Botones Excel y PDF -->
+        <div class="row mt-2">
+            <div class="col-12">
+                <form id="reporte" name="reporte" method="POST" target="_blank">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col">
+                                <input class="btn btn-danger text-white" type="button" target="_blank" value="Exportar PDF"
+                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Tutorias/reportePDF.php';
+                                document.reporte.submit()" />
+
+                                <input class="btn btn-success text-white" type="button" value="Exportar Excel"
+                                       onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Tutorias/reporteExcel.php';
+                                document.reporte.submit()" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="table-responsive-xl">
-            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="TablaDinamicaLoad">
+            <?php
+            $salida="";
+            $sql="select id_tutorias,tutores_registrados, alumnos_tuto_grupal,encuentro_padres,conferencias_alumnos,
+                alumnos_asistieron_conferencias from tutorias";
+
+            if(isset($_POST['cunsulta'])){
+                $q = $conexion->real_escape_string($_POST['consulta']);
+                $sql="select id_tutorias,tutores_registrados, alumnos_tuto_grupal,encuentro_padres,conferencias_alumnos,
+                alumnos_asistieron_conferencias from tutorias where ";
+
+            }
+            ?>
+            <table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2">
                 <thead>
                     <tr>
                         <td class="text-center align-middle background-table">Tutores registrados</td>

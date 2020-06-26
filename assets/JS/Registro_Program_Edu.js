@@ -1,5 +1,5 @@
-function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
-                      periodo,total) {
+function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,periodo,total) {
+
     cadena = "carrera=" + carrera +
         "&modalidad=" + modalidad +
         "&nuevo_ingreso=" + nuevo_ingreso +
@@ -15,17 +15,13 @@ function agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,
         success:function(r) {
             if(r==1){
                 $('#registro-programa-educativo').load('assets/components/registro-programa-educativo.php');
-
                 alertify.success("Agregado con exito: ");
             }
             else{
                 alertify.error("No tiene los privilegios suficientes...");
             }
-
         }
-
     });
-
 }
 
 function agregaForm(datos) {
@@ -35,13 +31,16 @@ function agregaForm(datos) {
 
     $('#id_programa_educativo').val(d[0]);
 
+
     $('option:selected', 'select[carrera_editar="options"]').removeAttr('selected');
     $('option:selected', 'select[modalidad_editar="options"]').removeAttr('selected');
     $('option:selected', 'select[estatus_editar="options"]').removeAttr('selected');
     $('option:selected', 'select[periodo_editar="options"]').removeAttr('selected');
 
-    $("#carrera_editar option:contains('"+d[1]+"')").attr('selected', true);
-    $("#modalidad_editar option:contains('"+d[2]+"')").attr('selected', true);
+
+    $("#carrera_editar option:contains("+d[1]+")").attr('selected', 'selected');
+    console.log(d[1]);
+    $("#modalidad_editar option:contains("+d[2]+")").attr('selected', true);
     $('#ingreso_editar').val(d[3]);
     $('#reingreso_editar').val(d[4]);
     $("#estatus_editar option:contains('"+d[5]+"')").attr('selected', true);
@@ -127,28 +126,59 @@ function eliminardatos(id_programa_educativo) {
     });
 }
 
-// FUNCION PARA BUSCAR DATOS DE TABLA PROGRAMA EDUCATIVO
+// FUNCION PARA BUSCAR DATOS DE TABLA LISTADO DE MAESTROS CON CERTIFICACIONES
+//BUSCAR CON BUSCADOR DE TEXTO
 $(buscar_datos());
 function buscar_datos(consulta){
-	$.ajax({
-		url:'assets/components/registro-programa-educativo.php',
-		type: 'POST' ,
-		dataType: 'html',
-		data: {consulta: consulta},
-	})
-	.done(function(respuesta){
-		$("#registro-programa-educativo").html(respuesta);
-	})
-	.fail(function(){
-		console.log("error");
-	});
+    $.ajax({
+        url:'assets/components/registro-programa-educativo.php',
+        type: 'POST' ,
+        dataType: 'html',
+        data: {consulta: consulta},
+    })
+        .done(function(respuesta){
+            $("#tabla-php").html($(respuesta).find('#tabla-php'));
+        })
+        .fail(function(){
+            console.log("error");
+        });
 }
 
 $(document).on('keyup','#caja_busqueda', function(){
-	var valor = $(this).val();
-	if (valor != "") {
-		buscar_datos(valor);
-	}else{
-		buscar_datos();
-	}
+    var valor = $(this).val();
+    if (valor != "") {
+        buscar_datos(valor);
+    }else{
+        buscar_datos();
+    }
+});
+
+//BUSCADOR CON FECHA
+$(buscar_datos());
+function buscar_datos_anio(consulta_anio){
+    $.ajax({
+        url:'assets/components/registro-programa-educativo.php',
+        type: 'POST' ,
+        dataType: 'html',
+        data: {consulta_anio: consulta_anio},
+    })
+        .done(function(respuesta){
+            $("#tabla-php").html($(respuesta).find('#tabla-php'));
+        })
+        .fail(function(){
+            console.log("error");
+        });
+}
+
+$(document).on('change','.anio', function(){
+    var valor = $(this).val();
+    if (valor != "Todos los registros") {
+        buscar_datos_anio(valor);
+        console.log(valor);
+        
+    } else {
+        buscar_datos_anio('Todos los registros');
+        $('#caja_busqueda').val('');
+        buscar_datos("");
+    }
 });

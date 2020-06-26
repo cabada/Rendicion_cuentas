@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/plain; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/libraries/css/all.css">
@@ -33,6 +34,21 @@
     <main>
         <!-- PAGE TABLE -->
         <div class="container-fluid">
+            <h2>Registro listado de maestros con certificaciones</h2>
+            <div class="row">
+                <div class="col-12 col-lg-7">
+                    <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
+                </div>
+                <div class="col-12 col-lg-5">
+                    <div class="input-group">
+                        <input type="text" name="caja_busqueda" id="caja_busqueda" class="form-control" placeholder="Buscar por nombre o area academica">
+                        <div class="input-group-append">
+                            <button class="btn btn-main"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="registro-listado-maestros-certificaciones"></div>
         </div>
 

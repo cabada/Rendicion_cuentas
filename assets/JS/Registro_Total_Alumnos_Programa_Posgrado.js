@@ -91,4 +91,82 @@ function eliminarDatos(id_total_prog_posgrado) {
     });
 }
 
+// FUNCION PARA BUSCAR DATOS DE TABLA LISTADO DE MAESTROS CON CERTIFICACIONES
+//BUSCAR CON BUSCADOR DE TEXTO
+$(buscar_datos());
+function buscar_datos(consulta){
+    $.ajax({
+        url:'assets/components/registro-total-alumnos-programa-posgrado.php',
+        type: 'POST' ,
+        dataType: 'html',
+        data: {consulta: consulta},
+    })
+        .done(function(respuesta){
+            $("#tabla-php").html($(respuesta).find('#tabla-php'));
+        })
+        .fail(function(){
+            console.log("error");
+        });
+}
 
+$(document).on('keyup','#caja_busqueda', function(){
+    var valor = $(this).val();
+    console.log(valor);
+    if (valor != "") {
+        buscar_datos(valor);
+    }else {
+        //verifica que la variable global no este vacia
+        if (window.valor !== "") {
+
+            //valorAnio es igual al valor de la variable global
+            valorAnio = window.valor;
+
+            console.log(valorAnio);
+            buscar_datos_anio(valorAnio);
+
+        } else {
+
+            buscar_datos();
+
+        }
+    }
+});
+
+//BUSCADOR CON FECHA
+$(buscar_datos());
+function buscar_datos_anio(consulta_anio){
+    $.ajax({
+        url:'assets/components/registro-total-alumnos-programa-posgrado.php',
+        type: 'POST' ,
+        dataType: 'html',
+        data: {consulta_anio: consulta_anio},
+    })
+        .done(function(respuesta){
+            $("#tabla-php").html($(respuesta).find('#tabla-php'));
+        })
+        .fail(function(){
+            console.log("error");
+        });
+}
+
+$(document).on('change','.anio', function(){
+
+
+    var valor = $(this).val();
+    if (valor != "Todos los registros") {
+
+        //variable global
+        window.valor = valor;
+
+        buscar_datos_anio(valor);
+        console.log(valor);
+
+    }
+    else{
+        //variable global
+        window.valor="";
+        buscar_datos_anio('Todos los registros');
+        $('#caja_busqueda').val('');
+        buscar_datos("");
+    }
+});

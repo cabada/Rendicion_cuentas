@@ -17,7 +17,6 @@
     <script src="assets/libraries/js/alertify.js"></script>
     <script src="assets/JS/Registro_Evaluacion_Docente.js"></script>
 
-
     <!-- FAVICON AND TITLE IN BROWSER  -->
     <link rel="shortcut icon" href="assets/images/icons/favicon.png">
     <title>ITCJ | Registro de Evaluación Docente</title>
@@ -34,6 +33,21 @@
     <main>
         <!-- PAGE TABLE -->
         <div class="container-fluid">
+            <h2>Registro de evaluación docente</h2>
+            <div class="row">
+                <div class="col-12 col-lg-7">
+                    <button class="btn btn-main" data-toggle="modal" data-target="#new-modal">Agregar registro  <i class="fas fa-plus"></i></button>
+                </div>
+                <div class="col-12 col-lg-5">
+                    <div class="input-group">
+                        <input type="text" name="caja_busqueda" id="caja_busqueda" class="form-control" placeholder="Buscar por periodo, docentes activos o porcentaje">
+                        <div class="input-group-append">
+                            <button class="btn btn-main"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="registro-evaluacion-docente"></div>
         </div>
 
@@ -104,7 +118,6 @@
 				</div>
 			</div>
 		</div>
-
     </main>
     
     <!-- FOOTER -->
@@ -141,23 +154,17 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#btn_agregar_eva_doc').click(function () {
-
             periodo = $('#periodo_agregar').val();
             console.log(periodo);
             docentes_evaluados =  parseInt($('#docentes_activos_evaluados_agregar').val());
             console.log(docentes_evaluados);
             porcentaje = $('#porcentaje_agregar').val();
             console.log(porcentaje);
-
-
             agregarDatos(periodo,docentes_evaluados,porcentaje);
-
         });
 
         $('#btn_editar_eva_doc').click(function () {
             actualizarDatos();
         });
-
     });
-
 </script>
