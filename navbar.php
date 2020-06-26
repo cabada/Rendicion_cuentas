@@ -9,13 +9,6 @@ $id_usuario = $_SESSION["id_usuario"];
 $stmt = consultaRol($conn,$id_usuario);
 $stmt->execute();
 
-if((isset($_SESSION['consulta']))or (isset($_SESSION['consulta_anio']))){
-
-    unset($_SESSION['consulta_anio']);
-    unset($_SESSION['consulta']);
-
-}
-
 $stmt->bind_result($resultado);
 
 while($stmt->fetch()){
@@ -70,6 +63,7 @@ while($stmt->fetch()){
                            <a class="dropdown-item" href="registro-estudiantes-capacidades-diferentes.html">Estudiantes con capacidades diferentes</a>
                            <a class="dropdown-item" href="registro-permanencia.html">Porcentaje de permanencia</a>
                            <a class="dropdown-item" href="registro-coordinacion-educativa-y-tutorias.html">Actividades de coordinación de orientación educativa</a>
+                           <a class="dropdown-item" href="registro-tutorias.html">Tutorías</a>
                            <a class="dropdown-item" href="registro-orientatec.html">OrientaTec</a>
                            <a class="dropdown-item" href="registro-programa-delfin.html">Lineas de investigación del verano delfín</a>
                            <a class="dropdown-item" href="registro-cuerpos-academicos.html">Cuerpos académicos nivel licenciatura</a>
@@ -83,19 +77,14 @@ while($stmt->fetch()){
                        </div>
                    </li>
                    <li class="nav-item dropdown">
-                       <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="desplegable">Operaciones Administrativas</a>
-                       <div class="dropdown-menu">
-                           <a href="usuarios.html" class="dropdown-item" >Usuarios</a>
-                           <a href="roles.html" class="dropdown-item">Roles y Permisos</a>
-                           <a href="bitacora.html" class="dropdown-item">Bitacora de Transacciones de Registros</a>
-
-
-                       </div>
-
+                       <a href="usuarios.html" class="nav-link" >Usuarios<span class="sr-only">(current)</span></a>
                    </li>
-                  <!-- <li class="nav-item dropdown">
+                   <li class="nav-item dropdown">
+                       <a href="roles.html" class="nav-link">Roles y Permisos<span class="sr-only">(current)</span></a>
+                   </li>
+                   <li class="nav-item dropdown">
                        <a href="registro-informes-pdf.html" class="nav-link">Informes de Rendicion de Cuentas<span class="sr-only">(current)</span></a>
-                   </li>-->
+                   </li>
 
                </ul>
            </div>
@@ -159,6 +148,7 @@ while($stmt->fetch()){
                            <a class="dropdown-item" href="registro-estudiantes-capacidades-diferentes.html">Estudiantes con capacidades diferentes</a>
                            <a class="dropdown-item" href="registro-permanencia.html">Porcentaje de permanencia</a>
                            <a class="dropdown-item" href="registro-coordinacion-educativa-y-tutorias.html">Actividades de coordinación de orientación educativa</a>
+                           <a class="dropdown-item" href="registro-tutorias.html">Tutorías</a>
                            <a class="dropdown-item" href="registro-orientatec.html">OrientaTec</a>
                            <a class="dropdown-item" href="registro-programa-delfin.html">Lineas de investigación del verano delfín</a>
                            <a class="dropdown-item" href="registro-cuerpos-academicos.html">Cuerpos académicos nivel licenciatura</a>
