@@ -37,7 +37,7 @@ $conexion = conexion();
                 </select>
 
                 <label>Vigencia</label>
-                <input type="text" id="vigencia_agregar" class="form-control-page input-group-sm">
+                <input type="number" min="0"id="vigencia_agregar" class="form-control-page input-group-sm">
 
 
             </div>
@@ -85,7 +85,7 @@ $conexion = conexion();
                 </select>
 
                 <label>Vigencia</label>
-                <input type="text" id="vigencia_editar" class="form-control-page input-group-sm">
+                <input type="number" id="vigencia_editar" class="form-control-page input-group-sm">
                  </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -97,6 +97,11 @@ $conexion = conexion();
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var regex =  /[^A-Za-z]/g ;
+
+        var regexNum = /[^0-9]/g ;
+
         $('#btn_agregar_profesor').click(function () {
 
 
@@ -113,15 +118,42 @@ $conexion = conexion();
 
             area_academica = parseInt( $('#area_academica_agregar').val());
             console.log(area_academica);
-            vigencia = $('#vigencia_agregar').val()
+            vigencia = $('#vigencia_agregar').val();
+
+            if (nombre_completo==="" || regex.test(nombre_completo)){
+                alertify.alert("Error","¡El campo de nombre completo es invalido!")
+                return false;
+            } else if (vigencia==="" ||  regexNum.test(vigencia)){
+                alertify.alert("Error","¡El campo de vigencia es invalido!")
+                return false;
+            } else {
+
+                agregarDatos(nombre_completo,area_academica,
+                    vigencia);
+            }
 
 
-            agregarDatos(nombre_completo,area_academica,
-                vigencia);
+
         });
 
         $('#btn_editar_profesor').click(function () {
-            actualizaDatos();
+
+            nombre_completo = $('#nombre_editar').val();
+
+            vigencia = $('#vigencia_editar').val();
+
+            if (nombre_completo==="" || regex.test(nombre_completo)){
+                alertify.alert("Error","¡El campo de nombre completo es invalido!")
+                return false;
+            } else if (vigencia==="" ||  regexNum.test(vigencia)){
+                alertify.alert("Error","¡El campo de vigencia es invalido!")
+                return false;
+            } else {
+
+                actualizaDatos();
+            }
+
+
         });
 
     });
