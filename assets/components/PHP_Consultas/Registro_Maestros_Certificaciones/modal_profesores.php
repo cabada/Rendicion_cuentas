@@ -97,6 +97,9 @@ $conexion = conexion();
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var regex =  /[^A-Za-z]/g ;
+
         $('#btn_agregar_profesor').click(function () {
 
 
@@ -116,7 +119,7 @@ $conexion = conexion();
             disciplina = $('#disciplina_agregar').val();
             console.log(disciplina);
 
-            var regex =  /[^A-Za-z]/g ;
+
             //console.log(regex.test(nombre_completo));
 
 
@@ -136,7 +139,23 @@ $conexion = conexion();
         });
 
         $('#btn_editar_profesor').click(function () {
-            actualizaDatos();
+
+            nombre_completo = $('#nombre_editar').val();
+            disciplina = $('#disciplina_editar').val();
+
+            if (nombre_completo==="" || regex.test(nombre_completo)){
+                alertify.alert("Error","¡El campo de nombre completo es invalido!")
+                return false;
+            } else if (disciplina==="" ||  regex.test(disciplina)){
+                alertify.alert("Error","¡El campo de disciplina es invalido!")
+                return false;
+            } else {
+
+                actualizaDatos();
+            }
+
+
+
         });
 
     });
