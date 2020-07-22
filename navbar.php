@@ -194,6 +194,7 @@ while($stmt->fetch()){
 
 <script>
     $(document).ready(function () {
+        window.valor = "";
         $('#btn_cerrar_sesion').click(function () {
 
             $.ajax({

@@ -79,46 +79,12 @@ if($resultado == $tablaRequerida){
                 $sql="select id_equipo_maestros_itcj,nombre_docente,categoria_hora,grado_estudios,sni,area_especializacion,
                 experiencia_profesional,experiencia_docente from equipo_maestros_itcj";
 
-                if(isset($_POST['consulta'])){
-
-                    $q = $conexion->real_escape_string($_POST['consulta']);
-                    $_SESSION['consulta'] = $q;
-                    $sql = "select id_equipo_maestros_itcj,
-                                    nombre_docente,
-                                    categoria_hora,
-                                    grado_estudios,
-                                    sni,area_especializacion,
-                                    experiencia_profesional,
-                                    experiencia_docente 
-                                    from equipo_maestros_itcj
-                                    where nombre_docente like '%$q%' or grado_estudios like '%$q%'";
-
-                    if(isset($_SESSION['consulta_anio'])){
-
-                        $p = $_SESSION['consulta_anio'];
-
-                        $sql = "select id_equipo_maestros_itcj,
-                                    nombre_docente,
-                                    categoria_hora,
-                                    grado_estudios,
-                                    sni,area_especializacion,
-                                    experiencia_profesional,
-                                    experiencia_docente 
-                                    from equipo_maestros_itcj
-                                    where (nombre_docente like '%$q%' or grado_estudios like '%$q%')
-                                    and fecha_creado like '%$p%'";
-
-
-                    }
-
-                }
-
-
-
                 if(isset($_POST['consulta_anio'])){
-                    $q = $conexion->real_escape_string($_POST['consulta_anio']);
+
 
                     if($_POST['consulta_anio']!='Todos los registros'){
+
+                        $q = $conexion->real_escape_string($_POST['consulta_anio']);
 
                         $_SESSION['consulta_anio'] = $q;
 
@@ -131,6 +97,25 @@ if($resultado == $tablaRequerida){
                                     experiencia_docente 
                                     from equipo_maestros_itcj
                                     where fecha_creado like '%$q%'";
+
+
+                        if(isset($_SESSION['consulta'])){
+                            echo "Estoy dentro de consulta";
+
+
+                            $p = $_SESSION['consulta'];
+                            $sql = "select id_equipo_maestros_itcj,
+                                    nombre_docente,
+                                    categoria_hora,
+                                    grado_estudios,
+                                    sni,area_especializacion,
+                                    experiencia_profesional,
+                                    experiencia_docente 
+                                    from equipo_maestros_itcj
+                                    where fecha_creado like '%$q%'
+                                    and (nombre_docente like '%$p%' or grado_estudios like '%$p%')";
+
+                        }
 
 
 
@@ -147,11 +132,57 @@ if($resultado == $tablaRequerida){
                                     from equipo_maestros_itcj";
 
                         unset($_SESSION['consulta_anio']);
+                        unset($_SESSION['consulta']);
 
                     }
 
 
                 }
+
+                if(isset($_POST['consulta'])){
+
+                    if($_POST['consulta']!=""){
+                        $q = $conexion->real_escape_string($_POST['consulta']);
+                        $_SESSION['consulta'] = $q;
+                        $sql = "select id_equipo_maestros_itcj,
+                                    nombre_docente,
+                                    categoria_hora,
+                                    grado_estudios,
+                                    sni,area_especializacion,
+                                    experiencia_profesional,
+                                    experiencia_docente 
+                                    from equipo_maestros_itcj
+                                    where nombre_docente like '%$q%' or grado_estudios like '%$q%'";
+
+                        if(isset($_SESSION['consulta_anio'])){
+
+                            $p = $_SESSION['consulta_anio'];
+
+                            $sql = "select id_equipo_maestros_itcj,
+                                    nombre_docente,
+                                    categoria_hora,
+                                    grado_estudios,
+                                    sni,area_especializacion,
+                                    experiencia_profesional,
+                                    experiencia_docente 
+                                    from equipo_maestros_itcj
+                                    where (nombre_docente like '%$q%' or grado_estudios like '%$q%')
+                                    and fecha_creado like '%$p%'";
+
+
+                        }
+
+
+
+                    }
+
+
+
+                }else{
+                    unset($_SESSION['consulta']);
+                }
+
+
 
                 $resultado = $conexion->query($sql);
                 if($resultado->num_rows>0){

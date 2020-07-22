@@ -108,7 +108,10 @@ function buscar_datos(consulta){
         data: {consulta: consulta},
     })
         .done(function(respuesta){
-            $("#tabla-php").html($(respuesta).find('#tabla-php'));
+
+            //Se pone el ID de la tabla en los dos argumentos por ejemplo
+            // $("#ID_TABLA").html($(respuesta).find("#ID_TABLA"));
+            $("#tabla-php").html($(respuesta).find("#tabla-php"));
         })
         .fail(function(){
             console.log("error");
@@ -117,10 +120,30 @@ function buscar_datos(consulta){
 
 $(document).on('keyup','#caja_busqueda', function(){
     var valor = $(this).val();
+    console.log(valor);
     if (valor != "") {
         buscar_datos(valor);
     }else{
-        buscar_datos();
+
+        //verifica que la variable global no este vacia
+        if(window.valor!==""){
+
+            //valorAnio es igual al valor de la variable global
+            valorAnio = window.valor;
+
+            console.log(valorAnio);
+            buscar_datos_anio(valorAnio);
+            console.log("estoy dentro del if");
+
+        }
+        else{
+
+            buscar_datos();
+
+        }
+
+
+
     }
 });
 
@@ -134,7 +157,9 @@ function buscar_datos_anio(consulta_anio){
         data: {consulta_anio: consulta_anio},
     })
         .done(function(respuesta){
-            $("#tabla-php").html($(respuesta).find('#tabla-php'));
+            //Se pone el ID de la tabla en los dos argumentos por ejemplo
+            // $("#ID_TABLA").html($(respuesta).find("#ID_TABLA"));
+            $("#tabla-php").html($(respuesta).find("#tabla-php"));
         })
         .fail(function(){
             console.log("error");
@@ -146,12 +171,18 @@ $(document).on('change','.anio', function(){
 
     var valor = $(this).val();
     if (valor != "Todos los registros") {
+
+        //variable global
+        window.valor = valor;
+
         buscar_datos_anio(valor);
+        console.log(valor);
 
     }
     else{
-        buscar_datos_anio();
+        //variable global
+        window.valor="";
+        buscar_datos_anio('Todos los registros');
         $('#caja_busqueda').val('');
-        buscar_datos("");
     }
 });
