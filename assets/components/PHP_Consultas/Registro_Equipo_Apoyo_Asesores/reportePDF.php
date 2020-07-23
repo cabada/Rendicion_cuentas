@@ -103,9 +103,8 @@ elseif (isset($_SESSION['consulta_anio'])) {
                         where fecha_creado like '%$q%'";
 
     unset($_SESSION['consulta_anio']);
-}
 
- else {
+} else {
 
     $sql = "select id_equipo_apoyo, nombre, puesto, grado_estudios, funciones_med_tecnm from equipo_apoyo_asesores_pda";
     unset($_SESSION['consulta']);
@@ -114,6 +113,7 @@ elseif (isset($_SESSION['consulta_anio'])) {
 
 
 $query = mysqli_query($conexion,$sql);
+
 while($row = $query -> fetch_assoc()){
         $pdf->SetX(20);//posicion en X
         $pdf->SetFillColor(248, 249, 249 ); //relleno de la tabla y su color

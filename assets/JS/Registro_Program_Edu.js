@@ -39,7 +39,7 @@ function agregaForm(datos) {
 
 
     $("#carrera_editar option:contains("+d[1]+")").attr('selected', 'selected');
-    console.log(d[1]);
+   // console.log(d[1]);
     $("#modalidad_editar option:contains("+d[2]+")").attr('selected', true);
     $('#ingreso_editar').val(d[3]);
     $('#reingreso_editar').val(d[4]);

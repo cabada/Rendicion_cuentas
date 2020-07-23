@@ -60,6 +60,7 @@ while($stmt->fetch()){
             </div>
         </div>
 
+        <div id="tabla">
     <div class="row">
         <div class="col-sm-12">
 
@@ -74,57 +75,74 @@ while($stmt->fetch()){
                       from carreras
                       right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA";
 
-            if (isset($_POST['consulta'])){
-                $q = $conexion->real_escape_string($_POST['consulta']);
-                $_SESSION['consulta'] = $q;
-                $sql="select
-                matriculas.ID_MATRICULA,
-                carreras.nombre_carrera,
-                matriculas.CANTIDAD_ALUMNOS
-                      from carreras
-                      right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
-                      where carreras.NOMBRE_CARRERA LIKE '%$q%'";
-
             if (isset($_POST['consulta_anio'])) {
-                /*variable goblal*/
-                $p = $_SESSION['consulta_anio'];
-                $sql="select
+
+                if ($_POST['consulta_anio'] != 'Todos los registros') {
+                    $q = $conexion->real_escape_string($_POST['consulta_anio']);
+                    $_SESSION['consulta'] = $q;
+                    $sql = "select
                 matriculas.ID_MATRICULA,
                 carreras.nombre_carrera,
                 matriculas.CANTIDAD_ALUMNOS
                       from carreras
                       right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
-                      where carreras.NOMBRE_CARRERA LIKE '%$q%'
-                      and matriculas.fecha_creado LIKE '%$p%'";
-                }
+                      where matriculas.fecha_creado LIKE '%$q%'";
 
-            }
-
-            /*Query para consultas del buscador*/
-            if(isset($_POST['consulta_anio'])){
-            $q = $conexion->real_escape_string($_POST['consulta_anio']);
-            /*Variable global*/
-            if($_POST['consulta_anio']!='Todos los registros'){
-                $_SESSION['consulta_anio']=$q;
-                $sql="select
+                    if (isset($_POST['consulta'])) {
+                        echo "estoy dentro";
+                        /*variable goblal*/
+                        $p = $_SESSION['consulta'];
+                        $sql = "select
                 matriculas.ID_MATRICULA,
                 carreras.nombre_carrera,
                 matriculas.CANTIDAD_ALUMNOS
                       from carreras
                       right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
-                      where matriculas.fecha_creado LIKE '%$p%'";
+                      where carreras.NOMBRE_CARRERA LIKE '%$p%'
+                      and matriculas.fecha_creado LIKE '%$q%'";
+                    }
 
-            } else{
-                $sql="select
+                } else {
+                    $sql = "select
                 matriculas.ID_MATRICULA,
                 carreras.nombre_carrera,
                 matriculas.CANTIDAD_ALUMNOS
                       from carreras
                       right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA";
 
-                unset($_SESSION['consulta_anio']);
+                    unset($_SESSION['consulta_anio']);
+                    unset($_SESSION['consulta']);
                 }
             }
+
+            /*Query para consultas del buscador*/
+            if(isset($_POST['consulta'])) {
+                $q = $conexion->real_escape_string($_POST['consulta']);
+
+                $_SESSION['consulta'] = $q;
+                var_dump($_SESSION['consulta']);
+                $sql = "select
+                        matriculas.ID_MATRICULA,
+                        carreras.nombre_carrera,
+                        matriculas.CANTIDAD_ALUMNOS
+                        from carreras
+                        right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA 
+                        where carreras.NOMBRE_CARRERA LIKE '%$q%'";
+
+                if (isset($_SESSION['consulta_anio'])) {
+                    $p = $_SESSION['consulta_anio'];
+                    $sql = "select
+                            matriculas.ID_MATRICULA,
+                            carreras.nombre_carrera,
+                            matriculas.CANTIDAD_ALUMNOS
+                            from carreras
+                            right join matriculas on carreras.ID_CARRERA = matriculas.ID_CARRERA
+                            where carreras.NOMBRE_CARRERA LIKE '%$q%'
+                            and matriculas.fecha_creado like '%$p%'";
+
+                }
+            }
+
 
             $resultado = $conexion->query($sql);
             if ($resultado->num_rows>0){

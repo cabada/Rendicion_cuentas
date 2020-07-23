@@ -34,29 +34,28 @@ $conexion = conexion();
 
                 <label>Modalidad</label>
                 <select type="text" class="form-control-page input-group-sm" id="modalidad_agregar">
-                    <option selected>Seleccione una modalidad...</option>
+                    <option selected>--</option>
                     <option value="1">Escolarizada</option>
                     <option value="2">Mixta</option>
-
-
                 </select>
 
                 <label>Nuevo ingreso</label>
-                <input type="number" value="0" id="ingreso_agregar" class="form-control-page input-group-sm">
+                <input type="number" min="0" id="ingreso_agregar" class="form-control-page input-group-sm">
 
 
                 <label>Reingreso</label>
-                <input type="number" value="0" id="reingreso_agregar" class="form-control-page input-group-sm">
+                <input type="number" min="0" id="reingreso_agregar" class="form-control-page input-group-sm">
 
                 <label>Status</label>
                 <select type="text" class="form-control-page input-group-sm" id="status_agregar">
+                    <option selected>--</option>
                     <option value="1">Activo</option>
                     <option value="2">Acreditada</option>
                 </select>
 
                 <label>Periodo</label>
                 <select type="text" class="form-control-page input-group-sm" id="periodo_agregar">
-                    <option selected>-</option>
+                    <option selected>--</option>
                     <option>Agosto - Diciembre</option>
                     <option>Enero - Junio</option>
                 </select>
@@ -100,26 +99,27 @@ $conexion = conexion();
 
                 <label>Modalidad</label>
                 <select type="text" id="modalidad_editar" class="form-control-page input-group-sm">
-                    <option selected>Seleccione una modalidad...</option>
+                    <option selected>--</option>
                     <option value="1">Escolarizada</option>
                     <option value="2">Mixta</option>
                 </select>
 
                 <label>Nuevo ingreso</label>
-                <input type="number" value="0" id="ingreso_editar" class="form-control-page input-group-sm">
+                <input type="number" min="0" id="ingreso_editar" class="form-control-page input-group-sm">
 
                 <label>Reingreso</label>
-                <input type="number" value="0" id="reingreso_editar" class="form-control-page input-group-sm">
+                <input type="number" min="0" id="reingreso_editar" class="form-control-page input-group-sm">
 
                 <label>Estatus</label>
                 <select type="text" class="form-control-page input-group-sm" id="estatus_editar">
+                    <option selected>--</option>
                     <option value="1">Activo</option>
                     <option value="2">Acreditada</option>
                 </select>
 
                 <label>Periodo</label>
                 <select type="text" class="form-control-page input-group-sm" id="periodo_editar">
-                    <option selected>-</option>
+                    <option selected>--</option>
                     <option>Agosto - Diciembre</option>
                     <option>Enero - Junio</option>
                 </select>
@@ -135,6 +135,10 @@ $conexion = conexion();
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var regex = /[^A-Za-z]/g;
+        var regexNum = /[^0-9]/g;
+
         $('#btn_agregar_curso_actual').click(function () {
 
             var modal_sel = document.getElementById("modalidad_agregar");
@@ -160,11 +164,64 @@ $conexion = conexion();
             console.log(periodo);
             total = nuevo_ingreso + reingreso;
 
-            agregarDatos(carrera,modalidad,nuevo_ingreso, reingreso,status,periodo,total);
+            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+            if (carrera===""){
+                alertify.alert("Error","¡Seleccione una carrera!");
+                return false;
+            } else if (modalidad===""){
+                alertify.alert("Error","¡Seleccione una modalidad!");
+                return false;
+            } else if (nuevo_ingreso==="" ||  regexNum.test(nuevo_ingreso)){
+                alertify.alert("Error","¡El valor ingresado en nuevo ingreso no es valido!");
+                return false;
+            } else if (reingreso==="" ||  regexNum.test(reingreso)){
+                alertify.alert("Error","¡El valor ingresado en reingreso no es valido!");
+                return false;
+            } else if (status===""){
+                alertify.alert("Error","¡Seleccione un estatus!");
+                return false;
+            } else if (periodo===""){
+                alertify.alert("Error","¡Seleccione un periodo!");
+                return false;
+            } else {
+                agregarDatos(carrera, modalidad, nuevo_ingreso, reingreso, status, periodo, total);
+
+            }
         });
 
         $('#btn_editar_curso_actual').click(function () {
-            actualizarDatos();
+            //AGREGANDO CAMPOS DE EDITAR PARA PODER ASIGNAR VALIDACIONES
+            carrera=$('#carrera_editar').val();
+            modalidad=$('#modalidad_editar').val();
+            nuevo_ingreso=$('#ingreso_editar').val();
+            reingreso=$('#reingreso_editar').val();
+            status=$('#estatus_editar').val();
+            periodo=$('#periodo_editar').val();
+
+
+            // VALIDACIONES PARA ACTUALIZAR NUEVO REGISTRO
+
+            if (carrera===""){
+                alertify.alert("Error","¡Seleccione una carrera!");
+                return false;
+            } else if (modalidad===""){
+                alertify.alert("Error","¡Seleccione una modalidad!");
+                return false;
+            } else if (nuevo_ingreso==="" ||  regexNum.test(nuevo_ingreso)){
+                alertify.alert("Error","¡El valor ingresado en nuevo ingreso no es valido!");
+                return false;
+            } else if (reingreso==="" ||  regexNum.test(reingreso)){
+                alertify.alert("Error","¡El valor ingresado en reingreso no es valido!");
+                return false;
+            } else if (status===""){
+                alertify.alert("Error","¡Seleccione un estatus!");
+                return false;
+            } else if (periodo===""){
+                alertify.alert("Error","¡Seleccione un periodo!");
+                return false;
+            } else {
+                actualizarDatos();
+            }
         });
     });
 </script>

@@ -126,9 +126,9 @@ public function Footer()
         $pdf->SetX(20);//posicion en X
         $pdf->SetFillColor(248, 249, 249 ); //relleno de la tabla y su color
 
-        $pdf->Cell(50,8, $row['ID_MATRICULA'], 1,0,'C',1);
-        $pdf->Cell(110,8, $row['nombre_carrera'], 1,0,'C',1);
-        $pdf->Cell(95,8, $row['CANTIDAD_ALUMNOS'], 1,1,'C',1);
+        $pdf->Cell(50,8, $row[utf8_decode('ID_MATRICULA')], 1,0,'C',1);
+        $pdf->Cell(110,8, $row[utf8_decode('nombre_carrera')], 1,0,'C',1);
+        $pdf->Cell(95,8, $row[utf8_decode('CANTIDAD_ALUMNOS')], 1,1,'C',1);
     }
     
     $pdf->Output();
