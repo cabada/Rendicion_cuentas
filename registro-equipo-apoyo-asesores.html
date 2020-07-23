@@ -166,11 +166,46 @@
             funciones= $('#funciones_tecnm_agregar').val();
             console.log(funciones);
 
-            agregarDatos(nombre,puesto,grado_estudios,funciones);
+            //VALIDACIONES PARA AGREGAR UN NUEVO REGISTRO
+            if(nombre === ""){
+                alertify.alert("Error","¡El Nombre esta vacío!");
+                return false;
+            } else if (puesto === ""){
+                alertify.alert("Error","¡El campo de Puesto esta vacío!");
+                return false;
+            } else if (grado_estudios === ""){
+                alertify.alert("Error","¡El campo de Grado de estudios esta vacío!");
+                return false;
+            } else if (funciones === "") {
+                alertify.alert("Error", "¡El campo de Funciones TECNM esta vacío!");
+                return false;
+            }else {
 
+                agregarDatos(nombre, puesto, grado_estudios, funciones);
+            }
         });
 
         $('#btn_editar_equipo_apoyo').click(function () {
+            nombre = $('#nombre_editar').val();
+            puesto =  $('#puesto_editar').val();
+            grado_estudios = $('#grado_estudios_editar').val();
+
+            funciones= $('#funciones_tecnm_editar').val();
+
+        //    VALIDACIONES PARA EDITAR UN REGISTRO
+            if(nombre === ""){
+                alertify.alert("Error","¡El Nombre esta vacío!");
+                return false;
+            } else if (puesto === ""){
+                alertify.alert("Error","¡El campo de Puesto esta vacío!");
+                return false;
+            } else if (grado_estudios === ""){
+                alertify.alert("Error","¡El campo de Grado de estudios esta vacío!");
+                return false;
+            } else if (funciones === ""){
+                alertify.alert("Error","¡El campo de Funciones TECNM esta vacío!");
+                return false;
+        }
             actualizarDatos();
         });
 

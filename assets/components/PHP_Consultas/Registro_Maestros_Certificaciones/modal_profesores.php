@@ -97,6 +97,9 @@ $conexion = conexion();
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var regex =  /[^A-Za-z]/g ;
+
         $('#btn_agregar_profesor').click(function () {
 
 
@@ -113,15 +116,46 @@ $conexion = conexion();
 
             area_academica = parseInt( $('#area_academica_agregar').val());
             console.log(area_academica);
-            disciplina = $('#disciplina_agregar').val()
+            disciplina = $('#disciplina_agregar').val();
             console.log(disciplina);
 
-            agregarDatos(nombre_completo,area_academica,
-                disciplina)
+
+            //console.log(regex.test(nombre_completo));
+
+
+
+            if (nombre_completo==="" || regex.test(nombre_completo)){
+                alertify.alert("Error","¡El campo de nombre completo es invalido!")
+                return false;
+            } else if (disciplina==="" ||  regex.test(disciplina)){
+                alertify.alert("Error","¡El campo de disciplina es invalido!")
+                return false;
+            } else {
+
+                agregarDatos(nombre_completo,area_academica,disciplina)
+            }
+
+
         });
 
         $('#btn_editar_profesor').click(function () {
-            actualizaDatos();
+
+            nombre_completo = $('#nombre_editar').val();
+            disciplina = $('#disciplina_editar').val();
+
+            if (nombre_completo==="" || regex.test(nombre_completo)){
+                alertify.alert("Error","¡El campo de nombre completo es invalido!")
+                return false;
+            } else if (disciplina==="" ||  regex.test(disciplina)){
+                alertify.alert("Error","¡El campo de disciplina es invalido!")
+                return false;
+            } else {
+
+                actualizaDatos();
+            }
+
+
+
         });
 
     });

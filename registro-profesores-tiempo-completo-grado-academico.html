@@ -67,7 +67,6 @@
 					<div class="modal-body">
 						<label>Grado</label>
                         <select type="text" class="form-control-page input-group-sm" id="grado_agregar">
-                            <option selected>-</option>
                             <option>Licenciatura</option>
                             <option>Maestría</option>
                             <option>Doctorado</option>
@@ -104,7 +103,6 @@
 
 						<label>Grado</label>
                         <select type="text" class="form-control-page input-group-sm" id="grado_editar">
-                            <option selected>-</option>
                             <option>Licenciatura</option>
                             <option>Maestría</option>
                             <option>Doctorado</option>
@@ -172,12 +170,73 @@
             total = hombre + mujer;
             console.log(total);
 
-            agregarDatos(grado,mujer,hombre,total);
+            if(grado===""){
+                alertify.alert("Error","¡El campo Grado esta vacio !");
+                return false;
+            } else if (mujer===""){
+                alertify.alert("Error","¡El campo Mujer esta vacio!");
+                return false;
+            }  else if (mujer<0){
+                alertify.alert("Error","¡El dato del campo mujer es invalido!");
+                return false;
+            } else if (isNaN(mujer)){
+                alertify.alert("Error","¡El dato del campo mujer es invalido!");
+                return false;
+            }else if (hombre=== "") {
+                alertify.alert("Error", "¡El campo Hombre esta vacio!");
+                return false;
+            } else if (hombre<0){
+                alertify.alert("Error","¡El dato del campo hombre es invalido!");
+                return false;
+            } else if (isNaN(hombre)){
+                alertify.alert("Error","¡El dato del campo hombre es invalido!");
+                return false;
+            }else {
 
+                agregarDatos(grado, mujer, hombre, total);
+                $('#new-modal').modal('hide');
+                $('#grado_agregar').val('');
+                $('#mujer_agregar').val('');
+                $('#hombre_agregar').val('');
+            }
         });
 
         $('#btn_editar_prof_cmp').click(function () {
-            actualizaDatos();
+            grado = $('#grado_editar').val();
+            console.log(grado_agregar);
+            mujer =  parseInt($('#mujer_editar').val());
+            console.log(mujer);
+            hombre = parseInt($('#hombre_editar').val());
+            console.log(hombre);
+
+            total = hombre + mujer;
+            console.log(total);
+
+            if(grado===""){
+                alertify.alert("Error","¡El campo Grado esta vacio !");
+                return false;
+            } else if (mujer===""){
+                alertify.alert("Error","¡El campo Mujer esta vacio!");
+                return false;
+            }  else if (mujer<0){
+                alertify.alert("Error","¡El dato del campo mujer es invalido!");
+                return false;
+            } else if (isNaN(mujer)){
+                alertify.alert("Error","¡El dato del campo mujer es invalido!");
+                return false;
+            }else if (hombre=== "") {
+                alertify.alert("Error", "¡El campo Hombre esta vacio!");
+                return false;
+            } else if (hombre<0){
+                alertify.alert("Error","¡El dato del campo hombre es invalido!");
+                return false;
+            } else if (isNaN(hombre)){
+                alertify.alert("Error","¡El dato del campo hombre es invalido!");
+                return false;
+            }else {
+                actualizaDatos();
+
+            }
         });
 
     });

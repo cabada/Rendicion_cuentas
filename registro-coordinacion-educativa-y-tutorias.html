@@ -62,7 +62,7 @@
 					</div>
 					<div class="modal-body">
 						<label>Nombre de actividad</label>
-						<input type="text" id="nombre_actividad_agregar" class="form-control-page input-group-sm">
+						<input type="text" id="nombre_actividad_agregar" class="form-control-page input-group-sm" placeholder="Hola">
 
 						<label>Periodo ENE-JUN</label>
                         <input type="number" class="form-control-page input-group-sm" id="periodoej_agregar">
@@ -155,10 +155,38 @@
               periodo_ago_dic=$('#periodoad_agregar').val();
               console.log(periodo_ago_dic);
 
+              //VALIDACIONES PARA AGREGAR UN REGISTRO
+              if(nombre_actividad === "") {
+                  alertify.alert("Error", "¡El campo nombre de actividad esta vacio!");
+                  return false;
+              }else if (periodo_ene_jun=== ""){
+                  alertify.alert("Error", "¡El campo Periodo ENE-JUN esta vacio");
+                  return false;
+              }else if (periodo_ago_dic===""){
+                  alertify.alert("Error", "¡El campo Periodo AGO-DIC esta vacio");
+                  return false;
+              }
+
               agregarDatos(nombre_actividad,periodo_ene_jun,periodo_ago_dic);
           });
 
           $('#btn_editar_curso_actual').click(function (){
+
+              nombre_actividad=$('#nombre_actividad_editar').val();
+              periodo_ene_jun=$('#periodoej_editar').val();
+              periodo_ago_dic=$('#periodoad_editar').val();
+
+              //VALIDACIONES PARA EDITAR UN REGISTRO
+              if(nombre_actividad === "") {
+                  alertify.alert("Error", "¡El campo nombre de actividad esta vacio!");
+                  return false;
+              }else if (periodo_ene_jun=== ""){
+                  alertify.alert("Error", "¡El campo Periodo ENE-JUN esta vacio");
+                  return false;
+              }else if (periodo_ago_dic===""){
+                  alertify.alert("Error", "¡El campo Periodo AGO-DIC esta vacio");
+                  return false;
+              }
               actualizaDatos();
           });
     });

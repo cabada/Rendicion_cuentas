@@ -203,15 +203,92 @@
             experiencia_docente =parseInt($('#experiencia_docente_agregar').val());
             console.log(experiencia_docente);
 
-
-
-            agregarDatos(nombre_docente,categoria,grado_estudios,sni,area_especializacion,
-                        experiencia_profesional,experiencia_docente);
-
+            //VALIDACIONES PARA AGREGAR UN REGISTRO
+            if(nombre_docente === ""){
+                alertify.alert("Error","¡El Nombre de docente esta vacío!");
+                return false;
+            } else if (categoria === ""){
+                alertify.alert("Error","¡El campo de Categoria esta vacío!");
+                return false;
+            } else if (grado_estudios === ""){
+                alertify.alert("Error","¡El campo de Grado de estudios esta vacío!");
+                return false;
+            } else if (sni === ""){
+                alertify.alert("Error","¡El campo de SNI esta vacío!");
+                return false;
+            } else if (area_especializacion === ""){
+                alertify.alert("Error","¡El campo de Area de especializacion esta vacío!");
+                return false;
+            } else if (isNaN(experiencia_profesional)){
+                alertify.alert("Error","¡El valor introducido en Experiencia profesional no es valido! Introduzca un valor numérico");
+                return false;
+            } else if (experiencia_profesional === ""){
+                alertify.alert("Error","¡El campo de Experiencia profesional esta vacío!");
+                return false;
+            } else if (isNaN(experiencia_docente)){
+                alertify.alert("Error","¡El valor introducido en Experiencia docente no es valido! Introduzca un valor numérico");
+                return false;
+            } else if (experiencia_docente === ""){
+                alertify.alert("Error","¡El campo de Experiencia docente esta vacío!");
+                return false;
+            }else {
+                agregarDatos(nombre_docente, categoria, grado_estudios, sni, area_especializacion,
+                    experiencia_profesional, experiencia_docente);
+            }
         });
 
         $('#btn_editar_equipo_maestros').click(function () {
-            actualizarDatos();
+
+            nombre_docente = $('#nombre_editar').val();
+            console.log(nombre_docente);
+            categoria =  $('#categoria_editar').val();
+            console.log(categoria);
+            grado_estudios = $('#grado_estudios_editar').val();
+            console.log(grado_estudios);
+
+            sni = $('#sni_editar').val();
+            console.log(sni);
+
+            area_especializacion = $('#area_especializacion_editar').val();
+            console.log(area_especializacion);
+
+            experiencia_profesional = parseInt($('#experiencia_profesional_editar').val());
+            console.log(experiencia_profesional);
+
+            experiencia_docente =parseInt($('#experiencia_docente_editar').val());
+            console.log(experiencia_docente);
+
+            //VALIDACIONES PARA EDITAR UN REGISTRO
+            if(nombre_docente === ""){
+                alertify.alert("Error","¡El Nombre de docente esta vacío!");
+                return false;
+            } else if (categoria === ""){
+                alertify.alert("Error","¡El campo de Categoria esta vacío!");
+                return false;
+            } else if (grado_estudios === ""){
+                alertify.alert("Error","¡El campo de Grado de estudios esta vacío!");
+                return false;
+            } else if (sni === ""){
+                alertify.alert("Error","¡El campo de SNI esta vacío!");
+                return false;
+            } else if (area_especializacion === ""){
+                alertify.alert("Error","¡El campo de Area de especializacion esta vacío!");
+                return false;
+            } else if (isNaN(experiencia_profesional)){
+                alertify.alert("Error","¡El valor introducido en Experiencia profesional no es valido! Introduzca un valor numérico");
+                return false;
+            } else if (experiencia_profesional === ""){
+                alertify.alert("Error","¡El campo de Experiencia profesional esta vacío!");
+                return false;
+            } else if (isNaN(experiencia_docente)){
+                alertify.alert("Error","¡El valor introducido en Experiencia docente no es valido! Introduzca un valor numérico");
+                return false;
+            } else if (experiencia_docente == ""){
+                alertify.alert("Error","¡El campo de Experiencia docente esta vacío!");
+                return false;
+            }else {
+                actualizarDatos();
+            }
         });
 
     });

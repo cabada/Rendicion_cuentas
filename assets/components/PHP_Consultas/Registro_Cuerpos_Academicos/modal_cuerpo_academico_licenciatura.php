@@ -26,7 +26,7 @@ $conexion = conexion();
                     while($fila = mysqli_fetch_array($resultado)){
                         $valor = $fila['nombre_area_academica'];
 
-                        echo "<option value=\"".$fila['id_area_academica']."\">".$fila['nombre_area_academica']."</option>\n";
+                        echo "<option value=\"".$fila['id_area_academica']."\">".utf8_encode($fila['nombre_area_academica'])."</option>\n";
 
                     }
                     ?>
@@ -80,7 +80,7 @@ $conexion = conexion();
                     while($fila = mysqli_fetch_array($resultado)){
                         $valor = $fila['nombre_area_academica'];
 
-                        echo "<option value=\"".$fila['id_area_academica']."\">".$fila['nombre_area_academica']."</option>\n";
+                        echo "<option value=\"".$fila['id_area_academica']."\">".utf8_encode($fila['nombre_area_academica'])."</option>\n";
 
                     }
                     ?>
@@ -136,11 +136,11 @@ $conexion = conexion();
             area=$('#area_agregar').val();
             console.log(area);
 
-            agregardatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area);
+            agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area);
         });
 
         $('#btn_editar_curso_actual').click(function () {
-            actualizaDatos();
+            actualizarDatos();
         });
     });
 
