@@ -85,6 +85,9 @@ $conexion = conexion();
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var regexNum = /[^0-9]/g;
+
         $('#btn_agregar_curso_actual').click(function () {
 
             id_carrera=$('#programa_educativo_agregar').val();
@@ -92,10 +95,31 @@ $conexion = conexion();
             cantidad_alumnos=$('#cantidad_alumnos_agregar').val();
             console.log(cantidad_alumnos);
 
-            agregardatos(id_carrera,cantidad_alumnos);
+            //VALIDACIONES PARA AGREGAR UN REGISTRO
+            if (id_carrera=== ""){
+                alertify.alert("Error","¡El campo de Programa educativo esta vacío!")
+                return false;
+            } else if (cantidad_alumnos==="" ||  regexNum.test(cantidad_alumnos)){
+                alertify.alert("Error","¡El campo Cantidad de alumnos no es valido!")
+                return false;
+            } else {
+                agregardatos(id_carrera, cantidad_alumnos);
+            }
         });
         $('#btn_editar_curso_actual').click(function () {
-            actualizaDatos();
+            id_carrera=$('#programa_educativo_editar').val();
+            cantidad_alumnos=$('#cantidad_alumnos_editar').val();
+
+            //VALIDACIONES PARA EDITAR UN REGISTRO
+            if (id_carrera=== ""){
+                alertify.alert("Error","¡El campo de Programa educativo esta vacío!")
+                return false;
+            } else if (cantidad_alumnos==="" ||  regexNum.test(cantidad_alumnos)){
+                alertify.alert("Error","¡El campo Cantidad de alumnos no es valido!")
+                return false;
+            } else {
+                actualizaDatos();
+            }
         });
     });
 </script>
