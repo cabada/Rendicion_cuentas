@@ -24,7 +24,7 @@ while($stmt->fetch()){
             <div class="col-12">
                 <form id="reporte" name="reporte" method="POST" target="_blank">
                     <div class="form-group">
-                        <div class="form-row">
+                        <div class="form-row d-flex">
                             <div class="col">
                                 <input class="btn btn-danger text-white" type="button" target="_blank" value="Exportar PDF"
                                        onclick= "document.reporte.action = 'assets/components/PHP_Consultas/Registro_Proyectos_Investigacion_Posgrado_Periodo/reportePDF.php';
@@ -59,6 +59,7 @@ while($stmt->fetch()){
             </div>
         </div>
 
+        <div id="tabla">
     <div class="row">
         <div class="col-sm-12">
 
@@ -69,45 +70,62 @@ while($stmt->fetch()){
             $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo";
 
-            if(isset($_POST['consulta'])){
+            if(isset($_POST['consulta_anio'])){
 
-                $q= $conexion->real_escape_string($_POST['consulta']);
-                $_SESSION['consulta'] = $q;
+                if($_POST['consulta_anio']!='Todos los registros'){
+
+                $q= $conexion->real_escape_string($_POST['consulta_anio']);
+                $_SESSION['consulta_anio'] = $q;
                 $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo 
-                      where (proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
-                      proyectos_investigacion_posgrado_periodo.NOMBRE_PROYECTO LIKE '%$q%' or 
-                      proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%')";
+                      where fecha_creado LIKE '%$q%')";
 
-                if (isset($_POST['consulta_anio'])) {
-                    /*variable goblal*/
-                    $p = $_SESSION['consulta_anio'];
+                if (isset($_SESSION['consulta'])) {
+                    echo "estoy dentro";
+
+                    $p = $_SESSION['consulta'];
                     $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo 
-                      where (proyectos_investigacion_posgrado_periodo.CLAVE LIKE '%$q%' or 
-                      proyectos_investigacion_posgrado_periodo.NOMBRE_PROYECTO LIKE '%$q%' or 
-                      proyectos_investigacion_posgrado_periodo.RESPONSABLE LIKE '%$q%')
-                      and fecha_creado LIKE '%$p%'";
+                      where (CLAVE LIKE '%$p%' 
+                      or NOMBRE_PROYECTO LIKE '%$p%' 
+                      or RESPONSABLE LIKE '%$p%')
+                      and fecha_creado LIKE '%$q%'";
 
                 }
 
-            }
-            /*Query para consultas del buscador*/
-
-            if(isset($_POST['consulta_anio'])){
-                $q = $conexion->real_escape_string($_POST['consulta_anio']);
-                /*Variable global*/
-                if($_POST['consulta_anio']!='Todos los registros'){
-                $_SESSION['consulta_anio']=$q;
-                $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
-                      from proyectos_investigacion_posgrado_periodo
-                      where fecha_creado LIKE '%$q%'";
-
-            } else {
+            } else{
                     $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
                       from proyectos_investigacion_posgrado_periodo";
 
                     unset($_SESSION['consulta_anio']);
+                    unset($_SESSION['consulta']);
+
+                }
+            }
+            /*Query para consultas del buscador*/
+
+            if(isset($_POST['consulta'])){
+                $q = $conexion->real_escape_string($_POST['consulta']);
+
+                $_SESSION['consulta']=$q;
+                var_dump($_SESSION['consulta']);
+                $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo 
+                      where (CLAVE LIKE '%$q%' 
+                      or NOMBRE_PROYECTO LIKE '%$q%' 
+                      or RESPONSABLE LIKE '%$q%')";
+
+                /*Buscar en la caja de busqueda con el anio seleccionado*/
+                if(isset($_SESSION['consulta_anio'])){
+
+                    $p = $_SESSION['consulta_anio'];
+                    $sql="select ID_PROYECTO_INV_POSGRADO_PERIODO,CLAVE,NOMBRE_PROYECTO,RESPONSABLE
+                      from proyectos_investigacion_posgrado_periodo 
+                      where (CLAVE LIKE '%$q%' 
+                      or NOMBRE_PROYECTO LIKE '%$q%' 
+                      or RESPONSABLE LIKE '%$q%')
+                      and fecha_creado LIKE '%$p%'";
+
                 }
             }
 
@@ -130,7 +148,7 @@ while($stmt->fetch()){
                            $ver[3];
 
                 $salida.='<tr>
-                    <td>'.$ver[1].'</td>
+                    <td>'. $ver[1] .'</td>
                     <td>'. $ver[2] .'</td>
                     <td>'. $ver[3] .'</td>
                     <td class="text-center align-middle">
@@ -139,9 +157,9 @@ while($stmt->fetch()){
                     </td>
                 </tr>';
                 }
-                ?>
-                </table>
-                <?php
+
+                $salida.='</table>';
+
                 } else {
                         $salida.='<div class="row mt-3">
                         <div class="col-12 text-center">
@@ -161,6 +179,7 @@ while($stmt->fetch()){
 </div>
     </div>
           </div>
+</div>
 
        <?php
      }

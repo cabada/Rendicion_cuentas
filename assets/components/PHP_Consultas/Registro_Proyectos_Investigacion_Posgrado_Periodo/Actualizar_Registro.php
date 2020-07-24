@@ -7,7 +7,7 @@ session_start();
 $conexion = conexion();
 $conn = conexion();
 $id_usuario = $_SESSION["id_usuario"];
-$tabla = 'pproyectos_investigacion_posgrado_periodo';
+$tabla = 'proyectos_investigacion_posgrado_periodo';
 $stmt = consultaPermisos($conn,$id_usuario,$tabla,'Update');
 
 $stmt->execute();
