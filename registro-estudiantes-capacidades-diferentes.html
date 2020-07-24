@@ -63,13 +63,12 @@
 					<div class="modal-body">
 						<label>Periodo</label>
                         <select type="text" class="form-control-page input-group-sm" id="periodo_agregar">
-                            <option selected>-</option>
                             <option>Agosto - Diciembre</option>
                             <option>Enero - Junio</option>
                         </select>
 
                         <label>Año</label>
-                        <input type="number" id="anio_agregar" maxlength="4" class="form-control-page input-group-sm">
+                        <input type="number" id="anio_agregar" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control-page input-group-sm">
 
 						<label>Cantidad de estudiantes</label>
                         <input type="number" value="0" id="cantidad_estudiantes_agregar" class="form-control-page input-group-sm">
@@ -98,13 +97,12 @@
 
 						<label>Periodo</label>
                         <select type="text" class="form-control-page input-group-sm" id="periodo_editar">
-                            <option selected>-</option>
                             <option>Agosto - Diciembre</option>
                             <option>Enero - Junio</option>
                         </select>
 
                         <label>Año</label>
-                        <input type="number" id="anio_editar" maxlength="4" class="form-control-page input-group-sm">
+                        <input type="number" id="anio_editar" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control-page input-group-sm">
 
 						<label>Cantidad de estudiantes</label>
                         <input type="number" value="0" id="cantidad_estudiantes_editar" class="form-control-page input-group-sm">
@@ -152,6 +150,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var regexNum = /[^0-9]/g;
+
         $('#btn_agregar_curso_actual').click(function () {
             var period_sel = document.getElementById("periodo_agregar");
             var period_valor = period_sel.options[period_sel.selectedIndex].text;
@@ -163,36 +164,18 @@
             cantidad_alumnos=$('#cantidad_estudiantes_agregar').val();
             console.log(cantidad_alumnos);
 
-            //FUNCION PARA VALIDAR LONGITUD
-            function validarLongitud(parametro) {
-                if (parametro.length < 4){
-                    return false;
-                } else {
-                    return true;
-                }
-            }
 
             //VALIDACIONES PARA AGREGAR UN REGISTRO
             if (periodo=== ""){
                 alertify.alert("Error","¡El campo de Periodo esta vacío!")
                 return false;
-            } else if (isNaN(anio)){
-                alertify.alert("Error","¡El tipo de dato no es valido!");
-                return false;
-            }else if (anio=== "") {
+            } else if (anio==="") {
                 alertify.alert("Error", "¡El campo de Año esta vacío!")
                 return false;
-            } else if (validarLongitud(anio) == false){
-                alertify.alert("Error","Introduzca un año valido de 4 caracteres");
-                return false;
-            }else if (isNaN(cantidad_alumnos)){
-                    alertify.alert("Error","¡El tipo de dato no es valido!");
+            } else if (cantidad_alumnos==="" ||  regexNum.test(cantidad_alumnos)){
+                    alertify.alert("Error","¡El tipo de dato en Cantidad de estudiantes no es valido!");
                     return false;
-            }else if (cantidad_alumnos=== ""){
-                alertify.alert("Error","¡El campo de Cantidad de estudiantes esta vacío!")
-                return false;
-            }else {
-
+            } else {
                 agregardatos(periodo, anio, cantidad_alumnos);
             }
         });
@@ -204,35 +187,18 @@
             cantidad_alumnos=$('#cantidad_estudiantes_editar').val();
             console.log(cantidad_alumnos);
 
-            //FUNCION PARA VALIDAR LONGITUD
-            function validarLongitud(parametro) {
-                if (parametro.length < 4){
-                    return false;
-                } else {
-                    return true;
-                }
-            }
 
             //VALIDACIONES PARA EDITAR UN REGISTRO
             if (periodo=== ""){
                 alertify.alert("Error","¡El campo de Periodo esta vacío!")
                 return false;
-            } else if (isNaN(anio)){
-                alertify.alert("Error","¡El tipo de dato no es valido!");
-                return false;
-            }else if (anio=== "") {
+            } else if (anio=== "") {
                 alertify.alert("Error", "¡El campo de Año esta vacío!")
                 return false;
-            } else if (validarLongitud(anio) == false){
-                alertify.alert("Error","Introduzca un año valido de 4 caracteres");
+            } else if (cantidad_alumnos==="" ||  regexNum.test(cantidad_alumnos)){
+                alertify.alert("Error","¡El tipo de dato en Cantidad de estudiantes no es valido!");
                 return false;
-            }else if (isNaN(cantidad_alumnos)){
-                alertify.alert("Error","¡El tipo de dato no es valido!");
-                return false;
-            }else if (cantidad_alumnos=== ""){
-                alertify.alert("Error","¡El campo de Cantidad de estudiantes esta vacío!")
-                return false;
-            }else {
+            } else {
                 actualizaDatos();
             }
         });
