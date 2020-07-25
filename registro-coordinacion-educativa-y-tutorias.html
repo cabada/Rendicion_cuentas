@@ -62,7 +62,7 @@
 					</div>
 					<div class="modal-body">
 						<label>Nombre de actividad</label>
-						<input type="text" id="nombre_actividad_agregar" class="form-control-page input-group-sm" placeholder="Hola">
+						<input type="text" id="nombre_actividad_agregar" class="form-control-page input-group-sm">
 
 						<label>Periodo ENE-JUN</label>
                         <input type="number" class="form-control-page input-group-sm" id="periodoej_agregar">
@@ -146,6 +146,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var regex = /[^A-Za-z]/g;
+        var regexNum = /[^0-9]/g;
+
           $('#btn_agregar_curso_actual').click(function () {
 
               nombre_actividad=$('#nombre_actividad_agregar').val();
@@ -156,18 +160,24 @@
               console.log(periodo_ago_dic);
 
               //VALIDACIONES PARA AGREGAR UN REGISTRO
-              if(nombre_actividad === "") {
+              if (nombre_actividad === "") {
                   alertify.alert("Error", "¡El campo nombre de actividad esta vacio!");
                   return false;
-              }else if (periodo_ene_jun=== ""){
+              } else if (periodo_ene_jun=== ""){
                   alertify.alert("Error", "¡El campo Periodo ENE-JUN esta vacio");
                   return false;
-              }else if (periodo_ago_dic===""){
+              } else if (periodo_ene_jun==="" ||  regexNum.test(periodo_ene_jun)){
+                  alertify.alert("Error","¡El campo Periodo ENE-JUN no es valido!")
+                  return false;
+              } else if (periodo_ago_dic===""){
                   alertify.alert("Error", "¡El campo Periodo AGO-DIC esta vacio");
                   return false;
+              } else if (periodo_ago_dic==="" ||  regexNum.test(periodo_ago_dic)){
+                  alertify.alert("Error","¡El campo Periodo AGO-DIC no es valido!")
+                  return false;
+              } else {
+                  agregarDatos(nombre_actividad, periodo_ene_jun, periodo_ago_dic);
               }
-
-              agregarDatos(nombre_actividad,periodo_ene_jun,periodo_ago_dic);
           });
 
           $('#btn_editar_curso_actual').click(function (){
@@ -177,17 +187,24 @@
               periodo_ago_dic=$('#periodoad_editar').val();
 
               //VALIDACIONES PARA EDITAR UN REGISTRO
-              if(nombre_actividad === "") {
+              if (nombre_actividad === "") {
                   alertify.alert("Error", "¡El campo nombre de actividad esta vacio!");
                   return false;
-              }else if (periodo_ene_jun=== ""){
+              } else if (periodo_ene_jun=== ""){
                   alertify.alert("Error", "¡El campo Periodo ENE-JUN esta vacio");
                   return false;
-              }else if (periodo_ago_dic===""){
+              } else if (periodo_ene_jun==="" ||  regexNum.test(periodo_ene_jun)){
+                  alertify.alert("Error","¡El campo Periodo ENE-JUN no es valido!")
+                  return false;
+              } else if (periodo_ago_dic===""){
                   alertify.alert("Error", "¡El campo Periodo AGO-DIC esta vacio");
                   return false;
+              } else if (periodo_ago_dic==="" ||  regexNum.test(periodo_ago_dic)){
+                  alertify.alert("Error","¡El campo Periodo AGO-DIC no es valido!")
+                  return false;
+              } else {
+                  actualizaDatos();
               }
-              actualizaDatos();
           });
     });
 </script>
