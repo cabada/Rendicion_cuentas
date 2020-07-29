@@ -154,6 +154,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var regex = /[^A-Za-z ÁáÉéÍíÓóÚú .]/g;
+
         $('#btn_agregar_equipo_apoyo').click(function () {
 
             nombre = $('#nombre_agregar').val();
@@ -167,20 +170,19 @@
             console.log(funciones);
 
             //VALIDACIONES PARA AGREGAR UN NUEVO REGISTRO
-            if(nombre === ""){
-                alertify.alert("Error","¡El Nombre esta vacío!");
+            if(nombre==="" || regex.test(nombre)){
+                alertify.alert("Error","¡El campo Nombre esta vacío o es incorrecto!");
                 return false;
-            } else if (puesto === ""){
-                alertify.alert("Error","¡El campo de Puesto esta vacío!");
+            } else if (puesto === "" || regex.test(puesto)){
+                alertify.alert("Error","¡El campo de Puesto esta vacío o es incorrecto!");
                 return false;
-            } else if (grado_estudios === ""){
-                alertify.alert("Error","¡El campo de Grado de estudios esta vacío!");
+            } else if (grado_estudios === "" || regex.test(grado_estudios)){
+                alertify.alert("Error","¡El campo de Grado de estudios esta vacío o es incorrecto!");
                 return false;
-            } else if (funciones === "") {
-                alertify.alert("Error", "¡El campo de Funciones TECNM esta vacío!");
+            } else if (funciones === "" || regex.test(funciones)) {
+                alertify.alert("Error", "¡El campo de Funciones TECNM esta vacío o es incorrecto!");
                 return false;
-            }else {
-
+            } else {
                 agregarDatos(nombre, puesto, grado_estudios, funciones);
             }
         });
@@ -189,24 +191,24 @@
             nombre = $('#nombre_editar').val();
             puesto =  $('#puesto_editar').val();
             grado_estudios = $('#grado_estudios_editar').val();
-
             funciones= $('#funciones_tecnm_editar').val();
 
         //    VALIDACIONES PARA EDITAR UN REGISTRO
-            if(nombre === ""){
-                alertify.alert("Error","¡El Nombre esta vacío!");
+            if(nombre==="" || regex.test(nombre)){
+                alertify.alert("Error","¡El campo Nombre esta vacío o es incorrecto!");
                 return false;
-            } else if (puesto === ""){
-                alertify.alert("Error","¡El campo de Puesto esta vacío!");
+            } else if (puesto === "" || regex.test(puesto)){
+                alertify.alert("Error","¡El campo de Puesto esta vacío o es incorrecto!");
                 return false;
-            } else if (grado_estudios === ""){
-                alertify.alert("Error","¡El campo de Grado de estudios esta vacío!");
+            } else if (grado_estudios === "" || regex.test(grado_estudios)){
+                alertify.alert("Error","¡El campo de Grado de estudios esta vacío o es incorrecto!");
                 return false;
-            } else if (funciones === ""){
-                alertify.alert("Error","¡El campo de Funciones TECNM esta vacío!");
+            } else if (funciones === "" || regex.test(funciones)) {
+                alertify.alert("Error", "¡El campo de Funciones TECNM esta vacío o es incorrecto!");
                 return false;
-        }
-            actualizarDatos();
+            } else {
+                actualizarDatos();
+            }
         });
 
     });
