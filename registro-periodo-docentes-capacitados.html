@@ -169,34 +169,65 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var regexNum = /[^0-9]/g;
+
         $('#btn_agregar_periodo').click(function () {
 
             tipo_nombramiento=$('#nombramiento_agregar').val();
-
             console.log(tipo_nombramiento);
-
             total_docentes=parseInt($('#cantidad_docentes_agregar').val());
             console.log(total_docentes);
-
             no_docentes_capacitados=parseInt($('#cantidad_docentes_no_capacitados_agregar').val());
-
             console.log(no_docentes_capacitados);
-
 
             porcentaje= (no_docentes_capacitados*100)/total_docentes;
             porcentaje = Math.round(porcentaje);
             porcentaje = porcentaje.toString() + "%";
 
-
             console.log(porcentaje);
             periodo=$('#periodo_agregar').val();
             console.log(periodo);
 
-
-            agregardatos(tipo_nombramiento,total_docentes,no_docentes_capacitados,porcentaje,periodo);
+            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+            if (tipo_nombramiento ===""){
+                alertify.alert("Error","¡El campo Nombramiento esta vacío o es incorrecto!");
+                return false;
+            } else if (total_docentes ==="" || regexNum.test(total_docentes)){
+                alertify.alert("Error","¡El campo Cantidad de docentes esta vacío o es incorrecto!");
+                return false;
+            } else if (no_docentes_capacitados ==="" || regexNum.test(no_docentes_capacitados)){
+                alertify.alert("Error","¡El campo Cantidad de docentes capacitados esta vacío o es incorrecto!");
+                return false;
+            } else if (periodo ===""){
+                alertify.alert("Error","¡El campo Periodo esta vacío o es incorrecto!");
+                return false;
+            } else {
+                agregardatos(tipo_nombramiento, total_docentes, no_docentes_capacitados, porcentaje, periodo);
+            }
         });
         $('#btn_editar_periodo').click(function () {
-            actualizaDatos();
+            tipo_nombramiento =$('#nombramiento_editar').val();
+            total_docentes =$('#cantidad_docentes_editar').val();
+            no_docentes_capacitados =$('#cantidad_docentes_no_capacitados_editar').val();
+            periodo =$('#periodo_editar').val();
+
+            //VALIDACIONES PARA EDITAR UN REGISTRO
+            if (tipo_nombramiento ===""){
+                alertify.alert("Error","¡El campo Nombramiento esta vacío o es incorrecto!");
+                return false;
+            } else if (total_docentes ==="" || regexNum.test(total_docentes)){
+                alertify.alert("Error","¡El campo Cantidad de docentes esta vacío o es incorrecto!");
+                return false;
+            } else if (no_docentes_capacitados ==="" || regexNum.test(no_docentes_capacitados)){
+                alertify.alert("Error","¡El campo Cantidad de docentes capacitados esta vacío o es incorrecto!");
+                return false;
+            } else if (periodo ===""){
+                alertify.alert("Error","¡El campo Periodo esta vacío o es incorrecto!");
+                return false;
+            } else {
+                actualizaDatos();
+            }
         });
     });
 </script>
