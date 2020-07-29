@@ -140,24 +140,42 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var regex = /[^A-Za-z ÁáÉéÍíÓóÚú . :]/g;
+
         $('#btn_agregar_prod_as').click(function () {
-
-
             profesor =  $('#profesor_agregar').val();
             console.log(profesor);
             proyecto_realizado = $('#proyecto_realizado_agregar').val();
             console.log(proyecto_realizado);
 
-
-            agregarDatos(profesor,proyecto_realizado);
-
-
+            //VALIDACIONES PARA AGREGAR UN NUEVO REGISTRO
+            if (profesor==="" || regex.test(profesor)){
+                alertify.alert("Error","¡El campo Profesor esta vacío o es incorrecto!");
+                return false;
+            } else if (proyecto_realizado==="" || regex.test(proyecto_realizado)){
+                alertify.alert("Error","¡El campo Proyecto realizado esta vacío o es incorrecto!");
+                return false;
+            } else {
+                agregarDatos(profesor, proyecto_realizado);
+            }
         });
 
         $('#btn_editar_prod_as').click(function () {
-            actualizarDatos();
-        });
+            profesor = $('#profesor_editar').val();
+            proyecto_realizado =$('#proyecto_realizado_editar').val();
 
+            //VALIDACIONES PARA EDITAR UN REGISTRO
+            if (profesor==="" || regex.test(profesor)){
+                alertify.alert("Error","¡El campo Profesor esta vacío o es incorrecto!");
+                return false;
+            } else if (proyecto_realizado==="" || regex.test(proyecto_realizado)){
+                alertify.alert("Error","¡El campo Proyecto realizado esta vacío o es incorrecto!");
+                return false;
+            } else {
+                actualizarDatos();
+            }
+        });
     });
 
 </script>
