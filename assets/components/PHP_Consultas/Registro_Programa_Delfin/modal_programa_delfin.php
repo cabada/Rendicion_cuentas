@@ -40,13 +40,13 @@ $conexion = conexion();
 
 
                 <label>Año</label>
-                <input type="text" id="anio_agregar" maxlength="4" class="form-control-page input-group-sm">
+                <input type="number" value= "0" id="anio_agregar" maxlength="4" class="form-control-page input-group-sm">
 
                 <label>Fecha de inicio</label>
-                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_agregar">
+                <input class="form-control-page input-group-sm" type="date" value="dd-mm-aaaa" id="fecha_inicio_agregar">
 
                 <label>Fecha de terminación</label>
-                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_termino_agregar">
+                <input class="form-control-page input-group-sm" type="date" value="dd-mm-aaaa" id="fecha_termino_agregar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-main" data-dismiss="modal" id="btn_agregar_curso_actual">Agregar Nuevo Registro</button>
@@ -92,13 +92,13 @@ $conexion = conexion();
                 </select>
 
                 <label>Año</label>
-                <input type="text" id="anio_editar" maxlength="4" class="form-control-page input-group-sm">
+                <input type="number" value = "0" id="anio_editar" maxlength="4" class="form-control-page input-group-sm">
 
                 <label>Fecha de inicio</label>
-                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_inicio_editar">
+                <input class="form-control-page input-group-sm" type="date" value="dd-mm-aaaa" id="fecha_inicio_editar">
 
                 <label>Fecha de terminación</label>
-                <input class="form-control-page input-group-sm" type="text" value="dd-mm-aaaa" id="fecha_termino_editar">
+                <input class="form-control-page input-group-sm" type="date" value="dd-mm-aaaa" id="fecha_termino_editar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -128,12 +128,93 @@ $conexion = conexion();
             console.log(fecha_inicio);
             fecha_termino=$('#fecha_termino_agregar').val();
             console.log(fecha_termino);
-
-            agregarDatos(nombre_proyecto,cantidad_alumnos,id_carrera,anio,fecha_inicio,fecha_termino);
+            //VALIDACIONES PARA AGREGAR UN REGISTRO
+            if (nombre_proyecto=== ""){
+                  alertify.alert("Error","¡El campo de Nombre de proyecto esta vacío!")
+                  return false;
+              } else if (cantidad_alumnos == "0"){
+                  alertify.alert("Error","¡El campo de Cantidad de alumnos esta vacío!");
+                  return false;
+              } else if (cantidad_alumnos < "0"){
+                  alertify.alert("Error","¡El campo de Cantidad de alumnos esta vacío!");
+                  return false;
+              }else if (anio  == "0") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (anio  === "") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (anio  < "0") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (fecha_inicio === "") {
+                  alertify.alert("Error", "¡El valor ingresado en Fecha de inicio esta vacío!")
+                  return false;
+              }else if (fecha_inicio === "mm/dd/aaaa") {
+                  alertify.alert("Error", "¡El valor ingresado en Fecha de inicio esta vacío!")
+                  return false;
+              }else if (fecha_termino === "") {
+                  alertify.alert("Error", "¡El valor ingresado en Fecha de terminacion esta vacío!")
+                  return false;
+              }else if (fecha_termino === "mm/dd/aaaa") {
+                  alertify.alert("Error", "¡El valor ingresado en Fecha de terminacion esta vacío!")
+                  return false;
+              }else {
+                  agregarDatos(nombre_proyecto,cantidad_alumnos,id_carrera,anio,fecha_inicio,fecha_termino);
+              }
         });
 
         $('#btn_editar_curso_actual').click(function () {
-            actualizarDatos();
+
+            nombre_proyecto=$('#nombre_proyecto_editar').val();
+            console.log(nombre_proyecto);
+            cantidad_alumnos= parseInt($('#cantidad_alumnos_editar').val());
+            console.log(cantidad_alumnos);
+            id_carrera =parseInt( $('#carrera_editar').val());
+            console.log(id_carrera);
+
+
+            anio=$('#anio_editar').val();
+            console.log(anio);
+            fecha_inicio=$('#fecha_inicio_editar').val();
+            console.log(fecha_inicio);
+            fecha_termino=$('#fecha_termino_editar').val();
+            console.log(fecha_termino);
+
+
+            if (nombre_proyecto == ""){
+                  alertify.alert("Error","¡El campo de Nombre de proyecto esta vacío!")
+                  return false;
+              } else if (cantidad_alumnos == "0"){
+                  alertify.alert("Error","¡El campo de Cantidad de alumnos esta vacío!");
+                  return false;
+              } else if (cantidad_alumnos < "0"){
+                  alertify.alert("Error","¡El campo de Cantidad de alumnos esta vacío!");
+                  return false;
+              }else if (anio  == "0") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (anio  === "") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (anio  < "0") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (fecha_inicio === "") {
+                  alertify.alert("Error", "¡El valor ingresado en Fecha de inicio esta vacío!")
+                  return false;
+              }else if (fecha_inicio === "mm/dd/aaaa") {
+                  alertify.alert("Error", "¡El valor ingresado en Fecha de inicio esta vacío!")
+                  return false;
+              }else if (fecha_termino === "") {
+                  alertify.alert("Error", "¡El valor ingresado en Fecha de terminacion esta vacío!")
+                  return false;
+              }else if (fecha_termino === "mm/dd/aaaa") {
+                  alertify.alert("Error", "¡El valor ingresado en Fecha de terminacion esta vacío!")
+                  return false;
+              }else {
+                     actualizarDatos();
+              }
         });
     });
 </script>

@@ -135,7 +135,7 @@ if($resultado == $tablaRequerida){
                         <td>'. $buscar[3].'</td>
                         <td>'. $buscar[4].'</td>
                         <td class="text-center align-middle">
-                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform((\''.$datos.'\')"><i class="far fa-edit"></i>  Editar</button>
+                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform(\''.$datos.'\')"><i class="far fa-edit"></i>  Editar</button>
                             <button class="btn btn-sm btn-danger" onclick="preguntarSiNo(\''.$buscar[0].'\')"><i class="fas fa-trash" ></i>  Eliminar</button>
                         </td>
                     </tr>';

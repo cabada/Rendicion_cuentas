@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-12 col-lg-5">
                     <div class="input-group">
-                        <input type="text" name="caja_busqueda" id="caja_busqueda" class="form-control" placeholder="Buscar por nombre o area academica">
+                        <input type="text" name="caja_busqueda" id="caja_busqueda" class="form-control" placeholder="Buscar por Nombre, Fecha o Cantidad">
                         <div class="input-group-append">
                             <button class="btn btn-main"><i class="fas fa-search"></i></button>
                         </div>
@@ -169,8 +169,11 @@
               }else if (estudiantes_atendidos=== "") {
                   alertify.alert("Error", "¡El campo de Estudiantes atendidos esta vacío!")
                   return false;
-              }else if (estudiantes_atendidos=== "0") {
-                  alertify.alert("Error", "¡El valor ingresado no es valido!")
+              }else if (estudiantes_atendidos == "0") {
+                  alertify.alert("Error", "¡El valor ingresado en Estudiantes atendidos no es valido!")
+                  return false;
+              }else if (estudiantes_atendidos < "0") {
+                  alertify.alert("Error", "¡El valor ingresado en Estudiantes atendidos no es valido!")
                   return false;
               }else {
 
@@ -201,9 +204,12 @@
           }else if (estudiantes_atendidos=== "") {
               alertify.alert("Error", "¡El campo de Estudiantes atendidos esta vacío!")
               return false;
-          }else if (estudiantes_atendidos=== "0") {
-              alertify.alert("Error", "¡El valor ingresado no es valido!")
-              return false;
+          }else if (estudiantes_atendidos == "0") {
+                  alertify.alert("Error", "¡El valor ingresado en Estudiantes atendidos no es valido!")
+                  return false;
+          }else if (estudiantes_atendidos < "0") {
+                  alertify.alert("Error", "¡El valor ingresado en Estudiantes atendidos no es valido!")
+                  return false;
           }else {
               actualizaDatos();
           }
