@@ -145,7 +145,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        var regex = /[^A-Za-z]/g;
+        var regex = /[^A-Za-z ÁáÉéÍíÓóÚú . ,]/g;
 
        $('#btn_agregar_curso_actual').click(function () {
 
@@ -158,13 +158,13 @@
 
            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
            if (clave===""){
-               alertify.alert("Error","¡El campo de clave es invalido!")
+               alertify.alert("Error","¡El campo Clave es invalido!")
                return false;
            } else if (nombre_proyecto===""){
-               alertify.alert("Error","¡El campo de nombre de proyecto es invalido!")
+               alertify.alert("Error","¡El campo Nombre de proyecto es invalido!")
                return false;
-           } else if (responsable===""){
-               alertify.alert("Error","¡El campo responsable es invalido!")
+           } else if (responsable==="" || regex.test(responsable)){
+               alertify.alert("Error","¡El campo Responsable es invalido!")
                return false;
            } else {
                agregardatos(clave, nombre_proyecto, responsable)
@@ -179,13 +179,13 @@
 
            // VALIDACIONES PARA ACTUALIZAR NUEVO REGISTRO
            if (clave===""){
-               alertify.alert("Error","¡El campo clave es invalido!")
+               alertify.alert("Error","¡El campo Clave es invalido!")
                return false;
            } else if (nombre_proyecto===""){
-               alertify.alert("Error","¡El campo de nombre de proyecto es invalido!")
+               alertify.alert("Error","¡El campo Nombre de proyecto es invalido!")
                return false;
-           } else if (responsable===""){
-               alertify.alert("Error","¡El campo de responsable es invalido!")
+           } else if (responsable==="" || regex.test(responsable)){
+               alertify.alert("Error","¡El campo Responsable es invalido!")
                return false;
            } else {
                actualizaDatos();
