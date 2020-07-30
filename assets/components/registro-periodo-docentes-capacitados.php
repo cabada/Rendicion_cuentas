@@ -175,7 +175,7 @@ while($stmt->fetch()){
 
                     $buscar=mysqli_fetch_row($resultado);
 
-                    $salida.="<td><?php echo $buscar[0]?></td>";
+                    $salida.="<td>$buscar[0]</td>";
 
                     $sql1="select sum(no_docentes_capacitados) as docentes_capacitados from periodo_docentes_capacitados where periodo='Enero'";
 
@@ -183,7 +183,7 @@ while($stmt->fetch()){
 
                     $buscar1=mysqli_fetch_row($resultado1);
 
-                    $salida.="<td><?php echo $buscar1[0]?></td>";
+                    $salida.="<td>$buscar1[0]</td>";
 
                     if(isset($buscar[0])){
                         $porcentaje= ($buscar1[0]*100)/$buscar[0];
@@ -194,7 +194,7 @@ while($stmt->fetch()){
                         $porcentaje=0;
                     }
 
-                    $salida.="<td><?php echo $porcentaje?>%</td>";
+                    $salida.="<td>$porcentaje%</td>";
 
                 $salida.="</tr>";
 
@@ -207,7 +207,7 @@ while($stmt->fetch()){
 
                     $buscar=mysqli_fetch_row($resultado);
 
-                    $salida.="<td><?php echo $buscar[0]?></td>";
+                    $salida.="<td>$buscar[0]</td>";
 
                     $sql1="select sum(no_docentes_capacitados) as docentes_capacitados from periodo_docentes_capacitados where periodo='Junio'";
 
@@ -215,7 +215,7 @@ while($stmt->fetch()){
 
                     $buscar1=mysqli_fetch_row($resultado1);
 
-                    $salida.="<td><?php echo $buscar1[0]?></td>";
+                    $salida.="<td>$buscar1[0]</td>";
 
                     if(isset($buscar[0])){
                         $porcentaje= ($buscar1[0]*100)/$buscar[0];
@@ -226,7 +226,7 @@ while($stmt->fetch()){
                         $porcentaje=0;
                     }
 
-                    $salida.="<td><?php echo $porcentaje?>%</td>";
+                    $salida.="<td>$porcentaje%</td>";
                 $salida.="</tr>";
                 ?>
             </table>
