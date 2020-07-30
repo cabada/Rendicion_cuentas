@@ -26,7 +26,7 @@ $conexion = conexion();
                         <input type="text" id="nombre_estado_agregar" class="form-control-page input-group-sm">
 
 						<label>Año de registro</label>
-                        <input class="form-control-page input-group-sm" type="number" maxlength="4" id="anio_registro_agregar">
+                        <input class="form-control-page input-group-sm" type="number" maxlength="4" min="2010" max="2030" id="anio_registro_agregar">
 
 						<label>Vigencia</label>
                         <input class="form-control-page input-group-sm" type="text" id="vigencia_agregar">
@@ -54,6 +54,8 @@ $conexion = conexion();
                 </button>
             </div>
             <div class="modal-body">
+
+
                 <label>Numero de registro del cuerpo académico de posgrado</label>
                 <input type="id" id="id_cuerpos_academicos_posgrado" class="form-control-page input-group-sm" readonly="readonly">
 
@@ -87,6 +89,18 @@ $conexion = conexion();
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var regex = /[^A-Za-z ÁáÉéÍíÓóÚú .]/g;
+        var regexNum = /[^0-9]/g;
+
+// FUNCION PARA VALIDAR LONGITUD DE AÑO
+        function validarLongitud(parametro) {
+            if (parametro.length < 4){
+                return false;
+            } else {
+                return true;
+            }
+        }
+
         $('#btn_agregar_curso_actual').click(function () {
             nombre_cuerpo=$('#nombre_cuerpo_academico_agregar').val();
             console.log(nombre_cuerpo);
@@ -101,50 +115,34 @@ $conexion = conexion();
             area=$('#area_agregar').val();
             console.log(area);
 
-            // FUNCION PARA VALIDAR LONGITUD DE AÑO
-            function validarLongitud(parametro) {
-                if (parametro.length < 4){
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
-            if (nombre_cuerpo === ""){
-                alertify.alert("Error","¡El nombre de cuerpo académico esta vacío!");
+// VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+            if (nombre_cuerpo === "" || regex.test(nombre_cuerpo)){
+                alertify.alert("Error","¡El campo Nombre de cuerpo académico esta vacío o usa caracteres no permitidos!");
                 return false;
-            } else if (grado === ""){
-                alertify.alert("Error","¡El campo de grado esta vacío!");
+            } else if (grado === "" || regex.test(grado)){
+                alertify.alert("Error","¡El campo Grado esta vacío o usa caracteres no permitidos!");
                 return false;
-            } else if (estado === ""){
-                alertify.alert("Error","¡El campo de estado esta vacío!");
+            } else if (estado === "" || regex.test(estado)){
+                alertify.alert("Error","¡El campo Estado esta vacío o usa caracteres no permitidos!");
                 return false;
             } else if (isNaN(anio_registro)){
-                alertify.alert("Error","¡El valor introducido en año de registro no es valido! Introduzca un valor numérico");
+                alertify.alert("Error","¡El campo de año registro esta vacío o usa caracteres no permitidos!");
                 return false;
-            } else if (anio_registro === ""){
-                alertify.alert("Error","¡El campo de año registro esta vacío!");
+            } else if (anio_registro === "" || regexNum.test(anio_registro)){
+                alertify.alert("Error","¡El valor introducido en año de registro no es valido! Introduzca un valor numérico!");
                 return false;
-            // SE MANDA LLAMAR LA FUNCION Y SE DA EL PARAMETRO QUE QUEREMOS VALIDAR
+// SE MANDA LLAMAR LA FUNCION Y SE DA EL PARAMETRO QUE QUEREMOS VALIDAR
             } else if (validarLongitud(anio_registro) == false){
                 alertify.alert("Error","Introduzca un año valido de 4 caracteres");
                 return false;
-            } else if (vigencia === ""){
-                alertify.alert("Error","¡El campo de vigencia esta vacío!");
+            } else if (vigencia === "" || regex.test(vigencia)){
+                alertify.alert("Error","¡El campo de vigencia esta vacío o usa caracteres no permitidos!");
                 return false;
-            } else if (area === ""){
-                alertify.alert("Error","¡El campo de área esta vacío!");
+            } else if (area === "" || regex.test(area)){
+                alertify.alert("Error","¡El campo de área esta vacío o usa caracteres no permitidos!");
                 return false;
             } else {
                 agregarDatos(nombre_cuerpo,grado,estado,anio_registro,vigencia,area);
-                $('#new-modal').modal('hide');
-                $('#nombre_cuerpo_academico_agregar').val('');
-                $('#grado_agregar').val('');
-                $('#nombre_estado_agregar').val('');
-                $('#anio_registro_agregar').val('');
-                $('#vigencia_agregar').val('');
-                $('#area_agregar').val('');
             }
         });
 
@@ -159,40 +157,32 @@ $conexion = conexion();
             vigencia=$('#vigencia_editar').val();
             area=$('#area_editar').val();
 
-            // FUNCION PARA VALIDAR LONGITUD DE AÑO
-            function validarLongitud(parametro) {
-                if (parametro.length < 4){
-                    return false;
-                } else {
-                    return true;
-                }
-            }
 
             // VALIDACIONES PARA ACTUALIZAR NUEVO REGISTRO
-             if (nombre_cuerpo === ""){
-                alertify.alert("Error","¡El nombre de cuerpo académico esta vacío!");
+            if (nombre_cuerpo === "" || regex.test(nombre_cuerpo)){
+                alertify.alert("Error","¡El campo Nombre de cuerpo académico esta vacío o usa caracteres no permitidos!");
                 return false;
-            } else if (grado === ""){
-                alertify.alert("Error","¡El campo de grado esta vacío!");
+            } else if (grado === "" || regex.test(grado)){
+                alertify.alert("Error","¡El campo Grado esta vacío o usa caracteres no permitidos!");
                 return false;
-            } else if (estado === ""){
-                alertify.alert("Error","¡El campo de estado esta vacío!");
+            } else if (estado === "" || regex.test(estado)){
+                alertify.alert("Error","¡El campo Estado esta vacío o usa caracteres no permitidos!");
                 return false;
             } else if (isNaN(anio_registro)){
-                alertify.alert("Error","¡El valor introducido en año de registro no es valido! Introduzca un valor numérico");
+                alertify.alert("Error","¡El campo de año registro esta vacío o usa caracteres no permitidos!");
                 return false;
-            } else if (anio_registro === ""){
-                alertify.alert("Error","¡El campo de año registro esta vacío!");
+            } else if (anio_registro === "" || regexNum.test(anio_registro)){
+                alertify.alert("Error","¡El valor introducido en año de registro no es valido! Introduzca un valor numérico!");
                 return false;
-            // SE MANDA LLAMAR LA FUNCION Y SE DA EL PARAMETRO QUE QUEREMOS VALIDAR
+// SE MANDA LLAMAR LA FUNCION Y SE DA EL PARAMETRO QUE QUEREMOS VALIDAR
             } else if (validarLongitud(anio_registro) == false){
                 alertify.alert("Error","Introduzca un año valido de 4 caracteres");
                 return false;
-            } else if (vigencia === ""){
-                alertify.alert("Error","¡El campo de vigencia esta vacío!");
+            } else if (vigencia === "" || regex.test(vigencia)){
+                alertify.alert("Error","¡El campo de vigencia esta vacío o usa caracteres no permitidos!");
                 return false;
-            } else if (area === ""){
-                alertify.alert("Error","¡El campo de área esta vacío!");
+            } else if (area === "" || regex.test(area)){
+                alertify.alert("Error","¡El campo de área esta vacío o usa caracteres no permitidos!");
                 return false;
             } else {
                 actualizarDatos();
