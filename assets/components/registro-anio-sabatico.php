@@ -59,6 +59,7 @@ while($stmt->fetch()){
                     </div>
                 </div>
 
+        <div id="tabla">
         <div class="row">
             <div class="col-sm-12">
 
@@ -68,45 +69,61 @@ while($stmt->fetch()){
                         $sql = "select id_sabatico,profesor,proyecto_realizado
                             from producto_anio_sabatico";
 
+                        if (isset($_POST['consulta_anio'])){
+
+                            if($_POST['consulta_anio']!='Todos los registros'){
+                            $q = $conexion->real_escape_string($_POST['consulta_anio']);
+                            $_SESSION['consulta_anio'] = $q;
+                            $sql = "select id_sabatico,profesor,proyecto_realizado
+                            from producto_anio_sabatico
+                            where fecha_creado LIKE '%$q%'";
+
+                            if (isset($_SESSION['consulta'])){
+                                $p=$_SESSION['consulta'];
+                                $sql = "select id_sabatico,profesor,proyecto_realizado
+                                        from producto_anio_sabatico
+                                        where profesor like '%$p%'
+                                        or proyecto_realizado like '%$p%'
+                                        and fecha_creado like '%$q%'";
+
+                            }
+
+                        }
+                            else{
+                                $sql = "select id_sabatico,profesor,proyecto_realizado
+                            from producto_anio_sabatico";
+
+                                unset($_SESSION['consulta_anio']);
+                                unset($_SESSION['consulta']);
+                            }
+                        }
+
+                        /*Query para consultas del buscador*/
+                        /*Verifica que se haya definido $_Post['consulta]*/
+
                         if (isset($_POST['consulta'])){
                             $q = $conexion->real_escape_string($_POST['consulta']);
-                            $_SESSION['consulta'] = $q;
+                            $_SESSION['consulta']=$q;
+                            var_dump($_SESSION['consulta']);
                             $sql = "select id_sabatico,profesor,proyecto_realizado
                             from producto_anio_sabatico
                             where profesor like '%$q%'
                             or proyecto_realizado like '%$q%'";
 
-                            if (isset($_POST['consulta_anio'])){
-                                $p=$_SESSION['consulta_anio'];
+                            if (isset($_SESSION['consulta_anio'])) {
+
+                                $p = $_SESSION['consulta_anio'];
                                 $sql = "select id_sabatico,profesor,proyecto_realizado
                                         from producto_anio_sabatico
                                         where profesor like '%$q%'
                                         or proyecto_realizado like '%$q%'
-                                        and fecha_creado like '%$p%'";
+                                        and fecha_creado LIKE '%$p%'";
 
-                            }
-
-                        }
-                        if (isset($_POST['consulta_anio'])){
-                            $q = $conexion->real_escape_string($_POST['consulta_anio']);
-                            if($_POST['consulta_anio']!='Todos los registros'){
-                            $_SESSION['consulta_anio']=$q;
-                            $sql = "select id_sabatico,profesor,proyecto_realizado
-                            from producto_anio_sabatico
-                            where fecha_creado like '%$q%'";
-
-                        } else{
-                                $sql = "select id_sabatico,profesor,proyecto_realizado
-                                        from producto_anio_sabatico";
-
-                                unset($_SESSION['consulta_anio']);
                             }
                         }
 
                         $resultado = $conexion->query($sql);
                         if ($resultado->num_rows>0){
-
-
                         $salida.='<table class="table table-sm table-hover table-condensed table-bordered table-striped mt-2" id="tabla-php">
                             <tr>
                                 <td class="text-center align-middle background-table">Nombre de profesor(a)</td>
@@ -135,9 +152,9 @@ while($stmt->fetch()){
                                 </tr>';
 
                             }
-                            ?>
-                        </table>
-                            <?php
+
+                        $salida.='</table>';
+
                         } else {
                             $salida.='<div class="row mt-3">
                         <div class="col-12 text-center">
@@ -156,6 +173,7 @@ while($stmt->fetch()){
                     </div>
             </div>
             </div>
+        </div>
         </div>
         </div>
 
