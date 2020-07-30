@@ -99,7 +99,7 @@ $conexion = conexion();
 
 <script type="text/javascript">
     $(document).ready(function () {
-
+        var regexNum = /[^0-9]/g;
         div = document.getElementById("div1");
 
 
@@ -109,7 +109,7 @@ $conexion = conexion();
             console.log(valorSalas);
 
 
-            if(valorSalas <= 4){
+            if(valorSalas <= 10){
 
 
                 $('#div1').find('label').remove();
@@ -175,6 +175,7 @@ $conexion = conexion();
             numeroSala=$('#numero_sala_agregar').val();
 
 
+
             suma = 0;
             sumaString = "";
 
@@ -209,10 +210,15 @@ $conexion = conexion();
 
             area_academica = area_valor;
 
-
-            agregarDatos(area_academica,numeroSala,sumaString,totalComp);
-
+            if (numeroSala === "" || regexNum.test(numeroSala)){
+                alertify.alert("Error","¡El campo Nombre de cuerpo académico esta vacío o usa caracteres no permitidos!");
+                return false;
+            } else {
+                agregarDatos(area_academica, numeroSala, sumaString, totalComp);
+            }
         });
+
+
 
         $('#btn_editar_stock').click(function () {
             actualizaDatos();
