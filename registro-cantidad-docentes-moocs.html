@@ -158,6 +158,9 @@
             } else if(cantidad_docentes < "0"){
                 alertify.alert("Error","¡El campo de cantidad de docentes esta vacío!");
                 return false;
+            }else if(cantidad_docentes === ""){
+                alertify.alert("Error","¡El campo de cantidad de docentes esta vacío!");
+                return false;
             }else{
                  agregarDatos(periodo,cantidad_docentes);
             }
@@ -177,8 +180,10 @@
             } else if(cantidad_docentes < "0"){
                 alertify.alert("Error","¡El campo de cantidad de docentes esta vacío!");
                 return false;
-            }
-            else{
+            }else if(cantidad_docentes === ""){
+                alertify.alert("Error","¡El campo de cantidad de docentes esta vacío!");
+                return false;
+            }else{
             actualizarDatos();
             }
         });

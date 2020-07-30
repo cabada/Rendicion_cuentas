@@ -141,6 +141,9 @@ $conexion = conexion();
               }else if (anio  == "0") {
                   alertify.alert("Error", "¡El campo de año esta vacío!")
                   return false;
+              }else if (anio  === "") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
               }else if (anio  < "0") {
                   alertify.alert("Error", "¡El campo de año esta vacío!")
                   return false;
@@ -189,6 +192,9 @@ $conexion = conexion();
                   alertify.alert("Error","¡El campo de Cantidad de alumnos esta vacío!");
                   return false;
               }else if (anio  == "0") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (anio  === "") {
                   alertify.alert("Error", "¡El campo de año esta vacío!")
                   return false;
               }else if (anio  < "0") {
