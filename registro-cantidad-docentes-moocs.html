@@ -62,7 +62,6 @@
 					<div class="modal-body">
 						<label>Periodo</label>
                         <select type="text" class="form-control-page input-group-sm" id="periodo_agregar">
-                            <option selected>-</option>
                             <option>Agosto - Diciembre</option>
                             <option>Enero - Junio</option>
                         </select>
@@ -95,7 +94,6 @@
 
                         <label>Periodo</label>
                         <select type="text" class="form-control-page input-group-sm" id="periodo_editar">
-                            <option selected>-</option>
                             <option>Agosto - Diciembre</option>
                             <option>Enero - Junio</option>
                         </select>
@@ -154,13 +152,35 @@
             cantidad_docentes = parseInt($('#cantidad_docentes_agregar').val());
             console.log(cantidad_docentes);
 
-
-            agregarDatos(periodo,cantidad_docentes);
+            if(cantidad_docentes == "0"){
+                alertify.alert("Error","¡El campo de cantidad de docentes esta vacío!");
+                return false;
+            } else if(cantidad_docentes < "0"){
+                alertify.alert("Error","¡El campo de cantidad de docentes esta vacío!");
+                return false;
+            }else{
+                 agregarDatos(periodo,cantidad_docentes);
+            }
 
         });
 
         $('#btn_editar_moocs').click(function () {
+            
+            periodo =  $('#periodo_editar').val();
+            console.log(periodo);
+            cantidad_docentes = parseInt($('#cantidad_docentes_editar').val());
+            console.log(cantidad_docentes);
+
+            if(cantidad_docentes == "0"){
+                alertify.alert("Error","¡El campo de cantidad de docentes esta vacío!");
+                return false;
+            } else if(cantidad_docentes < "0"){
+                alertify.alert("Error","¡El campo de cantidad de docentes esta vacío!");
+                return false;
+            }
+            else{
             actualizarDatos();
+            }
         });
 
     });

@@ -42,7 +42,7 @@ $conexion = conexion();
                 <input type="text" id="nombre_estado_agregar" class="form-control-page input-group-sm">
 
                 <label>Año de registro</label>
-                <input class="form-control-page input-group-sm" type="text" maxlength="4"  id="anio_registro_agregar">
+                <input class="form-control-page input-group-sm" type="number" maxlength="4" id="anio_registro_agregar">
 
                 <label>Vigencia</label>
                 <input class="form-control-page input-group-sm" type="text" id="vigencia_agregar">
@@ -96,7 +96,7 @@ $conexion = conexion();
                 <input type="text" id="nombre_estado_editar" class="form-control-page input-group-sm">
 
                 <label>Año de registro</label>
-                <input class="form-control-page input-group-sm" type="text" maxlength="4" id="anio_registro_editar">
+                <input class="form-control-page input-group-sm" type="number" maxlength="4" id="anio_registro_editar">
 
                 <label>Vigencia</label>
                 <input class="form-control-page input-group-sm" type="text"  id="anio_vigencia_editar">
@@ -136,11 +136,77 @@ $conexion = conexion();
             area=$('#area_agregar').val();
             console.log(area);
 
-            agregarDatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area);
+            if (nombre_cuerpo_academico == ""){
+                  alertify.alert("Error","¡El campo de Nombre de cuerpo academico esta vacío!")
+                  return false;
+              } else if (grado == ""){
+                  alertify.alert("Error","¡El campo de Grado esta vacío!");
+                  return false;
+              } else if (estado === ""){
+                  alertify.alert("Error","¡El campo de Estado esta vacío!");
+                  return false;
+              }else if (anio_registro  == "0") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (anio_registro  < "0") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (vigencia === "") {
+                  alertify.alert("Error", "¡El valor ingresado en Vigencia esta vacío!")
+                  return false;
+              }else if (area === "") {
+                  alertify.alert("Error", "¡El campo de area esta vacío!")
+                  return false;
+              }else {
+
+            agregardatos(id_area_academica,nombre_cuerpo_academico,grado,estado,anio_registro,vigencia,area);
+              }
         });
 
         $('#btn_editar_curso_actual').click(function () {
-            actualizarDatos();
+            var area_sel = document.getElementById("area_academica_editar");
+            var area_valor = area_sel.options[area_sel.selectedIndex].value;
+
+            id_area_academica = $('#area_academica_editar').val();
+            console.log(id_area_academica);
+
+            nombre_cuerpo_academico=$('#nombre_cuerpo_academico_editar').val();
+            console.log(nombre_cuerpo_academico);
+            grado=$('#grado_editar').val();
+            console.log(grado);
+            estado=$('#nombre_estado_editar').val();
+            console.log(estado);
+            anio_registro=$('#anio_registro_editar').val();
+            console.log(anio_registro);
+            vigencia=$('#anio_vigencia_editar').val();
+            console.log(vigencia);
+            area=$('#area_editar').val();
+            console.log(area);
+
+            if (nombre_cuerpo_academico == ""){
+                  alertify.alert("Error","¡El campo de Nombre de cuerpo academico esta vacío!")
+                  return false;
+              } else if (grado == ""){
+                  alertify.alert("Error","¡El campo de Grado esta vacío!");
+                  return false;
+              } else if (estado === ""){
+                  alertify.alert("Error","¡El campo de Estado esta vacío!");
+                  return false;
+              }else if (anio_registro  == "0") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (anio_registro  < "0") {
+                  alertify.alert("Error", "¡El campo de año esta vacío!")
+                  return false;
+              }else if (vigencia === "") {
+                  alertify.alert("Error", "¡El valor ingresado en Vigencia esta vacío!")
+                  return false;
+              }else if (area === "") {
+                  alertify.alert("Error", "¡El campo de area esta vacío!")
+                  return false;
+              }else {
+                 actualizaDatos();
+              }
         });
     });
 
