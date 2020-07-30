@@ -84,6 +84,9 @@ $conexion = conexion();
 <!-- JAVASCRIPT CODE -->
 <script type="text/javascript">
     $(document).ready(function () {
+        var regex = /[^A-Za-z ÁáÉéÍíÓóÚú.]/g;
+
+
         //colocar id del boton perteneciente al modal for new form
         $('#btn_agregar_curso_actual').click(function () {
 
@@ -93,10 +96,10 @@ $conexion = conexion();
             console.log(nombre_especialidad);
 
             // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
-            if(id_carrera === ""){
+            if(id_carrera === ""||regex.test(id_carrera)){
                 alertify.alert("Error","¡El campo de programa esta vacío!");
                 return false;
-            }else if (nombre_especialidad === ""){
+            }else if (nombre_especialidad === ""||regex.test(nombre_especialidad)){
                 alertify.alert("Error","¡El campo linea de investigacion esta vacío!");
                 return false;
             } else {
@@ -111,10 +114,10 @@ $conexion = conexion();
             id_carrera=$('#programa_educativo_editar').val();
             nombre_especialidad=$('#investigacion_editar').val();
 
-            if(id_carrera === ""){
+            if(id_carrera === "" ||regex.test(id_carrera)){
                 alertify.alert("Error","¡El campo de programa esta vacío!");
                 return false;
-            } else if (nombre_especialidad === ""){
+            } else if (nombre_especialidad === ""||regex.test(nombre_especialidad)){
                 alertify.alert("Error","¡El campo de linea de investigacion esta vacío!");
                 return false;
             } else {
