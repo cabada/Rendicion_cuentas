@@ -147,7 +147,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        var regex = /[^A-Za-z]/g;
+        var regex = /[^A-Za-z ÁáÉéÍíÓóÚú . , () ]/g;
         var regexNum = /[^0-9]/g;
 
           $('#btn_agregar_curso_actual').click(function () {
@@ -160,7 +160,7 @@
               console.log(periodo_ago_dic);
 
               //VALIDACIONES PARA AGREGAR UN REGISTRO
-              if (nombre_actividad === "") {
+              if (nombre_actividad === "" || regex.test(nombre_actividad)) {
                   alertify.alert("Error", "¡El campo nombre de actividad esta vacio!");
                   return false;
               } else if (periodo_ene_jun=== ""){
@@ -187,7 +187,7 @@
               periodo_ago_dic=$('#periodoad_editar').val();
 
               //VALIDACIONES PARA EDITAR UN REGISTRO
-              if (nombre_actividad === "") {
+              if (nombre_actividad === "" || regex.test(nombre_actividad)) {
                   alertify.alert("Error", "¡El campo nombre de actividad esta vacio!");
                   return false;
               } else if (periodo_ene_jun=== ""){

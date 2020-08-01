@@ -66,9 +66,8 @@
 
 						<label>Periodo</label>
 						<select type="text" class="form-control-page input-group-sm" id="periodo_agregar">
-                            <option selected>-</option>
-                            <option value="Ene-Jun">Ene-Jun</option>
-                            <option value="Ago-Dic">Ago-Dic</option>
+                            <option>Ene-Jun</option>
+                            <option>Ago-Dic</option>
                         </select>
 
                         <label>No. de participantes</label>
@@ -105,9 +104,8 @@
 
 						<label>Periodo</label>
 						<select type="text" class="form-control-page input-group-sm" id="periodo_editar">
-                            <option selected>-</option>
-                            <option value="Ene-Jun">Ene-Jun</option>
-                            <option value="Ago-Dic">Ago-Dic</option>s
+                            <option>Ene-Jun</option>
+                            <option>Ago-Dic</option>s
                         </select>
 
                         <label>No. de participantes</label>
@@ -124,7 +122,7 @@
 			</div>
 		</div>
     </main>
-    
+
     <!-- FOOTER -->
     <footer class="container-fluid my-5 border-top">
         <div class="row mt-2 text-center">
@@ -144,7 +142,7 @@
             </div>
         </div>
     </footer>
-    
+
 </body>
 </html>
 
@@ -158,8 +156,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#btn_agregar_curso_actual').click(function () {
 
+        var regexNum = /[^0-9]/g;
+
+        $('#btn_agregar_curso_actual').click(function () {
 
             nombre_curso =  $('#nombre_curso_agregar').val();
             console.log(nombre_curso);
@@ -170,14 +170,47 @@
             horas_capacitacion= parseInt($('#no_capacitacion_agregar').val());
             console.log(horas_capacitacion);
 
-            agregarDatos(nombre_curso,periodo,no_participantes,horas_capacitacion);
-
+            // VALIDACIONES PARA AGREGAR NUEVO REGISTRO
+            if (nombre_curso ===""){
+                alertify.alert("Error","¡El campo Nombre del curso esta vacio!");
+                return false;
+            } else if (periodo ===""){
+                alertify.alert("Error","¡Seleccione un periodo!");
+                return false;
+            } else if (no_participantes ==="" || regexNum.test(no_participantes)){
+                alertify.alert("Error","¡El campo No. de participantes esta vacio o es incorrecto!");
+                return false;
+            } else if (horas_capacitacion ==="" || regexNum.test(horas_capacitacion)){
+                alertify.alert("Error","¡El campo Horas de capacitacion esta vacio o es incorrecto!");
+                return false;
+            } else {
+                agregarDatos(nombre_curso, periodo, no_participantes, horas_capacitacion);
+            }
         });
 
         $('#btn_editar_curso_actual').click(function () {
-            actualizarDatos();
-        });
+            nombre_curso =$('#nombre_curso_editar').val();
+            periodo =$('#periodo_editar').val();
+            no_participantes =$('#no_participantes_editar').val();
+            horas_capacitacion =$('#no_capacitacion_editar').val();
 
+            // VALIDACIONES PARA EDITAR NUEVO REGISTRO
+            if (nombre_curso ===""){
+                alertify.alert("Error","¡El campo Nombre del curso esta vacio!");
+                return false;
+            } else if (periodo ===""){
+                alertify.alert("Error","¡Seleccione un periodo!");
+                return false;
+            } else if (no_participantes ==="" || regexNum.test(no_participantes)){
+                alertify.alert("Error","¡El campo No. de participantes esta vacio o es incorrecto!");
+                return false;
+            } else if (horas_capacitacion ==="" || regexNum.test(horas_capacitacion)){
+                alertify.alert("Error","¡El campo Horas de capacitacion esta vacio o es incorrecto!");
+                return false;
+            } else {
+                actualizarDatos();
+            }
+        });
     });
 
 </script>
